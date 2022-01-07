@@ -1,0 +1,30 @@
+import {NormalizedValidator} from '../types/normalized-validator';
+import {SupportedValidators} from '../validators/supported-validators';
+
+export const BASE_VALIDATORS_MAP: Map<string, NormalizedValidator> = new Map<string, NormalizedValidator>([
+  ['min', SupportedValidators.min],
+  ['max', SupportedValidators.max],
+  ['required', SupportedValidators.required],
+  ['requiredTrue', SupportedValidators.requiredTrue],
+  ['minLength', SupportedValidators.minLength],
+  ['maxLength', SupportedValidators.maxLength],
+  ['pattern', SupportedValidators.pattern],
+  ['isGreaterThan', SupportedValidators.isGreaterThan],
+  ['isLessThan', SupportedValidators.isLessThan],
+  ['isEqualTo', SupportedValidators.isEqualTo],
+  ['isLessOrEqual', SupportedValidators.isLessOrEqual],
+  ['isGreaterOrEqual', SupportedValidators.isGreaterOrEqual],
+  ['isTruthy', SupportedValidators.isTruthy],
+  ['isFalsy', SupportedValidators.isFalsy],
+  ['isDate', SupportedValidators.isDate],
+  ['isDateBefore', SupportedValidators.isDateBefore],
+  ['isDateAfter', SupportedValidators.isDateAfter],
+  ['isDateOn', SupportedValidators.isDateOn],
+  ['isDateOnOrBefore', SupportedValidators.isDateOnOrBefore],
+  ['isDateOnOrAfter', SupportedValidators.isDateOnOrAfter],
+  ['isAgeGreaterThan', SupportedValidators.isAgeGreaterThan],
+  ['isAgeLessThan', SupportedValidators.isAgeLessThan],
+  ['isAgeEqualTo', SupportedValidators.isAgeEqualTo],
+  ['isAgeGreaterOrEqual', SupportedValidators.isAgeGreaterOrEqual],
+  ['isAgeLessOrEqual', SupportedValidators.isAgeLessOrEqual],
+]);
