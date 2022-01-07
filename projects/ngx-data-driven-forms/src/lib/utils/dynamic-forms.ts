@@ -1,10 +1,8 @@
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
-import {Statements} from '../models/config-declaration/statements';
-import {ConditionsFunction} from '../types/conditions-function';
 import {combineLatest, Observable, tap} from 'rxjs';
-import {QuestionGroup} from '../models/config-declaration/question-group';
-import {Question} from '../models/config-declaration/question';
-import {IQuestionPackage} from '../interfaces/utility/question-package';
+import {Question, QuestionGroup, Statements} from '../classes';
+import {ConditionsFunction} from '../types';
+import {IQuestionPackage} from './question-package';
 
 export class DynamicFormsUtils {
 
