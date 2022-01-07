@@ -1,5 +1,6 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {DataDrivenFormsConfigService} from './services';
 
 export interface DataDrivenFormsConfig {
 
@@ -13,6 +14,9 @@ export interface DataDrivenFormsConfig {
   ],
   exports: [
     ReactiveFormsModule
+  ],
+  providers: [
+    DataDrivenFormsConfigService
   ]
 })
 export class NgxDataDrivenFormsModule {
