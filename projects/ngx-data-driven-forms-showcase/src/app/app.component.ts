@@ -11,7 +11,10 @@ export class AppComponent {
 
   config: Question = new Question({
     type: 'text',
-    id: 'test'
+    id: 'test',
+    label: {
+      text: 'Test Question'
+    }
   });
 
   control = this.config.control(null, this.fb);

@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {AbstractControl, FormControl} from '@angular/forms';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {Question} from '../../../forms-config';
 import {DataDrivenFormsConfigService} from '../../../services';
 import {IQuestionFieldComponent} from '../../_interfaces';
@@ -11,13 +11,14 @@ import {IQuestionFieldComponent} from '../../_interfaces';
 })
 export class QuestionComponent implements OnInit, AfterViewInit {
 
-  @Input() control!: AbstractControl | FormControl | null;
+  @Input() control!: FormControl | null;
   @Input() config!: Question;
 
   @ViewChild('fieldHost', {read: ViewContainerRef}) fieldHost!: ViewContainerRef;
 
   constructor(
-    private ddFormsConf: DataDrivenFormsConfigService
+    private ddFormsConf: DataDrivenFormsConfigService,
+    private _changeDetector: ChangeDetectorRef
   ) {
   }
 
@@ -47,7 +48,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     const componentRef = this.fieldHost.createComponent<IQuestionFieldComponent>(field.component);
     componentRef.instance.control = this.control;
     componentRef.instance.config = this.config;
-
+    this._changeDetector.detectChanges();
   }
 
 

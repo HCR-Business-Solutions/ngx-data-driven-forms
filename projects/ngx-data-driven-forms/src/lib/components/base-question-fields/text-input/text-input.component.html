@@ -1,1 +1,6 @@
-<p>text-input works!</p>
+<ng-container *ngIf="this.control && this.config">
+  <div [ngClass]="{'ddforms-default': this.useDefaultStyles}" class="form-field">
+    <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label.text}}</label>
+    <input [formControl]="this.control" [id]="config.id" class="form-control" type="text"/>
+  </div>
+</ng-container>

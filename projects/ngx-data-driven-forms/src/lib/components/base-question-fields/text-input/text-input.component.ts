@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IQuestionFieldComponent} from '../../_interfaces';
-import {AbstractControl} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {Question} from '../../../forms-config';
+import {DataDrivenFormsConfigService} from '../../../services';
 
 @Component({
   selector: 'ddforms-text-input',
@@ -10,13 +11,18 @@ import {Question} from '../../../forms-config';
 })
 export class TextInputComponent implements OnInit, IQuestionFieldComponent {
 
-  @Input() control?: AbstractControl | null;
-  @Input() config?: Question;
+  @Input() control!: FormControl | null;
+  @Input() config!: Question;
 
-  constructor() {
+  public readonly useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+
+  constructor(
+    private ddFormsConf: DataDrivenFormsConfigService,
+  ) {
   }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -1,9 +1,14 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {QuestionComponent, TextInputComponent} from './components';
+import {FieldItem, QuestionComponent, TextInputComponent} from './components';
+import {CommonModule} from '@angular/common';
+import {ConditionsFunction, NormalizedValidator} from './types';
 
 export interface DataDrivenFormsConfig {
-
+  ignoreDefaultStyles?: boolean;
+  customValidators?: Map<string, NormalizedValidator>;
+  customConditions?: Map<string, ConditionsFunction>;
+  customFieldComponents?: Map<string, FieldItem>;
 }
 
 
@@ -13,7 +18,8 @@ export interface DataDrivenFormsConfig {
     QuestionComponent,
   ],
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   exports: [
     TextInputComponent,

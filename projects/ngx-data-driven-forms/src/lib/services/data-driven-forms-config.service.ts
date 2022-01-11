@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {ConditionsFunction, NormalizedValidator} from '../types';
 import {BehaviorSubject} from 'rxjs';
 import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_VALIDATORS_MAP} from '../maps';
 import {FieldItem} from '../components';
+import {DataDrivenFormsConfig} from '../ngx-data-driven-forms.module';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,11 @@ export class DataDrivenFormsConfigService {
   private readonly validators: BehaviorSubject<Map<string, NormalizedValidator> | null | undefined> = new BehaviorSubject<Map<string, NormalizedValidator> | null | undefined>(null);
   private readonly conditions: BehaviorSubject<Map<string, ConditionsFunction> | null | undefined> = new BehaviorSubject<Map<string, ConditionsFunction> | null | undefined>(null);
   private readonly components: BehaviorSubject<Map<string, FieldItem> | null | undefined> = new BehaviorSubject<Map<string, FieldItem> | null | undefined>(null);
+  private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
 
-  constructor() {
+  constructor(
+    @Inject('dataDrivenFormsConfig') private config: DataDrivenFormsConfig
+  ) {
 
     if (!this.validators.getValue()?.size) {
       this.validators.next(BASE_VALIDATORS_MAP);
@@ -26,6 +30,20 @@ export class DataDrivenFormsConfigService {
     if (!this.components.getValue()?.size) {
       this.components.next(BASE_COMPONENTS_MAP);
     }
+
+    if (config?.customValidators) {
+      this.registerValidators(config.customValidators);
+    }
+
+    if (config?.customConditions) {
+      this.registerConditions(config.customConditions);
+    }
+
+    if (config?.customFieldComponents) {
+      this.registerComponents(config.customFieldComponents);
+    }
+
+    this.ignoreDefaultStyles.next(config?.ignoreDefaultStyles ?? false);
 
   }
 
@@ -48,6 +66,10 @@ export class DataDrivenFormsConfigService {
     return new Map<string, FieldItem>([
       ...components ? components.entries() : [],
     ]);
+  }
+
+  public getShouldIgnoreStyles(): boolean {
+    return this.ignoreDefaultStyles.getValue() ?? false;
   }
 
   public registerValidator(key: string, validator: NormalizedValidator): void {

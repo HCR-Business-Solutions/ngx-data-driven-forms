@@ -1,0 +1,14 @@
+.ddforms-default.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: .5rem;
+}
+
+.ddforms-default.form-field .form-label {
+
+}
+
+.ddforms-default.form-field .form-control {
+
+}
