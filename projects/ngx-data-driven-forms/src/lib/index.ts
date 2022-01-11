@@ -1,5 +1,5 @@
-export * from './forms-config/classes';
-export * from './forms-config/interfaces';
+export * from './components';
+export * from './forms-config';
 export * from './maps';
 export * from './types';
 export * from './utils';

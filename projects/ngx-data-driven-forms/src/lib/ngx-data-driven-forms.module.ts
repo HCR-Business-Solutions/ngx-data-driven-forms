@@ -1,28 +1,29 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {DataDrivenFormsConfigService} from './services';
+import {QuestionComponent, TextInputComponent} from './components';
 
 export interface DataDrivenFormsConfig {
 
 }
 
+
 @NgModule({
   declarations: [
+    TextInputComponent,
+    QuestionComponent,
   ],
   imports: [
     ReactiveFormsModule
   ],
   exports: [
-    ReactiveFormsModule
-  ],
-  providers: [
-    DataDrivenFormsConfigService
+    TextInputComponent,
+    QuestionComponent
   ]
 })
 export class NgxDataDrivenFormsModule {
 
   constructor(@Optional() @SkipSelf() parent?: NgxDataDrivenFormsModule) {
-    if(parent) {
+    if (parent) {
       throw new Error(
         'NgxDataDrivenFormsModule is already loaded. Import it in the AppModule ONLY.'
       );
@@ -39,7 +40,7 @@ export class NgxDataDrivenFormsModule {
           useValue: config
         }
       ]
-    }
+    };
   }
 
 }
