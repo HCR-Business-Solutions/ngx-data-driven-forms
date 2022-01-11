@@ -1,6 +1,5 @@
 import {AbstractControl, ValidatorFn, Validators} from '@angular/forms';
-import {SupportedLogicUtils} from '../utils/supported-logic';
-import {DateUtils} from '../utils/date';
+import {DateUtils, SupportedLogicUtils} from '../utils';
 
 export class SupportedValidators {
 

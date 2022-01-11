@@ -1,5 +1,5 @@
-import {NormalizedValidator} from '../types/normalized-validator';
-import {SupportedValidators} from '../validators/supported-validators';
+import {NormalizedValidator} from '../types';
+import {SupportedValidators} from '../validators';
 
 export const BASE_VALIDATORS_MAP: Map<string, NormalizedValidator> = new Map<string, NormalizedValidator>([
   ['min', SupportedValidators.min],

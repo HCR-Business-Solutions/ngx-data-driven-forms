@@ -3,8 +3,8 @@ import {Section} from './section';
 import {AbstractControl, FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {IPage} from '../interfaces';
-import {ConditionsFunction, NormalizedValidator} from '../types';
-import {DynamicFormsUtils} from '../utils';
+import {ConditionsFunction, NormalizedValidator} from '../../types';
+import {DynamicFormsUtils} from '../../utils';
 
 export class Page implements IPage {
   public id: string;

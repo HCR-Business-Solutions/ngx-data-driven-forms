@@ -1,6 +1,6 @@
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {combineLatest, Observable, tap} from 'rxjs';
-import {Question, QuestionGroup, Statements} from '../classes';
+import {Question, QuestionGroup, Statements} from '../forms-config';
 import {ConditionsFunction} from '../types';
 import {IQuestionPackage} from './question-package';
 

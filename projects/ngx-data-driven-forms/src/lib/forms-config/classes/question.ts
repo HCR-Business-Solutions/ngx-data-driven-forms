@@ -2,9 +2,9 @@ import {Statements} from './statements';
 import {AbstractControl, FormBuilder, FormControl, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {ICustomValidation, IQuestion, IQuestionOption, IQuestionValidation} from '../interfaces';
-import {ConditionsFunction, NormalizedValidator} from '../types';
-import {DynamicFormsUtils} from '../utils';
-import {BASE_VALIDATORS_MAP} from '../maps';
+import {ConditionsFunction, NormalizedValidator} from '../../types';
+import {DynamicFormsUtils} from '../../utils';
+import {BASE_VALIDATORS_MAP} from '../../maps';
 
 export class Question implements IQuestion {
 

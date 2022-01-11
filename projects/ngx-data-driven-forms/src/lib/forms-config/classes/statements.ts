@@ -2,7 +2,7 @@ import {Statement} from './statement';
 import {AbstractControl} from '@angular/forms';
 import {combineLatest} from 'rxjs';
 import {IStatements} from '../interfaces';
-import {ConditionsFunction} from '../types';
+import {ConditionsFunction} from '../../types';
 
 export class Statements implements IStatements {
   public check?: 'one' | 'all';

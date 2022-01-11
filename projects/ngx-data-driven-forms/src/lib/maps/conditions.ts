@@ -1,5 +1,5 @@
-import {SupportedLogicUtils} from '../utils/supported-logic';
-import {ConditionsFunction} from '../types/conditions-function';
+import {SupportedLogicUtils} from '../utils';
+import {ConditionsFunction} from '../types';
 
 export const BASE_CONDITIONS_MAP = new Map<string, ConditionsFunction>([
   ['hasValue', SupportedLogicUtils.hasValue],

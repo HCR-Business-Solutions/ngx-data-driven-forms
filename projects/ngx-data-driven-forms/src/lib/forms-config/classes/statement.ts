@@ -1,7 +1,7 @@
 import {AbstractControl} from '@angular/forms';
 import {IConditions, ICustomConditions, IStatement} from '../interfaces';
-import {ConditionsFunction} from '../types';
-import {BASE_CONDITIONS_MAP} from '../maps';
+import {ConditionsFunction} from '../../types';
+import {BASE_CONDITIONS_MAP} from '../../maps';
 
 export class Statement implements IStatement {
 
@@ -23,7 +23,7 @@ export class Statement implements IStatement {
 
   public getArgControl(control: AbstractControl): AbstractControl | null {
 
-    let sibling: AbstractControl | null = null;
+    let sibling: AbstractControl | null;
 
     let check: AbstractControl | null = control;
     for(let i = 0; i < this.expectedParentLevel && check !== null; i++) {

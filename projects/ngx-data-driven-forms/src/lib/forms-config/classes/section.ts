@@ -1,13 +1,13 @@
 import {Statements} from './statements';
 import {QuestionGroup} from './question-group';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {combineLatest, Observable, tap} from 'rxjs';
+import {combineLatest, Observable} from 'rxjs';
 import {Question} from './question';
 import {ISection} from '../interfaces';
-import {ConditionsFunction, NormalizedValidator} from '../types';
-import {DynamicFormsUtils} from '../utils';
+import {ConditionsFunction, NormalizedValidator} from '../../types';
+import {DynamicFormsUtils} from '../../utils';
 
-export class Section implements ISection{
+export class Section implements ISection {
 
   public id: string;
   public title?: string;
@@ -17,7 +17,7 @@ export class Section implements ISection{
   public questionOrder: string[];
 
   public repeat?: {
-    style: "list" | "table";
+    style: 'list' | 'table';
     itemName?: string;
     minEntries?: number;
     maxEntries?: number
@@ -73,7 +73,7 @@ export class Section implements ISection{
 
   public getQuestionsChangeEvents(control: AbstractControl, customConditions?: Map<string, ConditionsFunction>): Observable<any> | undefined {
     const questions = Object.entries(this.questions);
-    if(questions.every(([id, question]: [string, Question]) => !question.shouldAsk)) return undefined;
+    if (questions.every(([, question]: [string, Question]) => !question.shouldAsk)) return undefined;
     const changes = questions
       .map(([_, question]: [string, Question]) => question)
       .filter(_ => _.shouldAsk)

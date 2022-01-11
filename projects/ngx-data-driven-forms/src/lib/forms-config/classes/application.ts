@@ -1,7 +1,7 @@
 import {Page} from './page';
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {IApplication} from '../interfaces';
-import {NormalizedValidator} from '../types';
+import {NormalizedValidator} from '../../types';
 
 export class Application implements IApplication {
 
