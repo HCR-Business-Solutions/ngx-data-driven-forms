@@ -1,6 +1,11 @@
 import {Component} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {DataDrivenFormsValidationService} from '../../../ngx-data-driven-forms/src/lib/services';
+import {FormBuilder, FormControl} from '@angular/forms';
+import {
+  DataDrivenFormsConfigService,
+  DataDrivenFormsValidationService,
+  IQuestion,
+  Question
+} from '../../../ngx-data-driven-forms/src/lib';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +16,25 @@ export class AppComponent {
 
   test = {
     id: 'test',
-    type: 'owo'
+    type: 'test',
+    label: {
+      text: 'Test Input'
+    }
   };
+
+  configInterface: IQuestion;
+  config: Question;
+  control: FormControl;
 
   constructor(
     private fb: FormBuilder,
+    private ddFormsConf: DataDrivenFormsConfigService,
     private ddFormsValidator: DataDrivenFormsValidationService,
   ) {
-    console.log(ddFormsValidator.validateQuestion(this.test));
+    this.configInterface = this.test;
+    this.config = new Question(this.configInterface);
+    this.control = this.config.control(null, this.fb);
+    console.log('ddFormsValidation', ddFormsValidator.validateQuestion(this.test));
   }
 
 }

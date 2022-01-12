@@ -1,0 +1,7 @@
+<ng-container *ngIf="this.control && this.config">
+  <div class="form-field">
+    <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label>
+    <p *ngIf="this.config.hint" class="form-hint">{{this.config.hint.text}}</p>
+    <input [formControl]="this.formControl" [id]="this.config.id" class="form-control"/>
+  </div>
+</ng-container>

@@ -1,8 +1,9 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {FieldItem, QuestionComponent, TextInputComponent} from './components';
+import {FieldItem, QuestionComponent, TextFieldComponent} from './components';
 import {CommonModule} from '@angular/common';
 import {ConditionsFunction, NormalizedValidator} from './types';
+import {DynamicFieldDirective} from './directives/dynamic-field.directive';
 
 export interface DataDrivenFormsConfig {
   ignoreDefaultStyles?: boolean;
@@ -14,16 +15,18 @@ export interface DataDrivenFormsConfig {
 
 @NgModule({
   declarations: [
-    TextInputComponent,
+    TextFieldComponent,
     QuestionComponent,
+    DynamicFieldDirective
   ],
   imports: [
     ReactiveFormsModule,
     CommonModule
   ],
   exports: [
-    TextInputComponent,
-    QuestionComponent
+    TextFieldComponent,
+    QuestionComponent,
+    DynamicFieldDirective
   ]
 })
 export class NgxDataDrivenFormsModule {
