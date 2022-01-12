@@ -8,26 +8,46 @@ import {BASE_VALIDATORS_MAP} from '../../maps';
 
 export class Question implements IQuestion {
 
-  public id: string;
-  public type: 'text' | 'textarea' | 'number' | 'select' | 'checkbox' | 'date' | 'radio';
-  public label?: { text: string; shortText?: string; position?: 'before' | 'after' };
-  public options?: IQuestionOption[];
-  public shouldAsk?: Statements;
-  public retainWhenNotAsked?: boolean;
-  public validation?: IQuestionValidation;
-  public customValidation?: ICustomValidation;
-  public isFlag?: boolean;
+  id: string;
+  type: string;
+  label?: {
+    text: string;
+    shortText?: string;
+    position?: 'before' | 'after';
+  };
+
+  hint?: {
+    text: string;
+    position?: 'before' | 'after';
+  };
+
+  placeholder?: string;
+
+  readonly?: boolean;
+
+  isFlag?: boolean;
+
+  validation?: IQuestionValidation;
+  customValidation?: ICustomValidation;
+  options?: IQuestionOption[];
+
+  shouldAsk?: Statements;
+  retainWhenNotAsked?: boolean;
+
 
   constructor(question: IQuestion) {
     this.id = question.id;
     this.type = question.type;
     this.label = question.label;
+    this.hint = question.hint;
+    this.placeholder = question.placeholder;
+    this.readonly = question.readonly;
+    this.isFlag = question.isFlag;
+    this.validation = question.validation;
+    this.customValidation = question.customValidation;
     this.options = question.options;
     this.shouldAsk = question.shouldAsk ? new Statements(question.shouldAsk) : undefined;
     this.retainWhenNotAsked = question.retainWhenNotAsked;
-    this.validation = question.validation;
-    this.customValidation = question.customValidation;
-    this.isFlag = question.isFlag;
   }
 
   public control(initialValue: any, formBuilder: FormBuilder, customValidators?: Map<string, NormalizedValidator>): FormControl {

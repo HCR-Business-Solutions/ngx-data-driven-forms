@@ -7,6 +7,8 @@ export interface ISection {
   title?: string;
   border?: boolean;
 
+  narrative?: string;
+
   questions: IQuestionGroup;
   questionOrder: string[];
 

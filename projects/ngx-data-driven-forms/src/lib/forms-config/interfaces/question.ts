@@ -6,10 +6,7 @@ import {ICustomValidation} from './custom-validation';
 export interface IQuestion {
 
   id: string;
-  type: 'text' | 'textarea' |
-    'number' | 'select' |
-    'checkbox' |
-    'date' | 'radio';
+  type: string;
 
   label?: {
     text: string;
@@ -17,12 +14,23 @@ export interface IQuestion {
     position?: 'before' | 'after';
   };
 
+  hint?: {
+    text: string;
+    position?: 'before' | 'after';
+  };
+
+  placeholder?: string;
+
+  readonly?: boolean;
+
+  isFlag?: boolean;
+
   validation?: IQuestionValidation;
   customValidation?: ICustomValidation;
   options?: IQuestionOption[];
+
   shouldAsk?: IStatements;
   retainWhenNotAsked?: boolean;
 
-  isFlag?: boolean;
 
 }

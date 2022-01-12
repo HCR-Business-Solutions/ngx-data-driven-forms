@@ -13,6 +13,8 @@ export class Section implements ISection {
   public title?: string;
   public border?: boolean;
 
+  public narrative?: string;
+
   public questions: QuestionGroup;
   public questionOrder: string[];
 
@@ -29,6 +31,8 @@ export class Section implements ISection {
     this.id = section.id;
     this.title = section.title;
     this.border = section.border;
+
+    this.narrative = section.narrative;
 
     this.questions = new QuestionGroup(section.questions);
     this.questionOrder = section.questionOrder;
