@@ -19,6 +19,9 @@ export class AppComponent {
     type: 'text',
     label: {
       text: 'Test Input'
+    },
+    hint: {
+      text: 'test hint text',
     }
   };
 

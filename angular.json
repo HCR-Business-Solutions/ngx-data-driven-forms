@@ -5,6 +5,11 @@
   "projects": {
     "ngx-data-driven-forms": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/ngx-data-driven-forms",
       "sourceRoot": "projects/ngx-data-driven-forms/src",
       "prefix": "ddforms",

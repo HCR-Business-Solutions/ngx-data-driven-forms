@@ -7,7 +7,7 @@ import { DataDrivenFormsConfigService } from '../../..';
 @Component({
   selector: 'ddforms-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.css']
+  styleUrls: ['./text-field.component.scss']
 })
 export class TextFieldComponent implements OnInit, IQuestionFieldComponent {
 
