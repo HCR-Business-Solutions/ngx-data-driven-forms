@@ -15,7 +15,7 @@ export class AppComponent {
 
   test = {
     id: 'test',
-    type: 'text',
+    type: 'number',
     label: {
       text: 'Test Input'
     },

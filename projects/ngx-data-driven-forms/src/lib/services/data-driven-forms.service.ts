@@ -17,7 +17,7 @@ export class DataDrivenFormsService {
   public generateQuestionConfig(question: any, skipSchemaValidation?: boolean): Question {
     const validation = !skipSchemaValidation ? this.ddFormsValidator.validateQuestion(question) : null;
     if (validation) {
-      throw new Error(`Invalid question.\n${validation}`);
+      throw new Error(`Invalid question.\n${JSON.stringify(validation, null, 2)}`);
     }
     return new Question(question as IQuestion);
   }
@@ -26,12 +26,19 @@ export class DataDrivenFormsService {
 
     const validation = !skipSchemaValidation ? this.ddFormsValidator.validateQuestion(question) : null;
     if (validation) {
-      throw new Error(`Invalid question.\n${validation}`);
+      throw new Error(`Invalid question.\n${JSON.stringify(validation, null, 2)}`);
     }
 
     return question.control(initialValue, this._fb, this.ddFormsConf.getValidators());
+  }
 
-
+  public getQuestionValue(control: FormControl, question: Question): any {
+    const dataHandlers = this.ddFormsConf.getDataHandlers();
+    const handler = dataHandlers.get(question.type);
+    if (handler) {
+      return handler(control.value);
+    }
+    return control.value;
   }
 
 }

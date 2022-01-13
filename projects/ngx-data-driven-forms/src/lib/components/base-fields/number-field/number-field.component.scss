@@ -1,0 +1,33 @@
+
+.ddforms-default.form-field.number-field {
+
+  display: flex;
+  flex-direction: column;
+
+  .form-label{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    color: rgb(0,0,0);
+  }
+
+  .form-control{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    &.ng-invalid {
+      &.ng-touched, &.ng-dirty {
+        color: red;
+        border: 2px solid red;
+      }
+    }
+
+  }
+
+  .form-hint{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: .875rem;
+    color: rgb(46, 46, 46);
+    margin: 0rem;
+  }
+
+
+}

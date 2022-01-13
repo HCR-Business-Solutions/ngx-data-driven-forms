@@ -1,9 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
-import {ConditionsFunction, ErrorMessageFunction, NormalizedValidator} from '../types';
+import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedValidator} from '../types';
 import {BehaviorSubject} from 'rxjs';
 import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from '../maps';
 import {FieldItem} from '../components';
 import { DataDrivenFormsConfig } from '../module-config';
+import { BASE_DATA_HANDLER_MAP } from '../maps/data-handler';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class DataDrivenFormsConfigService {
   private readonly conditions: BehaviorSubject<Map<string, ConditionsFunction> | null | undefined> = new BehaviorSubject<Map<string, ConditionsFunction> | null | undefined>(null);
   private readonly components: BehaviorSubject<Map<string, FieldItem> | null | undefined> = new BehaviorSubject<Map<string, FieldItem> | null | undefined>(null);
   private readonly errorMessages: BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined> = new BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined>(null);
+  private readonly dataHandlers: BehaviorSubject<Map<string, DataHandlerFunction<any>> | null | undefined> = new BehaviorSubject<Map<string, DataHandlerFunction<any>> | null | undefined>(null);
   private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
 
   constructor(
@@ -36,6 +38,10 @@ export class DataDrivenFormsConfigService {
       this.errorMessages.next(BASE_MESSAGE_HANDLER_MAP);
     }
 
+    if (!this.dataHandlers.getValue()?.size) {
+      this.dataHandlers.next(BASE_DATA_HANDLER_MAP);
+    }
+
     if (config?.customValidators) {
       this.registerValidators(config.customValidators);
     }
@@ -50,6 +56,9 @@ export class DataDrivenFormsConfigService {
 
     if(config?.customErrorMessageHandlers) {
       this.registerErrorMessageHandlers(config.customErrorMessageHandlers);
+    }
+
+    if(config?.customDataHandlers) {
     }
 
     this.ignoreDefaultStyles.next(config?.ignoreDefaultStyles ?? false);
@@ -80,6 +89,11 @@ export class DataDrivenFormsConfigService {
   public getErrorMessageHandlers(): Map<string, ErrorMessageFunction> {
     const errorMessageHandlers = this.errorMessages.getValue();
     return errorMessageHandlers ? errorMessageHandlers : new Map<string,ErrorMessageFunction>();
+  }
+
+  public getDataHandlers(): Map<string, DataHandlerFunction<any>> {
+    const dataHandlers = this.dataHandlers.getValue();
+    return dataHandlers ? dataHandlers : new Map<string, DataHandlerFunction<any>>();
   }
 
   public getShouldIgnoreStyles(): boolean {
@@ -178,7 +192,28 @@ export class DataDrivenFormsConfigService {
     ]));
   }
 
+  public registerDataHandler(key: string, dataHandler: DataHandlerFunction<any>): void {
+    const dataHandlers = this.getDataHandlers();
+    this.dataHandlers.next(new Map<string, DataHandlerFunction<any>>([
+      ...dataHandlers.entries(),
+      [key, dataHandler]
+    ]));
+  }
 
+  public registerDataHandlers(dataHandlers: [string, DataHandlerFunction<any>][]): void;
+  public registerDataHandlers(dataHandlers: Map<string, DataHandlerFunction<any>>): void;
+  public registerDataHandlers(dataHandlers: [string, DataHandlerFunction<any>][] | Map<string, ErrorMessageFunction>): void {
+    let toRegister: Map<string, DataHandlerFunction<any>>;
+    if (Array.isArray(dataHandlers)) {
+      toRegister = new Map([...dataHandlers]);
+    } else {
+      toRegister = dataHandlers;
+    }
+    this.dataHandlers.next(new Map<string, DataHandlerFunction<any>>([
+      ...this.getDataHandlers(),
+      ...toRegister.entries(),
+    ]));
+  }
 
 }
 

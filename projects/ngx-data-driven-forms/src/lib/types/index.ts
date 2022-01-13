@@ -1,4 +1,5 @@
 export * from './conditions-function';
+export * from './data-handler-function';
 export * from './error-message-function';
 export * from './normalized-validator';
 export * from './question-data-types';
