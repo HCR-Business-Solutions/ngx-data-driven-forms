@@ -1,16 +1,19 @@
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+
 .ddforms-default.form-field {
 
     display: flex;
     flex-direction: column;
   
     .form-label{
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-family: $font-label;
       font-size: 1rem;
       color: rgb(0,0,0);
     }
   
     .form-control{
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-family: $font-control;
       &.ng-invalid {
         &.ng-touched, &.ng-dirty {
           color: red;
@@ -20,7 +23,7 @@
     }
   
     .form-hint{
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: $font-hint;
         font-size: .75rem;
         color: rgb(108,117,125);
         margin: 0rem;
