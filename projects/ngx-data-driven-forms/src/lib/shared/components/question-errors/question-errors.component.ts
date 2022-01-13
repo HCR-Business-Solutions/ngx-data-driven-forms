@@ -1,27 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { IQuestionFieldComponent } from '../..';
-import { DataDrivenFormsConfigService, Question } from '../../..';
+import { Question } from '../../../forms-config/classes/question';
+import { DataDrivenFormsConfigService } from '../../../services/data-driven-forms-config.service';
 
 @Component({
   selector: 'ddforms-question-errors',
   templateUrl: './question-errors.component.html',
   styleUrls: ['./question-errors.component.scss']
 })
-export class QuestionErrorsComponent implements OnInit, IQuestionFieldComponent {
+export class QuestionErrorsComponent implements OnInit {
 
   @Input() public control: AbstractControl | null = null;
   @Input() public config: Question | null = null;
 
   public useStyles: boolean = false;
 
+  private ddFormsConf?: DataDrivenFormsConfigService;
+
   constructor(
-    private ddFormsConf: DataDrivenFormsConfigService,
+    private injector: Injector
   ) {
-    this.useStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+    setTimeout(() => {
+      this.ddFormsConf = injector.get(DataDrivenFormsConfigService);
+    })
   }
 
   ngOnInit(): void {
+      this.useStyles = !this.ddFormsConf?.getShouldIgnoreStyles();
   }
 
   decodeErrorMessages(errors: {[key: string]: any}): string[] {
@@ -29,11 +34,11 @@ export class QuestionErrorsComponent implements OnInit, IQuestionFieldComponent 
     if(!errors) return [];
 
     const messages: string[] = [];
-    const knownMessageHandlers = this.ddFormsConf.getErrorMessageHandlers();
+    const knownMessageHandlers = this.ddFormsConf?.getErrorMessageHandlers();
 
     Object.entries(errors).forEach(([key, errorObj]: [string, any]) => {
       let tempMessage = key;
-      let errorHandler = knownMessageHandlers.get(key);
+      let errorHandler = knownMessageHandlers?.get(key);
       if (errorHandler) {
         tempMessage = errorHandler(errorObj);
       }
