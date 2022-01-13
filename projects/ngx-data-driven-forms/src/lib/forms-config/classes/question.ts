@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {ICustomValidation, IQuestion, IQuestionOption, IQuestionValidation} from '../interfaces';
 import {ConditionsFunction, NormalizedValidator} from '../../types';
 import {DynamicFormsUtils} from '../../utils';
-import {BASE_VALIDATORS_MAP} from '../../maps';
 
 export class Question implements IQuestion {
 
@@ -80,17 +79,17 @@ export class Question implements IQuestion {
     return validators;
   }
 
-  public getShouldAsk(control: AbstractControl, customConditions?: Map<string, ConditionsFunction>): boolean {
+  public getShouldAsk(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>): boolean {
     if(!this.shouldAsk) return true;
-    return this.shouldAsk.checkStatements(control, customConditions);
+    return this.shouldAsk.checkStatements(control, knownConditions);
   }
 
   public changeEvents(
     control: FormControl,
-    customConditions?: Map<string, ConditionsFunction>
+    knownConditions?: Map<string, ConditionsFunction>
   ): Observable<any> | undefined {
     if (!this.shouldAsk) return undefined;
-    return DynamicFormsUtils.gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, customConditions)
+    return DynamicFormsUtils.gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, knownConditions)
   }
 
   public decodeValue(value: any) {

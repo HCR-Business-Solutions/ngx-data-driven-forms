@@ -1,7 +1,6 @@
 import {AbstractControl} from '@angular/forms';
 import {IConditions, ICustomConditions, IStatement} from '../interfaces';
 import {ConditionsFunction} from '../../types';
-import {BASE_CONDITIONS_MAP} from '../../maps';
 
 export class Statement implements IStatement {
 
@@ -40,11 +39,10 @@ export class Statement implements IStatement {
 
   }
 
-  public checkStatement(argValue: any, customConditions?: Map<string, ConditionsFunction>): boolean {
+  public checkStatement(argValue: any, knownConditions?: Map<string, ConditionsFunction>): boolean {
 
     const conditionsMap = new Map<string, ConditionsFunction>([
-      ...BASE_CONDITIONS_MAP,
-      ...(customConditions ?? [])
+      ...(knownConditions ?? [])
     ]);
 
     let conditionResults: (boolean | undefined)[] = [];

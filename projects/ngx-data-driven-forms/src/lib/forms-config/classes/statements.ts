@@ -21,11 +21,11 @@ export class Statements implements IStatements {
     return combineLatest([...(this.getControls(control).filter(_ => _ !== null).map(_ => _?.valueChanges))]);
   }
 
-  public checkStatements(control: AbstractControl, customConditions?: Map<string, ConditionsFunction>) {
+  public checkStatements(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>) {
     const statementChecks = this.statements.map(statement => {
       const statementControl = statement.getArgControl(control);
       const statementValue = statementControl ? statementControl.value : null;
-      return statement.checkStatement(statementValue, customConditions);
+      return statement.checkStatement(statementValue, knownConditions);
     });
 
     return this.check === 'one' ?

@@ -10,13 +10,13 @@ export class DynamicFormsUtils {
     control: AbstractControl,
     statements: Statements,
     shouldRetain?: boolean,
-    customConditions?: Map<string, ConditionsFunction>
+    knownConditions?: Map<string, ConditionsFunction>
   ): Observable<any> | undefined {
     const events: Observable<any>[] = [];
     events.push(statements.getValueChanges(control).pipe(
       tap(() => {
 
-        if (!statements.checkStatements(control, customConditions)) {
+        if (!statements.checkStatements(control, knownConditions)) {
           if (!shouldRetain) {
             if (control instanceof FormControl) {
               control.setValue(null);
