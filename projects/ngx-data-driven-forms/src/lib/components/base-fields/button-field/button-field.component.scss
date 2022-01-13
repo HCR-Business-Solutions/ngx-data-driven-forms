@@ -4,31 +4,32 @@
 .ddforms-default.form-field {
 
     display: flex;
-    flex-direction: column;
-  
-    .form-label{
-      font-family: $font-label;
-      font-size: 1rem;
-      color: rgb(0,0,0);
-    }
-  
-    .form-control{
-      font-family: $font-control;
-      &.ng-invalid {
-        &.ng-touched, &.ng-dirty {
-          color: red;
-          border: 2px solid red;
-        }
-      }
-    }
-  
-    .form-hint{
-        font-family: $font-hint;
-        font-size: .75rem;
-        color: rgb(108,117,125);
-        margin: 0rem;
-      }
-  
-  
+  flex-direction: column;
+
+  .form-label{
+    font-family: $font-label;
+    font-size: 1rem;
+    color: $color-label;
   }
-  
+
+  .form-control{
+    font-family: $font-control;
+
+    &.ng-invalid {
+      &.ng-touched, &.ng-dirty {
+        color: $color-error;
+        border: 2px solid $color-error;
+      }
+    }
+
+  }
+
+  .form-hint{
+    font-family: $font-hint;
+    font-size: .75rem;
+    color: $color-hint;
+    margin: 0rem;
+  }
+
+
+}

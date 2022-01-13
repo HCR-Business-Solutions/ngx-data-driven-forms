@@ -9,7 +9,7 @@
   .form-label{
     font-family: $font-label;
     font-size: 1rem;
-    color: rgb(0,0,0);
+    color: $color-label;
   }
 
   .form-control{
@@ -17,8 +17,8 @@
 
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
-        color: red;
-        border: 2px solid red;
+        color: $color-error;
+        border: 2px solid $color-error;
       }
     }
 
@@ -27,7 +27,7 @@
   .form-hint{
     font-family: $font-hint;
     font-size: .75rem;
-    color: rgb(108,117,125);
+    color: $color-hint;
     margin: 0rem;
   }
 
