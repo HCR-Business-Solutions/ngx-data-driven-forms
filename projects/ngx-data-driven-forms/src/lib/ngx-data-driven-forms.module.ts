@@ -3,8 +3,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ButtonFieldComponent, NumberFieldComponent, QuestionComponent, TextFieldComponent} from './components';
 import {CommonModule} from '@angular/common';
 import { DataDrivenFormsConfig } from './module-config';
-import { DynamicFieldDirective } from './directives/dynamic-field.directive';
+import { DynamicFieldDirective } from './directives';
 import { QuestionErrorsComponent } from './shared';
+import { RadioFieldComponent } from './components/base-fields/radio-field/radio-field.component';
 
 
 
@@ -16,6 +17,7 @@ import { QuestionErrorsComponent } from './shared';
     ButtonFieldComponent,
     QuestionErrorsComponent,
     NumberFieldComponent,
+    RadioFieldComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -27,6 +29,7 @@ import { QuestionErrorsComponent } from './shared';
     DynamicFieldDirective,
     ButtonFieldComponent,
     QuestionErrorsComponent,
+    RadioFieldComponent,
   ]
 })
 export class NgxDataDrivenFormsModule {

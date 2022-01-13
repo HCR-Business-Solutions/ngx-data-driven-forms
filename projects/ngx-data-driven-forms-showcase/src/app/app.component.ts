@@ -15,16 +15,19 @@ export class AppComponent {
 
   test = {
     id: 'test',
-    type: 'number',
+    type: 'radio',
     label: {
-      text: 'Test Input'
+      text: 'Test radio'
     },
     hint: {
-      text: 'test hint text',
+      text: 'test hint radio text',
     },
     validation: {
       required: true,
-    }
+    },
+    options:[{
+      value: "test1", display: "test1"    },
+      {value: "test2", display: "test2"    }]
   };
 
   config: Question;
