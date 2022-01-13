@@ -5,4 +5,5 @@ export * from './services';
 export * from './types';
 export * from './utils';
 export * from './validators';
+export * from './module-config';
 export * from './ngx-data-driven-forms.module';

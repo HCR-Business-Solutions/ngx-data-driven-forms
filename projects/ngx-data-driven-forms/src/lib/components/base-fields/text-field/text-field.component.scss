@@ -1,4 +1,4 @@
-.ddforms-default.form-field {
+.ddforms-default.form-field.text-field {
 
   display: flex;
   flex-direction: column;
@@ -11,12 +11,14 @@
 
   .form-control{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
         color: red;
         border: 2px solid red;
       }
     }
+
   }
 
   .form-hint{

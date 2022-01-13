@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
 import {ConditionsFunction, ErrorMessageFunction, NormalizedValidator} from '../types';
 import {BehaviorSubject} from 'rxjs';
-import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_VALIDATORS_MAP} from '../maps';
+import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from '../maps';
 import {FieldItem} from '../components';
-import {DataDrivenFormsConfig} from '../ngx-data-driven-forms.module';
+import { DataDrivenFormsConfig } from '../module-config';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,10 @@ export class DataDrivenFormsConfigService {
       this.components.next(BASE_COMPONENTS_MAP);
     }
 
+    if (!this.errorMessages.getValue()?.size) {
+      this.errorMessages.next(BASE_MESSAGE_HANDLER_MAP);
+    }
+
     if (config?.customValidators) {
       this.registerValidators(config.customValidators);
     }
@@ -42,6 +46,10 @@ export class DataDrivenFormsConfigService {
 
     if (config?.customFieldComponents) {
       this.registerComponents(config.customFieldComponents);
+    }
+
+    if(config?.customErrorMessageHandlers) {
+      this.registerErrorMessageHandlers(config.customErrorMessageHandlers);
     }
 
     this.ignoreDefaultStyles.next(config?.ignoreDefaultStyles ?? false);
@@ -67,6 +75,11 @@ export class DataDrivenFormsConfigService {
     return new Map<string, FieldItem>([
       ...components ? components.entries() : [],
     ]);
+  }
+
+  public getErrorMessageHandlers(): Map<string, ErrorMessageFunction> {
+    const errorMessageHandlers = this.errorMessages.getValue();
+    return errorMessageHandlers ? errorMessageHandlers : new Map<string,ErrorMessageFunction>();
   }
 
   public getShouldIgnoreStyles(): boolean {
@@ -141,6 +154,30 @@ export class DataDrivenFormsConfigService {
       ...toRegister.entries(),
     ]));
   }
+
+  public registerErrorMessageHandler(key: string, messageHandler: ErrorMessageFunction): void {
+    const messageHandlers = this.getErrorMessageHandlers();
+    this.errorMessages.next(new Map<string, ErrorMessageFunction>([
+      ...messageHandlers.entries(),
+      [key, messageHandler]
+    ]));
+  }
+
+  public registerErrorMessageHandlers(messageHandlers: [string, ErrorMessageFunction][]): void;
+  public registerErrorMessageHandlers(messageHandlers: Map<string, ErrorMessageFunction>): void;
+  public registerErrorMessageHandlers(messageHandlers: [string, ErrorMessageFunction][] | Map<string, ErrorMessageFunction>): void {
+    let toRegister: Map<string, ErrorMessageFunction>;
+    if (Array.isArray(messageHandlers)) {
+      toRegister = new Map([...messageHandlers]);
+    } else {
+      toRegister = messageHandlers;
+    }
+    this.errorMessages.next(new Map<string, ErrorMessageFunction>([
+      ...this.getErrorMessageHandlers(),
+      ...toRegister.entries(),
+    ]));
+  }
+
 
 
 }

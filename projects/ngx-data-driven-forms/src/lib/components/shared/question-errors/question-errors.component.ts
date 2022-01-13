@@ -24,4 +24,24 @@ export class QuestionErrorsComponent implements OnInit, IQuestionFieldComponent 
   ngOnInit(): void {
   }
 
+  decodeErrorMessages(errors: {[key: string]: any}): string[] {
+
+    if(!errors) return [];
+
+    const messages: string[] = [];
+    const knownMessageHandlers = this.ddFormsConf.getErrorMessageHandlers();
+
+    Object.entries(errors).forEach(([key, errorObj]: [string, any]) => {
+      let tempMessage = key;
+      let errorHandler = knownMessageHandlers.get(key);
+      if (errorHandler) {
+        tempMessage = errorHandler(errorObj);
+      }
+      messages.push(tempMessage);
+    });
+
+    return messages;
+
+  }
+
 }
