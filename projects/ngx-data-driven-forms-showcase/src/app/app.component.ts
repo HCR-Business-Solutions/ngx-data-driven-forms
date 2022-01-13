@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {
-  DataDrivenFormsConfigService,
-  DataDrivenFormsValidationService,
+  DataDrivenFormsService,
   IQuestion,
   Question
 } from '../../../ngx-data-driven-forms/src/lib';
@@ -22,22 +21,26 @@ export class AppComponent {
     },
     hint: {
       text: 'test hint text',
+    },
+    validation: {
+      required: true,
     }
   };
 
-  configInterface: IQuestion;
   config: Question;
   control: FormControl;
 
   constructor(
     private fb: FormBuilder,
-    private ddFormsConf: DataDrivenFormsConfigService,
-    private ddFormsValidator: DataDrivenFormsValidationService,
+    private ddForms: DataDrivenFormsService,
   ) {
-    this.configInterface = this.test;
-    this.config = new Question(this.configInterface);
-    this.control = this.config.control(null, this.fb);
-    console.log('ddFormsValidation', ddFormsValidator.validateQuestion(this.test));
+    this.config = this.ddForms.generateQuestionConfig(this.test);
+    this.control = this.ddForms.generateQuestionControl(null, this.config, true);
+    console.log('control', this.control);
+  }
+
+  onLogButton(){
+    console.log('control', this.control);
   }
 
 }

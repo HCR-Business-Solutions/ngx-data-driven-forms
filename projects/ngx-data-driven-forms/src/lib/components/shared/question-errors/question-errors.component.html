@@ -1,0 +1,6 @@
+<ng-container *ngIf="this.control && this.config">
+  <div class="form-errors" [ngClass]="{'ddforms-default': this.useStyles}"
+    *ngIf="(this.control.dirty || this.control.touched) && this.control.errors as errors">
+    <div class="form-error invalid-feedback">placeholder error</div>
+  </div>
+</ng-container>
