@@ -7,6 +7,7 @@ import { ButtonFieldComponent } from './components/base-fields/button-field/butt
 import { QuestionErrorsComponent } from './components/shared/question-errors/question-errors.component';
 import { NumberFieldComponent } from './components/base-fields/number-field/number-field.component';
 import { DataDrivenFormsConfig } from './module-config';
+import { RadioFieldComponent } from './components/base-fields/radio-field/radio-field.component';
 
 
 
@@ -18,6 +19,7 @@ import { DataDrivenFormsConfig } from './module-config';
     ButtonFieldComponent,
     QuestionErrorsComponent,
     NumberFieldComponent,
+    RadioFieldComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -29,6 +31,7 @@ import { DataDrivenFormsConfig } from './module-config';
     DynamicFieldDirective,
     ButtonFieldComponent,
     QuestionErrorsComponent,
+    RadioFieldComponent,
   ]
 })
 export class NgxDataDrivenFormsModule {
