@@ -1,7 +1,11 @@
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+
 .ddforms-default.form-errors {
 
   .form-error {
-    color: red;
+    font-family: $font-error;
+    color: $color-error;
   }
 
 }
