@@ -4,6 +4,7 @@ import {FieldItem, QuestionComponent, TextFieldComponent} from './components';
 import {CommonModule} from '@angular/common';
 import {ConditionsFunction, NormalizedValidator} from './types';
 import {DynamicFieldDirective} from './directives/dynamic-field.directive';
+import { QuestionErrorsComponent } from './components/shared/question-errors/question-errors.component';
 
 export interface DataDrivenFormsConfig {
   ignoreDefaultStyles?: boolean;
@@ -17,7 +18,8 @@ export interface DataDrivenFormsConfig {
   declarations: [
     TextFieldComponent,
     QuestionComponent,
-    DynamicFieldDirective
+    DynamicFieldDirective,
+    QuestionErrorsComponent
   ],
   imports: [
     ReactiveFormsModule,

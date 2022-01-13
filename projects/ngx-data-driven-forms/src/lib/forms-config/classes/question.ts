@@ -50,16 +50,11 @@ export class Question implements IQuestion {
     this.retainWhenNotAsked = question.retainWhenNotAsked;
   }
 
-  public control(initialValue: any, formBuilder: FormBuilder, customValidators?: Map<string, NormalizedValidator>): FormControl {
-    return formBuilder.control(initialValue, this.getValidators(customValidators));
+  public control(initialValue: any, formBuilder: FormBuilder, knownValidators?: Map<string, NormalizedValidator>): FormControl {
+    return formBuilder.control(initialValue, knownValidators ? this.getValidators(knownValidators): []);
   }
 
-  public getValidators(customValidators?: Map<string, NormalizedValidator>): ValidatorFn[] {
-
-    const validatorMap: Map<string, NormalizedValidator> = new Map<string, NormalizedValidator>([
-      ...BASE_VALIDATORS_MAP,
-      ...(customValidators ?? [])
-    ]);
+  public getValidators(knownValidators: Map<string, NormalizedValidator>): ValidatorFn[] {
 
     const validators: ValidatorFn[] = [];
 
@@ -69,7 +64,7 @@ export class Question implements IQuestion {
         ...(this.customValidation ?? {})
       }) // Combine Validation & Custom Validation Objects and Get all Entries
         .forEach(([key, value]: [string, any]) => { // Iterate over entries with key & value;
-          const normalizedValidator = validatorMap.get(key);
+          const normalizedValidator = knownValidators.get(key);
           if (!normalizedValidator) {
             console.warn(`Unable to find validator for ${key}, skipping.`);
             return; // If no validator for given key skip.
@@ -80,6 +75,7 @@ export class Question implements IQuestion {
           validators.push(validator);
         });
     }
+    console.log('adding validators', validators)
 
     return validators;
   }

@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {ConditionsFunction, NormalizedValidator} from '../types';
+import {ConditionsFunction, ErrorMessageFunction, NormalizedValidator} from '../types';
 import {BehaviorSubject} from 'rxjs';
 import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_VALIDATORS_MAP} from '../maps';
 import {FieldItem} from '../components';
@@ -13,6 +13,7 @@ export class DataDrivenFormsConfigService {
   private readonly validators: BehaviorSubject<Map<string, NormalizedValidator> | null | undefined> = new BehaviorSubject<Map<string, NormalizedValidator> | null | undefined>(null);
   private readonly conditions: BehaviorSubject<Map<string, ConditionsFunction> | null | undefined> = new BehaviorSubject<Map<string, ConditionsFunction> | null | undefined>(null);
   private readonly components: BehaviorSubject<Map<string, FieldItem> | null | undefined> = new BehaviorSubject<Map<string, FieldItem> | null | undefined>(null);
+  private readonly errorMessages: BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined> = new BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined>(null);
   private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
 
   constructor(
