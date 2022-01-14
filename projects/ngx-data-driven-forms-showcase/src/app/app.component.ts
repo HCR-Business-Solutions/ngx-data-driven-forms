@@ -16,9 +16,9 @@ export class AppComponent {
   test = {
     id: 'test',
     type: 'radio',
-    label: {
-      text: 'Test radio'
-    },
+      label: {
+      text: 'Test radio' ,
+        },
     hint: {
       text: 'test hint radio text',
     },

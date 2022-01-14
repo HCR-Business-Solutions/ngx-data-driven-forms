@@ -1,12 +1,34 @@
 <ng-container *ngIf="this.control && this.config">
-    <div class="form-field radio-field" [ngClass]="{'ddforms-default': this.useStyles}">
-      <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label>
-      <p *ngIf="this.config.hint" class="form-hint">{{this.config.hint.text}}</p>
-      <div *ngFor="let options of this.config.options">    
-       <input type="radio" [formControl]="this.formControl" name="thissss" [id]="options.value" class="form-control" /> 
-        <label *ngIf="options?.display" [for]="options.value" class="form-label">{{options?.display}}</label>
-    </div>
-      <ddforms-question-errors [control]="this.control" [config]="this.config" class="form-errors-container"></ddforms-question-errors>
-    </div>
-  </ng-container>
-  
+  <div
+    class="form-field"
+    [ngClass]="{ 'ddforms-default': this.useStyles }"
+  >
+    <fieldset class="fieldset-field">
+      <legend>{{ this.config.label?.text }}</legend>
+      <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label> -->
+      <p *ngIf="this.config.hint" class="form-hint">
+        {{ this.config.hint.text }}
+      </p>
+      <div class="radio-field" *ngFor="let options of this.config.options">
+        <label
+          *ngIf="options?.display"
+          [for]="options.value"
+          class="form-label"
+          >
+          <input
+          type="radio"
+          [formControl]="this.formControl"
+          name="SameName"
+          [id]="options.value"
+          class="form-control"
+        />
+        {{ options?.display }}</label>
+      </div>
+      <ddforms-question-errors
+        [control]="this.control"
+        [config]="this.config"
+        class="form-errors-container"
+      ></ddforms-question-errors>
+    </fieldset>
+  </div>
+</ng-container>

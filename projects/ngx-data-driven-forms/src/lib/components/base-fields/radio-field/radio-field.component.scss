@@ -10,6 +10,8 @@
     font-family: $font-label;
     font-size: 1rem;
     color: $color-label;
+    display: block;
+   
   }
 
   .form-control{
@@ -29,6 +31,11 @@
     font-size: .75rem;
     color: $color-hint;
     margin: 0rem;
+  }
+  .radio-field{
+      background-color: $color-radioBg;
+      margin-bottom: 5px;
+
   }
 
 
