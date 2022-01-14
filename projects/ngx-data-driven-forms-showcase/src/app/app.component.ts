@@ -1,10 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
-import {
-  DataDrivenFormsService,
-  IQuestion,
-  Question
-} from '../../../ngx-data-driven-forms/src/lib';
+import {DataDrivenFormsService, Question} from '../../../ngx-data-driven-forms/src/lib';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +12,19 @@ export class AppComponent {
   test = {
     id: 'test',
     type: 'radio',
-      label: {
-      text: 'Test radio' ,
-        },
+    label: {
+      text: 'Test radio',
+    },
     hint: {
       text: 'test hint radio text',
     },
     validation: {
       required: true,
     },
-    options:[{
-      value: "test1", display: "test1"    },
-      {value: "test2", display: "test2"    }]
+    options: [
+      {value: 'test1', display: 'test1'},
+      {value: 'test2', display: 'test2'}
+    ],
   };
 
   config: Question;

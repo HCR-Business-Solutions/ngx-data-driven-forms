@@ -1,20 +1,20 @@
 @import '../../../styles/colors';
 @import '../../../styles/fonts';
 
-.ddforms-default.form-field {
+.ddforms-default.form-field.radio-field {
 
-    display: flex;
+  display: flex;
   flex-direction: column;
 
-  .form-label{
+  .form-label {
     font-family: $font-label;
     font-size: 1rem;
     color: $color-label;
     display: block;
-   
+
   }
 
-  .form-control{
+  .form-control {
     font-family: $font-control;
 
     &.ng-invalid {
@@ -26,15 +26,16 @@
 
   }
 
-  .form-hint{
+  .form-hint {
     font-family: $font-hint;
     font-size: .75rem;
     color: $color-hint;
-    margin: 0rem;
+    margin: 0;
   }
-  .radio-field{
-      background-color: $color-radioBg;
-      margin-bottom: 5px;
+
+  .radio-field {
+    background-color: $color-radioBg;
+    margin-bottom: 5px;
 
   }
 

@@ -1,6 +1,6 @@
 <ng-container *ngIf="this.control && this.config">
   <div
-    class="form-field"
+    class="form-field radio-field"
     [ngClass]="{ 'ddforms-default': this.useStyles }"
   >
     <fieldset class="fieldset-field">
@@ -16,12 +16,13 @@
           class="form-label"
           >
           <input
-          type="radio"
-          [formControl]="this.formControl"
-          name="SameName"
-          [id]="options.value"
-          class="form-control"
-        />
+            [formControl]="this.formControl"
+            [id]="options.value"
+            [name]="this.config.id"
+            [value]="options.value"
+            class="form-control"
+            type="radio"
+          />
         {{ options?.display }}</label>
       </div>
       <ddforms-question-errors
