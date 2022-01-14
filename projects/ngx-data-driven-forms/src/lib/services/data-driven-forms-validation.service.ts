@@ -86,6 +86,11 @@ export class DataDrivenFormsValidationService {
       }
     }
 
+    const duplicates = page.sections.reduce((prev: string[], curr) => [...prev, ...Object.keys(curr)], []).filter((item, index, arr) => arr.indexOf(item) !== index);
+    if (duplicates.length > 0) {
+      errors.set('duplicateIds', duplicates);
+    }
+
     return errors.size > 0 ? Object.fromEntries(errors.entries()) : null;
   }
 
@@ -123,6 +128,11 @@ export class DataDrivenFormsValidationService {
       if (statementsErrors) {
         errors.set('statements', statementsErrors);
       }
+    }
+
+    const duplicates = Object.keys(section.questions).filter((item, index, arr) => arr.indexOf(item) !== index);
+    if (duplicates.length > 0) {
+      errors.set('duplicateIds', duplicates);
     }
 
     return errors.size > 0 ? Object.fromEntries(errors.entries()) : null;
