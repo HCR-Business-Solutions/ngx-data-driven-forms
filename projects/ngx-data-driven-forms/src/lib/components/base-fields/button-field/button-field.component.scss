@@ -14,6 +14,7 @@
 
   .form-control{
     font-family: $font-control;
+    padding: 20px;
 
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
@@ -30,6 +31,7 @@
     color: $color-hint;
     margin: 0rem;
   }
+  
 
 
 }
