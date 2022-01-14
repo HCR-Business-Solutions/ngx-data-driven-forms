@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
-import { IQuestionFieldComponent } from '../..';
-import { Question, DataDrivenFormsConfigService } from '../../..';
+import {Component, Input, OnInit} from '@angular/core';
+import {AbstractControl, FormControl} from '@angular/forms';
+import {Question} from '../../../forms-config';
+import {IQuestionFieldComponent} from '../../../_interfaces';
+import {DataDrivenFormsConfigService} from '../../../services';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {DynamicFieldDirective} from '../../../directives/dynamic-field.directive';
-import {IQuestionFieldComponent} from '../../_interfaces';
+import {DynamicFieldDirective} from '../../../directives';
+import {IQuestionFieldComponent} from '../../../_interfaces';
 import {AbstractControl} from '@angular/forms';
 import {Question} from '../../../forms-config';
 import {DataDrivenFormsConfigService} from '../../../services';

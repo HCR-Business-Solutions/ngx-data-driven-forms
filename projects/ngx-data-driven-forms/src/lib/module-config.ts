@@ -1,5 +1,5 @@
-import { FieldItem } from './components';
-import { ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedValidator } from './types';
+import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedValidator} from './types';
+import {FieldItem} from './_classes';
 
 export interface DataDrivenFormsConfig {
   ignoreDefaultStyles?: boolean;

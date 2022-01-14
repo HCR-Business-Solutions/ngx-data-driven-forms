@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, NgControlStatus } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { DataDrivenFormsConfigService, DataDrivenFormsValidationService } from '.';
-import { IQuestion, ISection, Question, Section } from '..';
+import {Injectable} from '@angular/core';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+
+import {IQuestion, ISection, Question, Section} from '../forms-config';
+import {DataDrivenFormsConfigService} from './data-driven-forms-config.service';
+import {DataDrivenFormsValidationService} from './data-driven-forms-validation.service';
 
 @Injectable({
   providedIn: 'root'

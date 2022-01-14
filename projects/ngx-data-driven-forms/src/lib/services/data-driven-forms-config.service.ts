@@ -1,10 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedValidator} from '../types';
 import {BehaviorSubject} from 'rxjs';
-import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from '../maps';
-import {FieldItem} from '../components';
-import { DataDrivenFormsConfig } from '../module-config';
-import { BASE_DATA_HANDLER_MAP } from '../maps/data-handler';
+import {FieldItem} from '../_classes';
 
 @Injectable({
   providedIn: 'root'
@@ -19,27 +16,28 @@ export class DataDrivenFormsConfigService {
   private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
 
   constructor(
-    @Inject('dataDrivenFormsConfig') private config: DataDrivenFormsConfig
+    @Inject('dataDrivenFormsConfig') private config: any,
+    @Inject('defaultValues') private defaults: any,
   ) {
 
     if (!this.validators.getValue()?.size) {
-      this.validators.next(BASE_VALIDATORS_MAP);
+      this.validators.next(defaults.defaultValidators);
     }
 
     if (!this.conditions.getValue()?.size) {
-      this.conditions.next(BASE_CONDITIONS_MAP);
+      this.conditions.next(defaults.defaultConditions);
     }
 
     if (!this.components.getValue()?.size) {
-      this.components.next(BASE_COMPONENTS_MAP);
+      this.components.next(defaults.defaultComponents);
     }
 
     if (!this.errorMessages.getValue()?.size) {
-      this.errorMessages.next(BASE_MESSAGE_HANDLER_MAP);
+      this.errorMessages.next(defaults.defaultMessageHandlers);
     }
 
     if (!this.dataHandlers.getValue()?.size) {
-      this.dataHandlers.next(BASE_DATA_HANDLER_MAP);
+      this.dataHandlers.next(defaults.defaultDataHandlers);
     }
 
     if (config?.customValidators) {

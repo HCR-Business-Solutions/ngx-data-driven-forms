@@ -1,3 +1,5 @@
+export * from './_classes';
+export * from './_interfaces';
 export * from './components';
 export * from './directives';
 export * from './forms-config';
@@ -7,5 +9,6 @@ export * from './shared';
 export * from './types';
 export * from './utils';
 export * from './validators';
+export * from './default-state';
 export * from './module-config';
 export * from './ngx-data-driven-forms.module';
