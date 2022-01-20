@@ -8,9 +8,11 @@ import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE
 import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
 import {
+  ApplicationComponent,
   ButtonFieldComponent,
   CurrencyFieldComponent,
   NumberFieldComponent,
+  PageComponent,
   PhoneFieldComponent,
   QuestionComponent,
   RadioFieldComponent,
@@ -35,13 +37,15 @@ const FIELD_COMPONENTS = [
 ];
 
 const DATA_DRIVEN_FORMS_COMPONENTS = [
+  ApplicationComponent,
+  PageComponent,
   QuestionComponent,
   QuestionErrorsComponent,
   SectionComponent,
-  SectionSingleComponent,
-  SectionTableComponent,
   SectionListComponent,
   SectionListItemComponent,
+  SectionSingleComponent,
+  SectionTableComponent,
 ];
 
 const DIRECTIVES = [

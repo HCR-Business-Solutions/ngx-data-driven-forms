@@ -8,7 +8,9 @@ import {DynamicFormsUtils} from '../../utils';
 
 export class Page implements IPage {
   public id: string;
-  public pageTitle?: string;
+  public title?: string;
+
+  public narrative?: string;
 
   public sections: Section[];
 
@@ -17,12 +19,14 @@ export class Page implements IPage {
 
   constructor(page: IPage) {
     this.id = page.id;
-    this.pageTitle = page.pageTitle;
+    this.title = page.title;
+
+    this.narrative = page.narrative;
 
     this.sections = page.sections.map(_ => new Section(_));
 
     this.shouldAsk = page.shouldAsk ? new Statements(page.shouldAsk) : undefined;
-    this.retainWhenNotAsked = page.retainWhenNotAsked
+    this.retainWhenNotAsked = page.retainWhenNotAsked;
   }
 
   public getForm(initialValue: any, fb: FormBuilder, customValidators?: Map<string, NormalizedValidator>): FormGroup {
