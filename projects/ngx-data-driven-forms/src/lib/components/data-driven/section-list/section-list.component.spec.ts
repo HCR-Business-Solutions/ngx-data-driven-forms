@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SectionListComponent } from './section-list.component';
+import {SectionListComponent} from './section-list.component';
 
 describe('SectionListComponent', () => {
   let component: SectionListComponent;
@@ -8,9 +8,9 @@ describe('SectionListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SectionListComponent ]
+      declarations: [SectionListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

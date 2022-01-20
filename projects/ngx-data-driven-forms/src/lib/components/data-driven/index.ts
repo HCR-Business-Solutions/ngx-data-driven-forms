@@ -1,1 +1,6 @@
-export * from './question/question.component';
+export * from './question';
+export * from './section';
+export * from './section-list';
+export * from './section-list-item';
+export * from './section-single';
+export * from './section-table';

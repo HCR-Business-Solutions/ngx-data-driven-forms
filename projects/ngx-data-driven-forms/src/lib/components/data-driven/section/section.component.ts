@@ -1,9 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Section} from '../../../forms-config';
 import {AbstractControl} from '@angular/forms';
-import {config, Subscription} from 'rxjs';
-import {DataDrivenFormsConfigService, DataDrivenFormsService} from '../../../services';
-import {DynamicFormsUtils, IQuestionPackage} from '../../../utils';
+import {Subscription} from 'rxjs';
+import {DataDrivenFormsService} from '../../../services';
 
 @Component({
   selector: 'ddforms-section',
@@ -20,7 +19,8 @@ export class SectionComponent implements OnInit, OnDestroy {
 
   constructor(
     private ddForms: DataDrivenFormsService,
-  ) { }
+  ) {
+  }
 
   public ngOnInit(): void {
     if (this.config && this.control) {
@@ -29,7 +29,7 @@ export class SectionComponent implements OnInit, OnDestroy {
         if (this.config && this.control) {
           this.shouldAsk = this.ddForms.shouldAskSection(this.control, this.config);
         }
-      })
+      });
     }
   }
 

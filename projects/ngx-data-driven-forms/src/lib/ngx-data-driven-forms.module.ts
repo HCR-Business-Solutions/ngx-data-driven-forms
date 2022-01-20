@@ -1,12 +1,5 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {
-  ButtonFieldComponent,
-  NumberFieldComponent,
-  QuestionComponent,
-  RadioFieldComponent,
-  TextFieldComponent,
-} from './components';
 import {CommonModule} from '@angular/common';
 import {DataDrivenFormsConfig} from './module-config';
 import {DynamicFieldDirective} from './directives';
@@ -14,37 +7,61 @@ import {QuestionErrorsComponent} from './shared';
 import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from './maps';
 import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
-import { CurrencyFieldComponent } from './components/base-fields/currency-field/currency-field.component';
-import { SsnFieldComponent } from './components/base-fields/ssn-field/ssn-field.component';
-import { PhoneFieldComponent } from './components/base-fields/phone-field/phone-field.component';
+import {
+  ButtonFieldComponent,
+  CurrencyFieldComponent,
+  NumberFieldComponent,
+  PhoneFieldComponent,
+  QuestionComponent,
+  RadioFieldComponent,
+  SectionComponent,
+  SectionListComponent,
+  SectionListItemComponent,
+  SectionSingleComponent,
+  SectionTableComponent,
+  SsnFieldComponent,
+  TextFieldComponent
+} from './components';
 
+
+const FIELD_COMPONENTS = [
+  TextFieldComponent,
+  ButtonFieldComponent,
+  NumberFieldComponent,
+  RadioFieldComponent,
+  CurrencyFieldComponent,
+  SsnFieldComponent,
+  PhoneFieldComponent,
+];
+
+const DATA_DRIVEN_FORMS_COMPONENTS = [
+  QuestionComponent,
+  QuestionErrorsComponent,
+  SectionComponent,
+  SectionSingleComponent,
+  SectionTableComponent,
+  SectionListComponent,
+  SectionListItemComponent,
+];
+
+const DIRECTIVES = [
+  DynamicFieldDirective,
+];
 
 @NgModule({
   declarations: [
-    TextFieldComponent,
-    QuestionComponent,
-    DynamicFieldDirective,
-    ButtonFieldComponent,
-    QuestionErrorsComponent,
-    NumberFieldComponent,
-    RadioFieldComponent,
-    CurrencyFieldComponent,
-    SsnFieldComponent,
-    PhoneFieldComponent,
+    ...FIELD_COMPONENTS,
+    ...DATA_DRIVEN_FORMS_COMPONENTS,
+    ...DIRECTIVES,
   ],
   imports: [
     ReactiveFormsModule,
     CommonModule
   ],
   exports: [
-    TextFieldComponent,
-    QuestionComponent,
-    DynamicFieldDirective,
-    ButtonFieldComponent,
-    QuestionErrorsComponent,
-    RadioFieldComponent,
-    CurrencyFieldComponent,
-    SsnFieldComponent,
+    ...FIELD_COMPONENTS,
+    ...DATA_DRIVEN_FORMS_COMPONENTS,
+    ...DIRECTIVES
   ]
 })
 export class NgxDataDrivenFormsModule {

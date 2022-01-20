@@ -14,7 +14,8 @@ export class SectionSingleComponent implements OnInit {
   @Input() control: AbstractControl | null = null;
   questions: IQuestionPackage[] = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     if (this.config && this.control) {

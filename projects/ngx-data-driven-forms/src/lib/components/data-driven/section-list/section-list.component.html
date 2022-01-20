@@ -1,7 +1,7 @@
 <ng-container *ngIf="this.isFormArray">
   <div class="section-list-items-container">
     <ng-container *ngFor="let formControl of this.formControls">
-      <ddforms-section-list-item [control]="formControl" [config]="this.config"></ddforms-section-list-item>
+      <ddforms-section-list-item [config]="this.config" [control]="formControl"></ddforms-section-list-item>
     </ng-container>
   </div>
 </ng-container>

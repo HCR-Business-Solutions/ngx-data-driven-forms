@@ -1,11 +1,11 @@
-<section class="section-container" [ngClass]="{'section-border': true}">
+<section [ngClass]="{'section-border': true}" class="section-container">
 
   <div class="section-title"></div>
   <div class="section-narrative"></div>
   <div class="questions-container">
     <ng-container *ngFor="let question of this.questions">
       <ng-container *ngIf="question.control && question.config">
-        <ddforms-question [control]="question.control" [config]="question.config"></ddforms-question>
+        <ddforms-question [config]="question.config" [control]="question.control"></ddforms-question>
       </ng-container>
     </ng-container>
   </div>

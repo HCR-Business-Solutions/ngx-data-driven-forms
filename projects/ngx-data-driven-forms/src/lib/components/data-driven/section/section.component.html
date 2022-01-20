@@ -4,14 +4,14 @@
 </ng-container>
 
 <ng-template #singleInstance>
-  <ddforms-section-single [control]="this.control" [config]="this.config"></ddforms-section-single>
+  <ddforms-section-single [config]="this.config" [control]="this.control"></ddforms-section-single>
 </ng-template>
 <ng-template #repeatInstance>
   <ng-container *ngIf="this.config?.repeat?.style==='list'; then listInstance; else tableInstance"></ng-container>
 </ng-template>
 <ng-template #listInstance>
-  <ddforms-section-list [control]="this.control" [config]="this.config"></ddforms-section-list>
+  <ddforms-section-list [config]="this.config" [control]="this.control"></ddforms-section-list>
 </ng-template>
 <ng-template #tableInstance>
-  <ddforms-section-table [control]="this.control" [config]="this.config"></ddforms-section-table>
+  <ddforms-section-table [config]="this.config" [control]="this.control"></ddforms-section-table>
 </ng-template>

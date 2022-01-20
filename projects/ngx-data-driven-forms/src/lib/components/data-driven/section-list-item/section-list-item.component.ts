@@ -12,7 +12,8 @@ export class SectionListItemComponent implements OnInit {
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
