@@ -1,4 +1,4 @@
-import {ButtonFieldComponent, NumberFieldComponent, RadioFieldComponent, TextFieldComponent, CurrencyFieldComponent, SsnFieldComponent, PhoneFieldComponent} from '../components';
+import {ButtonFieldComponent, NumberFieldComponent, RadioFieldComponent, TextFieldComponent, CurrencyFieldComponent, SsnFieldComponent, TelFieldComponent, UrlFieldComponent} from '../components';
 import {FieldItem} from '../_classes';
 
 export const BASE_COMPONENTS_MAP: Map<string, FieldItem> = new Map<string,
@@ -9,5 +9,6 @@ export const BASE_COMPONENTS_MAP: Map<string, FieldItem> = new Map<string,
   ['radio', new FieldItem(RadioFieldComponent)],
   ['currency', new FieldItem(CurrencyFieldComponent)],
   ['ssn', new FieldItem(SsnFieldComponent)],
-  ['phone', new FieldItem(PhoneFieldComponent)],
+  ['tel', new FieldItem(TelFieldComponent)],
+  ['url', new FieldItem(UrlFieldComponent)],
 ]);

@@ -6,12 +6,13 @@ import {DataDrivenFormsConfigService} from '../../../services';
 import {generateFieldUUID} from '../../../utils';
 
 
+
 @Component({
-  selector: 'ddforms-phone-field',
-  templateUrl: './phone-field.component.html',
-  styleUrls: ['./phone-field.component.scss']
+  selector: 'ddforms-url-field',
+  templateUrl: './url-field.component.html',
+  styleUrls: ['./url-field.component.scss']
 })
-export class PhoneFieldComponent implements OnInit, IQuestionFieldComponent {
+export class UrlFieldComponent implements OnInit, IQuestionFieldComponent {
 
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;

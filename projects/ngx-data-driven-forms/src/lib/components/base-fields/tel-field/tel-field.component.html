@@ -1,0 +1,10 @@
+<ng-container *ngIf="this.control && this.config">
+    <div class="form-field tel-field" [ngClass]="{'ddforms-default': this.useStyles}">
+      <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label>
+      <div *ngIf="this.config.hint" class="form-hint">{{this.config.hint.text}}</div>
+      <input [formControl]="this.formControl" [id]="this.config.id" class="form-control" type="text"  placeholder="XXX-XXX-XXXX" pattern="\d{3}-?\d{3}-?\d{4}"/>
+      <ddforms-question-errors [control]="this.control" [config]="this.config" class="form-errors-container"></ddforms-question-errors>
+    </div>
+  </ng-container>
+  
+

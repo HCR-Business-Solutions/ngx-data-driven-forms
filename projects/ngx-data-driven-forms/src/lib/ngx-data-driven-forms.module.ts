@@ -16,7 +16,9 @@ import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
 import { CurrencyFieldComponent } from './components/base-fields/currency-field/currency-field.component';
 import { SsnFieldComponent } from './components/base-fields/ssn-field/ssn-field.component';
-import { PhoneFieldComponent } from './components/base-fields/phone-field/phone-field.component';
+import { TelFieldComponent } from './components/base-fields/tel-field/tel-field.component';
+import { UrlFieldComponent } from './components/base-fields/url-field/url-field.component';
+import { SearchFieldComponent } from './components/base-fields/search-field/search-field.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { PhoneFieldComponent } from './components/base-fields/phone-field/phone-
     RadioFieldComponent,
     CurrencyFieldComponent,
     SsnFieldComponent,
-    PhoneFieldComponent,
+    TelFieldComponent,
+    UrlFieldComponent,
+    SearchFieldComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -45,6 +49,8 @@ import { PhoneFieldComponent } from './components/base-fields/phone-field/phone-
     RadioFieldComponent,
     CurrencyFieldComponent,
     SsnFieldComponent,
+    TelFieldComponent,
+    UrlFieldComponent,
   ]
 })
 export class NgxDataDrivenFormsModule {
