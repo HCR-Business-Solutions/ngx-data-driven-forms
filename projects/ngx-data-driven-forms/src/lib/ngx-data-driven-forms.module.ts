@@ -5,7 +5,7 @@ import {
   NumberFieldComponent,
   QuestionComponent,
   RadioFieldComponent,
-  TextFieldComponent
+  TextFieldComponent,
 } from './components';
 import {CommonModule} from '@angular/common';
 import {DataDrivenFormsConfig} from './module-config';
@@ -14,6 +14,9 @@ import {QuestionErrorsComponent} from './shared';
 import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from './maps';
 import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
+import { CurrencyFieldComponent } from './components/base-fields/currency-field/currency-field.component';
+import { SsnFieldComponent } from './components/base-fields/ssn-field/ssn-field.component';
+import { PhoneFieldComponent } from './components/base-fields/phone-field/phone-field.component';
 
 
 @NgModule({
@@ -25,6 +28,9 @@ import {DefaultState} from './default-state';
     QuestionErrorsComponent,
     NumberFieldComponent,
     RadioFieldComponent,
+    CurrencyFieldComponent,
+    SsnFieldComponent,
+    PhoneFieldComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -37,6 +43,8 @@ import {DefaultState} from './default-state';
     ButtonFieldComponent,
     QuestionErrorsComponent,
     RadioFieldComponent,
+    CurrencyFieldComponent,
+    SsnFieldComponent,
   ]
 })
 export class NgxDataDrivenFormsModule {

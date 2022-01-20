@@ -1,7 +1,7 @@
 @import '../../../styles/colors';
 @import '../../../styles/fonts';
 
-.ddforms-default.form-field.text-field {
+.ddforms-default.form-field.ssn-field {
 
   display: flex;
   flex-direction: column;
@@ -13,7 +13,9 @@
   }
 
   .form-control{
+      width: 100%;
     font-family: $font-control;
+    
 
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
@@ -21,8 +23,8 @@
         border: 2px solid $color-error;
       }
     }
-
-  }
+      }
+      
 
   .form-hint{
     font-family: $font-hint;

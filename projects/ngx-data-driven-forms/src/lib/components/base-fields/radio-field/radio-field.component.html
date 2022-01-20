@@ -6,9 +6,9 @@
     <fieldset class="fieldset-field">
       <legend>{{ this.config.label?.text }}</legend>
       <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label> -->
-      <p *ngIf="this.config.hint" class="form-hint" id="{{this.config.id}}hint">
+      <div *ngIf="this.config.hint" class="form-hint" id="{{this.config.id}}hint">
         {{ this.config.hint.text }}
-      </p>
+      </div>
       <div class="radio-field" *ngFor="let options of this.config.options">
         <label
           *ngIf="options?.display"

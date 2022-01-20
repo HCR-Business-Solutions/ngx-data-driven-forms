@@ -1,7 +1,7 @@
 <ng-container *ngIf="this.control && this.config">
   <div class="form-field number-field" [ngClass]="{'ddforms-default': this.useStyles}">
     <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label>
-    <p *ngIf="this.config.hint" class="form-hint">{{this.config.hint.text}}</p>
+    <div *ngIf="this.config.hint" class="form-hint">{{this.config.hint.text}}</div>
     <input [formControl]="this.formControl" [id]="this.config.id" class="form-control" type="number"/>
     <ddforms-question-errors [control]="this.control" [config]="this.config" class="form-errors-container"></ddforms-question-errors>
   </div>

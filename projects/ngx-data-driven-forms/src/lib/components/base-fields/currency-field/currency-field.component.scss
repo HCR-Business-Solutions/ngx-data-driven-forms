@@ -1,7 +1,7 @@
 @import '../../../styles/colors';
 @import '../../../styles/fonts';
 
-.ddforms-default.form-field.text-field {
+.ddforms-default.form-field.currency-field {
 
   display: flex;
   flex-direction: column;
@@ -13,7 +13,9 @@
   }
 
   .form-control{
+      width: 100%;
     font-family: $font-control;
+    
 
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
@@ -21,8 +23,29 @@
         border: 2px solid $color-error;
       }
     }
+      }
 
-  }
+      .input-group{
+        display: flex;
+   
+    }
+
+    .input-group-prepend {
+
+        margin-right: -1px;
+        display: flex;
+
+    }
+    .input-group-text {
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    }
 
   .form-hint{
     font-family: $font-hint;

@@ -26,12 +26,14 @@
 
   }
 
-  .form-hint {
+  .form-hint{
     font-family: $font-hint;
     font-size: .75rem;
     color: $color-hint;
-    margin: 0;
+    margin: 0rem;
+    padding: .25rem;
   }
+  
 
   .radio-field {
     background-color: $color-radioBg;
