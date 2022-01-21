@@ -18,11 +18,11 @@
           <input
             [formControl]="this.formControl"
             [id]="options.value"
-            [name]="this.config.id"
+            [name]="this.internalId"
             [value]="options.value"
             class="form-control"
             type="radio"
-            [attr.aria-describedby]="this.config.hint ? (this.config.id + 'Hint') : undefined"
+            [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
           />
         {{ options?.display }}</label>
       </div>

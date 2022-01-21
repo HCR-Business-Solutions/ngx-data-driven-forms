@@ -11,20 +11,20 @@ export class AppComponent {
 
   test = {
     id: 'test',
-    type: 'button',
+    type: 'radio',
     label: {
-      text: 'Test button',
+      text: 'Test ssn',
     },
     hint: {
-      text: 'test hint button',
+      text: '',
     },
     validation: {
       required: true,
     },
-    // options: [
-    //   {value: 'test1', display: 'test1'},
-    //   {value: 'test2', display: 'test2'}
-    // ],
+    options: [
+      {value: 'test1', display: 'test1'},
+      {value: 'test2', display: 'test2'}
+    ],
   };
 
   config: Question;

@@ -3,6 +3,7 @@ import {AbstractControl, FormControl} from '@angular/forms';
 import {Question} from '../../../forms-config';
 import {DataDrivenFormsConfigService} from '../../../services';
 import {IQuestionFieldComponent} from '../../../_interfaces';
+import {generateFieldUUID} from '../../../utils';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class NumberFieldComponent implements OnInit, IQuestionFieldComponent {
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
   public useStyles: boolean = true;
+
+  public internalId = generateFieldUUID();
 
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService,
