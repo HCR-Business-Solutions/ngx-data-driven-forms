@@ -1,0 +1,17 @@
+<ng-container *ngIf="this.control && this.config">
+  <ng-container *ngIf="this.shouldAsk"></ng-container>
+  <ng-container *ngIf="!this.config?.repeat; then singleInstance; else repeatInstance"></ng-container>
+</ng-container>
+
+<ng-template #singleInstance>
+  <ddforms-section-single [config]="this.config" [control]="this.control"></ddforms-section-single>
+</ng-template>
+<ng-template #repeatInstance>
+  <ng-container *ngIf="this.config?.repeat?.style==='list'; then listInstance; else tableInstance"></ng-container>
+</ng-template>
+<ng-template #listInstance>
+  <ddforms-section-list [config]="this.config" [control]="this.control"></ddforms-section-list>
+</ng-template>
+<ng-template #tableInstance>
+  <ddforms-section-table [config]="this.config" [control]="this.control"></ddforms-section-table>
+</ng-template>

@@ -1,12 +1,5 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {
-  ButtonFieldComponent,
-  NumberFieldComponent,
-  QuestionComponent,
-  RadioFieldComponent,
-  TextFieldComponent,
-} from './components';
 import {CommonModule} from '@angular/common';
 import {DataDrivenFormsConfig} from './module-config';
 import {DynamicFieldDirective} from './directives';
@@ -14,12 +7,53 @@ import {QuestionErrorsComponent} from './shared';
 import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from './maps';
 import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
-import { CurrencyFieldComponent } from './components/base-fields/currency-field/currency-field.component';
-import { SsnFieldComponent } from './components/base-fields/ssn-field/ssn-field.component';
-import { TelFieldComponent } from './components/base-fields/tel-field/tel-field.component';
-import { UrlFieldComponent } from './components/base-fields/url-field/url-field.component';
-import { SearchFieldComponent } from './components/base-fields/search-field/search-field.component';
+import {
+  ButtonFieldComponent,
+  CurrencyFieldComponent,
+  NumberFieldComponent,
+  QuestionComponent,
+  RadioFieldComponent,
+  SectionComponent,
+  SectionListComponent,
+  SectionListItemComponent,
+  SectionSingleComponent,
+  SectionTableComponent,
+  SsnFieldComponent,
+  TextFieldComponent,
+  TelFieldComponent,
+  UrlFieldComponent,
+  SearchFieldComponent,
 
+
+} from './components';
+
+
+const FIELD_COMPONENTS = [
+  TextFieldComponent,
+  ButtonFieldComponent,
+  NumberFieldComponent,
+  RadioFieldComponent,
+  CurrencyFieldComponent,
+  SsnFieldComponent,
+  TelFieldComponent,
+  UrlFieldComponent,
+  SearchFieldComponent,
+
+];
+
+const DATA_DRIVEN_FORMS_COMPONENTS = [
+  QuestionComponent,
+  QuestionErrorsComponent,
+  SectionComponent,
+  SectionSingleComponent,
+  SectionTableComponent,
+  SectionListComponent,
+  SectionListItemComponent,
+];
+
+const DIRECTIVES = [
+  DynamicFieldDirective,
+];
 
 @NgModule({
   declarations: [
@@ -35,6 +69,9 @@ import { SearchFieldComponent } from './components/base-fields/search-field/sear
     TelFieldComponent,
     UrlFieldComponent,
     SearchFieldComponent,
+    ...FIELD_COMPONENTS,
+    ...DATA_DRIVEN_FORMS_COMPONENTS,
+    ...DIRECTIVES,
   ],
   imports: [
     ReactiveFormsModule,
@@ -51,6 +88,9 @@ import { SearchFieldComponent } from './components/base-fields/search-field/sear
     SsnFieldComponent,
     TelFieldComponent,
     UrlFieldComponent,
+    ...FIELD_COMPONENTS,
+    ...DATA_DRIVEN_FORMS_COMPONENTS,
+    ...DIRECTIVES
   ]
 })
 export class NgxDataDrivenFormsModule {
