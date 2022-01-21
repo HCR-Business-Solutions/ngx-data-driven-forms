@@ -4,7 +4,9 @@ import {IStatements} from './statements';
 export interface IPage {
 
   id: string;
-  pageTitle?: string;
+  title?: string;
+
+  narrative?: string;
 
   sections: ISection[];
 

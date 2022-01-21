@@ -1,0 +1,17 @@
+<ng-container *ngIf="this.config && this.control">
+  <div class="page-container">
+    <div *ngIf="this.config.title" class="page-title-container">
+      <h2 class="page-title-text">{{this.config.title}}</h2>
+    </div>
+    <div *ngIf="this.config.narrative" class="page-narrative-container">
+      <div class="page-narrative-text">{{this.config.narrative}}</div>
+    </div>
+    <div class="page-sections-container">
+      <ng-container *ngFor="let section of this.config.sections">
+        <ng-container *ngIf="section && this.control.get(section.id)">
+          <ddforms-section [config]="section" [control]="this.control.get(section.id)"></ddforms-section>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
