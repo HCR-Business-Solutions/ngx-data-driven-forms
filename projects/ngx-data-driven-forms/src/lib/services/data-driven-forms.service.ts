@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Observable, skip} from 'rxjs';
 
-import {IQuestion, ISection, Question, Section} from '../forms-config';
+import {Application, IApplication, IPage, IQuestion, ISection, Page, Question, Section} from '../forms-config';
 import {DataDrivenFormsConfigService} from './data-driven-forms-config.service';
 import {DataDrivenFormsValidationService} from './data-driven-forms-validation.service';
 
@@ -17,7 +17,7 @@ export class DataDrivenFormsService {
     private _fb: FormBuilder,
   ) { }
 
-  // #region Question Functions
+  //#region Question Functions
 
   public generateQuestionConfig(question: any, skipSchemaValidation?: boolean): Question {
     const validation = !skipSchemaValidation ? this.ddFormsValidator.validateQuestion(question) : null;
@@ -54,10 +54,10 @@ export class DataDrivenFormsService {
     return question.changeEvents(control, this.ddFormsConf.getConditions());
   }
 
-  // #endregion Question Functions
+  //#endregion Question Functions
 
 
-  // #region Section Functions
+  //#region Section Functions
 
   public generateSectionConfig(section: any, skipSchemaValidation?: boolean): Section {
     const validation = !skipSchemaValidation ? this.ddFormsValidator.validateSection(section) : null;
@@ -110,14 +110,72 @@ export class DataDrivenFormsService {
     return section.changeEvents(control, this.ddFormsConf.getConditions());
   }
 
-  // #endregion Section Functions
+  //#endregion Section Functions
 
 
-  // #region Page Functions
-  // #endregion Page Functions
+  //#region Page Functions
+
+  public generatePageConfig(page: any, skipSchemaValidation?: boolean): Page {
+    const validation = !skipSchemaValidation ? this.ddFormsValidator.validatePage(page) : null;
+    if (validation) {
+      throw new Error(`Invalid Page.\n${JSON.stringify(validation, null, 2)}`);
+    }
+    return new Page(page as IPage);
+  }
+
+  public generatePageControl(initialValue: any, page: Page, skipSchemeValidation?: boolean): FormGroup {
+    const validation = !skipSchemeValidation ? this.ddFormsValidator.validatePage(page) : null;
+    if (validation) {
+      throw new Error(`Invalid Page.\n${JSON.stringify(validation, null, 2)}`);
+    }
+    return page.getForm(initialValue, this._fb, this.ddFormsConf.getValidators());
+  }
+
+  public getPageValue(control: AbstractControl, page: Page): {[key: string]: any} | null {
+    return page.sections.reduce((prev: {[key: string]: any}, curr: Section) => {
+        const sectionControl = control.get(curr.id);
+        if (!sectionControl) return ({...prev});
+        return ({
+          ...prev,
+          [`${curr.id}`]: this.getSectionValue(sectionControl, curr)
+        });
+      }
+    , {});
+  }
+
+  //#endregion Page Functions
 
 
-  // #region Application Functions
-  // #endregion Application Functions
+  //#region Application Functions
+
+  public generateApplicationConfig(application: any, skipSchemeValidation?: boolean): Application {
+    const validation = !skipSchemeValidation  ? this.ddFormsValidator.validateApplication(application) : null;
+    if (validation) {
+      throw new Error(`Invalid Application.\n${JSON.stringify(validation, null, 2)}`);
+    }
+    return new Application(application as IApplication);
+  }
+
+  public generateApplicationControl(initialValue: any, application: Application, skipSchemeValidation?: boolean): FormGroup {
+    const validation = !skipSchemeValidation  ? this.ddFormsValidator.validateApplication(application) : null;
+    if (validation) {
+      throw new Error(`Invalid Application.\n${JSON.stringify(validation, null, 2)}`);
+    }
+    return application.getForm(initialValue, this._fb, this.ddFormsConf.getValidators());
+  }
+
+  public getApplicationValue(control: AbstractControl, application: Application): {[key: string]: any} | null {
+    return application.pages.reduce((prev: {[key: string]: any}, curr: Page) => {
+        const sectionControl = control.get(curr.id);
+        if (!sectionControl) return ({...prev});
+        return ({
+          ...prev,
+          [`${curr.id}`]: this.getPageValue(sectionControl, curr)
+        });
+      }
+      , {});
+  }
+
+  //#endregion Application Functions
 
 }
