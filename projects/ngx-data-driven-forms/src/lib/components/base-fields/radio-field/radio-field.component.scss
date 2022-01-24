@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  .form-label {
+  .form-check-label {
     font-family: $font-label;
     font-size: 1rem;
     color: $color-label;
@@ -14,7 +14,7 @@
 
   }
 
-  .form-control {
+  .form-check {
     font-family: $font-control;
 
     &.ng-invalid {
@@ -33,7 +33,7 @@
     margin: 0rem;
     padding: .25rem;
   }
-  
+
 
   .radio-field {
     background-color: $color-radioBg;

@@ -3,7 +3,7 @@
     class="form-field radio-field"
     [ngClass]="{ 'ddforms-default': this.useStyles }"
   >
-    <fieldset class="fieldset-field">
+    <fieldset class="fieldset-field form-group">
       <legend>{{ this.config.label?.text }}</legend>
       <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label> -->
       <div *ngIf="this.config.hint" class="form-hint" id="{{this.config.id}}hint">
