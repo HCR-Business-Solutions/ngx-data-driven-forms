@@ -92,7 +92,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
       this.control.markAllAsTouched();
       return;
     }
-    console.log(this.ddFormsSvc.getApplicationValue(this.control, this.config));
   }
 
 }

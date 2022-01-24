@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataDrivenFormsService, IApplication } from 'ngx-data-driven-forms';
-import { ApplicationStateManagerService } from 'projects/ngx-data-driven-forms/src/lib';
+
+import { ApplicationStateManagerService, IApplication } from '../../../../../ngx-data-driven-forms/src/lib';
 
 @Component({
   templateUrl: './application-example.component.html',
