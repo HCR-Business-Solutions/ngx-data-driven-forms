@@ -28,6 +28,7 @@ import {
 
 
 } from './components';
+import { ApplicationNavigationComponent } from './components/data-driven/application-navigation/application-navigation.component';
 
 
 const FIELD_COMPONENTS = [
@@ -76,6 +77,7 @@ const DIRECTIVES = [
     ...FIELD_COMPONENTS,
     ...DATA_DRIVEN_FORMS_COMPONENTS,
     ...DIRECTIVES,
+    ApplicationNavigationComponent,
   ],
   imports: [
     ReactiveFormsModule,
