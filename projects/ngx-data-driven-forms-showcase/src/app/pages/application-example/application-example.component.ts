@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataDrivenFormsService } from 'ngx-data-driven-forms';
+import { DataDrivenFormsService, IApplication } from 'ngx-data-driven-forms';
 import { ApplicationStateManagerService } from 'projects/ngx-data-driven-forms/src/lib';
 
 @Component({
@@ -8,46 +8,62 @@ import { ApplicationStateManagerService } from 'projects/ngx-data-driven-forms/s
 })
 export class ApplicationExampleComponent implements OnInit {
 
-  private readonly testingAplication = {
+  private readonly testingAplication: IApplication = {
     id: 'test',
     description: 'Testing Application',
     pages: [
       {
-        id: 'page0',
+        id: 'basicInfo',
+        title: 'Basic Information',
         sections: [
           {
-            id: 'testSection',
+            id: 'name',
             questions: {
-              test: {
-                id: 'test',
+              first: {
+                id: 'first',
                 type: 'text',
                 label: {
-                  text: 'Test Question'
+                  text: 'First Name'
+                },
+                validation: {
+                  required: true,
+                }
+              },
+              last: {
+                id: 'last',
+                type: 'text',
+                label: {
+                  text: 'Last Name'
+                },
+                validation: {
+                  required: true,
                 }
               }
             },
-            questionOrder: ['test']
+            questionOrder: ['first', 'last']
+          },
+          {
+            id: 'demographics',
+            questions: {
+              gender: {
+                id: 'gender',
+                type: 'radio',
+                label: {
+                  text: 'Gender'
+                },
+                options: [
+                  {value: 'M', display: 'Male'},
+                  {value: 'F', display: 'Female'},
+                  {value: 'X', display: 'Non-Binary'},
+                  {value: 'O', display: 'Other'},
+                  {value: '?', display: 'Prefer Not To Answer'}
+                ]
+              }
+            },
+            questionOrder: ['gender']
           }
         ]
       },
-      {
-        id: 'page1',
-        sections: [
-          {
-            id: 'testSection2',
-            questions: {
-              test2: {
-                id: 'test2',
-                type: 'text',
-                label: {
-                  text: 'Test Question 2'
-                }
-              }
-            },
-            questionOrder: ['test2']
-          }
-        ]
-      }
     ]
   }
 

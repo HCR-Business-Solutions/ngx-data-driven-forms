@@ -55,7 +55,7 @@ export class DataDrivenFormsValidationService {
       application.pages.forEach((page, index) => {
         const pageErrors = this.validatePage(page);
         if (pageErrors) {
-          errors.set(`page${index}`, pageErrors);
+          errors.set(`page-${page.id}`, pageErrors);
         }
       });
     }
@@ -91,9 +91,9 @@ export class DataDrivenFormsValidationService {
       }
     }
 
-    const duplicates = page.sections.reduce((prev: string[], curr) => [...prev, ...Object.keys(curr)], []).filter((item, index, arr) => arr.indexOf(item) !== index);
+    const duplicates = page.sections.map(_ => _.id).filter((item, index, arr) => arr.indexOf(item) !== index);
     if (duplicates.length > 0) {
-      errors.set('duplicateIds', duplicates);
+      errors.set('duplicateSectionIds', duplicates);
     }
 
     return errors.size > 0 ? Object.fromEntries(errors.entries()) : null;

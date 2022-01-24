@@ -86,9 +86,11 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     if (event.payload.currentPage < 0) return;
     if (!event.payload.isPageValid) {
       this.currentPageControl?.markAllAsTouched();
+      return;
     }
     if (!event.payload.isApplicationValid) {
       this.control.markAllAsTouched();
+      return;
     }
     console.log(this.ddFormsSvc.getApplicationValue(this.control, this.config));
   }
