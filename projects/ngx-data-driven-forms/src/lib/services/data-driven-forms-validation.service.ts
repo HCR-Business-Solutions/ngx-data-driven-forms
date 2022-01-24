@@ -47,6 +47,11 @@ export class DataDrivenFormsValidationService {
     if (!application.pages || application.pages.length <= 0) {
       errors.set('noPages', true);
     } else {
+      const duplicates = application.pages.map(_ => _.id).filter((item, index, arr) => arr.indexOf(item) !== index);
+      if (duplicates.length > 0) {
+        errors.set('duplicatePageIds', duplicates);
+      }
+
       application.pages.forEach((page, index) => {
         const pageErrors = this.validatePage(page);
         if (pageErrors) {

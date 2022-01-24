@@ -9,6 +9,7 @@ import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
 import {
   ApplicationComponent,
+  ApplicationNavigationComponent,
   ButtonFieldComponent,
   CurrencyFieldComponent,
   NumberFieldComponent,
@@ -25,10 +26,8 @@ import {
   TelFieldComponent,
   UrlFieldComponent,
   SearchFieldComponent,
-
-
 } from './components';
-import { ApplicationNavigationComponent } from './components/data-driven/application-navigation/application-navigation.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 const FIELD_COMPONENTS = [
@@ -46,6 +45,7 @@ const FIELD_COMPONENTS = [
 
 const DATA_DRIVEN_FORMS_COMPONENTS = [
   ApplicationComponent,
+  ApplicationNavigationComponent,
   PageComponent,
   QuestionComponent,
   QuestionErrorsComponent,
@@ -62,38 +62,16 @@ const DIRECTIVES = [
 
 @NgModule({
   declarations: [
-    TextFieldComponent,
-    QuestionComponent,
-    DynamicFieldDirective,
-    ButtonFieldComponent,
-    QuestionErrorsComponent,
-    NumberFieldComponent,
-    RadioFieldComponent,
-    CurrencyFieldComponent,
-    SsnFieldComponent,
-    TelFieldComponent,
-    UrlFieldComponent,
-    SearchFieldComponent,
     ...FIELD_COMPONENTS,
     ...DATA_DRIVEN_FORMS_COMPONENTS,
     ...DIRECTIVES,
-    ApplicationNavigationComponent,
   ],
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MarkdownModule.forRoot(),
   ],
   exports: [
-    TextFieldComponent,
-    QuestionComponent,
-    DynamicFieldDirective,
-    ButtonFieldComponent,
-    QuestionErrorsComponent,
-    RadioFieldComponent,
-    CurrencyFieldComponent,
-    SsnFieldComponent,
-    TelFieldComponent,
-    UrlFieldComponent,
     ...FIELD_COMPONENTS,
     ...DATA_DRIVEN_FORMS_COMPONENTS,
     ...DIRECTIVES
