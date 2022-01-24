@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { ApplicationStateManagerService, DataDrivenFormsService  } from '../../../services';
+import { DataDrivenFormsEventsService, DataDrivenFormsService  } from '../../../services';
 import { IApplicationMeta } from '../../../_interfaces/application-meta';
 import { Page, Application } from '../../../forms-config';
 
@@ -17,7 +17,7 @@ export class ApplicationNavigationComponent implements OnInit {
 
   constructor(
     private ddForms: DataDrivenFormsService,
-    private appState: ApplicationStateManagerService,
+    private eventSvc: DataDrivenFormsEventsService,
   ) { }
 
   ngOnInit(): void {
@@ -40,37 +40,45 @@ export class ApplicationNavigationComponent implements OnInit {
 
   public get showNext(): boolean {
     if (!this.meta || !this.config || !this.control) return false;
-    const nextPage = this.config.pages[this.meta.currentPage + 1] ?? undefined;
-    if (!nextPage) return false;
-
-    //TODO: Run Should Ask Page
-    const shouldAsk = true;
-    return shouldAsk;
+    return !!this.nextPage;
   }
 
   public get showSubmit(): boolean {
     if (!this.meta || !this.config || !this.control) return false;
-    const nextPage = this.config.pages[this.meta.currentPage + 1] ?? undefined;
-    if (!nextPage) return true;
-
-    //TODO: Run Should Ask Page
-    const shouldAsk = true;
-    return !shouldAsk;
-
+    return !this.nextPage;
   }
 
   public onSubmit(): void {
+    if (!this.config || !this.control || !this.meta) return;
 
+    const currentPage = this.config.pages[this.meta.currentPage];
+
+    this.eventSvc.onSubmit({
+      type: 'submit',
+      payload: {
+        currentPage: this.meta.currentPage ?? -1,
+        isPageValid: currentPage ?  this.control.get(currentPage.id)?.valid ?? true : true,
+        isApplicationValid: this.control.valid,
+      }
+    })
   }
 
   public onNext(): void {
+
     if (!this.config || !this.control || !this.meta) return;
-    const currentPage = this.config.pages[this.meta.currentPage] ?? undefined;
-    if (!currentPage) return;
 
-    const currentPageControl = this.control.get(currentPage.id);
-    if (!currentPageControl) return;
+    const nextPage = this.nextPage;
+    const nextPageIndex = nextPage ? this.config.pages.findIndex(_ => nextPage.id === _.id ): null;
+    const currentPage = this.config.pages[this.meta.currentPage];
 
+    this.eventSvc.onNext({
+      type: 'next',
+      payload: {
+        currentPage: this.meta.currentPage ?? -1,
+        nextPage: nextPage ? nextPageIndex ?? -1 : -1,
+        isPageValid: currentPage ?  this.control.get(currentPage.id)?.valid ?? true : true,
+      }
+    });
   }
 
 }

@@ -7,10 +7,6 @@ import { IApplicationMeta } from '../_interfaces/application-meta';
 
 const APPLICATION_META_DEFAULT: IApplicationMeta = {
   currentPage: 0,
-  isPageSubmitted: false,
-  isPageValid: false,
-  isApplicationSubmitted: false,
-  isApplicationValid: false,
 };
 
 @Injectable({
@@ -63,8 +59,13 @@ export class ApplicationStateManagerService {
   public nextPage() {
     const currentMeta = this.currentApplicationMeta.getValue() ?? APPLICATION_META_DEFAULT;
     this.currentApplicationMeta.next({
-      ...currentMeta,
       currentPage: currentMeta.currentPage + 1,
+    })
+  }
+
+  public goToPage(pageIndex: number) {
+    this.currentApplicationMeta.next({
+      currentPage: pageIndex,
     })
   }
 
