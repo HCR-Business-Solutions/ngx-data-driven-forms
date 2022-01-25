@@ -1,5 +1,5 @@
 <ng-container *ngIf="this.control && this.config">
-  <div class="form-field number-field" [ngClass]="{'ddforms-default': this.useStyles}">
+  <div class="form-field number-field m-2" [ngClass]="{'ddforms-default': this.useStyles}">
     <label *ngIf="this.config.label" [for]="this.internalId" class="form-label">{{this.config.label?.text}}</label>
     <div *ngIf="this.config.hint" class="form-hint" id="{{this.internalId}}Hint">{{this.config.hint.text}}</div>
     <input [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined" [formControl]="this.formControl" [id]="this.internalId" class="form-control" type="number"/>

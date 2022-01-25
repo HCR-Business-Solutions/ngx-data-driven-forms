@@ -17,13 +17,13 @@ export class ApplicationExampleComponent implements OnInit {
         title: 'Basic Information',
         sections: [
           {
-            id: 'name',
+            id: 'email',
             questions: {
               first: {
-                id: 'first',
-                type: 'text',
+                id: 'email',
+                type: 'email',
                 label: {
-                  text: 'First Name'
+                  text: 'email'
                 },
                 validation: {
                   required: true,
@@ -47,7 +47,7 @@ export class ApplicationExampleComponent implements OnInit {
             questions: {
               gender: {
                 id: 'gender',
-                type: 'radio',
+                type: 'checkbox',
                 label: {
                   text: 'Gender'
                 },

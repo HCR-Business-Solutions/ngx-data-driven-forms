@@ -10,9 +10,9 @@ export class TestingComponent implements OnInit {
 
   test = {
     id: 'test',
-    type: 'radio',
+    type: 'currency',
     label: {
-      text: 'Test ssn',
+      text: 'Test test',
     },
     hint: {
       text: '',
@@ -20,10 +20,10 @@ export class TestingComponent implements OnInit {
     validation: {
       required: true,
     },
-    options: [
-      {value: 'test1', display: 'test1'},
-      {value: 'test2', display: 'test2'}
-    ],
+    // options: [
+    //   {value: 'test1', display: 'test1'},
+    //   {value: 'test2', display: 'test2'}
+    // ],
   };
 
   config: Question;

@@ -26,8 +26,11 @@ import {
   TelFieldComponent,
   UrlFieldComponent,
   SearchFieldComponent,
+  CheckboxFieldComponent,
+  EmailFieldComponent,
 } from './components';
 import { MarkdownModule } from 'ngx-markdown';
+
 
 
 const FIELD_COMPONENTS = [
@@ -40,6 +43,8 @@ const FIELD_COMPONENTS = [
   TelFieldComponent,
   UrlFieldComponent,
   SearchFieldComponent,
+  CheckboxFieldComponent,
+  EmailFieldComponent
 
 ];
 
