@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DynamicFormsUtils, IQuestionPackage} from '../../../utils';
-import {Section} from '../../../forms-config';
+import {Question, Section} from '../../../forms-config';
 import {AbstractControl} from '@angular/forms';
+import {DataDrivenFormsService} from '../../../services';
 
 @Component({
   selector: 'ddforms-section-single',
@@ -14,7 +15,9 @@ export class SectionSingleComponent implements OnInit {
   @Input() control: AbstractControl | null = null;
   questions: IQuestionPackage[] = [];
 
-  constructor() {
+  constructor(
+    private ddForms: DataDrivenFormsService
+  ) {
   }
 
   ngOnInit(): void {
@@ -22,5 +25,4 @@ export class SectionSingleComponent implements OnInit {
       this.questions = DynamicFormsUtils.getQuestionControlPair(this.config.questions, this.control, this.config.questionOrder);
     }
   }
-
 }

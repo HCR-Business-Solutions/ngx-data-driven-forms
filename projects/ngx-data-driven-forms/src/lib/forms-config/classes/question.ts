@@ -85,7 +85,7 @@ export class Question implements IQuestion {
   }
 
   public changeEvents(
-    control: FormControl,
+    control: AbstractControl,
     knownConditions?: Map<string, ConditionsFunction>
   ): Observable<any> | undefined {
     if (!this.shouldAsk) return undefined;

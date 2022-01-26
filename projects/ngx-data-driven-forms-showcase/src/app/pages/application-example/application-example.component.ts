@@ -8,7 +8,7 @@ import {ApplicationStateManagerService, IApplication} from '../../../../../ngx-d
 })
 export class ApplicationExampleComponent implements OnInit {
 
-  private readonly testingAplication: IApplication = {
+  private readonly testingApplication: IApplication = {
     id: 'test',
     description: 'Testing Application',
     pages: [
@@ -47,7 +47,7 @@ export class ApplicationExampleComponent implements OnInit {
             questions: {
               gender: {
                 id: 'gender',
-                type: 'checkbox',
+                type: 'radio',
                 label: {
                   text: 'Gender'
                 },
@@ -87,8 +87,8 @@ export class ApplicationExampleComponent implements OnInit {
                   text: 'Phone Type'
                 },
                 options: [
-                  {value: 'L', display: 'Landline'},
-                  {value: 'M', display: 'Mobile'}
+                  {value: 'Landline', display: 'Landline'},
+                  {value: 'Mobile', display: 'Mobile'}
                 ]
               },
               optInText: {
@@ -105,17 +105,17 @@ export class ApplicationExampleComponent implements OnInit {
                   statements: [
                     {
                       sibling: 'phoneType',
-                      expectedParentLevel: 0,
+                      expectedParentLevel: 1,
                       check: 'one',
                       conditions: {
-                        valueMatches: 'M'
+                        valueMatches: 'Mobile'
                       }
                     }
                   ]
                 }
               }
             },
-            questionOrder: ['email', 'phone', 'phoneType']
+            questionOrder: ['email', 'phone', 'phoneType', 'optInText']
           }
         ]
       },
@@ -127,7 +127,7 @@ export class ApplicationExampleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.appState.setup(null, this.testingAplication, undefined, false);
+    this.appState.setup(null, this.testingApplication, undefined, false);
   }
 
 }

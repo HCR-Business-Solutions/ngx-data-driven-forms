@@ -50,7 +50,7 @@ export class DataDrivenFormsService {
     return question.getShouldAsk(control, this.ddFormsConf.getConditions());
   }
 
-  public gatherQuestionEvents(control: FormControl, question: Question): Observable<any> | undefined {
+  public gatherQuestionEvents(control: AbstractControl, question: Question): Observable<any> | undefined {
     return question.changeEvents(control, this.ddFormsConf.getConditions());
   }
 
