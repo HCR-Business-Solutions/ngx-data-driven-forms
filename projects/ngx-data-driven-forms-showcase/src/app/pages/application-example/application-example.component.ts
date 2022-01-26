@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { ApplicationStateManagerService, IApplication } from '../../../../../ngx-data-driven-forms/src/lib';
+import {ApplicationStateManagerService, IApplication} from '../../../../../ngx-data-driven-forms/src/lib';
 
 @Component({
   templateUrl: './application-example.component.html',
@@ -17,13 +17,13 @@ export class ApplicationExampleComponent implements OnInit {
         title: 'Basic Information',
         sections: [
           {
-            id: 'email',
+            id: 'name',
             questions: {
               first: {
-                id: 'email',
-                type: 'email',
+                id: 'first',
+                type: 'text',
                 label: {
-                  text: 'email'
+                  text: 'First Name'
                 },
                 validation: {
                   required: true,
@@ -38,7 +38,7 @@ export class ApplicationExampleComponent implements OnInit {
                 validation: {
                   required: true,
                 }
-              }
+              },
             },
             questionOrder: ['first', 'last']
           },
@@ -61,6 +61,61 @@ export class ApplicationExampleComponent implements OnInit {
               }
             },
             questionOrder: ['gender']
+          },
+          {
+            id: 'contact',
+            questions: {
+              email: {
+                id: 'email',
+                type: 'email',
+                label: {
+                  text: 'Email'
+                },
+                placeholder: 'email@email.com'
+              },
+              phone: {
+                id: 'phone',
+                type: 'tel',
+                label: {
+                  text: 'Phone Number'
+                }
+              },
+              phoneType: {
+                id: 'phoneType',
+                type: 'radio',
+                label: {
+                  text: 'Phone Type'
+                },
+                options: [
+                  {value: 'L', display: 'Landline'},
+                  {value: 'M', display: 'Mobile'}
+                ]
+              },
+              optInText: {
+                id: 'optInText',
+                type: 'radio',
+                label: {
+                  text: 'Do you want to receive text messages',
+                },
+                options: [
+                  {value: 'Y', display: 'Yes'},
+                  {value: 'N', display: 'No'},
+                ],
+                shouldAsk: {
+                  statements: [
+                    {
+                      sibling: 'phoneType',
+                      expectedParentLevel: 0,
+                      check: 'one',
+                      conditions: {
+                        valueMatches: 'M'
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            questionOrder: ['email', 'phone', 'phoneType']
           }
         ]
       },

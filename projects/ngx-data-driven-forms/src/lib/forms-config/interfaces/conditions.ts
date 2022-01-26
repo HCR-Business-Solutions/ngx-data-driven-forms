@@ -6,7 +6,7 @@ export interface IConditions {
   isGreaterThan?: number;
   isEqualTo?: number;
   isLessOrEqual?: number;
-  isGreaterOrEqual: number;
+  isGreaterOrEqual?: number;
   isTruthy?: boolean;
   isFalsy?: boolean;
   isDate?: boolean;
