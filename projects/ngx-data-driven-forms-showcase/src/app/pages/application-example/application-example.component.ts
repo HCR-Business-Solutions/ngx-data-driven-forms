@@ -87,8 +87,8 @@ export class ApplicationExampleComponent implements OnInit {
                   text: 'Phone Type'
                 },
                 options: [
-                  {value: 'Landline', display: 'Landline'},
-                  {value: 'Mobile', display: 'Mobile'}
+                  {value: 'L', display: 'Landline'},
+                  {value: 'M', display: 'Mobile'}
                 ]
               },
               optInText: {
@@ -108,7 +108,7 @@ export class ApplicationExampleComponent implements OnInit {
                       expectedParentLevel: 1,
                       check: 'one',
                       conditions: {
-                        valueMatches: 'Mobile'
+                        valueMatches: 'M'
                       }
                     }
                   ]
