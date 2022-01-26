@@ -5,4 +5,8 @@ export class ObjectUtils {
     return properties.filter(_ => (obj as T)[_] === undefined);
   }
 
+  public static hasValue<T>(obj: T): boolean {
+    return (obj !== null && obj !== undefined);
+  }
+
 }

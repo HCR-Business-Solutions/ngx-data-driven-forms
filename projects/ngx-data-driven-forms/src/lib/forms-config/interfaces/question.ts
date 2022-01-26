@@ -2,6 +2,7 @@ import {IQuestionValidation} from './question-validation';
 import {IQuestionOption} from './question-option';
 import {IStatements} from './statements';
 import {ICustomValidation} from './custom-validation';
+import {ICrossFieldValidatorPackage} from './cross-field-validator-package';
 
 export interface IQuestion {
 
@@ -27,6 +28,9 @@ export interface IQuestion {
 
   validation?: IQuestionValidation;
   customValidation?: ICustomValidation;
+
+  crossFieldValidation: ICrossFieldValidatorPackage[];
+
   options?: IQuestionOption[];
 
   shouldAsk?: IStatements;
