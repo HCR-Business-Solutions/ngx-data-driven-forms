@@ -1,7 +1,7 @@
 import {Page} from './page';
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {IApplication} from '../interfaces';
-import {NormalizedValidator} from '../../types';
+import {NormalizedCrossFieldValidator, NormalizedValidator} from '../../types';
 
 export class Application implements IApplication {
 
@@ -17,11 +17,11 @@ export class Application implements IApplication {
 
   }
 
-  public getForm(initialValue: any, fb: FormBuilder, customValidators?: Map<string, NormalizedValidator>): FormGroup {
+  public getForm(initialValue: any, fb: FormBuilder, knownValidators: Map<string, NormalizedValidator>, knownCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>): FormGroup {
     const controls: {[key: string]: FormGroup | FormArray} = this.pages.reduce(
       (prev, curr) => ({
         ...prev,
-        [`${curr.id}`]: curr.getForm(initialValue ? initialValue[curr.id] ?? null : null, fb, customValidators)
+        [`${curr.id}`]: curr.getForm(initialValue ? initialValue[curr.id] ?? null : null, fb, knownValidators, knownCrossFieldValidators)
       }), {});
 
     return new FormGroup(controls);

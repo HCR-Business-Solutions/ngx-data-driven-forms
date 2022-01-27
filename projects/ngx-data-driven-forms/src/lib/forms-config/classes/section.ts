@@ -1,10 +1,10 @@
 import {Statements} from './statements';
 import {QuestionGroup} from './question-group';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {combineLatest, Observable} from 'rxjs';
 import {Question} from './question';
-import {ISection} from '../interfaces';
-import {ConditionsFunction, NormalizedValidator} from '../../types';
+import {ICrossFieldValidatorPackage, ISection} from '../interfaces';
+import {ConditionsFunction, NormalizedCrossFieldValidator, NormalizedValidator} from '../../types';
 import {DynamicFormsUtils} from '../../utils';
 
 export class Section implements ISection {
@@ -42,27 +42,28 @@ export class Section implements ISection {
     this.retainWhenNotAsked = section.retainWhenNotAsked;
   }
 
-  public getForm(initialValue: any, fb: FormBuilder, knownValidators?: Map<string, NormalizedValidator>): FormGroup | FormArray {
+  public getForm(initialValue: any, fb: FormBuilder, knownValidators: Map<string, NormalizedValidator>, knownCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>): FormGroup | FormArray {
     if (this.repeat) {
       const arr = fb.array([]);
       if (initialValue && Array.isArray(initialValue)) {
         initialValue.forEach(value => arr.push(
-          this.formGroup(value, fb, knownValidators)
+          this.formGroup(value, fb, knownValidators, knownCrossFieldValidators)
         ))
       }
       return arr;
     }
-    return this.formGroup(initialValue, fb, knownValidators);
+    return this.formGroup(initialValue, fb, knownValidators, knownCrossFieldValidators);
   }
 
-  public formGroup(initialValue: any, fb: FormBuilder, knownValidators?: Map<string, NormalizedValidator>): FormGroup {
+  public formGroup(initialValue: any, fb: FormBuilder, knownValidators: Map<string, NormalizedValidator>, knownCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>): FormGroup {
     const controls = Object.entries(this.questions)
       .reduce((prev, curr) => ({
         ...prev,
         [`${curr[0]}`]: curr[1].control(initialValue ? initialValue[curr[0]] ?? null : null, fb, knownValidators)
       }), {});
-    // Todo: Get Cross Field Validators on all Questions.
-    return new FormGroup(controls);
+
+    const crossFieldValidators = this.getCrossFieldValidators(knownCrossFieldValidators);
+    return new FormGroup(controls, crossFieldValidators);
   }
 
   public getShouldAsk(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>): boolean {
@@ -87,6 +88,38 @@ export class Section implements ISection {
         return question.changeEvents(questionControl as FormControl, knownConditions)
       }).filter(_ => _ !== undefined);
     return changes.length > 0 ? combineLatest([...changes]) : undefined;
+  }
+
+  public getCrossFieldValidators(knownCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>): ValidatorFn[] {
+
+    const validators: ValidatorFn[] = [];
+
+    const relaventValidators = Object.values(this.questions)
+      .filter(_ => _.crossFieldValidation && _.crossFieldValidation.length > 0)
+      .filter(_ => _.crossFieldValidation?.filter(pack => pack.expectedParentLevel === 1).length ?? 0 > 0)
+      .map(_ => ({
+        id: _.id,
+        crossFieldValidation: _.crossFieldValidation?.filter(pack => pack.expectedParentLevel)
+      }));
+
+    relaventValidators.forEach((questionValidaton: {id: string, crossFieldValidation?: ICrossFieldValidatorPackage[]}) => {
+      if (!questionValidaton.crossFieldValidation || questionValidaton.crossFieldValidation.length < 0) return;
+      questionValidaton.crossFieldValidation.forEach(validatorPack => {
+        const siblingId = validatorPack.sibling;
+        Object.entries<any>({
+          ...validatorPack.crossFieldValidation ?? {},
+          ...validatorPack.customCrossFieldValidation ?? {},
+        }).forEach(([key, arg]: [string, any]) => {
+          const func = knownCrossFieldValidators.get(key);
+          if (!func) return;
+          const funcEval = func(questionValidaton.id, siblingId, arg);
+          if(funcEval) validators.push(funcEval);
+        })
+      });
+    });
+
+    return validators;
+
   }
 
 }

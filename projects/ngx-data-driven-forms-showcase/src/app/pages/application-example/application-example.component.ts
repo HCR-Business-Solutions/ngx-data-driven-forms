@@ -35,9 +35,15 @@ export class ApplicationExampleComponent implements OnInit {
                 label: {
                   text: 'Last Name'
                 },
-                validation: {
-                  required: true,
-                }
+                crossFieldValidation: [
+                  {
+                    sibling: 'first',
+                    expectedParentLevel: 1,
+                    crossFieldValidation: {
+                      requireIf: true,
+                    }
+                  },
+                ]
               },
             },
             questionOrder: ['first', 'last']

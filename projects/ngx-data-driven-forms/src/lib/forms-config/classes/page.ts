@@ -3,7 +3,7 @@ import {Section} from './section';
 import {AbstractControl, FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {IPage} from '../interfaces';
-import {ConditionsFunction, NormalizedValidator} from '../../types';
+import {ConditionsFunction, NormalizedCrossFieldValidator, NormalizedValidator} from '../../types';
 import {DynamicFormsUtils} from '../../utils';
 
 export class Page implements IPage {
@@ -29,12 +29,12 @@ export class Page implements IPage {
     this.retainWhenNotAsked = page.retainWhenNotAsked;
   }
 
-  public getForm(initialValue: any, fb: FormBuilder, customValidators?: Map<string, NormalizedValidator>): FormGroup {
+  public getForm(initialValue: any, fb: FormBuilder, knownValidators: Map<string, NormalizedValidator>, knownCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>): FormGroup {
 
     const controls: {[key: string]: FormGroup | FormArray} = this.sections.reduce(
       (prev, curr) => ({
         ...prev,
-        [`${curr.id}`]: curr.getForm(initialValue ? initialValue[curr.id] ?? null : null, fb, customValidators)
+        [`${curr.id}`]: curr.getForm(initialValue ? initialValue[curr.id] ?? null : null, fb, knownValidators, knownCrossFieldValidators)
       }), {});
 
     return new FormGroup(controls);

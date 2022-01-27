@@ -72,7 +72,7 @@ export class DataDrivenFormsService {
     if (validation) {
       throw new Error(`Invalid Section.\n${JSON.stringify(validation, null, 2)}`);
     }
-    return section.getForm(initialValue, this._fb, this.ddFormsConf.getValidators());
+    return section.getForm(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
   public generateSectionGroup(initialValue: any, section: Section, skipSchemaValidation?: boolean): FormGroup {
@@ -80,7 +80,7 @@ export class DataDrivenFormsService {
     if (validation) {
       throw new Error(`Invalid Section.\n${JSON.stringify(validation, null, 2)}`);
     }
-    return section.formGroup(initialValue, this._fb, this.ddFormsConf.getValidators());
+    return section.formGroup(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
   public getSectionValue(control: AbstractControl, section: Section): {[key: string]: any} | {[key: string]: any}[] | null {
@@ -128,7 +128,7 @@ export class DataDrivenFormsService {
     if (validation) {
       throw new Error(`Invalid Page.\n${JSON.stringify(validation, null, 2)}`);
     }
-    return page.getForm(initialValue, this._fb, this.ddFormsConf.getValidators());
+    return page.getForm(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
   public getPageValue(control: AbstractControl, page: Page): {[key: string]: any} | null {
@@ -161,7 +161,7 @@ export class DataDrivenFormsService {
     if (validation) {
       throw new Error(`Invalid Application.\n${JSON.stringify(validation, null, 2)}`);
     }
-    return application.getForm(initialValue, this._fb, this.ddFormsConf.getValidators());
+    return application.getForm(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
   public getApplicationValue(control: AbstractControl, application: Application): {[key: string]: any} | null {

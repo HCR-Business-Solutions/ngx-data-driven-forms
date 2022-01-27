@@ -3,7 +3,9 @@ import {ObjectUtils} from '../utils/object';
 
 export class SupportedCrossFieldValidators {
 
-  public static requireIf(targetId: string, siblingId: string): ValidatorFn {
+  public static requireIf(targetId: string, siblingId: string, arg: boolean): ValidatorFn | undefined {
+
+    if (!arg) return undefined;
 
     return (control: AbstractControl) => {
 

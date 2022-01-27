@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedValidator} from '../types';
+import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedCrossFieldValidator, NormalizedValidator} from '../types';
 import {BehaviorSubject} from 'rxjs';
 import {FieldItem} from '../_classes';
 
@@ -9,6 +9,7 @@ import {FieldItem} from '../_classes';
 export class DataDrivenFormsConfigService {
 
   private readonly validators: BehaviorSubject<Map<string, NormalizedValidator> | null | undefined> = new BehaviorSubject<Map<string, NormalizedValidator> | null | undefined>(null);
+  private readonly crossFieldValidators: BehaviorSubject<Map<string, NormalizedCrossFieldValidator> | null | undefined> = new BehaviorSubject<Map<string, NormalizedCrossFieldValidator> | null | undefined>(null);
   private readonly conditions: BehaviorSubject<Map<string, ConditionsFunction> | null | undefined> = new BehaviorSubject<Map<string, ConditionsFunction> | null | undefined>(null);
   private readonly components: BehaviorSubject<Map<string, FieldItem> | null | undefined> = new BehaviorSubject<Map<string, FieldItem> | null | undefined>(null);
   private readonly errorMessages: BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined> = new BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined>(null);
@@ -22,6 +23,10 @@ export class DataDrivenFormsConfigService {
 
     if (!this.validators.getValue()?.size) {
       this.validators.next(defaults.defaultValidators);
+    }
+
+    if (!this.crossFieldValidators.getValue()?.size) {
+      this.crossFieldValidators.next(defaults.defaultCrossFieldValidators);
     }
 
     if (!this.conditions.getValue()?.size) {
@@ -42,6 +47,10 @@ export class DataDrivenFormsConfigService {
 
     if (config?.customValidators) {
       this.registerValidators(config.customValidators);
+    }
+
+    if (config?.customCrossFieldValidators) {
+      this.registerCrossFieldValidators(config.customCrossFieldValidators);
     }
 
     if (config?.customConditions) {
@@ -66,6 +75,13 @@ export class DataDrivenFormsConfigService {
   public getValidators(): Map<string, NormalizedValidator> {
     const validators = this.validators.getValue();
     return new Map<string, NormalizedValidator>([
+      ...validators ? validators.entries() : [],
+    ]);
+  }
+
+  public getCrossFieldValidators(): Map<string, NormalizedCrossFieldValidator> {
+    const validators = this.crossFieldValidators.getValue();
+    return new Map<string, NormalizedCrossFieldValidator>([
       ...validators ? validators.entries() : [],
     ]);
   }
@@ -117,6 +133,29 @@ export class DataDrivenFormsConfigService {
     }
     this.validators.next(new Map<string, NormalizedValidator>([
       ...this.getValidators(),
+      ...toRegister.entries(),
+    ]));
+  }
+
+  public registerCrossFieldValidator(key: string, validator: NormalizedCrossFieldValidator): void {
+    const validators = this.getCrossFieldValidators();
+    this.crossFieldValidators.next(new Map<string, NormalizedCrossFieldValidator>([
+      ...validators.entries(),
+      [key, validator]
+    ]));
+  }
+
+  public registerCrossFieldValidators(validators: [string, NormalizedCrossFieldValidator][]): void;
+  public registerCrossFieldValidators(validators: Map<string, NormalizedCrossFieldValidator>): void;
+  public registerCrossFieldValidators(validators: [string, NormalizedCrossFieldValidator][] | Map<string, NormalizedCrossFieldValidator>): void {
+    let toRegister: Map<string, NormalizedCrossFieldValidator>;
+    if (Array.isArray(validators)) {
+      toRegister = new Map([...validators]);
+    } else {
+      toRegister = validators;
+    }
+    this.crossFieldValidators.next(new Map<string, NormalizedCrossFieldValidator>([
+      ...this.getCrossFieldValidators(),
       ...toRegister.entries(),
     ]));
   }

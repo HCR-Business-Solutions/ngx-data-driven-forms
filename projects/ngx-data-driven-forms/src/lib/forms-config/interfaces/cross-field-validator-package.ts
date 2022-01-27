@@ -6,7 +6,7 @@ export interface ICrossFieldValidatorPackage {
 
   sibling: string;
   expectedParentLevel: number;
-  crossFieldValidation: ICrossFieldValidation;
-  customCrossFieldValidation: ICustomCrossFieldValidation;
+  crossFieldValidation?: ICrossFieldValidation;
+  customCrossFieldValidation?: ICustomCrossFieldValidation;
 
 }

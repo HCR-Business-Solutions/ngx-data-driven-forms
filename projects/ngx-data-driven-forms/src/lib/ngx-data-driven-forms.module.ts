@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {DataDrivenFormsConfig} from './module-config';
 import {DynamicFieldDirective} from './directives';
 import {QuestionErrorsComponent} from './shared';
-import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from './maps';
+import {BASE_COMPONENTS_MAP, BASE_CONDITIONS_MAP, BASE_CROSS_FIELD_VALIDATORS_MAP, BASE_MESSAGE_HANDLER_MAP, BASE_VALIDATORS_MAP} from './maps';
 import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
 import {
@@ -101,6 +101,7 @@ export class NgxDataDrivenFormsModule {
       defaultDataHandlers: BASE_DATA_HANDLER_MAP,
       defaultMessageHandlers: BASE_MESSAGE_HANDLER_MAP,
       defaultValidators: BASE_VALIDATORS_MAP,
+      defaultCrossFieldValidators: BASE_CROSS_FIELD_VALIDATORS_MAP,
     };
 
     return {

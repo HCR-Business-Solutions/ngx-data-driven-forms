@@ -1,4 +1,4 @@
-import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedValidator} from './types';
+import {ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, NormalizedCrossFieldValidator, NormalizedValidator} from './types';
 import {FieldItem} from './_classes';
 
 export interface DefaultState {
@@ -8,5 +8,6 @@ export interface DefaultState {
   defaultDataHandlers: Map<string, DataHandlerFunction<any>>,
   defaultMessageHandlers: Map<string, ErrorMessageFunction>,
   defaultValidators: Map<string, NormalizedValidator>,
+  defaultCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>,
 
 }
