@@ -1,4 +1,17 @@
-import {ButtonFieldComponent, NumberFieldComponent, RadioFieldComponent, TextFieldComponent, CurrencyFieldComponent, SsnFieldComponent, TelFieldComponent, UrlFieldComponent, CheckboxFieldComponent, EmailFieldComponent} from '../components';
+import {ButtonFieldComponent, 
+  NumberFieldComponent, 
+  RadioFieldComponent, 
+  TextFieldComponent, 
+  CurrencyFieldComponent, 
+  SsnFieldComponent, 
+  TelFieldComponent, 
+  UrlFieldComponent, 
+  CheckboxFieldComponent, 
+  EmailFieldComponent, 
+  DateFieldComponent,
+  MonthFieldComponent,
+WeekFieldComponent} from '../components';
+
 import {FieldItem} from '../_classes';
 
 export const BASE_COMPONENTS_MAP: Map<string, FieldItem> = new Map<string,
@@ -13,4 +26,7 @@ export const BASE_COMPONENTS_MAP: Map<string, FieldItem> = new Map<string,
   ['url', new FieldItem(UrlFieldComponent)],
   ['checkbox', new FieldItem(CheckboxFieldComponent)],
   ['email', new FieldItem(EmailFieldComponent)],
+  ['date', new FieldItem(DateFieldComponent)],
+  ['month', new FieldItem(MonthFieldComponent)],
+  ['week', new FieldItem(WeekFieldComponent)],
 ]);

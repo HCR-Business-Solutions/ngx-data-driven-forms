@@ -28,9 +28,12 @@ import {
   SearchFieldComponent,
   CheckboxFieldComponent,
   EmailFieldComponent,
+  MonthFieldComponent,
+  WeekFieldComponent,
+  TimeFieldComponent,
+  DateFieldComponent,
 } from './components';
 import { MarkdownModule } from 'ngx-markdown';
-
 
 
 const FIELD_COMPONENTS = [
@@ -44,7 +47,11 @@ const FIELD_COMPONENTS = [
   UrlFieldComponent,
   SearchFieldComponent,
   CheckboxFieldComponent,
-  EmailFieldComponent
+  EmailFieldComponent,
+  MonthFieldComponent,
+  WeekFieldComponent,
+  TimeFieldComponent,
+  DateFieldComponent
 
 ];
 
@@ -70,6 +77,10 @@ const DIRECTIVES = [
     ...FIELD_COMPONENTS,
     ...DATA_DRIVEN_FORMS_COMPONENTS,
     ...DIRECTIVES,
+    DateFieldComponent,
+    MonthFieldComponent,
+    WeekFieldComponent,
+    TimeFieldComponent,
   ],
   imports: [
     ReactiveFormsModule,

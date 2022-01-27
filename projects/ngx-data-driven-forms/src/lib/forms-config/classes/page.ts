@@ -15,7 +15,7 @@ import {
   NormalizedValidator,
 } from '../../types';
 import { DynamicFormsUtils } from '../../utils';
-import { QuestionGroup } from 'ngx-data-driven-forms';
+
 
 export class Page implements IPage {
   public id: string;

@@ -10,10 +10,11 @@ export class TestingComponent implements OnInit {
 
   test = {
     id: 'test',
-    type: 'currency',
+    type: 'time',
     label: {
-      text: 'Test test',
+      text: 'Test time',
     },
+   
     hint: {
       text: '',
     },
