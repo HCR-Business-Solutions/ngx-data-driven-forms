@@ -13,7 +13,7 @@ export class SupportedCrossFieldValidators {
       const sibling = control.get(siblingId);
       if(!target || !sibling) return null;
 
-      const targetPresent = ObjectUtils.hasValue(target.value);
+      const targetPresent = target.value === '' || target.value === {} ? false : ObjectUtils.hasValue(target.value);
       const siblingPresent = ObjectUtils.hasValue(sibling.value);
 
       if (!sibling) return null;
