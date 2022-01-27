@@ -9,7 +9,8 @@
             </div>
             <input [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
                 [formControl]="this.formControl" [id]="this.internalId" class="form-control" type="number" min="0"
-                max="999999999" />                
+                max="999999999" 
+                [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}"/>                
         </div>
         <ddforms-question-errors [config]="this.config" [control]="this.control" class="form-errors-container">
         </ddforms-question-errors>

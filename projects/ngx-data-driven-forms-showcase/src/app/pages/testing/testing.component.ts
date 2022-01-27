@@ -10,9 +10,9 @@ export class TestingComponent implements OnInit {
 
   test = {
     id: 'test',
-    type: 'time',
+    type: 'checkbox',
     label: {
-      text: 'Test time',
+      text: 'Test checkbox',
     },
    
     hint: {
@@ -21,10 +21,10 @@ export class TestingComponent implements OnInit {
     validation: {
       required: true,
     },
-    // options: [
-    //   {value: 'test1', display: 'test1'},
-    //   {value: 'test2', display: 'test2'}
-    // ],
+    options: [
+      {value: 'test1', display: 'test1'},
+      {value: 'test2', display: 'test2'}
+    ],
   };
 
   config: Question;
@@ -40,6 +40,7 @@ export class TestingComponent implements OnInit {
   }
 
   onLogButton(){
+    this.control.markAllAsTouched();
     console.log('control', this.control);
   }
 
