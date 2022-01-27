@@ -29,7 +29,7 @@ export interface IQuestion {
   validation?: IQuestionValidation;
   customValidation?: ICustomValidation;
 
-  crossFieldValidation: ICrossFieldValidatorPackage[];
+  crossFieldValidation?: ICrossFieldValidatorPackage[];
 
   options?: IQuestionOption[];
 

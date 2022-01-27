@@ -1,7 +1,7 @@
 import {Statements} from './statements';
 import {AbstractControl, FormBuilder, FormControl, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {ICustomValidation, IQuestion, IQuestionOption, IQuestionValidation} from '../interfaces';
+import {ICrossFieldValidatorPackage, ICustomValidation, IQuestion, IQuestionOption, IQuestionValidation} from '../interfaces';
 import {ConditionsFunction, NormalizedValidator} from '../../types';
 import {DynamicFormsUtils} from '../../utils';
 
@@ -28,6 +28,9 @@ export class Question implements IQuestion {
 
   validation?: IQuestionValidation;
   customValidation?: ICustomValidation;
+
+  crossFieldValidation?: ICrossFieldValidatorPackage[];
+
   options?: IQuestionOption[];
 
   shouldAsk?: Statements;
@@ -37,14 +40,24 @@ export class Question implements IQuestion {
   constructor(question: IQuestion) {
     this.id = question.id;
     this.type = question.type;
+
     this.label = question.label;
+
     this.hint = question.hint;
+
     this.placeholder = question.placeholder;
+
     this.readonly = question.readonly;
+
     this.isFlag = question.isFlag;
+
     this.validation = question.validation;
     this.customValidation = question.customValidation;
+
+    this.crossFieldValidation = question.crossFieldValidation;
+
     this.options = question.options;
+
     this.shouldAsk = question.shouldAsk ? new Statements(question.shouldAsk) : undefined;
     this.retainWhenNotAsked = question.retainWhenNotAsked;
   }
