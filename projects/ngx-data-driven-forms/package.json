@@ -5,7 +5,8 @@
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0",
     "uuid": "^8.3.2",
-    "ngx-markdown": "^13.0.0"
+    "ngx-markdown": "^13.0.0",
+    "ngx-mask": "^13.1.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
