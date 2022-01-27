@@ -10,21 +10,22 @@ export class TestingComponent implements OnInit {
 
   test = {
     id: 'test',
-    type: 'checkbox',
+    type: 'range',
     label: {
-      text: 'Test checkbox',
-    },
-   
+      text: 'Test range',
+    }, 
     hint: {
       text: '',
     },
     validation: {
       required: true,
+      min: 0,
+      max: 10,
     },
-    options: [
-      {value: 'test1', display: 'test1'},
-      {value: 'test2', display: 'test2'}
-    ],
+    // options: [
+    //   {value: 'test1', display: 'test1'},
+    //   {value: 'test2', display: 'test2'}
+    // ],
   };
 
   config: Question;

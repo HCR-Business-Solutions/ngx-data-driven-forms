@@ -32,8 +32,11 @@ import {
   WeekFieldComponent,
   TimeFieldComponent,
   DateFieldComponent,
+  TextareaFieldComponent,
 } from './components';
 import { MarkdownModule } from 'ngx-markdown';
+import { PasswordFieldComponent } from './components/base-fields/password-field/password-field.component';
+import { RangeFieldComponent } from './components/base-fields/range-field/range-field.component';
 
 
 const FIELD_COMPONENTS = [
@@ -51,7 +54,8 @@ const FIELD_COMPONENTS = [
   MonthFieldComponent,
   WeekFieldComponent,
   TimeFieldComponent,
-  DateFieldComponent
+  DateFieldComponent,
+  TextareaFieldComponent
 
 ];
 
@@ -81,6 +85,9 @@ const DIRECTIVES = [
     MonthFieldComponent,
     WeekFieldComponent,
     TimeFieldComponent,
+    TextareaFieldComponent,
+    PasswordFieldComponent,
+    RangeFieldComponent,
   ],
   imports: [
     ReactiveFormsModule,

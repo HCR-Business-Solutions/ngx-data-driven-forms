@@ -11,7 +11,10 @@ import {ButtonFieldComponent,
   DateFieldComponent,
   MonthFieldComponent,
 WeekFieldComponent,
-TimeFieldComponent} from '../components';
+TimeFieldComponent,
+TextareaFieldComponent,
+PasswordFieldComponent,
+RangeFieldComponent} from '../components';
 
 import {FieldItem} from '../_classes';
 
@@ -31,4 +34,7 @@ export const BASE_COMPONENTS_MAP: Map<string, FieldItem> = new Map<string,
   ['month', new FieldItem(MonthFieldComponent)],
   ['week', new FieldItem(WeekFieldComponent)],
   ['time', new FieldItem(TimeFieldComponent)],
+  ['textarea', new FieldItem(TextareaFieldComponent)],
+  ['password', new FieldItem(PasswordFieldComponent)],
+  ['range', new FieldItem(RangeFieldComponent)],
 ]);

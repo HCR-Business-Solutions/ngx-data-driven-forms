@@ -13,4 +13,7 @@ export * from './date-field';
 export * from './month-field';
 export * from './week-field';
 export * from './time-field';
+export * from './textarea-field';
+export * from './password-field';
+export * from './range-field';
 
