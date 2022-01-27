@@ -82,7 +82,7 @@ export class Application implements IApplication {
               }).forEach(([key, arg]: [string, any]) => {
                 const func = knownCrossFieldValidators.get(key);
                 if (!func) return;
-                const funcEval = func(questionValidaton.id, siblingId, arg);
+                const funcEval = func(`${page.id}.${section.id}.${questionValidaton.id}`, siblingId, arg);
                 if (funcEval) validators.push(funcEval);
               });
             });

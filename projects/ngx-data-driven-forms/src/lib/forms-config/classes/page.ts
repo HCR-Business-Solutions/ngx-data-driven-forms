@@ -90,7 +90,6 @@ export class Page implements IPage {
     knownCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>
   ): ValidatorFn[] {
     const validators: ValidatorFn[] = [];
-
     this.sections.forEach((section) => {
       const relaventValidators = Object.values(section.questions)
         .filter(
@@ -127,7 +126,7 @@ export class Page implements IPage {
             }).forEach(([key, arg]: [string, any]) => {
               const func = knownCrossFieldValidators.get(key);
               if (!func) return;
-              const funcEval = func(questionValidaton.id, siblingId, arg);
+              const funcEval = func(`${section.id}.${questionValidaton.id}`, siblingId, arg);
               if (funcEval) validators.push(funcEval);
             });
           });
