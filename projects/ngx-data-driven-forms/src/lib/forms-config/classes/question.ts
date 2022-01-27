@@ -87,8 +87,6 @@ export class Question implements IQuestion {
           validators.push(validator);
         });
     }
-    console.log('adding validators', validators)
-
     return validators;
   }
 
