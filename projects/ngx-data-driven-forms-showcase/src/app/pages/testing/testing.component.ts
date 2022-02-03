@@ -11,9 +11,7 @@ export class TestingComponent implements OnInit {
   test = {
     id: 'test',
     type: 'range',
-    label: {
-      text: 'Test range',
-    }, 
+    label: 'Test Range',
     hint: {
       text: '',
     },

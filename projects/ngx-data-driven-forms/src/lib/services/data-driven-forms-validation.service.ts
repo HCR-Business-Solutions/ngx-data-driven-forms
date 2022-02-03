@@ -52,7 +52,7 @@ export class DataDrivenFormsValidationService {
         errors.set('duplicatePageIds', duplicates);
       }
 
-      application.pages.forEach((page, index) => {
+      application.pages.forEach((page) => {
         const pageErrors = this.validatePage(page);
         if (pageErrors) {
           errors.set(`page-${page.id}`, pageErrors);
@@ -158,6 +158,7 @@ export class DataDrivenFormsValidationService {
     } else if (!Array.from(this.ddFormsConf.getComponents().keys()).includes(question.type)) {
       errors.set('unsupportedType', question.type);
     }
+
 
     if (question.validation || question.customValidation) {
       const validators = Object.keys({...question.validation ?? {}, ...question.customValidation ?? {}});

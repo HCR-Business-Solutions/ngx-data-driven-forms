@@ -27,7 +27,7 @@ export class ButtonFieldComponent implements OnInit, IQuestionFieldComponent {
   }
 
   ngOnInit(): void {
-    this.control?.setValue(this.config?.label?.text);
+    this.control?.setValue(this.config?.label);
   }
 
 

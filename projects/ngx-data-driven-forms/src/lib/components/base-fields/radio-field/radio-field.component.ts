@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IQuestionFieldComponent} from '../../../_interfaces';
 import {AbstractControl, FormControl} from '@angular/forms';
-import {Question} from '../../../forms-config';
+import {IQuestionOption, Question} from '../../../forms-config';
 import {DataDrivenFormsConfigService} from '../../../services';
 import {generateFieldUUID} from '../../../utils';
+import {IOptionsConfig} from '../../../field-configs/options';
 
 
 @Component({
@@ -32,5 +33,17 @@ export class RadioFieldComponent implements OnInit, IQuestionFieldComponent {
   ngOnInit(): void {
   }
 
+  get options(): IQuestionOption[] {
+    const options: IOptionsConfig | undefined = this.config?.fieldConfig ? (this.config?.fieldConfig as IOptionsConfig) : undefined;
+    if(options === undefined) return [];
+
+    if ('options' in options) {
+      return options.options
+    } else if ('apiSourceString' in options) {
+      return []; // TODO: Hook up to api?
+    }
+
+    return [];
+  }
 
 }

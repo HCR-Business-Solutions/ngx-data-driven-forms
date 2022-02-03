@@ -15,6 +15,7 @@ export class DataDrivenFormsConfigService {
   private readonly errorMessages: BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined> = new BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined>(null);
   private readonly dataHandlers: BehaviorSubject<Map<string, DataHandlerFunction<any>> | null | undefined> = new BehaviorSubject<Map<string, DataHandlerFunction<any>> | null | undefined>(null);
   private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
+  private readonly fieldConfigValidators: BehaviorSubject<Map<string, (r: unknown) => boolean> | null | undefined> = new BehaviorSubject<Map<string, (r: unknown) => boolean> | null | undefined>(null);
 
   constructor(
     @Inject('dataDrivenFormsConfig') private config: any,
@@ -45,6 +46,10 @@ export class DataDrivenFormsConfigService {
       this.dataHandlers.next(defaults.defaultDataHandlers);
     }
 
+    if(!this.fieldConfigValidators.getValue()?.size) {
+      this.dataHandlers.next(defaults.defaultFieldConfigValidators);
+    }
+
     if (config?.customValidators) {
       this.registerValidators(config.customValidators);
     }
@@ -66,6 +71,11 @@ export class DataDrivenFormsConfigService {
     }
 
     if(config?.customDataHandlers) {
+      this.registerDataHandlers(config.customDataHandlers);
+    }
+
+    if(config?.customFieldConfigValidators) {
+      this.registerFieldConfigValidators(config.customFieldConfigValidators);
     }
 
     this.ignoreDefaultStyles.next(config?.ignoreDefaultStyles ?? false);
@@ -112,6 +122,11 @@ export class DataDrivenFormsConfigService {
 
   public getShouldIgnoreStyles(): boolean {
     return this.ignoreDefaultStyles.getValue() ?? false;
+  }
+
+  public getFieldConfigValidators(): Map<string, (r: unknown) => boolean> {
+    const fieldConfigValidators = this.fieldConfigValidators.getValue();
+    return fieldConfigValidators ?  fieldConfigValidators : new Map<string, (r: unknown) => boolean>();
   }
 
   public registerValidator(key: string, validator: NormalizedValidator): void {
@@ -248,6 +263,29 @@ export class DataDrivenFormsConfigService {
     }
     this.dataHandlers.next(new Map<string, DataHandlerFunction<any>>([
       ...this.getDataHandlers(),
+      ...toRegister.entries(),
+    ]));
+  }
+
+  public registerFieldConfigValidator(key: string, validator: (r: unknown) => boolean): void {
+    const fieldConfigValidators = this.getFieldConfigValidators();
+    this.fieldConfigValidators.next(new Map<string, (r: unknown) => boolean>([
+      ...fieldConfigValidators.entries(),
+      [key, validator]
+    ]));
+  }
+
+  public registerFieldConfigValidators(validators: [string, (r: unknown) => boolean][]): void;
+  public registerFieldConfigValidators(validators: Map<string, (r: unknown) => boolean>): void;
+  public registerFieldConfigValidators(validators: [string, (r: unknown) => boolean][] | Map<string, (r: unknown) => boolean>): void {
+    let toRegister: Map<string, (r: unknown) => boolean>;
+    if (Array.isArray(validators)) {
+      toRegister = new Map([...validators]);
+    } else {
+      toRegister = validators;
+    }
+    this.fieldConfigValidators.next(new Map<string, (r: unknown) => boolean>([
+      ...this.getFieldConfigValidators(),
       ...toRegister.entries(),
     ]));
   }

@@ -1,7 +1,7 @@
 import {Statements} from './statements';
 import {AbstractControl, FormBuilder, FormControl, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {ICrossFieldValidatorPackage, ICustomValidation, IQuestion, IQuestionOption, IQuestionValidation} from '../interfaces';
+import {ICrossFieldValidatorPackage, ICustomValidation, IQuestion, IQuestionValidation} from '../interfaces';
 import {ConditionsFunction, NormalizedValidator} from '../../types';
 import {DynamicFormsUtils} from '../../utils';
 
@@ -9,29 +9,25 @@ export class Question implements IQuestion {
 
   id: string;
   type: string;
-  label?: {
-    text: string;
-    shortText?: string;
-    position?: 'before' | 'after';
-  };
+
+  label?: string;
+  placeholder?: string;
 
   hint?: {
     text: string;
-    position?: 'before' | 'after';
+    format?: 'markdown' | 'plaintext';
   };
 
-  placeholder?: string;
 
   readonly?: boolean;
-
   isFlag?: boolean;
+
+  fieldConfig?: unknown;
 
   validation?: IQuestionValidation;
   customValidation?: ICustomValidation;
-
   crossFieldValidation?: ICrossFieldValidatorPackage[];
 
-  options?: IQuestionOption[];
 
   shouldAsk?: Statements;
   retainWhenNotAsked?: boolean;
@@ -42,21 +38,18 @@ export class Question implements IQuestion {
     this.type = question.type;
 
     this.label = question.label;
+    this.placeholder = question.placeholder;
 
     this.hint = question.hint;
 
-    this.placeholder = question.placeholder;
-
     this.readonly = question.readonly;
-
     this.isFlag = question.isFlag;
+
+    this.fieldConfig = question.fieldConfig;
 
     this.validation = question.validation;
     this.customValidation = question.customValidation;
-
     this.crossFieldValidation = question.crossFieldValidation;
-
-    this.options = question.options;
 
     this.shouldAsk = question.shouldAsk ? new Statements(question.shouldAsk) : undefined;
     this.retainWhenNotAsked = question.retainWhenNotAsked;
@@ -101,13 +94,6 @@ export class Question implements IQuestion {
   ): Observable<any> | undefined {
     if (!this.shouldAsk) return undefined;
     return DynamicFormsUtils.gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, knownConditions)
-  }
-
-  public decodeValue(value: any) {
-    if (this.options && (this.type === 'radio' || this.type === 'select')) {
-      return this.options.filter(_ => _.value === value)[0]?.display ?? value;
-    }
-    return value;
   }
 
 }

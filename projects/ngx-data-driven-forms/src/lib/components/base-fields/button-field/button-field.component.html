@@ -7,7 +7,7 @@
       *ngIf="this.config.label"
       [for]="this.config.id"
       class="form-label"
-      >{{ this.config.label?.text }}</label
+      >{{ this.config.label }}</label
     > -->
     <p
       *ngIf="this.config.hint"
@@ -18,7 +18,7 @@
       type="button"
       [formControl]="this.formControl"
       [name]="this.config.id"
-      [value]="this.config.label?.text"
+      [value]="this.config.label"
       [id]="this.config.id"
       class="form-control"
       [attr.aria-describedby]="

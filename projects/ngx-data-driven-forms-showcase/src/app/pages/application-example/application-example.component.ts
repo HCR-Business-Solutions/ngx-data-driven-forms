@@ -22,9 +22,7 @@ export class ApplicationExampleComponent implements OnInit {
               first: {
                 id: 'first',
                 type: 'text',
-                label: {
-                  text: 'First Name'
-                },
+                label:  'First Name',
                 validation: {
                   required: true,
                 }
@@ -32,9 +30,7 @@ export class ApplicationExampleComponent implements OnInit {
               last: {
                 id: 'last',
                 type: 'text',
-                label: {
-                  text: 'Last Name'
-                },
+                label: 'Last Name',
                 crossFieldValidation: [
                   {
                     sibling: 'first',
@@ -54,16 +50,16 @@ export class ApplicationExampleComponent implements OnInit {
               gender: {
                 id: 'gender',
                 type: 'radio',
-                label: {
-                  text: 'Gender'
-                },
-                options: [
-                  {value: 'M', display: 'Male'},
-                  {value: 'F', display: 'Female'},
-                  {value: 'X', display: 'Non-Binary'},
-                  {value: 'O', display: 'Other'},
-                  {value: '?', display: 'Prefer Not To Answer'}
-                ]
+                label: 'Gender',
+                fieldConfig: {
+                  options: [
+                    {value: 'M', display: 'Male'},
+                    {value: 'F', display: 'Female'},
+                    {value: 'X', display: 'Non-Binary'},
+                    {value: 'O', display: 'Other'},
+                    {value: '?', display: 'Prefer Not To Answer'}
+                  ]
+                }
               }
             },
             questionOrder: ['gender']
@@ -74,39 +70,35 @@ export class ApplicationExampleComponent implements OnInit {
               email: {
                 id: 'email',
                 type: 'email',
-                label: {
-                  text: 'Email'
-                },
+                label: 'Email',
                 placeholder: 'email@email.com'
               },
               phone: {
                 id: 'phone',
                 type: 'tel',
-                label: {
-                  text: 'Phone Number'
-                }
+                label: 'Phone Number'
               },
               phoneType: {
                 id: 'phoneType',
                 type: 'radio',
-                label: {
-                  text: 'Phone Type'
+                label: 'Phone Type',
+                fieldConfig: {
+                  options: [
+                    {value: 'L', display: 'Landline'},
+                    {value: 'M', display: 'Mobile'}
+                  ]
                 },
-                options: [
-                  {value: 'L', display: 'Landline'},
-                  {value: 'M', display: 'Mobile'}
-                ]
               },
               optInText: {
                 id: 'optInText',
                 type: 'radio',
-                label: {
-                  text: 'Do you want to receive text messages',
+                label: 'Do you want to receive text messages',
+                fieldConfig: {
+                  options: [
+                    {value: 'Y', display: 'Yes'},
+                    {value: 'N', display: 'No'},
+                  ],
                 },
-                options: [
-                  {value: 'Y', display: 'Yes'},
-                  {value: 'N', display: 'No'},
-                ],
                 shouldAsk: {
                   statements: [
                     {

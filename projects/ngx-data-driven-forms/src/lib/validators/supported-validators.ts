@@ -1,6 +1,15 @@
 import {AbstractControl, ValidatorFn, Validators} from '@angular/forms';
 import {DateUtils, SupportedLogicUtils} from '../utils';
 
+export const DATE_VALIDATORS = {
+  'isDate': SupportedLogicUtils.isDate,
+  'before': SupportedLogicUtils.isDateBefore,
+  'after': SupportedLogicUtils.isDateAfter,
+  'on': SupportedLogicUtils.isDateOn,
+  'onOrBefore': SupportedLogicUtils.isDateOnOrBefore,
+  'onOrAfter': SupportedLogicUtils.isDateOnOrAfter,
+}
+
 export class SupportedValidators {
 
   public static min(min: number): ValidatorFn | undefined {

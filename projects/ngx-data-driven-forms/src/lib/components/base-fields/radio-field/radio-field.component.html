@@ -4,12 +4,12 @@
     [ngClass]="{ 'ddforms-default': this.useStyles }"
   >
     <fieldset class="fieldset-field form-group">
-      <legend>{{ this.config.label?.text }}</legend>
-      <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label?.text}}</label> -->
+      <legend>{{ this.config.label }}</legend>
+      <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label}}</label> -->
       <div *ngIf="this.config.hint" class="form-hint" id="{{this.config.id}}hint">
         {{ this.config.hint.text }}
       </div>
-      <div class="radio-field form-check" *ngFor="let option of this.config.options">
+      <div class="radio-field form-check" *ngFor="let option of this.options">
         <label
           *ngIf="option?.display"
           [for]="this.internalId + '-' + option.value"

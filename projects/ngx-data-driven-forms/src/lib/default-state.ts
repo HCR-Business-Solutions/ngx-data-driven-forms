@@ -9,5 +9,5 @@ export interface DefaultState {
   defaultMessageHandlers: Map<string, ErrorMessageFunction>,
   defaultValidators: Map<string, NormalizedValidator>,
   defaultCrossFieldValidators: Map<string, NormalizedCrossFieldValidator>,
-
+  defaultFieldConfigValidators: Map<string, (r: unknown) => boolean>;
 }

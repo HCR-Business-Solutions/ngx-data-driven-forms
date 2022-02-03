@@ -9,4 +9,5 @@ export interface DataDrivenFormsConfig {
   customFieldComponents?: Map<string, FieldItem>;
   customDataHandlers?: Map<string, DataHandlerFunction<any>>;
   customErrorMessageHandlers?: Map<string, ErrorMessageFunction>;
+  customFieldConfigValidators?: Map<string, (r: unknown) => boolean>;
 }
