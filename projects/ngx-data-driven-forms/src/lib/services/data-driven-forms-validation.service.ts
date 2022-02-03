@@ -159,6 +159,12 @@ export class DataDrivenFormsValidationService {
       errors.set('unsupportedType', question.type);
     }
 
+    const fieldConfigValidator = this.ddFormsConf.getFieldConfigValidators()?.get(question.type);
+    if (fieldConfigValidator) {
+      if (!fieldConfigValidator(question.fieldConfig)) {
+        errors.set('invalidFieldConfig', true)
+      }
+    }
 
     if (question.validation || question.customValidation) {
       const validators = Object.keys({...question.validation ?? {}, ...question.customValidation ?? {}});

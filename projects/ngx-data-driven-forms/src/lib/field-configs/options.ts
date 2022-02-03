@@ -1,7 +1,10 @@
 export type IOptionsConfig = HardCodedSelect | APISource;
 
 export function isOptions(r: unknown): r is IOptionsConfig {
-  return 'options' in (r as any) || 'apiSourceString' in (r as any);
+  if (typeof r === 'object') {
+    return (r?.hasOwnProperty('options') ?? false) || (r?.hasOwnProperty('apiSourceString') ?? false)
+  }
+  return false;
 }
 
 export interface HardCodedSelect {

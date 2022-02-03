@@ -47,7 +47,7 @@ export class DataDrivenFormsConfigService {
     }
 
     if(!this.fieldConfigValidators.getValue()?.size) {
-      this.dataHandlers.next(defaults.defaultFieldConfigValidators);
+      this.fieldConfigValidators.next(defaults.defaultFieldConfigValidators);
     }
 
     if (config?.customValidators) {
@@ -75,6 +75,7 @@ export class DataDrivenFormsConfigService {
     }
 
     if(config?.customFieldConfigValidators) {
+
       this.registerFieldConfigValidators(config.customFieldConfigValidators);
     }
 
