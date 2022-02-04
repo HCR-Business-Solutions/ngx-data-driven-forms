@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplicationNavigationComponent } from './application-navigation.component';
+import { ApplicationNavigationComponent } from './application-linear-navigation.component';
 
 describe('ApplicationNavigationComponent', () => {
   let component: ApplicationNavigationComponent;
