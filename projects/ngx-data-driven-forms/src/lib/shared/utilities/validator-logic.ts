@@ -1,4 +1,13 @@
+import { NumberComparison } from '..';
 import { calculateAge, normalizeDate } from './date';
+
+export const NUMBER_COMPARISONS = {
+  'lessThan': isLessThan,
+  'greaterThan': isGreaterThan,
+  'equalTo': isEqualTo,
+  'lessOrEqual': isLessOrEqual,
+  'greaterOrEqual': isGreaterOrEqual
+}
 
 export function hasValue(value: any, check: boolean) {
   if (!check) return undefined;
@@ -14,23 +23,23 @@ export function pattern(value: string, pattern: string): boolean | undefined {
   return regex.test(value);
 }
 
-export function isLessThen(value: number, comp: number): boolean | undefined {
+export function isLessThan(value: number, comp: number): boolean {
   return value < comp;
 }
 
-export function isGreaterThan(value: number, comp: number): boolean | undefined {
+export function isGreaterThan(value: number, comp: number): boolean {
   return value > comp;
 }
 
-export function isEqualTo(value: number, comp: number): boolean | undefined {
+export function isEqualTo(value: number, comp: number): boolean {
   return value === comp;
 }
 
-export function isLessOrEqual(value: number, comp: number): boolean | undefined {
+export function isLessOrEqual(value: number, comp: number): boolean {
   return value <= comp;
 }
 
-export function isGreaterOrEqual(value: number, comp: number): boolean | undefined {
+export function isGreaterOrEqual(value: number, comp: number): boolean {
   return value >= comp;
 }
 
