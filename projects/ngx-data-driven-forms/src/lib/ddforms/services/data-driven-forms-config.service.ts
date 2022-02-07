@@ -1,5 +1,6 @@
 import {Inject, Injectable, Type} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
+import { IDefaultValues, IModuleConfig } from '../interfaces';
 import { ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, FieldConfigValidator, NormalizedCrossFieldValidator, NormalizedValidator } from '../../shared/types';
 
 @Injectable({
@@ -18,68 +19,67 @@ export class DataDrivenFormsConfigService {
   private readonly fieldConfigValidators: BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined> = new BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined>(null);
 
   constructor(
-    @Inject('dataDrivenFormsConfig') private config: any,
-    @Inject('defaultValues') private defaults: any,
+    @Inject('dataDrivenFormsConfig') private config: IModuleConfig,
+    @Inject('defaultValues') private defaults: IDefaultValues,
   ) {
 
     if (!this.validators.getValue()?.size) {
-      this.validators.next(defaults.defaultValidators);
+      this.validators.next(defaults.validators);
     }
 
     if (!this.crossFieldValidators.getValue()?.size) {
-      this.crossFieldValidators.next(defaults.defaultCrossFieldValidators);
+      this.crossFieldValidators.next(defaults.crossFieldValidators);
     }
 
     if (!this.conditions.getValue()?.size) {
-      this.conditions.next(defaults.defaultConditions);
+      this.conditions.next(defaults.conditions);
     }
 
     if (!this.components.getValue()?.size) {
-      this.components.next(defaults.defaultComponents);
+      this.components.next(defaults.components);
     }
 
     if (!this.errorMessages.getValue()?.size) {
-      this.errorMessages.next(defaults.defaultMessageHandlers);
+      this.errorMessages.next(defaults.messageHandlers);
     }
 
     if (!this.dataHandlers.getValue()?.size) {
-      this.dataHandlers.next(defaults.defaultDataHandlers);
+      this.dataHandlers.next(defaults.dataHandlers);
     }
 
     if(!this.fieldConfigValidators.getValue()?.size) {
-      this.fieldConfigValidators.next(defaults.defaultFieldConfigValidators);
+      this.fieldConfigValidators.next(defaults.fieldConfigValidators);
     }
 
-    if (config?.customValidators) {
-      this.registerValidators(config.customValidators);
+    if (config?.staticValues?.validators) {
+      this.registerValidators(config.staticValues.validators);
     }
 
-    if (config?.customCrossFieldValidators) {
-      this.registerCrossFieldValidators(config.customCrossFieldValidators);
+    if (config?.staticValues?.crossFieldValidators) {
+      this.registerCrossFieldValidators(config.staticValues.crossFieldValidators);
     }
 
-    if (config?.customConditions) {
-      this.registerConditions(config.customConditions);
+    if (config?.staticValues?.conditions) {
+      this.registerConditions(config.staticValues.conditions);
     }
 
-    if (config?.customFieldComponents) {
-      this.registerComponents(config.customFieldComponents);
+    if (config?.staticValues?.components) {
+      this.registerComponents(config.staticValues.components);
     }
 
-    if(config?.customErrorMessageHandlers) {
-      this.registerErrorMessageHandlers(config.customErrorMessageHandlers);
+    if(config?.staticValues?.messageHandlers) {
+      this.registerErrorMessageHandlers(config.staticValues.messageHandlers);
     }
 
-    if(config?.customDataHandlers) {
-      this.registerDataHandlers(config.customDataHandlers);
+    if(config?.staticValues?.dataHandlers) {
+      this.registerDataHandlers(config.staticValues.dataHandlers);
     }
 
-    if(config?.customFieldConfigValidators) {
-
-      this.registerFieldConfigValidators(config.customFieldConfigValidators);
+    if(config?.staticValues?.fieldConfigValidators) {
+      this.registerFieldConfigValidators(config.staticValues.fieldConfigValidators);
     }
 
-    this.ignoreDefaultStyles.next(config?.ignoreDefaultStyles ?? false);
+    this.ignoreDefaultStyles.next(config?.skipDefaultStyles ?? false);
 
   }
 
