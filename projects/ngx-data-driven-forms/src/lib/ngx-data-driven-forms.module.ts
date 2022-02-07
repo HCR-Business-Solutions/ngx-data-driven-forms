@@ -15,12 +15,12 @@ import {BASE_DATA_HANDLER_MAP} from './maps/data-handler';
 import {DefaultState} from './default-state';
 import {
   ApplicationComponent,
-  ApplicationNavigationComponent,
   ButtonFieldComponent,
   CheckboxFieldComponent,
   CurrencyFieldComponent,
   DateFieldComponent,
   EmailFieldComponent,
+  LinearNavigatorComponent,
   MonthFieldComponent,
   NumberFieldComponent,
   PageComponent,
@@ -69,7 +69,6 @@ const FIELD_COMPONENTS = [
 
 const DATA_DRIVEN_FORMS_COMPONENTS = [
   ApplicationComponent,
-  ApplicationNavigationComponent,
   PageComponent,
   QuestionComponent,
   QuestionErrorsComponent,
@@ -78,6 +77,7 @@ const DATA_DRIVEN_FORMS_COMPONENTS = [
   SectionListItemComponent,
   SectionSingleComponent,
   SectionTableComponent,
+  LinearNavigatorComponent,
 ];
 
 const DIRECTIVES = [

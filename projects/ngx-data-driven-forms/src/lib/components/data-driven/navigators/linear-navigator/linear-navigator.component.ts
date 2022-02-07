@@ -1,16 +1,21 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {IApplicationMeta} from '../../../../_interfaces/application-meta';
+import {Application, Page} from '../../../../forms-config';
 import {AbstractControl} from '@angular/forms';
-import {ApplicationStateManagerService, DataDrivenFormsEventsService, DataDrivenFormsService} from '../../../services';
-import {IApplicationMeta} from '../../../_interfaces/application-meta';
-import {Application, Page} from '../../../forms-config';
 import {Subscription} from 'rxjs';
+import {
+  ApplicationStateManagerService,
+  DataDrivenFormsEventsService,
+  DataDrivenFormsService
+} from '../../../../services';
 
 @Component({
-  selector: 'ddforms-application-linear-navigation',
-  templateUrl: './application-linear-navigation.component.html',
-  styleUrls: ['./application-linear-navigation.component.scss']
+  selector: 'ddforms-linear-navigator',
+  templateUrl: './linear-navigator.component.html',
+  styleUrls: ['./linear-navigator.component.scss']
 })
-export class ApplicationNavigationComponent implements OnInit, OnDestroy {
+export class LinearNavigatorComponent implements OnInit {
+
 
   private readonly config$ = this.applicationState.currentApplicationConfig$;
   private readonly control$ = this.applicationState.currentApplicationControl$;
@@ -102,5 +107,6 @@ export class ApplicationNavigationComponent implements OnInit, OnDestroy {
       }
     });
   }
+
 
 }

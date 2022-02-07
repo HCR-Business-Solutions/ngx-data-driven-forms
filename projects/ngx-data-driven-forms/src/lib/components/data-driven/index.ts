@@ -1,5 +1,5 @@
 export * from './application';
-export * from './application-linear-navigation';
+export * from './navigators';
 export * from './page';
 export * from './question';
 export * from './section';
