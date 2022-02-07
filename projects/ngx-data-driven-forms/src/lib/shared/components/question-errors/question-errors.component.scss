@@ -1,0 +1,15 @@
+@import '../../../styles/colors';
+@import '../../../styles/fonts';
+
+.ddforms-default.form-errors {
+
+  .form-error {
+    font-family: $font-error;
+    color: $color-error;
+    font-size: .75rem;
+    padding-top: 5px;
+  }
+  
+
+}
+

@@ -1,0 +1,13 @@
+<ng-container *ngIf="this.control && this.config">
+    <div class="form-field textarea-field m-2 " [ngClass]="{'ddforms-default': this.useStyles}">
+      <label *ngIf="this.config.label" [for]="this.internalId" class="form-label">{{this.config.label}}</label>
+      <div *ngIf="this.config.hint" class="form-hint" id="{{this.internalId}}Hint">{{this.config.hint.text}}</div>
+      <textarea [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
+             [formControl]="this.formControl" [id]="this.internalId" class="form-control"
+             [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}"
+            >
+            </textarea>
+      <ddforms-question-errors [config]="this.config" [control]="this.control"
+                               class="form-errors-container"></ddforms-question-errors>
+    </div>
+  </ng-container>
