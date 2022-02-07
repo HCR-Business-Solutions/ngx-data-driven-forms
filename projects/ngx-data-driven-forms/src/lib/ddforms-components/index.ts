@@ -1,1 +1,2 @@
-export * from './data-driven-forms.module';
+export * from './components';
+export * from './ddforms-components.module';
