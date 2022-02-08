@@ -1,12 +1,30 @@
 import { NumberComparison } from '..';
 import { calculateAge, normalizeDate } from './date';
 
+
 export const NUMBER_COMPARISONS = {
   'lessThan': isLessThan,
   'greaterThan': isGreaterThan,
   'equalTo': isEqualTo,
   'lessOrEqual': isLessOrEqual,
   'greaterOrEqual': isGreaterOrEqual
+}
+
+export const DATE_COMPARISONS = {
+  'isDate': isDate,
+  'dateBefore': isDateBefore,
+  'dateAfter': isDateAfter,
+  'dateOn': isDateOn,
+  'dateOnOrBefore': isDateOnOrBefore,
+  'dateOnOrAfter': isDateOnOrAfter,
+};
+
+export const AGE_COMPARISONS = {
+  'ageLess': isAgeLessThan,
+  'ageGreater': isAgeGreaterThan,
+  'ageEqual': isAgeEqualTo,
+  'ageLessOrEqual': isAgeLessOrEqual,
+  'ageGreaterOrEqual': isAgeGreaterOrEqual,
 }
 
 export function hasValue(value: any, check: boolean) {

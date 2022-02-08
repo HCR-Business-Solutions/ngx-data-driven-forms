@@ -1,0 +1,30 @@
+import { NormalizedValidator } from '../../../shared/types';
+import * as Validators from '../logic/validators';
+
+export const DEFAULT_VALIDATOR_MAP = new Map<string, NormalizedValidator>([
+  ['min', Validators.min],
+  ['max', Validators.max],
+  ['required', Validators.required],
+  ['requiredTrue', Validators.requiredTrue],
+  ['minLength', Validators.minLength],
+  ['maxLength', Validators.maxLength],
+  ['pattern', Validators.pattern],
+  ['isTruthy', Validators.isTruthy],
+  ['isFalsy', Validators.isFalsy],
+  ['isGreaterThan', Validators.numberComparison('greaterThan')],
+  ['isLessThan', Validators.numberComparison('lessThan')],
+  ['isEqualTo', Validators.numberComparison('equalTo')],
+  ['isLessOrEqual', Validators.numberComparison('lessOrEqual')],
+  ['isGreaterOrEqual', Validators.numberComparison('greaterOrEqual')],
+  ['isDate', Validators.isDate],
+  ['isDateBefore', Validators.dateComparison('dateBefore')],
+  ['isDateAfter', Validators.dateComparison('dateAfter')],
+  ['isDateOn', Validators.dateComparison('dateOn')],
+  ['isDateOnOrBefore', Validators.dateComparison('dateOnOrBefore')],
+  ['isDateOnOrAfter', Validators.dateComparison('dateOnOrAfter')],
+  ['isAgeGreaterThan', Validators.ageComparison('ageGreaterOrEqual')],
+  ['isAgeLessThan', Validators.ageComparison('ageLess')],
+  ['isAgeEqualTo', Validators.ageComparison('ageEqual')],
+  ['isAgeGreaterOrEqual', Validators.ageComparison('ageGreaterOrEqual')],
+  ['isAgeLessOrEqual', Validators.ageComparison('ageLessOrEqual')],
+])

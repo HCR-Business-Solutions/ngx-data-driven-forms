@@ -7,7 +7,6 @@ import { DataDrivenFormsService } from '../../../../ddforms/services';
 @Component({
   selector: 'ddforms-section-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.scss']
 })
 export class SectionContainerComponent implements OnInit, OnDestroy {
 

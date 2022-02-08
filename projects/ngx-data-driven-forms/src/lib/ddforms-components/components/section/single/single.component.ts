@@ -8,7 +8,6 @@ import {getQuestionControlPair} from '../../../../shared/utilities';
 @Component({
   selector: 'ddforms-section-single',
   templateUrl: './single.component.html',
-  styleUrls: ['./single.component.scss']
 })
 export class SectionSingleComponent implements OnInit {
 

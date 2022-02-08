@@ -19,8 +19,8 @@ export class DataDrivenFormsConfigService {
   private readonly fieldConfigValidators: BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined> = new BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined>(null);
 
   constructor(
-    @Inject('dataDrivenFormsConfig') private config: IModuleConfig,
-    @Inject('defaultValues') private defaults: IDefaultValues,
+    @Inject('moduleConfig') private config: IModuleConfig,
+    @Inject('defaults') private defaults: IDefaultValues,
   ) {
 
     if (!this.validators.getValue()?.size) {
@@ -80,6 +80,8 @@ export class DataDrivenFormsConfigService {
     }
 
     this.ignoreDefaultStyles.next(config?.skipDefaultStyles ?? false);
+
+    console.log(this);
 
   }
 

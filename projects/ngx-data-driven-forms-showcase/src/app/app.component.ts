@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataDrivenFormsService } from '../../../ngx-data-driven-forms/src/lib/ddforms';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngx-data-driven-forms-showcase';
+
+  constructor(
+    private ddforms: DataDrivenFormsService
+  ){}
+
 }

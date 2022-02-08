@@ -5,7 +5,6 @@ import { Page } from '../../../shared/form-config';
 @Component({
   selector: 'ddforms-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit {
 
