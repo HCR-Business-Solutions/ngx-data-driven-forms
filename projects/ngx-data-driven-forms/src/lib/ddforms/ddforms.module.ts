@@ -6,11 +6,14 @@ import { SharedModule } from '../shared';
 import { IDefaultValues, IModuleConfig } from './interfaces';
 import { DEFAULT_CONDITIONS_MAP, DEFAULT_CROSS_FIELD_VALIDATOR_MAP, DEFAULT_DATA_HANDLER_MAP, DEFAULT_MESSAGE_HANDLER_MAP, DEFAULT_VALIDATOR_MAP } from './defaults';
 import { DEFAULT_FIELD_COMPONENT_MAP, DEFAULT_FIELD_CONFIG_MAP } from '../default-field-components/maps';
+import { FormContainerComponent } from './components/form-container/form-container.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FormContainerComponent,
+  ],
   imports: [
     CommonModule,
     DDFormsComponentsModule,
@@ -21,6 +24,7 @@ import { DEFAULT_FIELD_COMPONENT_MAP, DEFAULT_FIELD_CONFIG_MAP } from '../defaul
     DDFormsComponentsModule,
     DefaultFieldComponentsModule,
     SharedModule,
+    FormContainerComponent,
   ]
 })
 export class DDFormsModule {
