@@ -7,12 +7,14 @@ import { IDefaultValues, IModuleConfig } from './interfaces';
 import { DEFAULT_CONDITIONS_MAP, DEFAULT_CROSS_FIELD_VALIDATOR_MAP, DEFAULT_DATA_HANDLER_MAP, DEFAULT_MESSAGE_HANDLER_MAP, DEFAULT_VALIDATOR_MAP } from './defaults';
 import { DEFAULT_FIELD_COMPONENT_MAP, DEFAULT_FIELD_CONFIG_MAP } from '../default-field-components/maps';
 import { FormContainerComponent } from './components/form-container/form-container.component';
+import { LinearNavigatorComponent } from './components/linear-navigator/linear-navigator.component';
 
 
 
 @NgModule({
   declarations: [
     FormContainerComponent,
+    LinearNavigatorComponent,
   ],
   imports: [
     CommonModule,
