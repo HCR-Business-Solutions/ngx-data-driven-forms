@@ -1,1 +1,1 @@
-export * from './question-errors/question-errors.component';
+export * from './question-errors';

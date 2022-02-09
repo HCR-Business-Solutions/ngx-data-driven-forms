@@ -1,20 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-
-import {ApplicationStateManagerService, IApplication} from '../../../../../ngx-data-driven-forms/src/lib';
+import { Component, OnInit } from '@angular/core';
+import {IApplication} from '../../../../../ngx-data-driven-forms/src/lib/shared';
+import {
+  ApplicationStateManagerService,
+  DataDrivenFormsService
+} from '../../../../../ngx-data-driven-forms/src/lib/ddforms';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
+  selector: 'app-application-example',
   templateUrl: './application-example.component.html',
-  styleUrls: ['./application-example.component.scss']
+  styles: [
+  ]
 })
 export class ApplicationExampleComponent implements OnInit {
 
-  private readonly testingApplication: IApplication = {
-    id: 'test',
-    description: 'Testing Application',
+  private _config: IApplication = {
+    id: 'exampleApplication',
+    description: 'An application example to show off some of the basic functions.',
     pages: [
       {
-        id: 'basicInfo',
-        title: 'Basic Information',
+        id: 'namePage',
         sections: [
           {
             id: 'name',
@@ -22,110 +27,64 @@ export class ApplicationExampleComponent implements OnInit {
               first: {
                 id: 'first',
                 type: 'text',
-                label:  'First Name',
-                validation: {
-                  required: true,
-                }
+                label: 'First Name'
+              },
+              middle: {
+                id: 'middle',
+                type: 'text',
+                label: 'Middle Name'
               },
               last: {
                 id: 'last',
                 type: 'text',
-                label: 'Last Name',
-                crossFieldValidation: [
-                  {
-                    sibling: 'first',
-                    expectedParentLevel: 1,
-                    crossFieldValidation: {
-                      requireIf: true,
-                    }
-                  },
-                ]
+                label: 'Last Name'
               },
             },
-            questionOrder: ['first', 'last']
-          },
+            questionOrder: [
+              'first',
+              'middle',
+              'last',
+            ]
+          }
+        ]
+      },
+      {
+        id: 'contactPage',
+        sections: [
           {
-            id: 'demographics',
+            id: 'phone',
             questions: {
-              gender: {
-                id: 'gender',
-                type: 'radio',
-                label: 'Gender',
-                fieldConfig: {
-                  options: [
-                    {value: 'M', display: 'Male'},
-                    {value: 'F', display: 'Female'},
-                    {value: 'X', display: 'Non-Binary'},
-                    {value: 'O', display: 'Other'},
-                    {value: '?', display: 'Prefer Not To Answer'}
-                  ]
-                }
-              }
-            },
-            questionOrder: ['gender']
-          },
-          {
-            id: 'contact',
-            questions: {
-              email: {
-                id: 'email',
-                type: 'email',
-                label: 'Email',
-                placeholder: 'email@email.com'
-              },
-              phone: {
-                id: 'phone',
+              number: {
+                id: 'number',
                 type: 'tel',
-                label: 'Phone Number'
+                label: 'Phone Number',
               },
-              phoneType: {
-                id: 'phoneType',
+              type: {
+                id: 'type',
                 type: 'radio',
                 label: 'Phone Type',
                 fieldConfig: {
                   options: [
-                    {value: 'L', display: 'Landline'},
-                    {value: 'M', display: 'Mobile'}
-                  ]
-                },
-              },
-              optInText: {
-                id: 'optInText',
-                type: 'radio',
-                label: 'Do you want to receive text messages',
-                fieldConfig: {
-                  options: [
-                    {value: 'Y', display: 'Yes'},
-                    {value: 'N', display: 'No'},
+                    {display: 'Mobile', value: 'M'},
+                    {display: 'Landline', value: 'L'}
                   ],
-                },
-                shouldAsk: {
-                  statements: [
-                    {
-                      sibling: 'phoneType',
-                      expectedParentLevel: 1,
-                      check: 'one',
-                      conditions: {
-                        valueMatches: 'M'
-                      }
-                    }
-                  ]
                 }
               }
             },
-            questionOrder: ['email', 'phone', 'phoneType', 'optInText']
+            questionOrder: ['number', 'type']
           }
         ]
-      },
+      }
     ]
   }
 
   constructor(
-    private appState: ApplicationStateManagerService,
+    private ddforms: DataDrivenFormsService,
+    private appStateSvc: ApplicationStateManagerService,
   ) { }
 
   ngOnInit(): void {
-    this.appState.setup(null, this.testingApplication, undefined, false);
+    this.appStateSvc.setup(null, this._config)
   }
 
 }

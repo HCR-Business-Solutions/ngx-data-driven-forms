@@ -1,0 +1,26 @@
+.ddforms-default.section-content-container {
+
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+
+  &.section-border {
+    border: black 1px solid;
+  }
+
+  .section-title-container {
+
+  }
+
+  .section-narrative-container {
+
+  }
+
+  .section-questions-container {
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+  }
+
+
+}

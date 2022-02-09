@@ -1,0 +1,13 @@
+<ng-container *ngIf="this.control && this.config && this.meta">
+  <div class="ddforms application-navigation-container">
+
+    <div class="ddforms application-navigation-next-container" *ngIf="this.showNext">
+      <button (click)="onNext()" class="btn btn-primary">Next</button>
+    </div>
+
+    <div class="ddforms application-navigation-submit-container" *ngIf="this.showSubmit">
+      <button (click)="onSubmit()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+</ng-container>

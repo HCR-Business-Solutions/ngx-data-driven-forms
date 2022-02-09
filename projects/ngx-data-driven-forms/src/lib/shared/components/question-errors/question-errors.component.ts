@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import {Question} from '../../../forms-config';
-import {DataDrivenFormsConfigService} from '../../../services';
+import { DataDrivenFormsConfigService } from '../../../ddforms/services';
+import { Question } from '../../form-config';
 
 @Component({
   selector: 'ddforms-question-errors',

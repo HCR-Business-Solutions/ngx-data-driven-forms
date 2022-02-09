@@ -2,10 +2,10 @@
   "name": "ngx-data-driven-forms",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
     "uuid": "^8.3.2",
-    "ngx-markdown": "^13.0.0",
+    "ngx-markdown": "^13.1.0",
     "ngx-mask": "^13.1.1"
   },
   "dependencies": {
