@@ -1,5 +1,5 @@
 <ng-container *ngIf="this.config && this.control">
-  <section [ngClass]="{'section-border': true}" class="section-container">
+  <section [ngClass]="{'section-border': this.config.border, 'ddforms-default': this.useDefaultStyles}" class="section-content-container">
     <div *ngIf="this.config?.title" class="section-title-container">
       <h3 class="section-title-text">{{this.config.title}}</h3>
     </div>

@@ -56,13 +56,6 @@ export class ApplicationStateManagerService {
     this.currentApplicationMeta.next(appMeta ?? APPLICATION_META_DEFAULT);
   }
 
-  public nextPage() {
-    const currentMeta = this.currentApplicationMeta.getValue() ?? APPLICATION_META_DEFAULT;
-    this.currentApplicationMeta.next({
-      currentPage: currentMeta.currentPage + 1,
-    })
-  }
-
   public goToPage(pageIndex: number) {
     this.currentApplicationMeta.next({
       currentPage: pageIndex,

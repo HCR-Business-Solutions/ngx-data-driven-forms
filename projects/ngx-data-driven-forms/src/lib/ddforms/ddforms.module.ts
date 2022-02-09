@@ -27,6 +27,7 @@ import { LinearNavigatorComponent } from './components/linear-navigator/linear-n
     DefaultFieldComponentsModule,
     SharedModule,
     FormContainerComponent,
+    LinearNavigatorComponent,
   ]
 })
 export class DDFormsModule {

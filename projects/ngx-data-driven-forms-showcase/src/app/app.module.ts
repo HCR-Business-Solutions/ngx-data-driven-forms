@@ -5,10 +5,12 @@ import { DDFormsModule } from '../../../ngx-data-driven-forms/src/lib/ddforms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ApplicationExampleComponent } from './pages/application-example/application-example.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ApplicationExampleComponent
   ],
   imports: [
     BrowserModule,

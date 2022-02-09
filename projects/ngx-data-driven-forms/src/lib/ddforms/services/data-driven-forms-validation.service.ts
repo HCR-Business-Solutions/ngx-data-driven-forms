@@ -161,8 +161,9 @@ export class DataDrivenFormsValidationService {
 
     const fieldConfigValidator = this.ddFormsConf.getFieldConfigValidators()?.get(question.type);
     if (fieldConfigValidator) {
-      if (!fieldConfigValidator(question.fieldConfig)) {
-        errors.set('invalidFieldConfig', true)
+      const fieldConfigErrors = fieldConfigValidator(question.fieldConfig);
+      if (fieldConfigErrors) {
+        errors.set('fieldConfig', fieldConfigErrors)
       }
     }
 
@@ -173,6 +174,19 @@ export class DataDrivenFormsValidationService {
       const unknownValidators = validators.filter(_ => !knownValidators.includes(_));
       if (unknownValidators.length > 0) {
         errors.set('unknownValidators', unknownValidators);
+      }
+    }
+
+    if(question.crossFieldValidation && question.crossFieldValidation.length > 0) {
+      const crossFieldValidators = question.crossFieldValidation.reduce((prev: string[], curr) => [...prev, ...Object.keys({...curr.crossFieldValidation ?? {}, ...curr.customCrossFieldValidation ?? {}})],[]);
+      if (crossFieldValidators.length > 0) {
+        const knownCrossFieldValidators = Array.from(this.ddFormsConf.getCrossFieldValidators().keys());
+        const unknownCrossFieldValidators = crossFieldValidators.filter(_ => !knownCrossFieldValidators.includes(_));
+        if (unknownCrossFieldValidators.length > 0) {
+          errors.set('unknownCrossFieldValidators', unknownCrossFieldValidators);
+        }
+      } else {
+        errors.set('crossFieldValidatorsDefinedButNotPresent', true);
       }
     }
 

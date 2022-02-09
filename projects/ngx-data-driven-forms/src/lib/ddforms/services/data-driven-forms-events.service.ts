@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, merge, Observable, shareReplay } from 'rxjs';
 
-export interface NextEvent {
+export interface DDFormsNextEvent {
   type: 'next';
   payload: {
     currentPage: number;
@@ -10,7 +10,7 @@ export interface NextEvent {
   }
 }
 
-export interface SubmitEvent {
+export interface DDFormsSubmitEvent {
   type: 'submit',
   payload: {
     currentPage: number;
@@ -19,20 +19,20 @@ export interface SubmitEvent {
   }
 }
 
-export type DDFormsEvent = NextEvent | SubmitEvent;
+export type DDFormsEvent = DDFormsNextEvent | DDFormsSubmitEvent;
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataDrivenFormsEventsService {
 
-  private readonly nextEvent: BehaviorSubject<NextEvent | null | undefined> = new BehaviorSubject<NextEvent | null | undefined>(null);
-  public readonly nextEvent$: Observable<NextEvent | null | undefined> = this.nextEvent.asObservable().pipe(
+  private readonly nextEvent: BehaviorSubject<DDFormsNextEvent | null | undefined> = new BehaviorSubject<DDFormsNextEvent | null | undefined>(null);
+  public readonly nextEvent$: Observable<DDFormsNextEvent | null | undefined> = this.nextEvent.asObservable().pipe(
     shareReplay(1),
   );
 
-  private readonly submitEvent: BehaviorSubject<SubmitEvent | null | undefined> = new BehaviorSubject<SubmitEvent | null | undefined>(null);
-  public readonly submitEvent$: Observable<SubmitEvent | null | undefined> = this.submitEvent.asObservable().pipe(
+  private readonly submitEvent: BehaviorSubject<DDFormsSubmitEvent | null | undefined> = new BehaviorSubject<DDFormsSubmitEvent | null | undefined>(null);
+  public readonly submitEvent$: Observable<DDFormsSubmitEvent | null | undefined> = this.submitEvent.asObservable().pipe(
     shareReplay(1),
   );
 
@@ -43,11 +43,11 @@ export class DataDrivenFormsEventsService {
 
   constructor() { }
 
-  public onNext(event: NextEvent) {
+  public onNext(event: DDFormsNextEvent) {
     this.nextEvent.next(event);
   }
 
-  public onSubmit(event: SubmitEvent) {
+  public onSubmit(event: DDFormsSubmitEvent) {
     this.submitEvent.next(event);
   }
 
