@@ -32,16 +32,16 @@ export const minLength: NormalizedValidator = (minLength: number) =>
 export const maxLength: NormalizedValidator = (maxLength: number) =>
   Validators.maxLength(maxLength);
 
-export const pattern: NormalizedValidator = (pattern: string) =>
+export const validatePattern: NormalizedValidator = (pattern: string) =>
   Validators.pattern(pattern);
 
-export const isTruthy: NormalizedValidator = (check?: boolean) =>
+export const validateIsTruthy: NormalizedValidator = (check?: boolean) =>
   !check
     ? undefined
     : (c: AbstractControl) =>
         truthyCheck(c.value, true) ? null : { isTruthy: true };
 
-export const isFalsy: NormalizedValidator = (check?: boolean) =>
+export const validateIsFalsy: NormalizedValidator = (check?: boolean) =>
   !check
     ? undefined
     : (c: AbstractControl) =>
@@ -62,7 +62,7 @@ export const numberComparison: (
             : { [`${compareType}`]: { expected: comparison, actual: c.value } };
 };
 
-export const isDate: NormalizedValidator = (check?: boolean) =>
+export const validateIsDate: NormalizedValidator = (check?: boolean) =>
   !check
     ? undefined
     : (c: AbstractControl) =>
