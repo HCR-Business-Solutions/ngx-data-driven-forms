@@ -4,7 +4,6 @@ import {
   ApplicationStateManagerService,
   DataDrivenFormsService
 } from '../../../../../ngx-data-driven-forms/src/lib/ddforms';
-import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-application-example',
