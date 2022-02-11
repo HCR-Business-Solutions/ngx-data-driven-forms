@@ -39,9 +39,11 @@ export class RadioFieldComponent implements OnInit, IQuestionBase {
     if(options === undefined) return [];
 
     if ('options' in options) {
-      return options.options
+      return options.options;
     } else if ('apiSourceString' in options) {
-      return []; // TODO: Hook up to api?
+      return []; // TODO: Hook up to api httpClient
+    } else if ('dataSourceRef' in options) {
+      return [];
     }
 
     return [];

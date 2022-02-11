@@ -1,8 +1,8 @@
-export type IOptionsConfig = HardCodedSelect | APISource;
+export type IOptionsConfig = HardCodedSelect | APISource | KnownDataSourceReference;
 
 export function isOptions(r: unknown): r is IOptionsConfig {
   if (typeof r === 'object') {
-    return (r?.hasOwnProperty('options') ?? false) || (r?.hasOwnProperty('apiSourceString') ?? false)
+    return (r?.hasOwnProperty('options') ?? false) || (r?.hasOwnProperty('apiSourceString') ?? false) || (r?.hasOwnProperty('dataSourceRef') ?? false);
   }
   return false;
 }
@@ -19,6 +19,10 @@ export function validateOptions(r: unknown): null | {[key: string]: any} {
       if (!r.apiSourceString) {
         return {missingSourceString: true};
       }
+    } else if('dataSourceRef' in r) {
+      if (!r.dataSourceRef) {
+        return {missingDataSourceRef: true};
+      }
     }
     return null;
   } else {
@@ -32,4 +36,8 @@ export interface HardCodedSelect {
 
 export interface APISource {
   apiSourceString: string;
+}
+
+export interface KnownDataSourceReference {
+  dataSourceRef: string;
 }

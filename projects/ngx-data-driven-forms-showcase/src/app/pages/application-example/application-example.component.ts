@@ -26,7 +26,10 @@ export class ApplicationExampleComponent implements OnInit {
               first: {
                 id: 'first',
                 type: 'text',
-                label: 'First Name'
+                label: 'First Name',
+                validation: {
+                  required: true,
+                },
               },
               middle: {
                 id: 'middle',
@@ -67,10 +70,32 @@ export class ApplicationExampleComponent implements OnInit {
                     {display: 'Mobile', value: 'M'},
                     {display: 'Landline', value: 'L'}
                   ],
+                },
+              },
+              allowTexts: {
+                id: 'allowTexts',
+                type: 'radio',
+                label: 'Allow Text Messages',
+                fieldConfig: {
+                  options: [
+                    {display: 'Yes', value: 'Y'},
+                    {display: 'No', value: 'N'}
+                  ]
+                },
+                shouldAsk: {
+                  statements: [
+                    {
+                      sibling: 'type',
+                      expectedParentLevel: 1,
+                      conditions: {
+                        valueMatches: 'M'
+                      },
+                    }
+                  ]
                 }
               }
             },
-            questionOrder: ['number', 'type']
+            questionOrder: ['number', 'type', 'allowTexts']
           }
         ]
       }
