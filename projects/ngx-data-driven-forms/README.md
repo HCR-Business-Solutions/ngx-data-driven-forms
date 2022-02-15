@@ -1,24 +1,61 @@
-# NgxDataDrivenForms
+#NGX Data Driven Forms (ngx-data-driven-forms)
+Data driven forms is an angular component library that allows for developers to quickly and safely create forms from a json configuration string.
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+##Installation & Setup
+In a fresh angular project, run the following command
+```bash
+npm install ngx-data-driven-forms
+```
+After installation in your app.module.ts import the DDForms Module
+```ts
+import { DDForms } from 'ngx-data-driven-forms'
+```
+and add the module to your Apps imports using `forRoot()`.
 
-## Code scaffolding
+###Example
+```ts
+@NgModule({
+  declarations: [
+  ],
+  imports: [
+    BrowserModule,
+    DDFormsModule.forRoot({}),
+  ],
+  providers: [],
+  bootstrap: []
+})
+export class AppModule { }
+```
+Take notice of the empty object being passed to the `forRoot` function.
 
-Run `ng generate component component-name --project ngx-data-driven-forms` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-data-driven-forms`.
-> Note: Don't forget to add `--project ngx-data-driven-forms` or else it will be added to the default project in your `angular.json` file. 
+###DDForms Configuration
+A configuration object can be defined with the `forRoot` function within the input, the possible Configurations are as defined.
+```ts
+{
+  staticValues?: {
+    components?: Map<string, Type<any>>;
+    conditions?: Map<string, ConditionsFunction>;
+    crossFieldValidators?: Map<string, NormalizedCrossFieldValidator>;
+    dataHandlers?: Map<string, DataHandlerFunction<any>>;
+    fieldConfigValidators?: Map<string, FieldConfigValidator>;
+    messageHandlers?: Map<string, ErrorMessageFunction>;
+    validators?: Map<string, NormalizedValidator>;
+  };
 
-## Build
+  skipDefaults?: {
+    components?: boolean;
+    conditions?: boolean;
+    crossFieldValidators?: boolean;
+    dataHandlers?: boolean;
+    fieldConfigValidators?: boolean;
+    messageHandlers?: boolean;
+    validators?: boolean;
+  };
+  skipDefaultStyles?: boolean;
+}
+```
+The static values allow developers to define custom logic, validators, components and more. Allowing for projects to adapt the library to its own needs while still using the JSON Configurations provided.
 
-Run `ng build ngx-data-driven-forms` to build the project. The build artifacts will be stored in the `dist/` directory.
+Skip defaults allows developers to remove the default logic, validators, components, ect. This is to allow developers to override base functionality.
 
-## Publishing
-
-After building your library with `ng build ngx-data-driven-forms`, go to the dist folder `cd dist/ngx-data-driven-forms` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngx-data-driven-forms` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+While finally skip default styles will disable all css from the project. 
