@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, merge, Observable, shareReplay } from 'rxjs';
 
+export interface DDFormsBackEvent {
+  type: 'back'
+  payload: {
+    currentPage: number;
+    targetPage: number;
+    skipValidation?: boolean;
+  }
+}
+
 export interface DDFormsNextEvent {
   type: 'next';
   payload: {
     currentPage: number;
-    nextPage: number;
-    isPageValid: boolean;
+    targetPage: number;
+    skipValidation?: boolean;
   }
 }
 
@@ -14,17 +23,22 @@ export interface DDFormsSubmitEvent {
   type: 'submit',
   payload: {
     currentPage: number;
-    isPageValid: boolean;
-    isApplicationValid: boolean;
+    skipPageValidation?: boolean;
+    skipApplicationValidation?: boolean;
   }
 }
 
-export type DDFormsEvent = DDFormsNextEvent | DDFormsSubmitEvent;
+export type DDFormsEvent = DDFormsBackEvent | DDFormsNextEvent | DDFormsSubmitEvent;
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataDrivenFormsEventsService {
+
+  private readonly backEvent: BehaviorSubject<DDFormsBackEvent | null | undefined> = new BehaviorSubject<DDFormsBackEvent | null | undefined>(null);
+  public readonly backEvent$: Observable<DDFormsBackEvent | null | undefined> = this.backEvent.asObservable().pipe(
+    shareReplay(1),
+  );
 
   private readonly nextEvent: BehaviorSubject<DDFormsNextEvent | null | undefined> = new BehaviorSubject<DDFormsNextEvent | null | undefined>(null);
   public readonly nextEvent$: Observable<DDFormsNextEvent | null | undefined> = this.nextEvent.asObservable().pipe(
@@ -37,11 +51,16 @@ export class DataDrivenFormsEventsService {
   );
 
   public readonly events$: Observable<DDFormsEvent | null | undefined> = merge(
+    this.backEvent$,
     this.nextEvent$,
     this.submitEvent$,
   );
 
   constructor() { }
+
+  public onBack(event: DDFormsBackEvent) {
+    this.backEvent.next(event);
+  }
 
   public onNext(event: DDFormsNextEvent) {
     this.nextEvent.next(event);

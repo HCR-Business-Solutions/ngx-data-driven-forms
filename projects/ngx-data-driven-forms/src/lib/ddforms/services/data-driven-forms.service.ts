@@ -143,6 +143,10 @@ export class DataDrivenFormsService {
     , {});
   }
 
+  public shouldAskPage(control: AbstractControl, page: Page): boolean {
+    return page.getShouldAsk(control, this.ddFormsConf.getConditions());
+  }
+
   //#endregion Page Functions
 
 

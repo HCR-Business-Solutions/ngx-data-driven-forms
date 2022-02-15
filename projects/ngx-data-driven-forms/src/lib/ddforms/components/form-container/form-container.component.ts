@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   ApplicationStateManagerService,
-  DataDrivenFormsEventsService,
+  DataDrivenFormsEventsService, DDFormsBackEvent,
   DDFormsEvent,
   DDFormsNextEvent, DDFormsSubmitEvent
 } from '../../services';
@@ -67,12 +67,38 @@ export class FormContainerComponent implements OnInit, OnDestroy {
     if (!event) return;
     if(event.type === 'next') {this.handleNextEvent(event as DDFormsNextEvent); return;}
     if(event.type === 'submit') {this.handleSubmitEvent(event as DDFormsSubmitEvent); return;}
+    if(event.type === 'back') {this.handleBackEvent(event as DDFormsBackEvent); return;}
   }
 
+  private handleBackEvent(event: DDFormsBackEvent): void {
+
+    if (event.payload.currentPage < 0 || event.payload.targetPage < 0) return;
+
+    const isValid = event.payload.skipValidation ? true : this.currentPageControl?.valid ?? false;
+
+    if (isValid) {
+      this.appStateSvc.goToPage(event.payload.targetPage);
+      return;
+    }
+
+    if (!this.currentPageControl?.touched) {
+      this.appStateSvc.goToPage(event.payload.targetPage);
+      return;
+
+    }
+
+    // TODO: Put Modal Here
+
+    this.currentPageControl?.markAllAsTouched();
+  }
+
+
   private handleNextEvent(event: DDFormsNextEvent): void {
-    if (event.payload.currentPage < 0 || event.payload.nextPage < 0) return;
-    if (event.payload.isPageValid) {
-      this.appStateSvc.goToPage(event.payload.nextPage);
+    if (event.payload.currentPage < 0 || event.payload.targetPage < 0) return;
+
+    const pageValid = event.payload.skipValidation ? true : this.currentPageControl?.valid ?? false;
+    if (pageValid) {
+      this.appStateSvc.goToPage(event.payload.targetPage);
       return;
     }
     this.currentPageControl?.markAllAsTouched();
@@ -81,11 +107,17 @@ export class FormContainerComponent implements OnInit, OnDestroy {
   private handleSubmitEvent(event: DDFormsSubmitEvent) {
     if (!this.control || !this.config) return;
     if (event.payload.currentPage < 0) return;
-    if (!event.payload.isPageValid) {
+
+    const pageValid = event.payload.skipPageValidation ? true : this.currentPageControl?.valid ?? false;
+    const applicationValid = event.payload.skipApplicationValidation ? true : this.control.valid ?? false;
+
+    if (!pageValid) {
       this.currentPageControl?.markAllAsTouched();
       return;
     }
-    if (!event.payload.isApplicationValid) {
+
+    if (!applicationValid) {
+      // TODO : Popup saying... something about not being able to submit.
       this.control.markAllAsTouched();
       return;
     }

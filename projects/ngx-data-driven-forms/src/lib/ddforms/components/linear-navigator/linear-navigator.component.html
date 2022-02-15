@@ -1,13 +1,17 @@
 <ng-container *ngIf="this.control && this.config && this.meta">
-  <div class="ddforms application-navigation-container">
+  <div [ngClass]="{'ddforms-default': this.useDefaultStyles}" class="linear-navigation-container">
 
-    <div class="ddforms application-navigation-next-container" *ngIf="this.showNext">
+    <div *ngIf="this.showBack" class="linear-navigation-back-container">
+      <button (click)="onBack()" class="btn btn-secondary">Back</button>
+    </div>
+
+    <div class="linear-navigator-separator"></div>
+    <div *ngIf="this.showNext" class="linear-navigation-next-container">
       <button (click)="onNext()" class="btn btn-primary">Next</button>
     </div>
 
-    <div class="ddforms application-navigation-submit-container" *ngIf="this.showSubmit">
+    <div *ngIf="this.showSubmit" class="linear-navigation-submit-container">
       <button (click)="onSubmit()" class="btn btn-primary">Submit</button>
     </div>
   </div>
-
 </ng-container>
