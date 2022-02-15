@@ -2,18 +2,20 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   ApplicationStateManagerService,
   DataDrivenFormsEventsService,
+  DDFormsBackEvent,
   DDFormsEvent,
-  DDFormsNextEvent, DDFormsSubmitEvent
+  DDFormsNextEvent,
+  DDFormsSubmitEvent
 } from '../../services';
 import {Subscription, tap} from 'rxjs';
 import {Application, IApplicationMeta, Page} from '../../../shared';
 import {AbstractControl} from '@angular/forms';
 
+// noinspection DuplicatedCode
 @Component({
   selector: 'ddforms-form-container',
   templateUrl: './form-container.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class FormContainerComponent implements OnInit, OnDestroy {
 
@@ -29,12 +31,13 @@ export class FormContainerComponent implements OnInit, OnDestroy {
   public config: Application | null | undefined;
   public control: AbstractControl | null | undefined;
 
-  private subscriptions: Subscription[] = []
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private appStateSvc: ApplicationStateManagerService,
     private eventSvc: DataDrivenFormsEventsService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(this.meta$.subscribe(_ => this.meta = _));
@@ -65,14 +68,49 @@ export class FormContainerComponent implements OnInit, OnDestroy {
 
   private handleEvent(event: DDFormsEvent | null | undefined): void {
     if (!event) return;
-    if(event.type === 'next') {this.handleNextEvent(event as DDFormsNextEvent); return;}
-    if(event.type === 'submit') {this.handleSubmitEvent(event as DDFormsSubmitEvent); return;}
+    if (event.type === 'next') {
+      this.handleNextEvent(event as DDFormsNextEvent);
+      return;
+    }
+    if (event.type === 'submit') {
+      this.handleSubmitEvent(event as DDFormsSubmitEvent);
+      return;
+    }
+    if (event.type === 'back') {
+      this.handleBackEvent(event as DDFormsBackEvent);
+      return;
+    }
+  }
+
+  private handleBackEvent(event: DDFormsBackEvent): void {
+
+    console.log('backevent', event);
+
+    if (event.payload.currentPage < 0 || event.payload.targetPage < 0) return;
+
+    const isValid = event.payload.skipValidation ? true : this.currentPageControl?.valid ?? false;
+
+    if (isValid) {
+      this.appStateSvc.goToPage(event.payload.targetPage);
+      return;
+    }
+
+    if (!this.currentPageControl?.touched) {
+      this.appStateSvc.goToPage(event.payload.targetPage);
+      return;
+    }
+
+    // TODO: Do Modal if has changes.
+    this.currentPageControl?.markAllAsTouched();
   }
 
   private handleNextEvent(event: DDFormsNextEvent): void {
-    if (event.payload.currentPage < 0 || event.payload.nextPage < 0) return;
-    if (event.payload.isPageValid) {
-      this.appStateSvc.goToPage(event.payload.nextPage);
+    if (event.payload.currentPage < 0 || event.payload.targetPage < 0) return;
+
+    const isValid = event.payload.skipValidation ? true : this.currentPageControl?.valid ?? false;
+
+    if (isValid) {
+      this.appStateSvc.goToPage(event.payload.targetPage);
       return;
     }
     this.currentPageControl?.markAllAsTouched();
