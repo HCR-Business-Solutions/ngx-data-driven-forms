@@ -30,7 +30,7 @@ Take notice of the empty object being passed to the `forRoot` function.
 
 ###DDForms Configuration
 A configuration object can be defined with the `forRoot` function within the input, the possible Configurations are as defined.
-```ts
+```
 {
   staticValues?: {
     components?: Map<string, Type<any>>;
