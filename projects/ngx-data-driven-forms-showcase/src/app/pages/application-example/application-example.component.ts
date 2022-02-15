@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {IApplication} from '../../../../../ngx-data-driven-forms/src/lib/shared';
 import {
   ApplicationStateManagerService,
@@ -39,19 +39,7 @@ export class ApplicationExampleComponent implements OnInit {
               last: {
                 id: 'last',
                 type: 'text',
-                label: 'Last Name',
-                validation: {
-                  minLength: 3
-                },
-                crossFieldValidation: [
-                  {
-                    sibling: 'first',
-                    expectedParentLevel: 1,
-                    crossFieldValidation: {
-                      requireIf: true,
-                    }
-                  }
-                ]
+                label: 'Last Name'
               },
             },
             questionOrder: [

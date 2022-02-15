@@ -18,6 +18,8 @@ import {
   TimeFieldComponent,
   UrlFieldComponent,
   WeekFieldComponent,
+  SelectFieldComponent,
+  DatetimelocalFieldComponent
 } from '../components';
 
 export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<
@@ -42,4 +44,6 @@ export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<
   ['time', TimeFieldComponent],
   ['url', UrlFieldComponent],
   ['week', WeekFieldComponent],
+  ['select', SelectFieldComponent],
+  ['datetime-local', DatetimelocalFieldComponent],
 ]);

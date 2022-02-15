@@ -14,11 +14,13 @@
 
   .form-control{
     font-family: $font-control;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid $color-border;
 
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
         color: $color-error;
-        border: 2px solid $color-error;
+        border: 1px solid $color-error;
       }
     }
 

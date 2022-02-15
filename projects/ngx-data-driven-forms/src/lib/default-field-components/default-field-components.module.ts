@@ -5,6 +5,7 @@ import * as Components from './components';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared';
 
+
 const FIELDS = [
   Components.ButtonFieldComponent,
   Components.CheckboxFieldComponent,
@@ -24,6 +25,8 @@ const FIELDS = [
   Components.TimeFieldComponent,
   Components.UrlFieldComponent,
   Components.WeekFieldComponent,
+  Components.SelectFieldComponent,
+  Components.DatetimelocalFieldComponent
 ];
 
 @NgModule({

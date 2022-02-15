@@ -20,7 +20,7 @@
     &.ng-invalid {
       &.ng-touched, &.ng-dirty {
         color: $color-error;
-        border: 2px solid $color-error;
+        border: 1px solid $color-error;
       }
     }
 
@@ -37,6 +37,7 @@
 
   .checkbox-field {
     margin-bottom: 5px;
+    border: 1px solid $color-border;
 
   }
 

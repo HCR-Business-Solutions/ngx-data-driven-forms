@@ -132,7 +132,7 @@ export class DataDrivenFormsService {
   }
 
   public getPageValue(control: AbstractControl, page: Page): {[key: string]: any} | null {
-    return page.sections.reduce((prev: { [key: string]: any }, curr: Section) => {
+    return page.sections.reduce((prev: {[key: string]: any}, curr: Section) => {
         const sectionControl = control.get(curr.id);
         if (!sectionControl) return ({...prev});
         return ({
@@ -140,11 +140,7 @@ export class DataDrivenFormsService {
           [`${curr.id}`]: this.getSectionValue(sectionControl, curr)
         });
       }
-      , {});
-  }
-
-  public shouldAskPage(control: AbstractControl, page: Page): boolean {
-    return page.getShouldAsk(control, this.ddFormsConf.getConditions());
+    , {});
   }
 
   //#endregion Page Functions
@@ -153,7 +149,7 @@ export class DataDrivenFormsService {
   //#region Application Functions
 
   public generateApplicationConfig(application: any, skipSchemeValidation?: boolean): Application {
-    const validation = !skipSchemeValidation ? this.ddFormsValidator.validateApplication(application) : null;
+    const validation = !skipSchemeValidation  ? this.ddFormsValidator.validateApplication(application) : null;
     if (validation) {
       throw new Error(`Invalid Application.\n${JSON.stringify(validation, null, 2)}`);
     }

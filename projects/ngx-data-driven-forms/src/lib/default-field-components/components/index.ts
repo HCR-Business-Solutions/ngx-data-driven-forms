@@ -16,4 +16,6 @@ export * from './time-field';
 export * from './textarea-field';
 export * from './password-field';
 export * from './range-field';
+export * from './select-field';
+export * from './datetimelocal-field';
 
