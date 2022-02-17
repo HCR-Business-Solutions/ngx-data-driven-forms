@@ -1,0 +1,22 @@
+.non-linear-navigator-container.ddforms-default {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  gap: .5rem;
+
+  .non-linear-navigator-control-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 16rem;
+
+    .non-linear-navigator-question {
+      width: 100%;
+    }
+
+  }
+
+}

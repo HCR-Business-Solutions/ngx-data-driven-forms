@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicFieldDirective } from './directives';
-import {QuestionErrorsComponent, SpecialTextResolverComponent} from './components';
+import {QuestionErrorsComponent} from './components/question-errors';
 
 
 
@@ -9,14 +9,12 @@ import {QuestionErrorsComponent, SpecialTextResolverComponent} from './component
   declarations: [
     QuestionErrorsComponent,
     DynamicFieldDirective,
-    SpecialTextResolverComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
     QuestionErrorsComponent,
-    SpecialTextResolverComponent,
     DynamicFieldDirective,
   ]
 })

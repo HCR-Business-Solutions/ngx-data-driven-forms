@@ -1,24 +1,15 @@
-import { Statements } from './statements';
-import { Section } from './section';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  ValidatorFn,
-} from '@angular/forms';
-import { Observable } from 'rxjs';
-import { ICrossFieldValidatorPackage, IPage } from '../interfaces';
-import {
-  ConditionsFunction,
-  NormalizedCrossFieldValidator,
-  NormalizedValidator,
-} from '../../types';
-import { gatherChangeEvents } from '../../utilities';
+import {Statements} from './statements';
+import {Section} from './section';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn,} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {ICrossFieldValidatorPackage, IPage} from '../interfaces';
+import {ConditionsFunction, NormalizedCrossFieldValidator, NormalizedValidator,} from '../../types';
+import {gatherChangeEvents} from '../../utilities';
 
 
 export class Page implements IPage {
   public id: string;
+  public navigationName: string;
   public title?: string;
 
   public narrative?: string;
@@ -30,6 +21,7 @@ export class Page implements IPage {
 
   constructor(page: IPage) {
     this.id = page.id;
+    this.navigationName = page.navigationName;
     this.title = page.title;
 
     this.narrative = page.narrative;

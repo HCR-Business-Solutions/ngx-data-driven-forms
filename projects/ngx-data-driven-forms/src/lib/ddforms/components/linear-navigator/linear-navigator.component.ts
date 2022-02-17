@@ -82,8 +82,7 @@ export class LinearNavigatorComponent implements OnInit, OnDestroy {
     const nextPage = this.config.pages[pageIndex + 1] ?? null;
     if (!nextPage) return null;
 
-    //TODO: Perform Should Ask
-    const shouldAsk = true;
+    const shouldAsk = this.ddForms.shouldAskPage(this.control, nextPage);
     return shouldAsk ? nextPage : this.nextPageRecursive(pageIndex + 1);
   }
 
@@ -104,8 +103,6 @@ export class LinearNavigatorComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     if (!this.config || !this.control || !this.meta) return;
 
-    const currentPage = this.config.pages[this.meta.currentPage];
-
     this.eventSvc.onSubmit({
       type: 'submit',
       payload: {
@@ -120,7 +117,6 @@ export class LinearNavigatorComponent implements OnInit, OnDestroy {
 
     const nextPage = this.nextPage;
     const nextPageIndex = nextPage ? this.config.pages.findIndex(_ => nextPage.id === _.id) : null;
-    const currentPage = this.config.pages[this.meta.currentPage];
 
     this.eventSvc.onNext({
       type: 'next',

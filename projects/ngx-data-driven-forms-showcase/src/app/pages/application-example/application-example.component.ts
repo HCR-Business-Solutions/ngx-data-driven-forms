@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IApplication} from '../../../../../ngx-data-driven-forms/src/lib/shared';
 import {
   ApplicationStateManagerService,
@@ -19,6 +19,7 @@ export class ApplicationExampleComponent implements OnInit {
     pages: [
       {
         id: 'namePage',
+        navigationName: 'Name',
         sections: [
           {
             id: 'name',
@@ -52,6 +53,7 @@ export class ApplicationExampleComponent implements OnInit {
       },
       {
         id: 'contactPage',
+        navigationName: 'Contact Info',
         sections: [
           {
             id: 'phone',
