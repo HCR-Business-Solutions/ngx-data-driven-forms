@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ddforms-changes-modal',
@@ -15,5 +15,7 @@ export class ChangesModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  close(acceptChanges: boolean) {}
 
 }
