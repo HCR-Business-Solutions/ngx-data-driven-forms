@@ -3,11 +3,13 @@ import {
   ApplicationStateManagerService,
   DataDrivenFormsEventsService, DDFormsBackEvent,
   DDFormsEvent,
-  DDFormsNextEvent, DDFormsSubmitEvent
+  DDFormsNextEvent, DDFormsSubmitEvent, 
 } from '../../services';
 import {Subscription, tap} from 'rxjs';
 import {Application, IApplicationMeta, Page} from '../../../shared';
 import {AbstractControl} from '@angular/forms';
+
+declare var $: any;
 
 @Component({
   selector: 'ddforms-form-container',
@@ -16,6 +18,9 @@ import {AbstractControl} from '@angular/forms';
   ]
 })
 export class FormContainerComponent implements OnInit, OnDestroy {
+
+ 
+
 
   private meta$ = this.appStateSvc.currentApplicationMeta$;
   private config$ = this.appStateSvc.currentApplicationConfig$;
@@ -41,8 +46,19 @@ export class FormContainerComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.config$.subscribe(_ => this.config = _));
     this.subscriptions.push(this.control$.subscribe(_ => this.control = _));
     this.subscriptions.push(this.events$.subscribe());
+    
   }
 
+  showDialog(){
+    let modal_t  = document.getElementById('modal_1')!
+    modal_t.classList.remove('hhidden')
+    modal_t.classList.add('sshow');
+}
+closeDialog() {
+    let modal_t  = document.getElementById('modal_1')!
+    modal_t.classList.remove('sshow')
+    modal_t.classList.add('hhidden');
+}
   ngOnDestroy(): void {
     this.subscriptions.forEach(_ => {
       if (_ && !_.closed) _.unsubscribe();
@@ -88,6 +104,11 @@ export class FormContainerComponent implements OnInit, OnDestroy {
     }
 
     // TODO: Put Modal Here
+
+
+
+
+    
 
     this.currentPageControl?.markAllAsTouched();
   }

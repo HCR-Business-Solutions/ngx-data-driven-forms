@@ -1,3 +1,8 @@
 <ng-container *ngIf="this.meta && this.control && this.config">
   <ddforms-application [control]="this.control" [config]="this.config" [meta]="this.meta"></ddforms-application>
+  <button (click)="showDialog()">Open Dialog</button>
+  <ddforms-changes-modal id="modal_1" class="hhidden">
+    
+</ddforms-changes-modal>
+
 </ng-container>
