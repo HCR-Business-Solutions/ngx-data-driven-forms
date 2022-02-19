@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
+import {ChangesModalService} from '../../services/changes-modal.service';
 
 @Component({
   selector: 'ddforms-changes-modal',
@@ -7,15 +8,12 @@ styleUrls: [
   './changes-modal.component.scss',]
 })
 export class ChangesModalComponent implements OnInit {
-  constructor(private el: ElementRef) { }
+  constructor(
+    private modalHandler: ChangesModalService,
+  ) { }
   ngOnInit() {
-      // we added this so that when the backdrop is clicked the modal is closed.
-      this.el.nativeElement.addEventListener('click', ()=> {
-          this.close()
-      })
   }
-  close() {
-      this.el.nativeElement.classList.remove('sshow')
-      this.el.nativeElement.classList.add('hhidden')
+  close(closeResult?: boolean | null) {
+    this.modalHandler.setDialogResult(closeResult);
   }
 }

@@ -11,9 +11,9 @@
   // makes it hover above all elements
   z-index: 999999;
   position: fixed;
-  width: 600px;
+  width: 80vw;
    top: 40px;
-   left: calc(50% - 300px);
+   left: calc(10vw);
    bottom: 40px;
 }
 
@@ -31,8 +31,8 @@
 }
 
 .modal-footer{
-  display: flex;  
-  align-items: center;  
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
   padding: 1rem;
   border-top: 1px solid #e9ecef;

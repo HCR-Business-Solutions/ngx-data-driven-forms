@@ -3,11 +3,12 @@ import {
   ApplicationStateManagerService,
   DataDrivenFormsEventsService, DDFormsBackEvent,
   DDFormsEvent,
-  DDFormsNextEvent, DDFormsSubmitEvent, 
+  DDFormsNextEvent, DDFormsSubmitEvent,
 } from '../../services';
 import {Subscription, tap} from 'rxjs';
 import {Application, IApplicationMeta, Page} from '../../../shared';
 import {AbstractControl} from '@angular/forms';
+import {ChangesModalService} from '../../services/changes-modal.service';
 
 declare var $: any;
 
@@ -19,12 +20,11 @@ declare var $: any;
 })
 export class FormContainerComponent implements OnInit, OnDestroy {
 
- 
-
-
   private meta$ = this.appStateSvc.currentApplicationMeta$;
   private config$ = this.appStateSvc.currentApplicationConfig$;
   private control$ = this.appStateSvc.currentApplicationControl$;
+  private modalOpen$ = this.modalHandler.isOpen$;
+  private dialogEvent$ = this.modalHandler.dialogResult$;
 
   private readonly events$ = this.eventSvc.events$.pipe(
     tap(event => this.handleEvent(event)),
@@ -33,12 +33,14 @@ export class FormContainerComponent implements OnInit, OnDestroy {
   public meta: IApplicationMeta | null | undefined;
   public config: Application | null | undefined;
   public control: AbstractControl | null | undefined;
+  public modelOpen: boolean | undefined;
 
   private subscriptions: Subscription[] = []
 
   constructor(
     private appStateSvc: ApplicationStateManagerService,
     private eventSvc: DataDrivenFormsEventsService,
+    private modalHandler: ChangesModalService,
   ) { }
 
   ngOnInit(): void {
@@ -46,19 +48,12 @@ export class FormContainerComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.config$.subscribe(_ => this.config = _));
     this.subscriptions.push(this.control$.subscribe(_ => this.control = _));
     this.subscriptions.push(this.events$.subscribe());
-    
+    this.subscriptions.push(this.modalOpen$.subscribe(_ => this.modelOpen = _));
+    this.subscriptions.push(this.dialogEvent$.subscribe(_ => {
+      console.log('dialogEvent', _);
+      this.modalHandler.closeDialog();
+    }))
   }
-
-  showDialog(){
-    let modal_t  = document.getElementById('modal_1')!
-    modal_t.classList.remove('hhidden')
-    modal_t.classList.add('sshow');
-}
-closeDialog() {
-    let modal_t  = document.getElementById('modal_1')!
-    modal_t.classList.remove('sshow')
-    modal_t.classList.add('hhidden');
-}
   ngOnDestroy(): void {
     this.subscriptions.forEach(_ => {
       if (_ && !_.closed) _.unsubscribe();
@@ -105,11 +100,6 @@ closeDialog() {
 
     // TODO: Put Modal Here
 
-
-
-
-    
-
     this.currentPageControl?.markAllAsTouched();
   }
 
@@ -144,4 +134,7 @@ closeDialog() {
     }
   }
 
+  public showDialog() {
+    this.modalHandler.openDialog();
+  }
 }

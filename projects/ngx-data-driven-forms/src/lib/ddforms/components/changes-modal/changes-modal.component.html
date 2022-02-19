@@ -2,17 +2,17 @@
     <div class="mmodal-body">
         <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <h5 class="modal-title" id="exampleModalLiveLabel">Unsaved Changes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close(null)">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>Woohoo, you're reading this text in a modal!</p>
+              <p>You have unsaved changes that cannot be taken with you due to invalid question(s) on this page. Either resolve any invalid questions on the page or discard your changes.</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="this.close()">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="this.close(false)">Close</button>
+              <button type="button" class="btn btn-primary" (click)="this.close(true)">Save changes</button>
             </div>
           </div>
     </div>
