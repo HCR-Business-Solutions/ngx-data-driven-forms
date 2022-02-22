@@ -175,7 +175,4 @@ export class FormContainerComponent implements OnInit, OnDestroy {
 
   }
 
-  public showDialog() {
-    this.modalHandler.openDialog();
-  }
 }
