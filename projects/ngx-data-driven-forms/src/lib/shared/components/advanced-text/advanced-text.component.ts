@@ -20,7 +20,9 @@ export class AdvancedTextComponent implements OnInit {
         'a': (args: string[]) => `<a href="${args[1] ?? ''}" target=${args[2] ?? '_blank'}>${args[0]}</a>`,
         'br': () => '<br />',
         'small': (args: string[]) => `<small>${args.join('')}</small>`,
-        'strong': (args: string[]) => `<strong>${args.join('')}</strong>`
+        'strong': (args: string[]) => `<strong>${args.join('')}</strong>`,
+        'sup': (args: string[]) => `<sup>${args.join('')}</sup>`,
+        'sub': (args: string[]) => `<sub>${args.join('')}</sub>`
     } 
     
     constructor() { }
