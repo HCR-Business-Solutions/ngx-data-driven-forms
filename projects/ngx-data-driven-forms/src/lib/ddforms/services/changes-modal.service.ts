@@ -7,14 +7,10 @@ import {BehaviorSubject, Observable, shareReplay, tap} from 'rxjs';
 export class ChangesModalService {
 
   private isOpen: BehaviorSubject<boolean | undefined> = new BehaviorSubject<boolean | undefined>(false);
-  public isOpen$: Observable<boolean | undefined> = this.isOpen.asObservable().pipe(
-    shareReplay(1),
-  );
+  public isOpen$: Observable<boolean | undefined> = this.isOpen.asObservable();
 
   private dialogResult: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(undefined);
-  public dialogResult$: Observable<boolean | null | undefined> = this.dialogResult.asObservable().pipe(
-    shareReplay(1),
-  );
+  public dialogResult$: Observable<boolean | null | undefined> = this.dialogResult.asObservable();
 
   constructor() { }
 

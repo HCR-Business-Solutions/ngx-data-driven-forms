@@ -1,5 +1,5 @@
 import { DataHandlerFunction } from '../../../shared/types';
 
-export const textHandler: DataHandlerFunction<any> = (data) => String(data);
+export const textHandler: DataHandlerFunction<any> = (data) =>  data !== null && data !== undefined ? String(data) : null;
 
-export const numberHandler: DataHandlerFunction<any> = (data) => Number(data);
+export const numberHandler: DataHandlerFunction<any> = (data) => data !== null && data !== undefined ? Number(data) : null;

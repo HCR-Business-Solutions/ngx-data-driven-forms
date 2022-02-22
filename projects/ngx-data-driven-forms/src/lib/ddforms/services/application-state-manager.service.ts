@@ -34,6 +34,9 @@ export class ApplicationStateManagerService {
     IApplicationMeta | null | undefined
   > = this.currentApplicationMeta.asObservable().pipe(shareReplay(1));
 
+  private readonly lastValidValue: BehaviorSubject<any | null | undefined> =
+    new BehaviorSubject<any | null | undefined>(null);
+
   constructor(private ddForms: DataDrivenFormsService) {}
 
   public setup(
@@ -54,27 +57,68 @@ export class ApplicationStateManagerService {
     this.currentApplicationConfig.next(config);
     this.currentApplicationControl.next(control);
     this.currentApplicationMeta.next(appMeta ?? APPLICATION_META_DEFAULT);
+    this.lastValidValue.next(this.ddForms.getApplicationValue(control, config));
   }
 
-  public goToPage(pageIndex: number) {
-    this.currentApplicationMeta.next({
-      currentPage: pageIndex,
-    })
+  public goToPage(targetPageIndex: number, skipValidation?: boolean) {
+    const currentPageIndex =
+      this.currentApplicationMeta.getValue()?.currentPage ?? null;
+    const config = this.currentApplicationConfig.getValue() ?? null;
+    const control = this.currentApplicationControl.getValue() ?? null;
+
+
+    if (control === null || currentPageIndex === null || config === null) {
+      return;
+    }
+
+    if (currentPageIndex < 0) {
+      this.currentApplicationMeta.next({
+        currentPage: targetPageIndex,
+      });
+      this.lastValidValue.next(
+        this.ddForms.getApplicationValue(control, config)
+      );
+    }
+
+    const currentPage = control.get(config.pages[currentPageIndex].id) ?? null;
+    const valid = skipValidation || !currentPage ? true : currentPage.valid;
+
+
+    if (valid) {
+      this.currentApplicationMeta.next({
+        currentPage: targetPageIndex,
+      });
+      this.lastValidValue.next(
+        this.ddForms.getApplicationValue(control, config)
+      );
+    }
   }
 
-  public updateMeta(meta: IApplicationMeta) {
-    this.currentApplicationMeta.next(meta);
+  public resetControl() {
+    const control = this.currentApplicationControl.getValue() ?? null;
+    const lastValidValue = this.lastValidValue.getValue() ?? null;
+
+    if (control === null || lastValidValue === null) return;
+    control.patchValue(lastValidValue, {emitEvent: false});
+
+  }
+
+  public refreshMeta() {
+    this.currentApplicationMeta.next(this.currentApplicationMeta.getValue());
   }
 
   public snapshot(): {
     config: Application | null | undefined;
     control: AbstractControl | null | undefined;
     meta: IApplicationMeta | null | undefined;
+    lastValidValue: any | null | undefined;
   } {
     return {
       config: this.currentApplicationConfig.getValue(),
       control: this.currentApplicationControl.getValue(),
       meta: this.currentApplicationMeta.getValue(),
+      lastValidValue: this.lastValidValue.getValue(),
     };
   }
+
 }

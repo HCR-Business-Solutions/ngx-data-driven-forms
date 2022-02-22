@@ -23,7 +23,6 @@ export class PasswordFieldComponent implements OnInit, IQuestionBase {
     private ddFormsConf: DataDrivenFormsConfigService,
   ) {
     this.useStyles = !this.ddFormsConf.getShouldIgnoreStyles();
-    console.log(this.internalId);
   }
 
   public get formControl(): FormControl {

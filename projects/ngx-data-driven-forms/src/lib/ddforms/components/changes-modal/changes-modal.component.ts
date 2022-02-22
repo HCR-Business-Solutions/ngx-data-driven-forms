@@ -15,5 +15,6 @@ export class ChangesModalComponent implements OnInit {
   }
   close(closeResult?: boolean | null) {
     this.modalHandler.setDialogResult(closeResult);
+    this.modalHandler.closeDialog();
   }
 }

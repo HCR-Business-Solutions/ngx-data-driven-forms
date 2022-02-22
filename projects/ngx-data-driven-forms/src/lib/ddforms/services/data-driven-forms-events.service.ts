@@ -19,6 +19,15 @@ export interface DDFormsNextEvent {
   }
 }
 
+export interface DDFormsGoToEvent {
+  type: 'goto';
+  payload: {
+    currentPage: number;
+    targetPage: number;
+    skipValidation?: boolean;
+  }
+}
+
 export interface DDFormsSubmitEvent {
   type: 'submit',
   payload: {
@@ -28,7 +37,7 @@ export interface DDFormsSubmitEvent {
   }
 }
 
-export type DDFormsEvent = DDFormsBackEvent | DDFormsNextEvent | DDFormsSubmitEvent;
+export type DDFormsEvent = DDFormsBackEvent | DDFormsNextEvent | DDFormsGoToEvent | DDFormsSubmitEvent;
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +54,11 @@ export class DataDrivenFormsEventsService {
     shareReplay(1),
   );
 
+  private readonly goToEvent: BehaviorSubject<DDFormsGoToEvent | null | undefined> = new BehaviorSubject<DDFormsGoToEvent | null | undefined>(null);
+  public readonly goToEvent$: Observable<DDFormsGoToEvent | null | undefined> = this.goToEvent.asObservable().pipe(
+    shareReplay(1),
+  );
+
   private readonly submitEvent: BehaviorSubject<DDFormsSubmitEvent | null | undefined> = new BehaviorSubject<DDFormsSubmitEvent | null | undefined>(null);
   public readonly submitEvent$: Observable<DDFormsSubmitEvent | null | undefined> = this.submitEvent.asObservable().pipe(
     shareReplay(1),
@@ -53,6 +67,7 @@ export class DataDrivenFormsEventsService {
   public readonly events$: Observable<DDFormsEvent | null | undefined> = merge(
     this.backEvent$,
     this.nextEvent$,
+    this.goToEvent$,
     this.submitEvent$,
   );
 
@@ -66,8 +81,13 @@ export class DataDrivenFormsEventsService {
     this.nextEvent.next(event);
   }
 
+  public onGoTo(event: DDFormsGoToEvent) {
+    this.goToEvent.next(event);
+  }
+
   public onSubmit(event: DDFormsSubmitEvent) {
     this.submitEvent.next(event);
   }
+
 
 }

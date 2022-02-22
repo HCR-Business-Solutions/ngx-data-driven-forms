@@ -62,6 +62,9 @@ export class ApplicationExampleComponent implements OnInit {
                 id: 'number',
                 type: 'tel',
                 label: 'Phone Number',
+                validation: {
+                  required: true,
+                }
               },
               type: {
                 id: 'type',

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Application, IApplicationMeta, Page, Question} from '../../../shared';
-import {Subscription} from 'rxjs';
+import {debounceTime, Subscription} from 'rxjs';
 import {AbstractControl, FormControl} from '@angular/forms';
 import {
   ApplicationStateManagerService,
@@ -56,21 +56,18 @@ export class NonLinearNavigatorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.push(
-      this.pageSelectorControl.valueChanges.subscribe(() => {
-        if (!this.meta || !this.pageSelectorControl) return;
-        if (this.meta.currentPage ?? null === this.pageSelectorControl?.value ?? null) return;
-        if (this.currentPageControl?.valid ?? false) {
-          // TODO: Do Navigation Event
-        }
-
-        if (this.currentPageControl?.pristine ?? false) {
-          // TODO: Do Navigation Event
-        }
-
-        // TODO: Changes & Invalid Modal; continue => discard changes navigate event, reset control to current page.
-
-        this.currentPageControl?.markAllAsTouched();
-
+      this.pageSelectorControl.valueChanges.pipe(debounceTime(100)).subscribe((nextValue) => {
+        if (!this.config || !this.control || !this.meta || !this.pageSelectorControl) return;
+        if (nextValue === null || nextValue === undefined) return;
+        const nextPageIndex = Number(nextValue) ?? null; 
+        if (this.meta.currentPage === nextPageIndex) return;
+        this.eventSvc.onGoTo({
+          type: 'goto',
+          payload: {
+            targetPage: nextPageIndex ?? -1,
+            currentPage: this.meta.currentPage ?? -1,
+          }
+        });
       })
     );
     this.subs.push(
@@ -82,7 +79,7 @@ export class NonLinearNavigatorComponent implements OnInit, OnDestroy {
           fieldConfig: {
             options: this.config?.pages.map((page, index) => ({display: page.navigationName, value: index})),
           }
-        })
+        });
       })
     );
     this.subs.push(

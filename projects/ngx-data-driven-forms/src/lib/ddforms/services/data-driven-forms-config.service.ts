@@ -81,7 +81,6 @@ export class DataDrivenFormsConfigService {
 
     this.ignoreDefaultStyles.next(config?.skipDefaultStyles ?? false);
 
-    console.log(this);
 
   }
 
