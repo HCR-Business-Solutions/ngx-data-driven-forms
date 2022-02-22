@@ -22,7 +22,7 @@ export class AdvancedTextComponent implements OnInit {
         'small': (args: string[]) => `<small>${args.join('')}</small>`,
         'strong': (args: string[]) => `<strong>${args.join('')}</strong>`,
         'sup': (args: string[]) => `<sup>${args.join('')}</sup>`,
-        'sub': (args: string[]) => `<sub>${args.join('')}</sub>`
+        'sub': (args: string[]) => `<sub>${args.join('')}</sub>`,
     } 
     
     constructor() { }
@@ -46,7 +46,7 @@ export class AdvancedTextComponent implements OnInit {
               return token;
               
             }
-            return token;
+            return token.replace(new RegExp('<[^>]*>', 'g'), '');
           }).join('');
     }
 
