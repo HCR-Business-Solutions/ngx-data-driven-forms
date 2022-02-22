@@ -9,6 +9,7 @@ export interface IQuestion {
   type: string;
 
   label?: string;
+  ariaLabel?: string;
   placeholder?: string;
 
   hint?: {

@@ -76,6 +76,7 @@ export class NonLinearNavigatorComponent implements OnInit, OnDestroy {
         this.pageSelectorConfig = new Question({
           id: 'pageSelector',
           type: 'select',
+          ariaLabel: 'select navigator',
           fieldConfig: {
             options: this.config?.pages.map((page, index) => ({display: page.navigationName, value: index})),
           }

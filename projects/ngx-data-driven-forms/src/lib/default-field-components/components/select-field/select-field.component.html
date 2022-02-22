@@ -5,6 +5,7 @@
       {{ this.config.hint.text }}
     </div>
     <select class="select-field form-select form-control" [formControl]="this.formControl" [id]="this.internalId"
+      [attr.aria-label]="this.config.ariaLabel"
       [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
       [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}">
       <option class="form-option" *ngFor="let option of this.options" [value]="option.value"> {{ option?.display

@@ -11,6 +11,7 @@ export class Question implements IQuestion {
   type: string;
 
   label?: string;
+  ariaLabel?: string;
   placeholder?: string;
 
   hint?: {
@@ -38,6 +39,7 @@ export class Question implements IQuestion {
     this.type = question.type;
 
     this.label = question.label;
+    this.ariaLabel = question.ariaLabel;
     this.placeholder = question.placeholder;
 
     this.hint = question.hint;
