@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicFieldDirective } from './directives';
 import {QuestionErrorsComponent} from './components/question-errors';
+import { AdvancedTextComponent } from './components/advanced-text';
 
 
 
@@ -9,6 +10,7 @@ import {QuestionErrorsComponent} from './components/question-errors';
   declarations: [
     QuestionErrorsComponent,
     DynamicFieldDirective,
+    AdvancedTextComponent
   ],
   imports: [
     CommonModule
@@ -16,6 +18,8 @@ import {QuestionErrorsComponent} from './components/question-errors';
   exports: [
     QuestionErrorsComponent,
     DynamicFieldDirective,
+    AdvancedTextComponent
+
   ]
 })
 export class SharedModule { }

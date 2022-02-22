@@ -108,7 +108,6 @@ export class ApplicationExampleComponent implements OnInit {
   }
 
   constructor(
-    private ddforms: DataDrivenFormsService,
     private appStateSvc: ApplicationStateManagerService,
   ) { }
 
