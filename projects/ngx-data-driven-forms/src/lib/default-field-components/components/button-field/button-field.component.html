@@ -21,6 +21,7 @@
       [value]="this.config.label"
       [id]="this.config.id"
       class="form-control"
+      [attr.aria-label]="this.config.ariaLabel"
       [attr.aria-describedby]="
         this.config.hint ? this.config.id + 'Hint' : undefined
       "

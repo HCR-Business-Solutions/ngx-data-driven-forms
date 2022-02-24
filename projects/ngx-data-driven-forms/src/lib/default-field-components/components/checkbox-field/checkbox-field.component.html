@@ -23,6 +23,7 @@
               class="form-check-input"
               type="checkbox"
               [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
+              [attr.aria-label]="this.config.ariaLabel"
               [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}"
             />
             

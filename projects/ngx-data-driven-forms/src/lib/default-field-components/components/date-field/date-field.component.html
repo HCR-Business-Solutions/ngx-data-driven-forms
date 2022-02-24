@@ -17,6 +17,7 @@
       [attr.aria-describedby]="
         this.config.hint ? this.internalId + 'Hint' : undefined
       "
+      [attr.aria-label]="this.config.ariaLabel"
       [formControl]="this.formControl"
       [id]="this.internalId"
       class="form-control"
