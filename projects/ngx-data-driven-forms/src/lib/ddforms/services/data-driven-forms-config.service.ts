@@ -15,9 +15,11 @@ export class DataDrivenFormsConfigService {
 
   private readonly errorMessages: BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined> = new BehaviorSubject<Map<string, ErrorMessageFunction> | null | undefined>(null);
   private readonly dataHandlers: BehaviorSubject<Map<string, DataHandlerFunction<any>> | null | undefined> = new BehaviorSubject<Map<string, DataHandlerFunction<any>> | null | undefined>(null);
-  private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
   private readonly fieldConfigValidators: BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined> = new BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined>(null);
 
+  private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
+  private readonly repeatInputStyle: BehaviorSubject<('modal' | 'flat') | null | undefined> = new BehaviorSubject<('modal' | 'flat') | null | undefined>('flat');
+  
   constructor(
     @Inject('moduleConfig') private config: IModuleConfig,
     @Inject('defaults') private defaults: IDefaultValues,
@@ -81,6 +83,8 @@ export class DataDrivenFormsConfigService {
 
     this.ignoreDefaultStyles.next(config?.skipDefaultStyles ?? false);
 
+    this.repeatInputStyle.next(config?.repeatSectionInputStyle ?? 'flat');
+
 
   }
 
@@ -122,13 +126,17 @@ export class DataDrivenFormsConfigService {
     return dataHandlers ? dataHandlers : new Map<string, DataHandlerFunction<any>>();
   }
 
+  public getFieldConfigValidators(): Map<string, FieldConfigValidator> {
+    const fieldConfigValidators = this.fieldConfigValidators.getValue();
+    return fieldConfigValidators ?  fieldConfigValidators : new Map<string, FieldConfigValidator>();
+  }
+
   public getShouldIgnoreStyles(): boolean {
     return this.ignoreDefaultStyles.getValue() ?? false;
   }
 
-  public getFieldConfigValidators(): Map<string, FieldConfigValidator> {
-    const fieldConfigValidators = this.fieldConfigValidators.getValue();
-    return fieldConfigValidators ?  fieldConfigValidators : new Map<string, FieldConfigValidator>();
+  public getRepeatInputStyle(): 'modal' | 'flat' {
+    return this.repeatInputStyle.getValue() ?? 'flat';
   }
 
   public registerValidator(key: string, validator: NormalizedValidator): void {

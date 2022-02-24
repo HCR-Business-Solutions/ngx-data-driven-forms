@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormArray} from '@angular/forms';
 import {Section} from '../../../../shared/form-config';
+import { DataDrivenFormsConfigService } from '../../../../ddforms/services';
 
 @Component({
   selector: 'ddforms-section-list',
@@ -9,10 +10,14 @@ import {Section} from '../../../../shared/form-config';
 })
 export class SectionListComponent implements OnInit {
 
-  @Input() config: Section | null = null;
+  @Input() config: Section | null = null; 
   @Input() control: AbstractControl | null = null;
 
-  constructor() {
+  public readonly inputStyle: 'flat' | 'modal' = this.ddFormsConf.getRepeatInputStyle();
+
+  constructor(
+    private ddFormsConf: DataDrivenFormsConfigService
+  ) {
   }
 
   public get isFormArray(): boolean {

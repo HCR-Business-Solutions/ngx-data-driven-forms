@@ -18,6 +18,53 @@ export class ApplicationExampleComponent implements OnInit {
     description: 'An application example to show off some of the basic functions.',
     pages: [
       {
+        id: 'furniturePage',
+        navigationName: 'Damaged Furniture',
+        sections: [
+          {
+            id: 'furnitureItem',
+            questions: {
+              itemName: {
+                id: 'itemName',
+                type: 'text',
+                label: 'Item Name',
+                validation: {
+                  required: true,
+                  minLength: 2,
+                  maxLength: 240
+                }
+              },
+              quantity: {
+                id: 'quantity',
+                type: 'number',
+                label: 'Item Quantity',
+                validation: {
+                  required: true,
+                  min: 1,
+                  max: 99999,
+                }
+              },
+              estimatedPrice: {
+                id: 'estimatedPrice',
+                type: 'currency',
+                label: 'Estimated Price',
+                validation: {
+                  required: true,
+                  min: 0.01,
+                  max: 500000.01
+                }
+              }
+            },
+            questionOrder: ['itemName', 'quantity', 'estimatedPrice'],
+            repeat: {
+              style: 'list',
+              minEntries: 1,
+              itemName: 'Damaged Furniture Item'
+            }
+          }
+        ],
+      },
+      {
         id: 'namePage',
         navigationName: 'Name',
         sections: [
@@ -61,10 +108,10 @@ export class ApplicationExampleComponent implements OnInit {
               number: {
                 id: 'number',
                 type: 'tel',
-                label: 'Phone Number',
+                label: '$!(b: Phone Number, https://en.wikipedia.org/wiki/Telephone_number, _blank)',
                 validation: {
                   required: true,
-                }
+                },
               },
               type: {
                 id: 'type',
@@ -103,7 +150,7 @@ export class ApplicationExampleComponent implements OnInit {
             questionOrder: ['number', 'type', 'allowTexts']
           }
         ]
-      }
+      },
     ]
   }
 

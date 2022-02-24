@@ -8,6 +8,7 @@
   <ddforms-section-single [config]="this.config" [control]="this.control"></ddforms-section-single>
 </ng-template>
 <ng-template #repeatInstance>
+  <ng-container *ngIf="this.inputStyle === 'modal'; then modalInput; else flatInput"></ng-container>
   <ng-container *ngIf="this.config?.repeat?.style==='list'; then listInstance; else tableInstance"></ng-container>
 </ng-template>
 <ng-template #listInstance>
@@ -15,4 +16,12 @@
 </ng-template>
 <ng-template #tableInstance>
   <ddforms-section-table [config]="this.config" [control]="this.control"></ddforms-section-table>
+</ng-template>
+
+<ng-template #modalInput>
+  modal input
+</ng-template>
+
+<ng-template #flatInput>
+  flat input
 </ng-template>

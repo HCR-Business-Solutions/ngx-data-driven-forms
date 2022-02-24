@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Section} from '../../../../shared/form-config';
-import { DataDrivenFormsService } from '../../../../ddforms/services';
+import { DataDrivenFormsConfigService, DataDrivenFormsService } from '../../../../ddforms/services';
 
 @Component({
   selector: 'ddforms-section-container',
@@ -15,9 +15,11 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
 
   shouldAsk: boolean = true;
   shouldAskSub: Subscription | undefined = undefined;
+  public readonly inputStyle: 'flat' | 'modal' = this.ddFormsConf.getRepeatInputStyle();
 
   constructor(
     private ddForms: DataDrivenFormsService,
+    private ddFormsConf: DataDrivenFormsConfigService,
   ) {
   }
 

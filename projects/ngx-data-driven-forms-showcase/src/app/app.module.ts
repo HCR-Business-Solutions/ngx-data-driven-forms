@@ -16,7 +16,9 @@ import { ApplicationExampleComponent } from './pages/application-example/applica
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    DDFormsModule.forRoot({}),
+    DDFormsModule.forRoot({
+      // skipDefaultStyles: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {DataDrivenFormsConfigService, DataDrivenFormsService} from '../../../ngx-data-driven-forms/src/lib/ddforms';
-import {ValidatorFn} from '@angular/forms';
+import {AbstractControl, ValidatorFn} from '@angular/forms';
 import {ApplicationExampleComponent} from './pages/application-example/application-example.component';
 
 @Component({
@@ -15,7 +15,7 @@ export class AppComponent {
     private ddforms: DataDrivenFormsService,
     private ddformsConf: DataDrivenFormsConfigService,
   ){
-
+    this.ddformsConf.registerValidator('asdf', () => (c: AbstractControl) => null);
   }
 
 }

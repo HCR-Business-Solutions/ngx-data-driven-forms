@@ -34,7 +34,7 @@ export class AdvancedTextComponent implements OnInit {
     }
 
     private processText(text: string): string {
-        if (!text.includes('$!')) return text;
+        if (!text.includes('$!')) return text.replace(new RegExp('<[^>]*>', 'g'), '');;
         return text.split(/(?=\$\!)/g).map((token) => {
             if (token.startsWith('$!(')) {
               const comp = token.substring(3, (token.length - 1)).split(/\:(.+)/);
