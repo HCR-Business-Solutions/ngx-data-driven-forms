@@ -53,7 +53,7 @@ export class ApplicationExampleComponent implements OnInit {
                   min: 0.01,
                   max: 500000.01
                 }
-              }
+              },
             },
             questionOrder: ['itemName', 'quantity', 'estimatedPrice'],
             repeat: {

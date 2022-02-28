@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import * as Components from './components';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 const FIELDS = [
@@ -36,10 +37,13 @@ const FIELDS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
     SharedModule
   ],
   exports: [
     ...FIELDS,
+    NgxMaskModule,
+    ReactiveFormsModule,
   ]
 })
 export class DefaultFieldComponentsModule { }
