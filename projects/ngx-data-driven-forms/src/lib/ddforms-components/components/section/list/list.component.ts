@@ -16,7 +16,7 @@ export class SectionListComponent implements OnInit {
   @Output() edit: EventEmitter<{control: AbstractControl, index: number}> = new EventEmitter<{control: AbstractControl, index: number}>();
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
-  useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
+  public useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService

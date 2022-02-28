@@ -13,7 +13,7 @@ export class SectionTableComponent implements OnInit {
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
 
-  useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
   
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService

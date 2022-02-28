@@ -16,7 +16,7 @@ export class SectionSingleComponent implements OnInit {
   @Input() control: AbstractControl | null = null;
   questions: IQuestionPackage[] = [];
 
-  useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddForms: DataDrivenFormsService,

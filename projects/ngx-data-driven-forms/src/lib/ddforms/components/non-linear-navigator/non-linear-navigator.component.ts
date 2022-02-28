@@ -27,7 +27,7 @@ export class NonLinearNavigatorComponent implements OnInit, OnDestroy {
   meta: IApplicationMeta | null | undefined = null;
   config: Application | null | undefined = null;
   control: AbstractControl | null | undefined = null;
-  useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
   pageSelectorConfig: Question | null = null;
   pageSelectorControl: FormControl = new FormControl(null);

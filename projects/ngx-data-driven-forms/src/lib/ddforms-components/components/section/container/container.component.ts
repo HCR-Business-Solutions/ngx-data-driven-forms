@@ -21,7 +21,7 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
 
   addControl: FormGroup | null = null;
 
-  useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
+  public useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddForms: DataDrivenFormsService,
