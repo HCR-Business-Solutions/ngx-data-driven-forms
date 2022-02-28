@@ -60,7 +60,7 @@ export class QuestionComponent implements OnInit, OnDestroy, IQuestionBase{
     if (!viewContainerRef) return;
     viewContainerRef.clear();
 
-    if(!this.config || !this.control || !this.shouldAsk) return;
+    if(!this.config || !this.control || !this.shouldAsk || (this.config?.isFlag ?? false)) return;
 
 
     const components = this.ddFormsConf.getComponents();
