@@ -1,27 +1,51 @@
-<ng-container *ngIf="this.control && this.config">
+<ng-container *ngIf="this.control && this.config && this.addControl">
   <ng-container *ngIf="this.shouldAsk">
-    <ng-container *ngIf="!this.config?.repeat; then singleInstance; else repeatInstance"></ng-container>
+    <div class="overall-section-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
+      <ng-container *ngIf="!this.config?.repeat; then singleInstance; else repeatInstance"></ng-container>
+    </div>
   </ng-container>
 </ng-container>
 
 <ng-template #singleInstance>
-  <ddforms-section-single [config]="this.config" [control]="this.control"></ddforms-section-single>
+  <div class="section-single-container">
+    <ddforms-section-single [config]="this.config" [control]="this.control"></ddforms-section-single>
+  </div>
 </ng-template>
 <ng-template #repeatInstance>
-  <ng-container *ngIf="this.inputStyle === 'modal'; then modalInput; else flatInput"></ng-container>
-  <ng-container *ngIf="this.config?.repeat?.style==='list'; then listInstance; else tableInstance"></ng-container>
+  <div class="section-repeat-container">
+    <ng-container [ngSwitch]="this.config?.repeat?.inputStyle ?? 'flat'">
+      <ng-container *ngSwitchDefault [ngTemplateOutlet]="flatInput"></ng-container>
+    </ng-container>
+    <ng-container *ngIf="this.config?.repeat?.style==='list'; then listInstance; else tableInstance"></ng-container>
+  </div>
 </ng-template>
 <ng-template #listInstance>
-  <ddforms-section-list [config]="this.config" [control]="this.control"></ddforms-section-list>
+  <ddforms-section-list [config]="this.config" [control]="this.control" style="width: 100%"
+    (delete)="handleDelete($event)"
+    (edit)="handleEdit($event.control, $event.index)"
+  ></ddforms-section-list>
 </ng-template>
 <ng-template #tableInstance>
   <ddforms-section-table [config]="this.config" [control]="this.control"></ddforms-section-table>
 </ng-template>
 
-<ng-template #modalInput>
-  modal input
-</ng-template>
-
 <ng-template #flatInput>
-  flat input
+  <div class="flat-input-container">
+    <div class="flat-input-header-container">
+      <span class="flat-input-header">
+        Add the following to the list.
+      </span>
+    </div>
+    <div class="flat-input-form-container">
+      <ddforms-section-single [config]="this.config" [control]="this.addControl"></ddforms-section-single>
+    </div>
+    <div class="flat-input-actions-container">
+      <div class="clear-button-container">
+        <button class="btn btn-secondary clear-button" (click)="this.handleClear()">Clear</button>
+      </div>
+      <div class="add-button-container">
+        <button class="btn btn-primary add-button" (click)="this.handleAdd()">Add</button>
+      </div>
+    </div>
+  </div>
 </ng-template>

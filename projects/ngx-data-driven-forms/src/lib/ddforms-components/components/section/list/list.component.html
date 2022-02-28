@@ -1,7 +1,17 @@
 <ng-container *ngIf="this.isFormArray">
-  <div class="section-list-items-container">
-    <ng-container *ngFor="let formControl of this.formControls">
-      <ddforms-section-list-item [config]="this.config" [control]="formControl"></ddforms-section-list-item>
-    </ng-container>
+  <div class="section-list-items-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
+    <ng-container *ngIf="this.formControls.length > 0; then list else noItems"></ng-container>
   </div>
 </ng-container>
+
+
+<ng-template #list>
+  <ng-container *ngFor="let formControl of this.formControls; index as i">
+    <ddforms-section-list-item [config]="this.config" [control]="formControl" [index]="i" (edit)="handleEdit($event)" (delete)="handleDelete($event)"></ddforms-section-list-item>
+  </ng-container>
+</ng-template>
+<ng-template #noItems>
+  <div class="section-list-no-items-container">
+    <div>No Items in list, add one.</div>
+  </div>
+</ng-template>

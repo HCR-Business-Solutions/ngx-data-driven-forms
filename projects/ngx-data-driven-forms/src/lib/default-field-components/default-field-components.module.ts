@@ -17,7 +17,6 @@ const FIELDS = [
   Components.PasswordFieldComponent,
   Components.RadioFieldComponent,
   Components.RangeFieldComponent,
-  Components.SearchFieldComponent,
   Components.SsnFieldComponent,
   Components.TelFieldComponent,
   Components.TextFieldComponent,

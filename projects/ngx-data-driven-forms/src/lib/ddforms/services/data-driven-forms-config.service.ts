@@ -18,7 +18,6 @@ export class DataDrivenFormsConfigService {
   private readonly fieldConfigValidators: BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined> = new BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined>(null);
 
   private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
-  private readonly repeatInputStyle: BehaviorSubject<('modal' | 'flat') | null | undefined> = new BehaviorSubject<('modal' | 'flat') | null | undefined>('flat');
   
   constructor(
     @Inject('moduleConfig') private config: IModuleConfig,
@@ -83,9 +82,6 @@ export class DataDrivenFormsConfigService {
 
     this.ignoreDefaultStyles.next(config?.skipDefaultStyles ?? false);
 
-    this.repeatInputStyle.next(config?.repeatSectionInputStyle ?? 'flat');
-
-
   }
 
   public getValidators(): Map<string, NormalizedValidator> {
@@ -133,10 +129,6 @@ export class DataDrivenFormsConfigService {
 
   public getShouldIgnoreStyles(): boolean {
     return this.ignoreDefaultStyles.getValue() ?? false;
-  }
-
-  public getRepeatInputStyle(): 'modal' | 'flat' {
-    return this.repeatInputStyle.getValue() ?? 'flat';
   }
 
   public registerValidator(key: string, validator: NormalizedValidator): void {

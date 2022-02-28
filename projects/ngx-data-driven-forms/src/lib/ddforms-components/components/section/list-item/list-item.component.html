@@ -1,4 +1,17 @@
 <div class="section-list-item-container">
   <!--  section list item-->
-  <ddforms-section-single></ddforms-section-single>
+  <div>single item</div>
+  <div>
+    <code>
+      <pre>{{this.control?.value ?? {} | json}}</pre>
+    </code>
+  </div>
+  <div class="section-list-item-actions-container">
+      <div class="delete-button-container">
+        <button class="btn btn-secondary delete-button" (click)="this.handleDelete()">Delete</button>
+      </div>
+      <div class="edit-button-container">
+        <button class="btn btn-primary edit-button" (click)="this.handleEdit()">Edit</button>
+      </div>
+  </div>
 </div>

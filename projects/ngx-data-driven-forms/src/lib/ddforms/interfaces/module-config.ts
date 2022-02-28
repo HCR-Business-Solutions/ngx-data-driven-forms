@@ -23,6 +23,5 @@ export interface IModuleConfig {
   };
 
   skipDefaultStyles?: boolean;
-  repeatSectionInputStyle?: 'flat' | 'modal'; // Defaults to Flat
 
 }

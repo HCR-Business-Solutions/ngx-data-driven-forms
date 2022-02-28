@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit, OnDestroy, IQuestionBase{
 
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
+  @Input() public isReadonly: boolean = false;
   @ViewChild(DynamicFieldDirective, {static: true}) private host!: DynamicFieldDirective;
 
   public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles()
@@ -70,6 +71,7 @@ export class QuestionComponent implements OnInit, OnDestroy, IQuestionBase{
     const componentRef = viewContainerRef.createComponent<IQuestionBase>(component);
     componentRef.instance.config = this.config;
     componentRef.instance.control = this.control;
+    componentRef.instance.isReadonly = this.isReadonly;
     this._changeDetection.detectChanges();
 
   }

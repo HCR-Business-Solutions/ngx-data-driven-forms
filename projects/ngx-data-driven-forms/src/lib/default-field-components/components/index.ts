@@ -6,7 +6,6 @@ export * from './ssn-field';
 export * from './text-field';
 export * from './tel-field';
 export * from './url-field';
-export * from './search-field';
 export * from './checkbox-field';
 export * from './email-field';
 export * from './date-field';

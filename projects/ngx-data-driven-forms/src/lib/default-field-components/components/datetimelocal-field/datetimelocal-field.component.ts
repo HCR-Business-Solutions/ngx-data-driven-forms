@@ -5,10 +5,6 @@ import { Question } from '../../../shared/form-config';
 import { IQuestionBase } from '../../../shared/interfaces';
 import { generateFieldUUID } from '../../../shared/utilities';
 
-
-
-
-
 @Component({
   selector: 'ddforms-datetimelocal-field',
   templateUrl: './datetimelocal-field.component.html',
@@ -18,6 +14,7 @@ export class DatetimelocalFieldComponent implements OnInit,  IQuestionBase {
 
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
+  @Input() public isReadonly: boolean | null = null;
   public useStyles: boolean = true;
 
   public internalId = generateFieldUUID();
