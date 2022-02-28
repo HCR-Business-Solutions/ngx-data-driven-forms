@@ -18,6 +18,7 @@
         this.config.hint ? this.internalId + 'Hint' : undefined
       "
       [attr.aria-label]="this.config.ariaLabel"
+      [readonly]="this.isReadonly || this.config.readonly" 
       [formControl]="this.formControl"
       [id]="this.internalId"
       class="form-control"
