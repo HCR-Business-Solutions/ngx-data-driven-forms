@@ -16,11 +16,11 @@ export class SectionSingleComponent implements OnInit {
   @Input() control: AbstractControl | null = null;
   questions: IQuestionPackage[] = [];
 
-  useDefaultStyles = !this.configSvc.getShouldIgnoreStyles();
+  useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddForms: DataDrivenFormsService,
-    private configSvc: DataDrivenFormsConfigService,
+    private ddFormsConf: DataDrivenFormsConfigService
   ) {
   }
 

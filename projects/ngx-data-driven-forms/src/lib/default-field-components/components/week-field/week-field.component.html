@@ -1,5 +1,5 @@
 <ng-container *ngIf="this.control && this.config">
-    <div class="form-field week-field mb-3" [ngClass]="{'ddforms-default': this.useStyles}">
+    <div class="form-field week-field mb-3" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
       <label *ngIf="this.config.label" [for]="this.internalId" class="form-label">
         <ddforms-advanced-text [text]="this.config.label"></ddforms-advanced-text>
       </label>

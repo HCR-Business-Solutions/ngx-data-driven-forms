@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import { DataDrivenFormsConfigService } from '../../../ddforms/services';
-import { Question } from '../../form-config';
+import { Question } from '../../form-config/classes';
 
 @Component({
   selector: 'ddforms-question-errors',
@@ -13,21 +13,15 @@ export class QuestionErrorsComponent implements OnInit {
   @Input() public control: AbstractControl | null = null;
   @Input() public config: Question | null = null;
 
-  public useStyles: boolean = false;
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
-  // private ddFormsConf?: DataDrivenFormsConfigService;
 
   constructor(
-    // private injector: Injector,
     private ddFormsConf: DataDrivenFormsConfigService,
   ) {
-    // setTimeout(() => {
-    // this.ddFormsConf = injector.get(DataDrivenFormsConfigService);
-    // })
   }
 
   ngOnInit(): void {
-      this.useStyles = !this.ddFormsConf?.getShouldIgnoreStyles();
   }
 
   decodeErrorMessages(errors: {[key: string]: any}): string[] {
