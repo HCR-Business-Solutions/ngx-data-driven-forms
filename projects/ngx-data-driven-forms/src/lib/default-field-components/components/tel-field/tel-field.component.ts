@@ -15,6 +15,7 @@ export class TelFieldComponent implements OnInit, IQuestionBase {
 
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
+  @Input() public isReadonly: boolean | null = null;
   public useStyles: boolean = true;
 
   public internalId = generateFieldUUID();
