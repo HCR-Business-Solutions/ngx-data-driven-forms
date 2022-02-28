@@ -18,6 +18,7 @@
             <input
               [formControl]="this.formControl"
               [id]="options.value"
+              [readonly]="this.isReadonly || this.config.readonly" 
               [name]="this.internalId"
               [value]="options.value"
               class="form-check-input"
