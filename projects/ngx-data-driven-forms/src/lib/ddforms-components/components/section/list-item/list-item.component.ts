@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Section} from '../../../../shared/form-config';
 import {AbstractControl} from '@angular/forms';
+import { DataDrivenFormsConfigService } from '../../../../ddforms/services';
 
 @Component({
   selector: 'ddforms-section-list-item',
@@ -11,11 +12,14 @@ export class SectionListItemComponent implements OnInit {
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
   @Input() index: number | null = null;
-
   @Output() edit: EventEmitter<{control: AbstractControl, index: number}> = new EventEmitter<{control: AbstractControl, index: number}>();
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() {
+  useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
+  
+  constructor(
+    private ddFormsConf: DataDrivenFormsConfigService
+  ) {
   }
 
   ngOnInit(): void {

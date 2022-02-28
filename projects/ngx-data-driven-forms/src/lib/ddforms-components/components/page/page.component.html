@@ -1,5 +1,5 @@
 <ng-container *ngIf="this.config && this.control">
-  <div class="page-container">
+  <div class="page-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
     <div *ngIf="this.config.title" class="page-title-container">
       <h2 class="page-title-text">{{this.config.title}}</h2>
     </div>

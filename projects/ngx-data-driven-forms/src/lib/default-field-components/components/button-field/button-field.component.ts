@@ -14,12 +14,12 @@ export class ButtonFieldComponent implements OnInit, IQuestionBase {
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
   @Input() public isReadonly: boolean | null = null;
-  public useStyles: boolean = true;
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService,
   ) {
-    this.useStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+    
   }
 
   public get formControl(): FormControl {
