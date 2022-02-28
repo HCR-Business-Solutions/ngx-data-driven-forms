@@ -17,4 +17,4 @@ export * from './password-field';
 export * from './range-field';
 export * from './select-field';
 export * from './datetimelocal-field';
-
+export * from './mask-field';

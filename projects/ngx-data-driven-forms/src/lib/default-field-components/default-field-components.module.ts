@@ -25,7 +25,8 @@ const FIELDS = [
   Components.UrlFieldComponent,
   Components.WeekFieldComponent,
   Components.SelectFieldComponent,
-  Components.DatetimelocalFieldComponent
+  Components.DatetimelocalFieldComponent,
+  Components.MaskFieldComponent,
 ];
 
 @NgModule({
@@ -36,6 +37,9 @@ const FIELDS = [
     CommonModule,
     ReactiveFormsModule,
     SharedModule
+  ],
+  exports: [
+    ...FIELDS,
   ]
 })
 export class DefaultFieldComponentsModule { }
