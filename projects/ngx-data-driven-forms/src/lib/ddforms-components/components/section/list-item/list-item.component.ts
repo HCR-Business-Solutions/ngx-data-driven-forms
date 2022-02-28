@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Section} from '../../../../shared/form-config';
 import {AbstractControl} from '@angular/forms';
 
@@ -10,11 +10,28 @@ export class SectionListItemComponent implements OnInit {
 
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
+  @Input() index: number | null = null;
+
+  @Output() edit: EventEmitter<{control: AbstractControl, index: number}> = new EventEmitter<{control: AbstractControl, index: number}>();
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  public handleEdit() {
+    if (!this.control || this.index === null) return;
+    this.edit.emit({
+      control: this.control,
+      index: this.index,
+    });
+  }
+
+  public handleDelete() {
+    if (this.index === null) return;
+    this.delete.emit(this.index);
   }
 
 }

@@ -20,6 +20,7 @@ export class Section implements ISection {
 
   public repeat?: {
     style: 'list' | 'table';
+    inputStyle?: string;
     itemName?: string;
     minEntries?: number;
     maxEntries?: number
