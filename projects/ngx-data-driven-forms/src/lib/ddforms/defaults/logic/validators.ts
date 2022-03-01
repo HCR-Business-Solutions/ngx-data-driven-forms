@@ -26,6 +26,9 @@ export const required: NormalizedValidator = (isRequired?: boolean) =>
 export const requiredTrue: NormalizedValidator = (isRequiredTrue?: boolean) =>
   !isRequiredTrue ? undefined : Validators.requiredTrue;
 
+export const email: NormalizedValidator = (isEmail?: boolean) =>
+  !isEmail ? undefined : Validators.email;
+
 export const minLength: NormalizedValidator = (minLength: number) =>
   Validators.minLength(minLength);
 

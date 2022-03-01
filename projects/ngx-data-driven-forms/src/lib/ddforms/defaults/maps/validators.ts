@@ -6,6 +6,7 @@ export const DEFAULT_VALIDATOR_MAP = new Map<string, NormalizedValidator>([
   ['max', Validators.max],
   ['required', Validators.required],
   ['requiredTrue', Validators.requiredTrue],
+  ['email', Validators.email],
   ['minLength', Validators.minLength],
   ['maxLength', Validators.maxLength],
   ['pattern', Validators.validatePattern],

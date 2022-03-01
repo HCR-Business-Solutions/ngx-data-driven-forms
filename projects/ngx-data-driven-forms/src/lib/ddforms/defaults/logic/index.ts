@@ -1,4 +1,4 @@
 export * from './cross-field-validators';
 export * from './data-handlers';
-export * from './message-handler';
-export * from './validators';
+export * as MessageHandlers from './message-handler';
+export * as Validators from './validators';
