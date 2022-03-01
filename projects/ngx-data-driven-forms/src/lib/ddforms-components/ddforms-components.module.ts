@@ -11,6 +11,7 @@ import {
   SectionTableComponent,
 } from './components';
 import { SharedModule } from '../shared';
+import { MarkdownModule } from 'ngx-markdown';
 
 const COMPONENTS = [
   ApplicationComponent,
@@ -30,9 +31,11 @@ const COMPONENTS = [
   imports: [
     CommonModule,
     SharedModule,
+    MarkdownModule.forChild()
   ],
   exports: [
     ...COMPONENTS,
+    MarkdownModule
   ]
 })
 export class DDFormsComponentsModule {}

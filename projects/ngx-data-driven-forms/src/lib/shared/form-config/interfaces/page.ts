@@ -7,7 +7,10 @@ export interface IPage {
   navigationName: string;
   title?: string;
 
-  narrative?: string;
+  narrative?: {
+    text: string;
+    style?: 'markdown' | 'plaintext';
+  };
 
   sections: ISection[];
 

@@ -37,7 +37,7 @@ const FIELDS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forChild(),
     SharedModule
   ],
   exports: [
