@@ -5,6 +5,7 @@ import * as Components from './components';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared';
 import { NgxMaskModule } from 'ngx-mask';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 const FIELDS = [
@@ -37,7 +38,8 @@ const FIELDS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forChild(),
+    MarkdownModule.forChild(),
     SharedModule
   ],
   exports: [

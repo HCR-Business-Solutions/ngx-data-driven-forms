@@ -13,7 +13,10 @@ export class Section implements ISection {
   public title?: string;
   public border?: boolean;
 
-  public narrative?: string;
+  public narrative?: {
+    text: string;
+    style?: 'markdown' | 'plaintext';
+  };
 
   public questions: QuestionGroup;
   public questionOrder: string[];

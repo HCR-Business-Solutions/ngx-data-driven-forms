@@ -14,7 +14,6 @@ export class ApplicationComponent {
   @Input() public control: AbstractControl | null | undefined;
   @Input() public meta: IApplicationMeta | null | undefined;
 
-
   constructor() {
   }
 

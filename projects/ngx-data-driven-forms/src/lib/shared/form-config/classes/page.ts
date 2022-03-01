@@ -12,7 +12,10 @@ export class Page implements IPage {
   public navigationName: string;
   public title?: string;
 
-  public narrative?: string;
+  public narrative?: {
+    text: string;
+    style?: 'markdown' | 'plaintext';
+  };
 
   public sections: Section[];
 

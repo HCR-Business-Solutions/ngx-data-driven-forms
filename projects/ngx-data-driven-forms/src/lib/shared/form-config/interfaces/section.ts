@@ -7,7 +7,10 @@ export interface ISection {
   title?: string;
   border?: boolean;
 
-  narrative?: string;
+  narrative?: {
+    text: string;
+    style?: 'markdown' | 'plaintext';
+  };
 
   questions: IQuestionGroup;
   questionOrder: string[];

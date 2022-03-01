@@ -57,7 +57,10 @@
           "options": {
             "main": "projects/ngx-data-driven-forms/src/test.ts",
             "tsConfig": "projects/ngx-data-driven-forms/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-data-driven-forms/karma.conf.js"
+            "karmaConfig": "projects/ngx-data-driven-forms/karma.conf.js",
+            "scripts": [
+              "node_modules/marked/marked.min.js"
+            ]
           }
         }
       }

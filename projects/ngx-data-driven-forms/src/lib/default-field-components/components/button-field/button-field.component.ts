@@ -3,6 +3,7 @@ import {AbstractControl, FormControl} from '@angular/forms';
 import { DataDrivenFormsConfigService } from '../../../ddforms/services';
 import { Question } from '../../../shared/form-config';
 import { IQuestionBase } from '../../../shared/interfaces';
+import { generateFieldUUID } from '../../../shared/utilities/uuid';
 
 @Component({
   selector: 'ddforms-button-field',
@@ -16,6 +17,8 @@ export class ButtonFieldComponent implements OnInit, IQuestionBase {
   @Input() public isReadonly: boolean | null = null;
   public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
+  public internalId = generateFieldUUID();
+  
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService,
   ) {
