@@ -14,13 +14,13 @@
         .flat-input-container {
             padding: 2.5rem;
             width: 80%;
-            border: hsla(0,0,75, .5) dashed 1px;
+            border: hsla(0,0%,75%, .5) dashed 1px;
             display: flex;
             flex-direction: column;
             gap: .825rem;
 
             .flat-input-header-container {
-                border-bottom: hsla(0,0, 75, .5) solid 1px;
+                border-bottom: hsla(0, 0%, 75%, .5) solid 1px;
                 .flat-input-header {
                     font-size: 1.25rem;
                 }
