@@ -1,19 +1,9 @@
 <ng-container *ngIf="this.control && this.config">
-  <div class="form-field radio-field mb-3" [ngClass]="{ 'ddforms-default': this.useDefaultStyles }">
+  <div class="form-field radio-field " [ngClass]="{ 'ddforms-default': this.useDefaultStyles }">
     <fieldset class="fieldset-field form-group">
       <legend>{{ this.config.label }}</legend>
       <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label}}</label> -->
-      
-    <div *ngIf="this.config.hint" class="form-hint" id="{{this.internalId}}Hint">
-        <ng-container [ngSwitch]="this.config?.hint?.style ?? 'plaintext'">
-          <ng-container *ngSwitchCase="'markdown'">
-            <markdown [data]="this.config.hint?.text ?? ''"></markdown>
-          </ng-container>
-          <ng-container *ngSwitchDefault>
-            <ddforms-advanced-text [text]="this.config?.hint?.text ?? ''"></ddforms-advanced-text>
-          </ng-container>
-        </ng-container>
-      </div>
+
 
       <div class="radio-field form-check" *ngFor="let option of this.options">
         <label *ngIf="option?.display" [for]="this.internalId + '-' + option.value" class="form-check-label">
@@ -25,6 +15,16 @@
             [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}" />
           <ddforms-advanced-text [text]="option.display"></ddforms-advanced-text>
         </label>
+      </div>
+      <div *ngIf="this.config.hint" class="form-hint" id="{{this.internalId}}Hint">
+        <ng-container [ngSwitch]="this.config?.hint?.style ?? 'plaintext'">
+          <ng-container *ngSwitchCase="'markdown'">
+            <markdown [data]="this.config.hint?.text ?? ''"></markdown>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <ddforms-advanced-text [text]="this.config?.hint?.text ?? ''"></ddforms-advanced-text>
+          </ng-container>
+        </ng-container>
       </div>
       <ddforms-question-errors [control]="this.control" [config]="this.config" class="form-errors-container">
       </ddforms-question-errors>

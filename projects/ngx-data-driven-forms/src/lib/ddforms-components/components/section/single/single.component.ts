@@ -14,6 +14,7 @@ export class SectionSingleComponent implements OnInit {
 
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
+  @Input() isReadonly: boolean = false;
   questions: IQuestionPackage[] = [];
 
   public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
