@@ -16,7 +16,7 @@ export class Question implements IQuestion {
 
   hint?: {
     text: string;
-    format?: 'markdown' | 'plaintext';
+    style?: 'markdown' | 'plaintext';
   };
 
 
