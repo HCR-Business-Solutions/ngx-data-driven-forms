@@ -16,6 +16,8 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
 
+  @Input() isReadonly: boolean = false;
+
   shouldAsk: boolean = true;
   shouldAskSub: Subscription | undefined = undefined;
 

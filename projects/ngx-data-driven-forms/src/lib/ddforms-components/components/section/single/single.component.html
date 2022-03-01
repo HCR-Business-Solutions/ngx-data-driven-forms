@@ -3,7 +3,7 @@
     <div class="section-questions-container">
       <ng-container *ngFor="let question of this.questions">
         <ng-container *ngIf="question.control && question.config && !(this.question.config?.isFlag ?? false)">
-          <ddforms-question [config]="question.config" [control]="question.control"></ddforms-question>
+          <ddforms-question [config]="question.config" [control]="question.control" [isReadonly]="this.isReadonly"></ddforms-question>
         </ng-container>
       </ng-container>
     </div>
