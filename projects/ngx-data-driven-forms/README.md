@@ -8,13 +8,13 @@ json configuration string.
 In a fresh angular project, run the following command
 
 ```bash
-npm install ngx-data-driven-forms
+npm install @nys-hcr-its/ngx-data-driven-forms
 ```
 
 After installation in your app.module.ts import the DDForms Module
 
 ```ts
-import { DDForms } from 'ngx-data-driven-forms'
+import { DDFormsModule } from 'ngx-data-driven-forms'
 ```
 
 and add the module to your Apps imports using `forRoot()`.
