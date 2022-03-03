@@ -2,7 +2,6 @@
   <div class="form-field checkbox-field " [ngClass]="{ 'ddforms-default': this.useDefaultStyles }">
     <fieldset class="fieldset-field form-group">
       <legend>{{ this.config.label }}</legend>
-      <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label}}</label> -->
       <div class="checkbox-field form-check" *ngFor="let options of this.options">
         <label *ngIf="options?.display" [for]="options.value" class="form-check-label">
           <input [formControl]="this.formControl" [id]="options.value"

@@ -1,10 +1,7 @@
 <ng-container *ngIf="this.control && this.config">
   <div class="form-field radio-field " [ngClass]="{ 'ddforms-default': this.useDefaultStyles }">
-    <fieldset class="fieldset-field form-group">
-      <legend>{{ this.config.label }}</legend>
-      <!-- <label *ngIf="this.config.label" [for]="this.config.id" class="form-label">{{this.config.label}}</label> -->
-
-
+    <fieldset class="fieldset-field form-group" [attr.aria-label]="this.config.ariaLabel">
+      <legend *ngIf="this.config.label">{{ this.config.label }}</legend>
       <div class="radio-field form-check" *ngFor="let option of this.options">
         <label *ngIf="option?.display" [for]="this.internalId + '-' + option.value" class="form-check-label">
           <input [formControl]="this.formControl" [id]="this.internalId + '-' + option.value" [name]="this.internalId"
