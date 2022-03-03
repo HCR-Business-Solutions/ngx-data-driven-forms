@@ -15,9 +15,9 @@ import {DEFAULT_FIELD_COMPONENT_MAP, DEFAULT_FIELD_CONFIG_MAP} from '../default-
 import {FormContainerComponent} from './components/form-container/form-container.component';
 import {LinearNavigatorComponent} from './components/linear-navigator/linear-navigator.component';
 import {NonLinearNavigatorComponent} from './components/non-linear-navigator/non-linear-navigator.component';
-import { ChangesModalComponent } from './components/changes-modal/changes-modal.component';
-import { MarkdownModule } from 'ngx-markdown';
-import { NgxMaskModule } from 'ngx-mask';
+import {ChangesModalComponent} from './components/changes-modal/changes-modal.component';
+import {MarkdownModule} from 'ngx-markdown';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 @NgModule({
@@ -70,7 +70,7 @@ export class DDFormsModule {
           useValue: defaults,
         }
       ]
-    }
+    };
   };
 
 }

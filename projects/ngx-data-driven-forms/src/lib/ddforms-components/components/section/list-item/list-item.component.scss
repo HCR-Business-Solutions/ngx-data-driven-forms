@@ -1,11 +1,11 @@
 .section-list-item-container.ddforms-default {
-    width: 100%;
-    padding: 0.825rem;
+  width: 100%;
+  padding: 0.825rem;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: .825rem;
+  gap: .825rem;
 
   .section-list-item-name-container {
     .section-list-item-name {
@@ -13,17 +13,17 @@
     }
   }
 
-    .section-list-item-content-container {
-        transform: scaleY(.925);
-    }
+  .section-list-item-content-container {
+    transform: scaleY(.925);
+  }
 
-    .section-list-item-actions-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        gap: .5rem;
-    }
+  .section-list-item-actions-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .5rem;
+  }
 
 
 }

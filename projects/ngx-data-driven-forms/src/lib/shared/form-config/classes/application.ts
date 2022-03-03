@@ -1,10 +1,7 @@
-import { Page } from './page';
-import { FormArray, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
-import { IApplication, ICrossFieldValidatorPackage } from '../interfaces';
-import {
-  NormalizedCrossFieldValidator,
-  NormalizedValidator,
-} from '../../types';
+import {Page} from './page';
+import {FormArray, FormBuilder, FormGroup, ValidatorFn} from '@angular/forms';
+import {IApplication, ICrossFieldValidatorPackage} from '../interfaces';
+import {NormalizedCrossFieldValidator, NormalizedValidator,} from '../../types';
 
 export class Application implements IApplication {
   public id: string;

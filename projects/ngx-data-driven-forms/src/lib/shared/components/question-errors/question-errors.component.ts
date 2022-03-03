@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import { DataDrivenFormsConfigService } from '../../../ddforms/services';
-import { Question } from '../../form-config/classes';
+import {DataDrivenFormsConfigService} from '../../../ddforms/services';
+import {Question} from '../../form-config/classes';
 
 @Component({
   selector: 'ddforms-question-errors',
@@ -24,9 +24,9 @@ export class QuestionErrorsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  decodeErrorMessages(errors: {[key: string]: any}): string[] {
+  decodeErrorMessages(errors: { [key: string]: any }): string[] {
 
-    if(!errors) return [];
+    if (!errors) return [];
 
     const messages: string[] = [];
     const knownMessageHandlers = this.ddFormsConf?.getErrorMessageHandlers();

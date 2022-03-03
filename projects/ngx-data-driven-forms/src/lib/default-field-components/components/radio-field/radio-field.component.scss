@@ -26,7 +26,7 @@
 
   }
 
-  .form-hint{
+  .form-hint {
     font-family: $font-hint;
     font-size: .75rem;
     color: $color-hint;
@@ -43,11 +43,13 @@
 
 
 }
-.fieldset-field{
+
+.fieldset-field {
   margin-bottom: 5px;
   border: 1px solid $color-border;
 
 }
-#fieldset{
+
+#fieldset {
   font-family: $font-legend;
 }

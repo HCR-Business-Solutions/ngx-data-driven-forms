@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormControl} from '@angular/forms';
-import { DataDrivenFormsConfigService } from '../../../ddforms/services';
-import { Question } from '../../../shared/form-config';
-import { IQuestionBase } from '../../../shared/interfaces';
-import { generateFieldUUID } from '../../../shared/utilities';
-
+import {DataDrivenFormsConfigService} from '../../../ddforms/services';
+import {Question} from '../../../shared/form-config';
+import {IQuestionBase} from '../../../shared/interfaces';
+import {generateFieldUUID} from '../../../shared/utilities';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class DateFieldComponent implements OnInit, IQuestionBase {
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService,
   ) {
-    
+
   }
 
   public get formControl(): FormControl {

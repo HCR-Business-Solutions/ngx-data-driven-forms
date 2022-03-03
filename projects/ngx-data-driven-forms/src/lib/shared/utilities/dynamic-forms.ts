@@ -1,13 +1,8 @@
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
-import { combineLatest, Observable, tap } from 'rxjs';
-import { Question, QuestionGroup, Statements } from '../form-config';
-import { IQuestionPackage } from '../interfaces';
-import { ConditionsFunction } from '../types';
+import {AbstractControl, FormArray, FormControl, FormGroup,} from '@angular/forms';
+import {combineLatest, Observable, tap} from 'rxjs';
+import {Question, QuestionGroup, Statements} from '../form-config';
+import {IQuestionPackage} from '../interfaces';
+import {ConditionsFunction} from '../types';
 
 export function gatherChangeEvents(
   control: AbstractControl,
@@ -30,14 +25,14 @@ export function gatherChangeEvents(
             } else {
               control.reset();
             }
-            control.markAsUntouched({ onlySelf: false });
-            control.markAsPristine({ onlySelf: false });
+            control.markAsUntouched({onlySelf: false});
+            control.markAsPristine({onlySelf: false});
           }
-          control.disable({ onlySelf: false });
+          control.disable({onlySelf: false});
         } else {
-          control.enable({ onlySelf: false });
+          control.enable({onlySelf: false});
         }
-        control.updateValueAndValidity({ onlySelf: false });
+        control.updateValueAndValidity({onlySelf: false});
       })
     )
   );

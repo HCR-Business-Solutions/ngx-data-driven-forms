@@ -5,7 +5,7 @@ import {combineLatest, Observable} from 'rxjs';
 import {Question} from './question';
 import {ICrossFieldValidatorPackage, ISection} from '../interfaces';
 import {ConditionsFunction, NormalizedCrossFieldValidator, NormalizedValidator} from '../../types';
-import { gatherChangeEvents } from '../../utilities';
+import {gatherChangeEvents} from '../../utilities';
 
 export class Section implements ISection {
 
@@ -52,7 +52,7 @@ export class Section implements ISection {
       if (initialValue && Array.isArray(initialValue)) {
         initialValue.forEach(value => arr.push(
           this.formGroup(value, fb, knownValidators, knownCrossFieldValidators)
-        ))
+        ));
       }
       return arr;
     }
@@ -71,13 +71,13 @@ export class Section implements ISection {
   }
 
   public getShouldAsk(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>): boolean {
-    if(!this.shouldAsk) return true;
+    if (!this.shouldAsk) return true;
     return this.shouldAsk.checkStatements(control, knownConditions);
   }
 
   public changeEvents(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>): Observable<any> | undefined {
     if (!this.shouldAsk) return undefined;
-    return gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, knownConditions)
+    return gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, knownConditions);
   }
 
   public getQuestionsChangeEvents(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>): Observable<any> | undefined {
@@ -89,7 +89,7 @@ export class Section implements ISection {
       .map((question: Question) => {
         const questionControl = control.get(question.id);
         if (!questionControl) return undefined;
-        return question.changeEvents(questionControl as FormControl, knownConditions)
+        return question.changeEvents(questionControl as FormControl, knownConditions);
       }).filter(_ => _ !== undefined);
     return changes.length > 0 ? combineLatest([...changes]) : undefined;
   }
@@ -106,7 +106,7 @@ export class Section implements ISection {
         crossFieldValidation: _.crossFieldValidation?.filter(pack => pack.expectedParentLevel)
       }));
 
-    relaventValidators.forEach((questionValidaton: {id: string, crossFieldValidation?: ICrossFieldValidatorPackage[]}) => {
+    relaventValidators.forEach((questionValidaton: { id: string, crossFieldValidation?: ICrossFieldValidatorPackage[] }) => {
       if (!questionValidaton.crossFieldValidation || questionValidaton.crossFieldValidation.length < 0) return;
       questionValidaton.crossFieldValidation.forEach(validatorPack => {
         const siblingId = validatorPack.sibling;
@@ -117,8 +117,8 @@ export class Section implements ISection {
           const func = knownCrossFieldValidators.get(key);
           if (!func) return;
           const funcEval = func(questionValidaton.id, siblingId, arg);
-          if(funcEval) validators.push(funcEval);
-        })
+          if (funcEval) validators.push(funcEval);
+        });
       });
     });
 

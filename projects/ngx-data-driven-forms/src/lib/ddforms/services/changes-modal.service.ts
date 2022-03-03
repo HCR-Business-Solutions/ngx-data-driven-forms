@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, shareReplay, tap} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class ChangesModalService {
   private dialogResult: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(undefined);
   public dialogResult$: Observable<boolean | null | undefined> = this.dialogResult.asObservable();
 
-  constructor() { }
+  constructor() {
+  }
 
   public openDialog(): void {
     this.isOpen.next(true);

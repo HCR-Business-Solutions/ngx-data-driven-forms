@@ -1,20 +1,15 @@
-import { AbstractControl, Validators } from '@angular/forms';
+import {AbstractControl, Validators} from '@angular/forms';
 import {
   AGE_COMPARISONS,
   calculateAge,
   DATE_COMPARISONS,
   isDate as dateCheck,
-  isNullOrUndefined,
-  NUMBER_COMPARISONS,
-  isTruthy as truthyCheck,
   isFalsy as falsyCheck,
+  isNullOrUndefined,
+  isTruthy as truthyCheck,
+  NUMBER_COMPARISONS,
 } from '../../../shared/utilities';
-import {
-  NormalizedValidator,
-  NumberComparison,
-  DateComparison,
-  AgeComparison,
-} from '../../../shared/types';
+import {AgeComparison, DateComparison, NormalizedValidator, NumberComparison,} from '../../../shared/types';
 
 export const min: NormalizedValidator = (min: number) => Validators.min(min);
 
@@ -42,13 +37,13 @@ export const validateIsTruthy: NormalizedValidator = (check?: boolean) =>
   !check
     ? undefined
     : (c: AbstractControl) =>
-        truthyCheck(c.value, true) ? null : { isTruthy: true };
+      truthyCheck(c.value, true) ? null : {isTruthy: true};
 
 export const validateIsFalsy: NormalizedValidator = (check?: boolean) =>
   !check
     ? undefined
     : (c: AbstractControl) =>
-        falsyCheck(c.value, true) ? null : { isFalsy: true };
+      falsyCheck(c.value, true) ? null : {isFalsy: true};
 
 export const numberComparison: (
   compareType: NumberComparison
@@ -58,22 +53,22 @@ export const numberComparison: (
     !comparisonFunction
       ? undefined
       : (c: AbstractControl) =>
-          isNullOrUndefined(c.value)
+        isNullOrUndefined(c.value)
+          ? null
+          : comparisonFunction(c.value, comparison)
             ? null
-            : comparisonFunction(c.value, comparison)
-            ? null
-            : { [`${compareType}`]: { expected: comparison, actual: c.value } };
+            : {[`${compareType}`]: {expected: comparison, actual: c.value}};
 };
 
 export const validateIsDate: NormalizedValidator = (check?: boolean) =>
   !check
     ? undefined
     : (c: AbstractControl) =>
-        isNullOrUndefined(c.value)
+      isNullOrUndefined(c.value)
+        ? null
+        : dateCheck(c.value, true)
           ? null
-          : dateCheck(c.value, true)
-          ? null
-          : { isDate: true };
+          : {isDate: true};
 
 export const dateComparison: (
   compareType: DateComparison
@@ -83,16 +78,16 @@ export const dateComparison: (
     !comparisonFunction
       ? undefined
       : (c: AbstractControl) =>
-          isNullOrUndefined(c.value) || !dateCheck(c.value, true)
-            ? null
-            : comparisonFunction(new Date(c.value), new Date(comparison))
+        isNullOrUndefined(c.value) || !dateCheck(c.value, true)
+          ? null
+          : comparisonFunction(new Date(c.value), new Date(comparison))
             ? null
             : {
-                [`${compareType}`]: {
-                  expected: new Date(comparison),
-                  actual: new Date(c.value),
-                },
-              };
+              [`${compareType}`]: {
+                expected: new Date(comparison),
+                actual: new Date(c.value),
+              },
+            };
 };
 
 export const ageComparison: (
@@ -103,14 +98,14 @@ export const ageComparison: (
     !comparisonFunction
       ? undefined
       : (c: AbstractControl) =>
-          isNullOrUndefined(c.value) || !dateCheck(c.value, true)
-            ? null
-            : comparisonFunction(c.value, age)
+        isNullOrUndefined(c.value) || !dateCheck(c.value, true)
+          ? null
+          : comparisonFunction(c.value, age)
             ? null
             : {
-                [`${compareType}`]: {
-                  expected: age,
-                  actual: calculateAge(new Date(c.value)),
-                },
-              };
+              [`${compareType}`]: {
+                expected: age,
+                actual: calculateAge(new Date(c.value)),
+              },
+            };
 };

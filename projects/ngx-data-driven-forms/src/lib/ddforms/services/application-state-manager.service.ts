@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, shareReplay, skip } from 'rxjs';
-import { AbstractControl } from '@angular/forms';
-import { DataDrivenFormsService } from './data-driven-forms.service';
-import { Application } from '../../shared/form-config';
-import { IApplicationMeta } from '../../shared/interfaces';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, shareReplay} from 'rxjs';
+import {AbstractControl} from '@angular/forms';
+import {DataDrivenFormsService} from './data-driven-forms.service';
+import {Application} from '../../shared/form-config';
+import {IApplicationMeta} from '../../shared/interfaces';
 
 const APPLICATION_META_DEFAULT: IApplicationMeta = {
   currentPage: 0,
@@ -13,31 +13,20 @@ const APPLICATION_META_DEFAULT: IApplicationMeta = {
   providedIn: 'root',
 })
 export class ApplicationStateManagerService {
-  private readonly currentApplicationConfig: BehaviorSubject<
-    Application | null | undefined
-  > = new BehaviorSubject<Application | null | undefined>(null);
-  public readonly currentApplicationConfig$: Observable<
-    Application | null | undefined
-  > = this.currentApplicationConfig.asObservable().pipe(shareReplay(1));
+  private readonly currentApplicationConfig: BehaviorSubject<Application | null | undefined> = new BehaviorSubject<Application | null | undefined>(null);
+  public readonly currentApplicationConfig$: Observable<Application | null | undefined> = this.currentApplicationConfig.asObservable().pipe(shareReplay(1));
 
-  private readonly currentApplicationControl: BehaviorSubject<
-    AbstractControl | null | undefined
-  > = new BehaviorSubject<AbstractControl | null | undefined>(null);
-  public readonly currentApplicationControl$: Observable<
-    AbstractControl | null | undefined
-  > = this.currentApplicationControl.asObservable().pipe(shareReplay(1));
+  private readonly currentApplicationControl: BehaviorSubject<AbstractControl | null | undefined> = new BehaviorSubject<AbstractControl | null | undefined>(null);
+  public readonly currentApplicationControl$: Observable<AbstractControl | null | undefined> = this.currentApplicationControl.asObservable().pipe(shareReplay(1));
 
-  private readonly currentApplicationMeta: BehaviorSubject<
-    IApplicationMeta | null | undefined
-  > = new BehaviorSubject<IApplicationMeta | null | undefined>(null);
-  public readonly currentApplicationMeta$: Observable<
-    IApplicationMeta | null | undefined
-  > = this.currentApplicationMeta.asObservable().pipe(shareReplay(1));
+  private readonly currentApplicationMeta: BehaviorSubject<IApplicationMeta | null | undefined> = new BehaviorSubject<IApplicationMeta | null | undefined>(null);
+  public readonly currentApplicationMeta$: Observable<IApplicationMeta | null | undefined> = this.currentApplicationMeta.asObservable().pipe(shareReplay(1));
 
   private readonly lastValidValue: BehaviorSubject<any | null | undefined> =
     new BehaviorSubject<any | null | undefined>(null);
 
-  constructor(private ddForms: DataDrivenFormsService) {}
+  constructor(private ddForms: DataDrivenFormsService) {
+  }
 
   public setup(
     initialValue: any,

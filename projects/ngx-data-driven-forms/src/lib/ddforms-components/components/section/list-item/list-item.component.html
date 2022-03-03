@@ -3,14 +3,15 @@
     <span class="section-list-item-name">{{this.config?.repeat?.itemName}} {{(index ?? -1) + 1}}</span>
   </div>
   <div class="section-list-item-content-container">
-    <ddforms-section-single [control]="this.control" [config]="this.config" [isReadonly]="true"></ddforms-section-single>
+    <ddforms-section-single [control]="this.control" [config]="this.config"
+                            [isReadonly]="true"></ddforms-section-single>
   </div>
   <div class="section-list-item-actions-container">
-      <div class="delete-button-container">
-        <button class="btn btn-secondary delete-button" (click)="this.handleDelete()">Delete</button>
-      </div>
-      <div class="edit-button-container">
-        <button class="btn btn-primary edit-button" (click)="this.handleEdit()">Edit</button>
-      </div>
+    <div class="delete-button-container">
+      <button class="btn btn-secondary delete-button" (click)="this.handleDelete()">Delete</button>
+    </div>
+    <div class="edit-button-container">
+      <button class="btn btn-primary edit-button" (click)="this.handleEdit()">Edit</button>
+    </div>
   </div>
 </div>

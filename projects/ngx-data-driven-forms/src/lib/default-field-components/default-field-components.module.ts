@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 import * as Components from './components';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared';
-import { NgxMaskModule } from 'ngx-mask';
-import { MarkdownModule } from 'ngx-markdown';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared';
+import {NgxMaskModule} from 'ngx-mask';
+import {MarkdownModule} from 'ngx-markdown';
 
 
 const FIELDS = [
@@ -48,4 +48,5 @@ const FIELDS = [
     ReactiveFormsModule,
   ]
 })
-export class DefaultFieldComponentsModule { }
+export class DefaultFieldComponentsModule {
+}
