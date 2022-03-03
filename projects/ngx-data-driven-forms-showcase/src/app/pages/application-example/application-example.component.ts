@@ -164,7 +164,7 @@ export class ApplicationExampleComponent implements OnInit {
             repeat: {
               style: 'list',
               minEntries: 1,
-              itemName: 'Damaged Furniture Item'
+              itemName: 'Damaged Property Item'
             }
           }
         ],

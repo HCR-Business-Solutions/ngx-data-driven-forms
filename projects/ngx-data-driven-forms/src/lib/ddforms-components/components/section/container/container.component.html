@@ -1,12 +1,12 @@
 <ng-container *ngIf="this.control && this.config && this.addControl">
   <ng-container *ngIf="this.shouldAsk">
     <div class="overall-section-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
-    <div *ngIf="this.config?.title" class="section-title-container">
+    <div *ngIf="this.config?.title && !this.isReadonly" class="section-title-container">
       <h3 class="section-title-text">
         <ddforms-advanced-text [text]="this.config?.title ?? ''"></ddforms-advanced-text>
       </h3>
     </div>
-    <div *ngIf="this.config?.narrative" class="section-narrative-container">
+    <div *ngIf="this.config?.narrative && !this.isReadonly" class="section-narrative-container">
       <ng-container [ngSwitch]="this.config?.narrative?.style ?? 'plaintext'">
         <ng-container *ngSwitchCase="'markdown'">
           <markdown [data]="this.config?.narrative?.text ?? ''"></markdown>
