@@ -1,31 +1,29 @@
-import { Type } from '@angular/core';
+import {Type} from '@angular/core';
 import {
   ButtonFieldComponent,
   CheckboxFieldComponent,
   CurrencyFieldComponent,
   DateFieldComponent,
+  DatetimelocalFieldComponent,
   EmailFieldComponent,
+  MaskFieldComponent,
   MonthFieldComponent,
   NumberFieldComponent,
   PasswordFieldComponent,
   RadioFieldComponent,
   RangeFieldComponent,
-  SearchFieldComponent,
+  SelectFieldComponent,
   SsnFieldComponent,
   TelFieldComponent,
   TextareaFieldComponent,
   TextFieldComponent,
   TimeFieldComponent,
   UrlFieldComponent,
-  WeekFieldComponent,
-  SelectFieldComponent,
-  DatetimelocalFieldComponent
+  WeekFieldComponent
 } from '../components';
 
-export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<
-  string,
-  Type<any>
->([
+export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<string,
+  Type<any>>([
   ['button', ButtonFieldComponent],
   ['checkbox', CheckboxFieldComponent],
   ['currency', CurrencyFieldComponent],
@@ -36,7 +34,6 @@ export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<
   ['password', PasswordFieldComponent],
   ['radio', RadioFieldComponent],
   ['range', RangeFieldComponent],
-  ['search', SearchFieldComponent],
   ['ssn', SsnFieldComponent],
   ['tel', TelFieldComponent],
   ['text', TextFieldComponent],
@@ -46,4 +43,5 @@ export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<
   ['week', WeekFieldComponent],
   ['select', SelectFieldComponent],
   ['datetime-local', DatetimelocalFieldComponent],
+  ['mask', MaskFieldComponent],
 ]);

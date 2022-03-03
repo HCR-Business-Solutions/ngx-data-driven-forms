@@ -14,13 +14,14 @@ export class SectionSingleComponent implements OnInit {
 
   @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
+  @Input() isReadonly: boolean = false;
   questions: IQuestionPackage[] = [];
 
-  useDefaultStyles = !this.configSvc.getShouldIgnoreStyles();
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddForms: DataDrivenFormsService,
-    private configSvc: DataDrivenFormsConfigService,
+    private ddFormsConf: DataDrivenFormsConfigService
   ) {
   }
 

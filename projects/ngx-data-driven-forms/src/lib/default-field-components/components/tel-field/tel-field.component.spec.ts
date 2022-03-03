@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TelFieldComponent } from './tel-field.component';
+import {TelFieldComponent} from './tel-field.component';
 
 describe('TelFieldComponent', () => {
   let component: TelFieldComponent;
@@ -8,9 +8,9 @@ describe('TelFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TelFieldComponent ]
+      declarations: [TelFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RangeFieldComponent } from './range-field.component';
+import {RangeFieldComponent} from './range-field.component';
 
 describe('RangeFieldComponent', () => {
   let component: RangeFieldComponent;
@@ -8,9 +8,9 @@ describe('RangeFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RangeFieldComponent ]
+      declarations: [RangeFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   ApplicationStateManagerService,
   DataDrivenFormsEventsService,
@@ -8,10 +8,10 @@ import {
   DDFormsNextEvent,
   DDFormsSubmitEvent,
 } from '../../services';
-import { skip, Subscription, take, tap } from 'rxjs';
-import { Application, IApplicationMeta, Page } from '../../../shared';
-import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
-import { ChangesModalService } from '../../services/changes-modal.service';
+import {Subscription, tap} from 'rxjs';
+import {Application, IApplicationMeta, Page} from '../../../shared';
+import {AbstractControl, FormGroup} from '@angular/forms';
+import {ChangesModalService} from '../../services/changes-modal.service';
 
 declare var $: any;
 
@@ -36,7 +36,7 @@ export class FormContainerComponent implements OnInit, OnDestroy {
   public control: AbstractControl | null | undefined;
   public modelOpen: boolean | undefined;
 
-  private dialogHelper: {isOpen: boolean; targetIndex: number, refreshMeta?: boolean} | null = null;
+  private dialogHelper: { isOpen: boolean; targetIndex: number, refreshMeta?: boolean } | null = null;
 
   private subscriptions: Subscription[] = [];
 
@@ -44,7 +44,8 @@ export class FormContainerComponent implements OnInit, OnDestroy {
     private appStateSvc: ApplicationStateManagerService,
     private eventSvc: DataDrivenFormsEventsService,
     private modalHandler: ChangesModalService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(this.meta$.subscribe((_) => (this.meta = _)));
@@ -58,21 +59,22 @@ export class FormContainerComponent implements OnInit, OnDestroy {
       this.dialogEvent$.subscribe((dialogResult) => {
         if (this.dialogHelper?.isOpen && dialogResult && this.dialogHelper.targetIndex !== null) {
           if (dialogResult) {
-                  this.appStateSvc.resetControl();
-                  this.currentPageControl?.reset((this.currentPageControl as FormGroup)?.getRawValue());
-                  this.appStateSvc.goToPage(this.dialogHelper.targetIndex ?? -1, true);
-                } else {
-                  if (this.dialogHelper.refreshMeta) {
-                    this.appStateSvc.refreshMeta();
-                  }
-                  this.currentPageControl?.markAllAsTouched();
-                }
+            this.appStateSvc.resetControl();
+            this.currentPageControl?.reset((this.currentPageControl as FormGroup)?.getRawValue());
+            this.appStateSvc.goToPage(this.dialogHelper.targetIndex ?? -1, true);
+          } else {
+            if (this.dialogHelper.refreshMeta) {
+              this.appStateSvc.refreshMeta();
+            }
+            this.currentPageControl?.markAllAsTouched();
+          }
         }
         this.dialogHelper = null;
         this.modalHandler.closeDialog();
       })
     );
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((_) => {
       if (_ && !_.closed) _.unsubscribe();

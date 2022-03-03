@@ -14,7 +14,7 @@ export interface IQuestion {
 
   hint?: {
     text: string;
-    format?: 'markdown' | 'plaintext'; // Defaults to plaintext;
+    style?: 'markdown' | 'plaintext'; // Defaults to plaintext;
   };
 
   readonly?: boolean; // Field appears but is not editable

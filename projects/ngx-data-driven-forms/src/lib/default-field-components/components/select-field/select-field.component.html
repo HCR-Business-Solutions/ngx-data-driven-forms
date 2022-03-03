@@ -1,18 +1,30 @@
 <ng-container *ngIf="this.control && this.config">
-  <div class="form-field select-field mb-3 " [ngClass]="{ 'ddforms-default': this.useStyles }">
+  <div class="form-field select-field  " [ngClass]="{ 'ddforms-default': this.useDefaultStyles }">
     <label *ngIf="this.config.label" [for]="this.internalId" class="form-label">
       <ddforms-advanced-text [text]="this.config.label"></ddforms-advanced-text>
     </label>
-    <div *ngIf="this.config.hint" class="form-hint" id="{{this.config.id}}hint">
-      {{ this.config.hint.text }}
-    </div>
-    <select class="select-field form-select form-control" [formControl]="this.formControl" [id]="this.internalId"
-      [attr.aria-label]="this.config.ariaLabel"
-      [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
-      [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}">
+
+
+    <!--The select tag does not have a read only property so the disabled property was used-->
+    <select [attr.disabled]="(this.isReadonly || (this.config?.readonly ?? false)) ? true : undefined"
+            class="select-field form-select form-control" [formControl]="this.formControl" [id]="this.internalId"
+            [attr.aria-label]="this.config.ariaLabel"
+            [attr.aria-describedby]="this.config.hint ? (this.internalId + 'Hint') : undefined"
+            [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}">
       <option class="form-option" *ngFor="let option of this.options" [value]="option.value"> {{ option?.display
         }}</option>
     </select>
+
+    <div *ngIf="this.config.hint && !this.isReadonly" class="form-hint" id="{{this.internalId}}Hint">
+      <ng-container [ngSwitch]="this.config?.hint?.style ?? 'plaintext'">
+        <ng-container *ngSwitchCase="'markdown'">
+          <markdown [data]="this.config.hint?.text ?? ''"></markdown>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <ddforms-advanced-text [text]="this.config?.hint?.text ?? ''"></ddforms-advanced-text>
+        </ng-container>
+      </ng-container>
+    </div>
 
     <ddforms-question-errors [control]="this.control" [config]="this.config" class="form-errors-container">
     </ddforms-question-errors>

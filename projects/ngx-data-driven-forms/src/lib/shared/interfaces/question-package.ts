@@ -1,5 +1,5 @@
 import {FormControl} from '@angular/forms';
-import { Question } from '../form-config';
+import {Question} from '../form-config';
 
 export interface IQuestionPackage {
   control: FormControl;

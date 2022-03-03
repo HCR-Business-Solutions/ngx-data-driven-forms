@@ -1,7 +1,14 @@
 import {Inject, Injectable, Type} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import { IDefaultValues, IModuleConfig } from '../interfaces';
-import { ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, FieldConfigValidator, NormalizedCrossFieldValidator, NormalizedValidator } from '../../shared/types';
+import {IDefaultValues, IModuleConfig} from '../interfaces';
+import {
+  ConditionsFunction,
+  DataHandlerFunction,
+  ErrorMessageFunction,
+  FieldConfigValidator,
+  NormalizedCrossFieldValidator,
+  NormalizedValidator
+} from '../../shared/types';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +25,7 @@ export class DataDrivenFormsConfigService {
   private readonly fieldConfigValidators: BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined> = new BehaviorSubject<Map<string, FieldConfigValidator> | null | undefined>(null);
 
   private readonly ignoreDefaultStyles: BehaviorSubject<boolean | null | undefined> = new BehaviorSubject<boolean | null | undefined>(false);
-  private readonly repeatInputStyle: BehaviorSubject<('modal' | 'flat') | null | undefined> = new BehaviorSubject<('modal' | 'flat') | null | undefined>('flat');
-  
+
   constructor(
     @Inject('moduleConfig') private config: IModuleConfig,
     @Inject('defaults') private defaults: IDefaultValues,
@@ -49,7 +55,7 @@ export class DataDrivenFormsConfigService {
       this.dataHandlers.next(defaults.dataHandlers);
     }
 
-    if(!this.fieldConfigValidators.getValue()?.size) {
+    if (!this.fieldConfigValidators.getValue()?.size) {
       this.fieldConfigValidators.next(defaults.fieldConfigValidators);
     }
 
@@ -69,22 +75,19 @@ export class DataDrivenFormsConfigService {
       this.registerComponents(config.staticValues.components);
     }
 
-    if(config?.staticValues?.messageHandlers) {
+    if (config?.staticValues?.messageHandlers) {
       this.registerErrorMessageHandlers(config.staticValues.messageHandlers);
     }
 
-    if(config?.staticValues?.dataHandlers) {
+    if (config?.staticValues?.dataHandlers) {
       this.registerDataHandlers(config.staticValues.dataHandlers);
     }
 
-    if(config?.staticValues?.fieldConfigValidators) {
+    if (config?.staticValues?.fieldConfigValidators) {
       this.registerFieldConfigValidators(config.staticValues.fieldConfigValidators);
     }
 
     this.ignoreDefaultStyles.next(config?.skipDefaultStyles ?? false);
-
-    this.repeatInputStyle.next(config?.repeatSectionInputStyle ?? 'flat');
-
 
   }
 
@@ -118,7 +121,7 @@ export class DataDrivenFormsConfigService {
 
   public getErrorMessageHandlers(): Map<string, ErrorMessageFunction> {
     const errorMessageHandlers = this.errorMessages.getValue();
-    return errorMessageHandlers ? errorMessageHandlers : new Map<string,ErrorMessageFunction>();
+    return errorMessageHandlers ? errorMessageHandlers : new Map<string, ErrorMessageFunction>();
   }
 
   public getDataHandlers(): Map<string, DataHandlerFunction<any>> {
@@ -128,15 +131,11 @@ export class DataDrivenFormsConfigService {
 
   public getFieldConfigValidators(): Map<string, FieldConfigValidator> {
     const fieldConfigValidators = this.fieldConfigValidators.getValue();
-    return fieldConfigValidators ?  fieldConfigValidators : new Map<string, FieldConfigValidator>();
+    return fieldConfigValidators ? fieldConfigValidators : new Map<string, FieldConfigValidator>();
   }
 
   public getShouldIgnoreStyles(): boolean {
     return this.ignoreDefaultStyles.getValue() ?? false;
-  }
-
-  public getRepeatInputStyle(): 'modal' | 'flat' {
-    return this.repeatInputStyle.getValue() ?? 'flat';
   }
 
   public registerValidator(key: string, validator: NormalizedValidator): void {

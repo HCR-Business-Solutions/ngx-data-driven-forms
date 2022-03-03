@@ -7,13 +7,17 @@ export interface ISection {
   title?: string;
   border?: boolean;
 
-  narrative?: string;
+  narrative?: {
+    text: string;
+    style?: 'markdown' | 'plaintext';
+  };
 
   questions: IQuestionGroup;
   questionOrder: string[];
 
   repeat?: {
     style: 'list' | 'table';
+    inputStyle?: string;
     itemName?: string;
     minEntries?: number;
     maxEntries?: number;

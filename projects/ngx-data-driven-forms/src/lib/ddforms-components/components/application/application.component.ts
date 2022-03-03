@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import { Application, Page } from '../../../shared/form-config';
-import { IApplicationMeta } from '../../../shared/interfaces';
+import {Application, Page} from '../../../shared/form-config';
+import {IApplicationMeta} from '../../../shared/interfaces';
 
 @Component({
   selector: 'ddforms-application',
@@ -13,7 +13,6 @@ export class ApplicationComponent {
   @Input() public config: Application | null | undefined;
   @Input() public control: AbstractControl | null | undefined;
   @Input() public meta: IApplicationMeta | null | undefined;
-
 
   constructor() {
   }

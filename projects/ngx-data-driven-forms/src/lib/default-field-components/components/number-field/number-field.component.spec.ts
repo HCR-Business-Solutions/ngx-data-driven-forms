@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NumberFieldComponent } from './number-field.component';
+import {NumberFieldComponent} from './number-field.component';
 
 describe('NumberFieldComponent', () => {
   let component: NumberFieldComponent;
@@ -8,9 +8,9 @@ describe('NumberFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NumberFieldComponent ]
+      declarations: [NumberFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

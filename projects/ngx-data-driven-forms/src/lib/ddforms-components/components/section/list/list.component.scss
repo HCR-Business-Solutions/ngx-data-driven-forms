@@ -1,5 +1,32 @@
-.section-list-items-container {
+.section-list-items-container.ddforms-default {
   display: flex;
   flex-direction: column;
   gap: .5rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .section-list-no-items-container {
+    background-color: hsla(0, 0%, 75%, .5);
+    width: 85%;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+    border: hsla(0, 0%, 75%, .8) solid 1px;
+    border-radius: .25rem;
+    box-shadow: 1px 1px 2px 0px hsla(0, 0%, 75%, .7);
+
+  }
+
+  .list-item {
+    width: 80%;
+    min-width: 280px;
+    background-color: hsla(0, 0%, 90%, .5);
+    border: hsla(0, 0%, 90%, .8) solid 1px;
+    border-radius: .25rem;
+    box-shadow: 1px 1px 2px 0px hsla(0, 0%, 90%, .7);
+  }
+
 }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ButtonFieldComponent } from './button-field.component';
+import {ButtonFieldComponent} from './button-field.component';
 
 describe('ButtonFieldComponent', () => {
   let component: ButtonFieldComponent;
@@ -8,9 +8,9 @@ describe('ButtonFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ButtonFieldComponent ]
+      declarations: [ButtonFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

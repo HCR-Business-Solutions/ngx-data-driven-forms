@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 import * as Components from './components';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared';
+import {NgxMaskModule} from 'ngx-mask';
+import {MarkdownModule} from 'ngx-markdown';
 
 
 const FIELDS = [
@@ -17,7 +19,6 @@ const FIELDS = [
   Components.PasswordFieldComponent,
   Components.RadioFieldComponent,
   Components.RangeFieldComponent,
-  Components.SearchFieldComponent,
   Components.SsnFieldComponent,
   Components.TelFieldComponent,
   Components.TextFieldComponent,
@@ -26,7 +27,8 @@ const FIELDS = [
   Components.UrlFieldComponent,
   Components.WeekFieldComponent,
   Components.SelectFieldComponent,
-  Components.DatetimelocalFieldComponent
+  Components.DatetimelocalFieldComponent,
+  Components.MaskFieldComponent,
 ];
 
 @NgModule({
@@ -36,7 +38,15 @@ const FIELDS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxMaskModule.forChild(),
+    MarkdownModule.forChild(),
     SharedModule
+  ],
+  exports: [
+    ...FIELDS,
+    NgxMaskModule,
+    ReactiveFormsModule,
   ]
 })
-export class DefaultFieldComponentsModule { }
+export class DefaultFieldComponentsModule {
+}

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {DataDrivenFormsConfigService} from './data-driven-forms-config.service';
-import { IApplication, IPage, IQuestion, ISection, IStatement, IStatements } from '../../shared/form-config';
-import { hasProperties } from '../../shared/utilities';
+import {IApplication, IPage, IQuestion, ISection, IStatement, IStatements} from '../../shared/form-config';
+import {hasProperties} from '../../shared/utilities';
 
 @Injectable({
   providedIn: 'root'
@@ -163,7 +163,7 @@ export class DataDrivenFormsValidationService {
     if (fieldConfigValidator) {
       const fieldConfigErrors = fieldConfigValidator(question.fieldConfig);
       if (fieldConfigErrors) {
-        errors.set('fieldConfig', fieldConfigErrors)
+        errors.set('fieldConfig', fieldConfigErrors);
       }
     }
 
@@ -177,8 +177,8 @@ export class DataDrivenFormsValidationService {
       }
     }
 
-    if(question.crossFieldValidation && question.crossFieldValidation.length > 0) {
-      const crossFieldValidators = question.crossFieldValidation.reduce((prev: string[], curr) => [...prev, ...Object.keys({...curr.crossFieldValidation ?? {}, ...curr.customCrossFieldValidation ?? {}})],[]);
+    if (question.crossFieldValidation && question.crossFieldValidation.length > 0) {
+      const crossFieldValidators = question.crossFieldValidation.reduce((prev: string[], curr) => [...prev, ...Object.keys({...curr.crossFieldValidation ?? {}, ...curr.customCrossFieldValidation ?? {}})], []);
       if (crossFieldValidators.length > 0) {
         const knownCrossFieldValidators = Array.from(this.ddFormsConf.getCrossFieldValidators().keys());
         const unknownCrossFieldValidators = crossFieldValidators.filter(_ => !knownCrossFieldValidators.includes(_));

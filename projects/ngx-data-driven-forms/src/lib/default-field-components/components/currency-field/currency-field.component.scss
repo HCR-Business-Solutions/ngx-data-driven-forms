@@ -7,13 +7,14 @@
   flex-direction: column;
 
 
-  .form-label{
+  .form-label {
     font-family: $font-label;
     font-size: 1rem;
     color: $color-label;
+    margin-bottom: 0.25rem;
   }
 
-  .form-control{
+  .form-control {
     flex: 1 1 auto;
     font-family: $font-control;
     padding: 0.375rem 0.75rem;
@@ -26,22 +27,23 @@
         border: 1px solid $color-error;
       }
     }
-      }
+  }
 
-      .input-group{
-        display: flex;
-
-
-    }
-
-    .input-group-prepend {
-
-        margin-right: -1px;
-        display: flex;
+  .input-group {
+    display: flex;
 
 
-    }
-    .input-group-text {
+  }
+
+  .input-group-prepend {
+
+    margin-right: -1px;
+    display: flex;
+
+
+  }
+
+  .input-group-text {
     display: flex;
     align-items: center;
     padding-right: 5px;
@@ -50,16 +52,15 @@
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
-    }
+  }
 
-  .form-hint{
+  .form-hint {
     font-family: $font-hint;
     font-size: .75rem;
     color: $color-hint;
     margin: 0rem;
     padding: .25rem;
   }
-
 
 
 }

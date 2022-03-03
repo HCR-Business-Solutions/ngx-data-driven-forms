@@ -6,7 +6,6 @@ export * from './ssn-field';
 export * from './text-field';
 export * from './tel-field';
 export * from './url-field';
-export * from './search-field';
 export * from './checkbox-field';
 export * from './email-field';
 export * from './date-field';
@@ -18,4 +17,4 @@ export * from './password-field';
 export * from './range-field';
 export * from './select-field';
 export * from './datetimelocal-field';
-
+export * from './mask-field';

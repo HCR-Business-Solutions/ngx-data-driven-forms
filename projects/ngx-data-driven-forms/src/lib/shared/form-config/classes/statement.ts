@@ -25,7 +25,7 @@ export class Statement implements IStatement {
     let sibling: AbstractControl | null;
 
     let check: AbstractControl | null = control;
-    for(let i = 0; i < this.expectedParentLevel && check !== null; i++) {
+    for (let i = 0; i < this.expectedParentLevel && check !== null; i++) {
       check = check.parent;
     }
 

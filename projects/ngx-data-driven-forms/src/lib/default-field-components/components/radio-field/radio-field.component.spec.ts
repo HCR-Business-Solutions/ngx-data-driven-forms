@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RadioFieldComponent } from './radio-field.component';
+import {RadioFieldComponent} from './radio-field.component';
 
 describe('RadioFieldComponent', () => {
   let component: RadioFieldComponent;
@@ -8,9 +8,9 @@ describe('RadioFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RadioFieldComponent ]
+      declarations: [RadioFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

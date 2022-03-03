@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
   ApplicationComponent,
   PageComponent,
@@ -10,7 +10,8 @@ import {
   SectionSingleComponent,
   SectionTableComponent,
 } from './components';
-import { SharedModule } from '../shared';
+import {SharedModule} from '../shared';
+import {MarkdownModule} from 'ngx-markdown';
 
 const COMPONENTS = [
   ApplicationComponent,
@@ -30,9 +31,12 @@ const COMPONENTS = [
   imports: [
     CommonModule,
     SharedModule,
+    MarkdownModule.forChild()
   ],
   exports: [
     ...COMPONENTS,
+    MarkdownModule
   ]
 })
-export class DDFormsComponentsModule {}
+export class DDFormsComponentsModule {
+}

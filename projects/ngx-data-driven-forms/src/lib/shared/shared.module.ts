@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DynamicFieldDirective } from './directives';
-import {QuestionErrorsComponent} from './components/question-errors';
-import { AdvancedTextComponent } from './components/advanced-text';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DynamicFieldDirective} from './directives';
+import {QuestionErrorsComponent} from './components/question-errors/question-errors.component';
+import {AdvancedTextComponent} from './components/advanced-text/advanced-text.component';
 
 
 @NgModule({
@@ -22,4 +21,5 @@ import { AdvancedTextComponent } from './components/advanced-text';
 
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

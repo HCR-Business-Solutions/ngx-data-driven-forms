@@ -27,7 +27,7 @@ export class NonLinearNavigatorComponent implements OnInit, OnDestroy {
   meta: IApplicationMeta | null | undefined = null;
   config: Application | null | undefined = null;
   control: AbstractControl | null | undefined = null;
-  useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
 
   pageSelectorConfig: Question | null = null;
   pageSelectorControl: FormControl = new FormControl(null);
@@ -59,7 +59,7 @@ export class NonLinearNavigatorComponent implements OnInit, OnDestroy {
       this.pageSelectorControl.valueChanges.pipe(debounceTime(100)).subscribe((nextValue) => {
         if (!this.config || !this.control || !this.meta || !this.pageSelectorControl) return;
         if (nextValue === null || nextValue === undefined) return;
-        const nextPageIndex = Number(nextValue) ?? null; 
+        const nextPageIndex = Number(nextValue) ?? null;
         if (this.meta.currentPage === nextPageIndex) return;
         this.eventSvc.onGoTo({
           type: 'goto',

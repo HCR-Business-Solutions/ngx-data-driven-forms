@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormControl} from '@angular/forms';
-import { DataDrivenFormsConfigService } from '../../../ddforms/services';
-import { Question } from '../../../shared/form-config';
-import { IQuestionBase } from '../../../shared/interfaces';
+import {DataDrivenFormsConfigService} from '../../../ddforms/services';
+import {Question} from '../../../shared/form-config';
+import {IQuestionBase} from '../../../shared/interfaces';
+import {generateFieldUUID} from '../../../shared/utilities/uuid';
 
 @Component({
   selector: 'ddforms-button-field',
@@ -13,12 +14,15 @@ export class ButtonFieldComponent implements OnInit, IQuestionBase {
 
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
-  public useStyles: boolean = true;
+  @Input() public isReadonly: boolean | null = null;
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+
+  public internalId = generateFieldUUID();
 
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService,
   ) {
-    this.useStyles = !this.ddFormsConf.getShouldIgnoreStyles();
+
   }
 
   public get formControl(): FormControl {

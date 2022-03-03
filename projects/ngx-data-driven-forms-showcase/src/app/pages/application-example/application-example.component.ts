@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {IApplication} from '../../../../../ngx-data-driven-forms/src/lib/shared';
 import {
   ApplicationStateManagerService,
-  DataDrivenFormsService
 } from '../../../../../ngx-data-driven-forms/src/lib/ddforms';
 
 @Component({
@@ -15,55 +14,8 @@ export class ApplicationExampleComponent implements OnInit {
 
   private _config: IApplication = {
     id: 'exampleApplication',
-    description: 'An application example to show off some of the basic functions.',
+    description: 'An application example to show off some of the basic functions. Mocking up an Insurance Claim Form.',
     pages: [
-      {
-        id: 'furniturePage',
-        navigationName: 'Damaged Furniture',
-        sections: [
-          {
-            id: 'furnitureItem',
-            questions: {
-              itemName: {
-                id: 'itemName',
-                type: 'text',
-                label: 'Item Name',
-                validation: {
-                  required: true,
-                  minLength: 2,
-                  maxLength: 240
-                }
-              },
-              quantity: {
-                id: 'quantity',
-                type: 'number',
-                label: 'Item Quantity',
-                validation: {
-                  required: true,
-                  min: 1,
-                  max: 99999,
-                }
-              },
-              estimatedPrice: {
-                id: 'estimatedPrice',
-                type: 'currency',
-                label: 'Estimated Price',
-                validation: {
-                  required: true,
-                  min: 0.01,
-                  max: 500000.01
-                }
-              }
-            },
-            questionOrder: ['itemName', 'quantity', 'estimatedPrice'],
-            repeat: {
-              style: 'list',
-              minEntries: 1,
-              itemName: 'Damaged Furniture Item'
-            }
-          }
-        ],
-      },
       {
         id: 'namePage',
         navigationName: 'Name',
@@ -108,7 +60,7 @@ export class ApplicationExampleComponent implements OnInit {
               number: {
                 id: 'number',
                 type: 'tel',
-                label: '$!(b: Phone Number, https://en.wikipedia.org/wiki/Telephone_number, _blank)',
+                label: 'Telephone Number',
                 validation: {
                   required: true,
                 },
@@ -150,6 +102,72 @@ export class ApplicationExampleComponent implements OnInit {
             questionOrder: ['number', 'type', 'allowTexts']
           }
         ]
+      },
+      {
+        id: 'damagedProperty',
+        navigationName: 'Damaged Property',
+        sections: [
+          {
+            id: 'propertyItem',
+            questions: {
+              itemName: {
+                id: 'itemName',
+                type: 'text',
+                label: 'Item Name',
+                validation: {
+                  required: true,
+                  minLength: 2,
+                  maxLength: 240
+                }
+              },
+              itemType: {
+                id: 'itemType',
+                type: 'select',
+                label: 'Item Type',
+                hint: {text: 'Select the closest option.'},
+                fieldConfig: {
+                  options: [
+                    {display: 'Furniture', value: 'furniture'},
+                    {display: 'Appliance', value: 'appliance'},
+                    {display: 'Permanent Fixture', value: 'permFixture'},
+                    {display: 'Electronic', value: 'electronic'},
+                    {display: 'Clothing', value: 'clothing'},
+                    {display: 'Other', value: 'other'}
+                  ]
+                },
+                validation: {
+                  required: true,
+                }
+              },
+              quantity: {
+                id: 'quantity',
+                type: 'number',
+                label: 'Item Quantity',
+                validation: {
+                  required: true,
+                  min: 1,
+                  max: 99999,
+                }
+              },
+              estimatedPrice: {
+                id: 'estimatedPrice',
+                type: 'currency',
+                label: 'Estimated Price',
+                validation: {
+                  required: true,
+                  min: 0.01,
+                  max: 500000.01
+                }
+              },
+            },
+            questionOrder: ['itemName','itemType', 'quantity', 'estimatedPrice'],
+            repeat: {
+              style: 'list',
+              minEntries: 1,
+              itemName: 'Damaged Property Item'
+            }
+          }
+        ],
       },
     ]
   }

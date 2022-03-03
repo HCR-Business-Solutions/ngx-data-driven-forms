@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray} from '@angular/forms';
 import {Section} from '../../../../shared/form-config';
-import { DataDrivenFormsConfigService } from '../../../../ddforms/services';
+import {DataDrivenFormsConfigService} from '../../../../ddforms/services';
 
 @Component({
   selector: 'ddforms-section-list',
@@ -10,10 +10,13 @@ import { DataDrivenFormsConfigService } from '../../../../ddforms/services';
 })
 export class SectionListComponent implements OnInit {
 
-  @Input() config: Section | null = null; 
+  @Input() config: Section | null = null;
   @Input() control: AbstractControl | null = null;
 
-  public readonly inputStyle: 'flat' | 'modal' = this.ddFormsConf.getRepeatInputStyle();
+  @Output() edit: EventEmitter<{ control: AbstractControl, index: number }> = new EventEmitter<{ control: AbstractControl, index: number }>();
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
+
+  public useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddFormsConf: DataDrivenFormsConfigService
@@ -30,6 +33,14 @@ export class SectionListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  public handleEdit(event: { control: AbstractControl, index: number }) {
+    this.edit.emit(event);
+  }
+
+  public handleDelete(event: number) {
+    this.delete.emit(event);
   }
 
 }

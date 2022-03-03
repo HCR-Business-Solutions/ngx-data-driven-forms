@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, ValidatorFn} from '@angular/f
 import {Observable} from 'rxjs';
 import {ICrossFieldValidatorPackage, ICustomValidation, IQuestion, IQuestionValidation} from '../interfaces';
 import {ConditionsFunction, NormalizedValidator} from '../../types';
-import { gatherChangeEvents } from '../../utilities';
+import {gatherChangeEvents} from '../../utilities';
 
 export class Question implements IQuestion {
 
@@ -16,7 +16,7 @@ export class Question implements IQuestion {
 
   hint?: {
     text: string;
-    format?: 'markdown' | 'plaintext';
+    style?: 'markdown' | 'plaintext';
   };
 
 
@@ -58,7 +58,7 @@ export class Question implements IQuestion {
   }
 
   public control(initialValue: any, formBuilder: FormBuilder, knownValidators?: Map<string, NormalizedValidator>): FormControl {
-    return formBuilder.control(initialValue, knownValidators ? this.getValidators(knownValidators): []);
+    return formBuilder.control(initialValue, knownValidators ? this.getValidators(knownValidators) : []);
   }
 
   public getValidators(knownValidators: Map<string, NormalizedValidator>): ValidatorFn[] {
@@ -67,7 +67,7 @@ export class Question implements IQuestion {
 
     if (this.validation || this.customValidation) {
       Object.entries({
-        ...(this.validation ??  {}),
+        ...(this.validation ?? {}),
         ...(this.customValidation ?? {})
       }) // Combine Validation & Custom Validation Objects and Get all Entries
         .forEach(([key, value]: [string, any]) => { // Iterate over entries with key & value;
@@ -86,7 +86,7 @@ export class Question implements IQuestion {
   }
 
   public getShouldAsk(control: AbstractControl, knownConditions?: Map<string, ConditionsFunction>): boolean {
-    if(!this.shouldAsk) return true;
+    if (!this.shouldAsk) return true;
     return this.shouldAsk.checkStatements(control, knownConditions);
   }
 
@@ -95,7 +95,7 @@ export class Question implements IQuestion {
     knownConditions?: Map<string, ConditionsFunction>
   ): Observable<any> | undefined {
     if (!this.shouldAsk) return undefined;
-    return gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, knownConditions)
+    return gatherChangeEvents(control, this.shouldAsk, this.retainWhenNotAsked, knownConditions);
   }
 
 }
