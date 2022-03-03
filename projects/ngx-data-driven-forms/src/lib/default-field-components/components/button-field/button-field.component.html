@@ -10,7 +10,7 @@
       [id]="this.config.id" class="form-control" [attr.aria-label]="this.config.ariaLabel" [attr.aria-describedby]="
         this.config.hint ? this.config.id + 'Hint' : undefined
       " />
-    <div *ngIf="this.config.hint" class="form-hint" id="{{this.internalId}}Hint">
+    <div *ngIf="this.config.hint && !this.isReadonly" class="form-hint" id="{{this.internalId}}Hint">
       <ng-container [ngSwitch]="this.config?.hint?.style ?? 'plaintext'">
         <ng-container *ngSwitchCase="'markdown'">
           <markdown [data]="this.config.hint?.text ?? ''"></markdown>

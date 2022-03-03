@@ -9,6 +9,7 @@
   .section-list-no-items-container {
     background-color: hsla(0, 0%, 75%, .5);
     width: 85%;
+    min-width: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +22,7 @@
 
   .list-item {
     width: 80%;
+    min-width: 280px;
     background-color: hsla(0, 0%, 90%, .5);
     border: hsla(0, 0%, 90%, .8) solid 1px;
     border-radius: .25rem;

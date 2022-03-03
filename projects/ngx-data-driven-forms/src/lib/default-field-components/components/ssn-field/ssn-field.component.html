@@ -8,7 +8,7 @@
       [attr.aria-label]="this.config.ariaLabel" [formControl]="this.formControl" [id]="this.internalId"
       class="form-control" type="password" placeholder="{{this.config.placeholder}}"
       [ngClass]="{'is-invalid': this.control.errors && (this.control.touched || this.control.dirty), 'is-valid': this.control.valid && (this.control.touched || this.control.dirty)}" />
-    <div *ngIf="this.config.hint" class="form-hint" id="{{this.internalId}}Hint">
+    <div *ngIf="this.config.hint && !this.isReadonly" class="form-hint" id="{{this.internalId}}Hint">
       <ng-container [ngSwitch]="this.config?.hint?.style ?? 'plaintext'">
         <ng-container *ngSwitchCase="'markdown'">
           <markdown [data]="this.config.hint?.text ?? ''"></markdown>
