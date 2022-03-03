@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, merge, Observable, shareReplay } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, merge, Observable, shareReplay} from 'rxjs';
 
 export interface DDFormsBackEvent {
-  type: 'back'
+  type: 'back';
   payload: {
     currentPage: number;
     targetPage: number;
     skipValidation?: boolean;
-  }
+  };
 }
 
 export interface DDFormsNextEvent {
@@ -16,7 +16,7 @@ export interface DDFormsNextEvent {
     currentPage: number;
     targetPage: number;
     skipValidation?: boolean;
-  }
+  };
 }
 
 export interface DDFormsGoToEvent {
@@ -25,7 +25,7 @@ export interface DDFormsGoToEvent {
     currentPage: number;
     targetPage: number;
     skipValidation?: boolean;
-  }
+  };
 }
 
 export interface DDFormsSubmitEvent {
@@ -71,7 +71,8 @@ export class DataDrivenFormsEventsService {
     this.submitEvent$,
   );
 
-  constructor() { }
+  constructor() {
+  }
 
   public onBack(event: DDFormsBackEvent) {
     this.backEvent.next(event);

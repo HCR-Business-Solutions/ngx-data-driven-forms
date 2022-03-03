@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SelectFieldComponent } from './select-field.component';
+import {SelectFieldComponent} from './select-field.component';
 
 describe('SelectFieldComponent', () => {
   let component: SelectFieldComponent;
@@ -8,9 +8,9 @@ describe('SelectFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectFieldComponent ]
+      declarations: [SelectFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

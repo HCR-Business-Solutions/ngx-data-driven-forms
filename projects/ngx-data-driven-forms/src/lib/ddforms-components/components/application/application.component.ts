@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import { Application, Page } from '../../../shared/form-config';
-import { IApplicationMeta } from '../../../shared/interfaces';
+import {Application, Page} from '../../../shared/form-config';
+import {IApplicationMeta} from '../../../shared/interfaces';
 
 @Component({
   selector: 'ddforms-application',

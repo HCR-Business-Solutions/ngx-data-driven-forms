@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DatetimelocalFieldComponent } from './datetimelocal-field.component';
+import {DatetimelocalFieldComponent} from './datetimelocal-field.component';
 
 describe('DatetimelocalFieldComponent', () => {
   let component: DatetimelocalFieldComponent;
@@ -8,9 +8,9 @@ describe('DatetimelocalFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DatetimelocalFieldComponent ]
+      declarations: [DatetimelocalFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,5 +1,12 @@
-import { Type } from '@angular/core';
-import { ConditionsFunction, DataHandlerFunction, ErrorMessageFunction, FieldConfigValidator, NormalizedCrossFieldValidator, NormalizedValidator } from '../../shared/types';
+import {Type} from '@angular/core';
+import {
+  ConditionsFunction,
+  DataHandlerFunction,
+  ErrorMessageFunction,
+  FieldConfigValidator,
+  NormalizedCrossFieldValidator,
+  NormalizedValidator
+} from '../../shared/types';
 
 export interface IModuleConfig {
   staticValues?: {

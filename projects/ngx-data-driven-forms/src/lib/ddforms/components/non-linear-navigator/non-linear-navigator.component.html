@@ -1,10 +1,13 @@
 <ng-container *ngIf="this.meta && this.config && this.control && this.pageSelectorControl && this.pageSelectorConfig">
   <div class="non-linear-navigator-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
     <div class="non-linear-navigator-control-container">
-      <ddforms-question class="non-linear-navigator-question" [config]="pageSelectorConfig" [control]="pageSelectorControl"></ddforms-question>
+      <ddforms-question class="non-linear-navigator-question" [config]="pageSelectorConfig"
+                        [control]="pageSelectorControl"></ddforms-question>
     </div>
     <div class="non-linear-navigator-submit-container">
-      <button class="btn" [ngClass]="{'btn-primary': this.control.valid, 'btn-secondary': this.control.invalid}">Submit</button>
+      <button class="btn" [ngClass]="{'btn-primary': this.control.valid, 'btn-secondary': this.control.invalid}">
+        Submit
+      </button>
     </div>
   </div>
 </ng-container>

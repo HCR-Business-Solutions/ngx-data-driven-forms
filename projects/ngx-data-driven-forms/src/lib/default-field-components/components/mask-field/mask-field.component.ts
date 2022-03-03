@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
-import { DataDrivenFormsConfigService } from '../../../ddforms/services';
-import { Question } from '../../../shared/form-config/classes';
-import { IQuestionBase } from '../../../shared/interfaces';
-import { generateFieldUUID } from '../../../shared/utilities';
-import { IMaskConfig } from '../../field-configs';
+import {Component, Input, OnInit} from '@angular/core';
+import {AbstractControl, FormControl} from '@angular/forms';
+import {DataDrivenFormsConfigService} from '../../../ddforms/services';
+import {Question} from '../../../shared/form-config/classes';
+import {IQuestionBase} from '../../../shared/interfaces';
+import {IMaskConfig} from '../../field-configs';
 
 @Component({
   selector: 'ddforms-mask-field',
@@ -33,7 +32,7 @@ export class MaskFieldComponent implements OnInit, IQuestionBase {
 
   ngOnInit(): void {
   }
-  
+
   public get mask(): string {
     const maskConfig: IMaskConfig | undefined = this.config?.fieldConfig ? (this.config?.fieldConfig as IMaskConfig) : undefined;
     if (maskConfig === undefined) return '';

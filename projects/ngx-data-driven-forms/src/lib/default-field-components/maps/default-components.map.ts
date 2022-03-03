@@ -1,31 +1,29 @@
-import { Type } from '@angular/core';
+import {Type} from '@angular/core';
 import {
   ButtonFieldComponent,
   CheckboxFieldComponent,
   CurrencyFieldComponent,
   DateFieldComponent,
+  DatetimelocalFieldComponent,
   EmailFieldComponent,
+  MaskFieldComponent,
   MonthFieldComponent,
   NumberFieldComponent,
   PasswordFieldComponent,
   RadioFieldComponent,
   RangeFieldComponent,
+  SelectFieldComponent,
   SsnFieldComponent,
   TelFieldComponent,
   TextareaFieldComponent,
   TextFieldComponent,
   TimeFieldComponent,
   UrlFieldComponent,
-  WeekFieldComponent,
-  SelectFieldComponent,
-  DatetimelocalFieldComponent,
-  MaskFieldComponent
+  WeekFieldComponent
 } from '../components';
 
-export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<
-  string,
-  Type<any>
->([
+export const DEFAULT_FIELD_COMPONENT_MAP: Map<string, Type<any>> = new Map<string,
+  Type<any>>([
   ['button', ButtonFieldComponent],
   ['checkbox', CheckboxFieldComponent],
   ['currency', CurrencyFieldComponent],

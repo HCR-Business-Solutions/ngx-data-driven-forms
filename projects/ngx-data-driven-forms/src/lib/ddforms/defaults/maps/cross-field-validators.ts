@@ -1,4 +1,4 @@
-import { NormalizedCrossFieldValidator } from '../../../shared/types';
+import {NormalizedCrossFieldValidator} from '../../../shared/types';
 import * as SupportedCrossFieldValidators from '../logic/cross-field-validators';
 
 export const DEFAULT_CROSS_FIELD_VALIDATOR_MAP = new Map<string, NormalizedCrossFieldValidator>([

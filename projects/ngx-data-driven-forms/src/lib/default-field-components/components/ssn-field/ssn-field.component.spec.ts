@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SsnFieldComponent } from './ssn-field.component';
+import {SsnFieldComponent} from './ssn-field.component';
 
 describe('SsnFieldComponent', () => {
   let component: SsnFieldComponent;
@@ -8,9 +8,9 @@ describe('SsnFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SsnFieldComponent ]
+      declarations: [SsnFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import { ConditionsFunction } from '../../../shared/types';
-import * as SupportedLogic from '../../../shared/utilities/validator-logic'
+import {ConditionsFunction} from '../../../shared/types';
+import * as SupportedLogic from '../../../shared/utilities/validator-logic';
 
 export const DEFAULT_CONDITIONS_MAP = new Map<string, ConditionsFunction>([
   ['hasValue', SupportedLogic.hasValue],

@@ -1,5 +1,4 @@
-import { NumberComparison } from '..';
-import { calculateAge, normalizeDate } from './date';
+import {calculateAge, normalizeDate} from './date';
 
 
 export const NUMBER_COMPARISONS = {
@@ -8,7 +7,7 @@ export const NUMBER_COMPARISONS = {
   'equalTo': isEqualTo,
   'lessOrEqual': isLessOrEqual,
   'greaterOrEqual': isGreaterOrEqual
-}
+};
 
 export const DATE_COMPARISONS = {
   'isDate': isDate,
@@ -25,7 +24,7 @@ export const AGE_COMPARISONS = {
   'ageEqual': isAgeEqualTo,
   'ageLessOrEqual': isAgeLessOrEqual,
   'ageGreaterOrEqual': isAgeGreaterOrEqual,
-}
+};
 
 export function hasValue(value: any, check: boolean) {
   if (!check) return undefined;

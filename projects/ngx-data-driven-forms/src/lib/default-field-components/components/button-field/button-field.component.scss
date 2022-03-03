@@ -3,17 +3,17 @@
 
 .ddforms-default.form-field {
 
-    display: flex;
+  display: flex;
   flex-direction: column;
 
-  .form-label{
+  .form-label {
     font-family: $font-label;
     font-size: 1rem;
     color: $color-label;
     margin-bottom: 0.25rem;
   }
 
-  .form-control{
+  .form-control {
     font-family: $font-control;
     padding: 20px;
 
@@ -27,13 +27,12 @@
 
   }
 
-  .form-hint{
+  .form-hint {
     font-family: $font-hint;
     font-size: .75rem;
     color: $color-hint;
     margin: 0rem;
   }
-
 
 
 }

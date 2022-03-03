@@ -1,4 +1,4 @@
-import { NormalizedValidator } from '../../../shared/types';
+import {NormalizedValidator} from '../../../shared/types';
 import * as Validators from '../logic/validators';
 
 export const DEFAULT_VALIDATOR_MAP = new Map<string, NormalizedValidator>([
@@ -28,4 +28,4 @@ export const DEFAULT_VALIDATOR_MAP = new Map<string, NormalizedValidator>([
   ['isAgeEqualTo', Validators.ageComparison('ageEqual')],
   ['isAgeGreaterOrEqual', Validators.ageComparison('ageGreaterOrEqual')],
   ['isAgeLessOrEqual', Validators.ageComparison('ageLessOrEqual')],
-])
+]);

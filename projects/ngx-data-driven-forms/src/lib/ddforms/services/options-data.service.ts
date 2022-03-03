@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable, shareReplay} from 'rxjs';
 import {IQuestionOption} from '../../shared';
 
@@ -12,7 +12,8 @@ export class OptionsDataService {
     shareReplay(1),
   );
 
-  constructor() { }
+  constructor() {
+  }
 
   registerData(key: string, data: IQuestionOption[]): void {
 

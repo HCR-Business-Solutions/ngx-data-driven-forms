@@ -2,19 +2,21 @@
 .sshow {
   display: block;
 }
+
 // this makes the element hidden/invisible
 .hhidden {
   display: none;
 }
+
 // this holds the CSS display of the modal
 .mmodal {
   // makes it hover above all elements
   z-index: 999999;
   position: fixed;
   width: 80vw;
-   top: 40px;
-   left: calc(10vw);
-   bottom: 40px;
+  top: 40px;
+  left: calc(10vw);
+  bottom: 40px;
 }
 
 .mmodal-background {
@@ -25,12 +27,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, .5);
   // makes the below elements visible to a degree.
 
 }
 
-.modal-footer{
+.modal-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -38,24 +40,25 @@
   border-top: 1px solid #e9ecef;
 }
 
-.modal-header{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 1rem;
-    border-bottom: 1px solid #e9ecef;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
 }
-.modal-content{
+
+.modal-content {
   position: relative;
-   display: flex;
+  display: flex;
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 0.3rem;
   outline: 0;
 }
@@ -80,7 +83,7 @@ button.close {
   -webkit-appearance: none;
 }
 
-.close{
+.close {
   float: right;
   font-size: 1.5rem;
   font-weight: 700;

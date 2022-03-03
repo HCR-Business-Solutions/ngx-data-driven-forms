@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormControl} from '@angular/forms';
 import {DataDrivenFormsConfigService, OptionsDataService} from '../../../ddforms/services';
-import { IQuestionOption, Question } from '../../../shared/form-config';
-import { IQuestionBase } from '../../../shared/interfaces';
-import { generateFieldUUID } from '../../../shared/utilities';
-import { IOptionsConfig } from '../../field-configs';
+import {IQuestionOption, Question} from '../../../shared/form-config';
+import {IQuestionBase} from '../../../shared/interfaces';
+import {generateFieldUUID} from '../../../shared/utilities';
+import {IOptionsConfig} from '../../field-configs';
 import {Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
@@ -47,22 +47,21 @@ export class CheckboxFieldComponent implements OnInit, OnDestroy, IQuestionBase 
       if (_ && !_.closed) {
         _.unsubscribe();
       }
-    })
+    });
   }
 
   setupOptions(): void {
     const options: IOptionsConfig | undefined = this.config?.fieldConfig ? (this.config?.fieldConfig as IOptionsConfig) : undefined;
-    if(options === undefined) return;
+    if (options === undefined) return;
 
     if ('options' in options) {
-      this.options = options.options
+      this.options = options.options;
     } else if ('apiSourceString' in options) {
       this.subs.push(this.http.get(options.apiSourceString).subscribe(result => this.options = result as IQuestionOption[]));
     } else if ('dataSourceRef' in options) {
       this.subs.push(this.optionsData.getKeyStream(options.dataSourceRef).subscribe(result => this.options = result ?? []));
     }
   }
-
 
 
 }

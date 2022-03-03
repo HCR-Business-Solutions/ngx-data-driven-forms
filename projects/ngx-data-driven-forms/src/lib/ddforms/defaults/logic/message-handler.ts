@@ -1,4 +1,4 @@
-import { ErrorMessageFunction } from '../../../shared/types';
+import {ErrorMessageFunction} from '../../../shared/types';
 
 
 export const min: ErrorMessageFunction = (error: any) => `Value must be less than or equal to  ${error.min ?? '??'}.`;
@@ -13,7 +13,7 @@ export const minLength: ErrorMessageFunction = (error: any) => `Must be greater 
 
 export const maxLength: ErrorMessageFunction = (error: any) => `Must be less than ${error.requiredLength ?? '??'} characters long.`;
 
-export const pattern: ErrorMessageFunction = (error: any) => `Value must match pattern ${error.requiredPattern ?? '??'}.`
+export const pattern: ErrorMessageFunction = (error: any) => `Value must match pattern ${error.requiredPattern ?? '??'}.`;
 
 export const isTruthy: ErrorMessageFunction = () => `Value must be present.`;
 

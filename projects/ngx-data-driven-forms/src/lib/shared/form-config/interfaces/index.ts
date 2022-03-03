@@ -1,6 +1,6 @@
 export * from './application';
 export * from './conditions';
-export * from './cross-field-validation'
+export * from './cross-field-validation';
 export * from './cross-field-validator-package';
 export * from './custom-conditions';
 export * from './custom-cross-field-validation';

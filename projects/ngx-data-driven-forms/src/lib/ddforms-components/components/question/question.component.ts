@@ -11,14 +11,14 @@ import {DynamicFieldDirective} from '../../../shared/directives';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit, OnDestroy, IQuestionBase{
+export class QuestionComponent implements OnInit, OnDestroy, IQuestionBase {
 
   @Input() public config: Question | null = null;
   @Input() public control: AbstractControl | null = null;
   @Input() public isReadonly: boolean = false;
   @ViewChild(DynamicFieldDirective, {static: true}) private host!: DynamicFieldDirective;
 
-  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles()
+  public useDefaultStyles = !this.ddFormsConf.getShouldIgnoreStyles();
   private shouldAsk: boolean = false;
   private shouldAskSub?: Subscription;
 
@@ -60,7 +60,7 @@ export class QuestionComponent implements OnInit, OnDestroy, IQuestionBase{
     if (!viewContainerRef) return;
     viewContainerRef.clear();
 
-    if(!this.config || !this.control || !this.shouldAsk || (this.config?.isFlag ?? false)) return;
+    if (!this.config || !this.control || !this.shouldAsk || (this.config?.isFlag ?? false)) return;
 
 
     const components = this.ddFormsConf.getComponents();

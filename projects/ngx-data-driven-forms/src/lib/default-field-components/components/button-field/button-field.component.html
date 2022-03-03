@@ -1,9 +1,10 @@
 <ng-container *ngIf="this.control && this.config">
   <div class="form-field button-field" [ngClass]="{ 'ddforms-default': this.useDefaultStyles }">
     <input type="button" [formControl]="this.formControl" [name]="this.config.id" [value]="this.config.label"
-      [id]="this.config.id" class="form-control" [attr.aria-label]="this.config.ariaLabel" [attr.aria-describedby]="
+           [id]="this.config.id" class="form-control" [attr.aria-label]="this.config.ariaLabel"
+           [attr.aria-describedby]="
         this.config.hint ? this.config.id + 'Hint' : undefined
-      " />
+      "/>
     <div *ngIf="this.config.hint && !this.isReadonly" class="form-hint" id="{{this.internalId}}Hint">
       <ng-container [ngSwitch]="this.config?.hint?.style ?? 'plaintext'">
         <ng-container *ngSwitchCase="'markdown'">

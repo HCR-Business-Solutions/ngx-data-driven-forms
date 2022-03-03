@@ -15,7 +15,8 @@ export class DataDrivenFormsService {
     private ddFormsConf: DataDrivenFormsConfigService,
     private ddFormsValidator: DataDrivenFormsValidationService,
     private _fb: FormBuilder,
-  ) { }
+  ) {
+  }
 
   //#region Question Functions
 
@@ -83,17 +84,17 @@ export class DataDrivenFormsService {
     return section.formGroup(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
-  public getSectionValue(control: AbstractControl, section: Section): {[key: string]: any} | {[key: string]: any}[] | null {
+  public getSectionValue(control: AbstractControl, section: Section): { [key: string]: any } | { [key: string]: any }[] | null {
     const decodeGroup = (group: FormGroup) => {
-      return Object.entries(group.controls).reduce((prev: {[key: string]: any}, [accKey, accVal]: [string, AbstractControl]) => {
-        return {...prev, [`${accKey}`]: this.getQuestionValue(accVal, section.questions[accKey])}
+      return Object.entries(group.controls).reduce((prev: { [key: string]: any }, [accKey, accVal]: [string, AbstractControl]) => {
+        return {...prev, [`${accKey}`]: this.getQuestionValue(accVal, section.questions[accKey])};
       }, {});
-    }
+    };
 
     if (control instanceof FormGroup) {
       return decodeGroup(control);
     } else if (control instanceof FormArray) {
-      const result: {[key: string]: any}[] = [];
+      const result: { [key: string]: any }[] = [];
       control.controls.forEach(control => result.push(decodeGroup(control as FormGroup)));
       return result;
     }
@@ -131,8 +132,8 @@ export class DataDrivenFormsService {
     return page.getForm(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
-  public getPageValue(control: AbstractControl, page: Page): {[key: string]: any} | null {
-    return page.sections.reduce((prev: {[key: string]: any}, curr: Section) => {
+  public getPageValue(control: AbstractControl, page: Page): { [key: string]: any } | null {
+    return page.sections.reduce((prev: { [key: string]: any }, curr: Section) => {
         const sectionControl = control.get(curr.id);
         if (!sectionControl) return ({...prev});
         return ({
@@ -140,7 +141,7 @@ export class DataDrivenFormsService {
           [`${curr.id}`]: this.getSectionValue(sectionControl, curr)
         });
       }
-    , {});
+      , {});
   }
 
   public shouldAskPage(control: AbstractControl, page: Page): boolean {
@@ -153,7 +154,7 @@ export class DataDrivenFormsService {
   //#region Application Functions
 
   public generateApplicationConfig(application: any, skipSchemeValidation?: boolean): Application {
-    const validation = !skipSchemeValidation  ? this.ddFormsValidator.validateApplication(application) : null;
+    const validation = !skipSchemeValidation ? this.ddFormsValidator.validateApplication(application) : null;
     if (validation) {
       throw new Error(`Invalid Application.\n${JSON.stringify(validation, null, 2)}`);
     }
@@ -161,15 +162,15 @@ export class DataDrivenFormsService {
   }
 
   public generateApplicationControl(initialValue: any, application: Application, skipSchemeValidation?: boolean): FormGroup {
-    const validation = !skipSchemeValidation  ? this.ddFormsValidator.validateApplication(application) : null;
+    const validation = !skipSchemeValidation ? this.ddFormsValidator.validateApplication(application) : null;
     if (validation) {
       throw new Error(`Invalid Application.\n${JSON.stringify(validation, null, 2)}`);
     }
     return application.getForm(initialValue, this._fb, this.ddFormsConf.getValidators(), this.ddFormsConf.getCrossFieldValidators());
   }
 
-  public getApplicationValue(control: AbstractControl, application: Application): {[key: string]: any} | null {
-    return application.pages.reduce((prev: {[key: string]: any}, curr: Page) => {
+  public getApplicationValue(control: AbstractControl, application: Application): { [key: string]: any } | null {
+    return application.pages.reduce((prev: { [key: string]: any }, curr: Page) => {
         const sectionControl = control.get(curr.id);
         if (!sectionControl) return ({...prev});
         return ({

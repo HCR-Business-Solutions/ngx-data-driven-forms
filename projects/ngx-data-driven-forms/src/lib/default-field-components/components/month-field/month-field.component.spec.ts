@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MonthFieldComponent } from './month-field.component';
+import {MonthFieldComponent} from './month-field.component';
 
 describe('MonthFieldComponent', () => {
   let component: MonthFieldComponent;
@@ -8,9 +8,9 @@ describe('MonthFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MonthFieldComponent ]
+      declarations: [MonthFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

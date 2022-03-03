@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UrlFieldComponent } from './url-field.component';
+import {UrlFieldComponent} from './url-field.component';
 
 describe('UrlFieldComponent', () => {
   let component: UrlFieldComponent;
@@ -8,9 +8,9 @@ describe('UrlFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UrlFieldComponent ]
+      declarations: [UrlFieldComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
