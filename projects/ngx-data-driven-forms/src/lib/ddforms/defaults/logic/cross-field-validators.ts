@@ -74,7 +74,7 @@ export function numberSiblingValidator(
 
   return (targetId, siblingId, arg) =>
     // If there is no passed argument or the comparison function could not be found return undefined, else return the comparisonFunction
-    !isNullOrUndefined(arg) || !comparisonFunction
+    !arg || !comparisonFunction
       ? undefined
       : (control) => {
 
