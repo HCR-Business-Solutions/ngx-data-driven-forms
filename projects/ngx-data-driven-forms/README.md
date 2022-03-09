@@ -259,7 +259,7 @@ export interface ISection {
     maxEntries?: number; // max number of entries
   };
   shouldAsk?: IStatements; // Conditions for Showing/Hiding sections, when not present the question will allways be asked. (See later section) 
-  retainWhenNotAsked?: boolean; // Defines if the value the question asks should be retained when the question is not asked. By default any not asked question will be cleared when hidden.
+  retainWhenNotAsked?: boolean; // Defines if the values the section asks should be retained when the question is not asked. By default any not asked question will be cleared when hidden.
 
 }
 ```
@@ -318,18 +318,70 @@ This example will define a section that collects items. ***(Please note that the
 }
 ```
 
-### Defining a Conditional "Should Ask" (Questions and Sections)
-Questions and Sections both accept a property `shouldAsk` which allows for a conditional Show/Hide functionality based off of defined statements. ***(Note: When a Question/Section is hidden in this manner it will not trigger validation.)***
+### Defining A Page
+A Page is a group of sections that will be displayed on a single web page. A Page will most likely be a group of similar sections.
+
+The page Object required the following:
+- an `id` which should be unique to the application
+- a `navigationName` which will should be a Human Recognizable name for navigation 
+- a list of sections (as defined above) in an array `sections`
+
+#### The IPage Interface
+```ts
+export interface IPage {
+
+  id: string; // An id that must be unique to the application.
+  navigationName: string; // A human readable name that will be used for navigation
+  title?: string; // A title that can be displayed on a page for Label purposes.
+
+  narrative?: { // If present will display a narrative section.
+    text: string; // The content of a narrative block.
+    style?: 'markdown' | 'plaintext'; // Allows the use of markdown or plaintext (with special rendering).
+  };
+
+  sections: ISection[]; // The sections that will be present on a page.
+
+  shouldAsk?: IStatements; // Conditions for Showing/Hiding pages, when not present the question will allways be asked. (See later section) 
+  retainWhenNotAsked?: boolean; // Defines if the values the page asks should be retained when the question is not asked. By default any not asked question will be cleared when hidden.
+
+}
+```
+#### Example Page
+This example json will define a page. ***(Please note that the sections will not be defined in full)***
+
+```json
+{
+  "id": "example Page",
+  "navigationName": "Example Page",
+  "title": "Example Page",
+  "narrative": {
+    "text": "Defines an Example Page."
+  },
+  "sections": [
+    {
+      "id": "testSection1",
+      ... Section Properties
+    },
+    {
+      "id": "testSection2",
+      ... Section Properties
+    }
+  ]
+}
+```
+
+### Defining a Conditional "Should Ask" (Questions, Sections and Pages)
+Questions and Sections both accept a property `shouldAsk` which allows for a conditional Show/Hide functionality based off of defined statements. ***(Note: When a Question/Section/Page is hidden in this manner it will not trigger validation.)***
 
 `shouldAsk` is defined by the  `Statements` object which is composed of individual `Statement` objects as well as some meta info.
 ### Defining A Statement using The IStatement Interface
-A statement requires a `sibling` which points to the id of a sibling and a `expectedParentLevel` which tells the statement checker where to look for the sibling ***(Note: These values refer to different objects for Questions and Sections)***
+A statement requires a `sibling` which points to the id of a sibling and a `expectedParentLevel` which tells the statement checker where to look for the sibling ***(Note: These values refer to different objects for Questions, Sections and Pages)***
 
- `expectedParentLevel` Values:
-0. For Questions, Sibling is on Same Question (Not Possible). For Sections, Sibling is on Same Section.
-1. For Questions, Sibling is on Same Section. For Sections, Sibling is on Same Page.
-2. For Questions, Sibling is on Same Page. For Sections, Sibling is on Same Application.
-3. For Questions, Sibling is on Same Application. For Sections, this value is invalid.
+`expectedParentLevel` Values:
+0. For Questions, Sibling is on Same Question (Not Possible). For Sections, Sibling is on Same Section. For Pages, Sibling is on Same Page.
+1. For Questions, Sibling is on Same Section. For Sections, Sibling is on Same Page. For Pages, Sibling is on Same Application.
+2. For Questions, Sibling is on Same Page. For Sections, Sibling is on Same Application. For Pages, this value is invalid.
+3. For Questions, Sibling is on Same Application. For Sections, this value is invalid. For Pages, this value is invalid.
 
 ```ts
 export interface IStatement {
@@ -371,11 +423,11 @@ isAgeLessOrEqual?: number; // Checks if the sibling date results in an an age(ye
 }
 ````
 
-#### Custom Conditions 
+#### Custom Conditions
 Custom conditions are defined as a key value pair where the key is a string that will point to a registered condition (See Registering Custom Logic and Components), and the value is a value to compare against.
 
-### Packaging Statements for a `shouldAsk` using the IStatements Interface 
-The `shouldAsk` property on both Questions and Sections expects a `Statements` object which consists of a list of statements, as well as an optional flag for the checking requirements.
+### Packaging Statements for a `shouldAsk` using the IStatements Interface
+The `shouldAsk` property on Questions, Sections, and Pages expects a `Statements` object which consists of a list of statements, as well as an optional flag for the checking requirements.
 
 The property ``statements`` accepts an array of the Statement Objects detailed above. This is required for a Statements Object
 
@@ -388,7 +440,7 @@ export interface IStatements {
 }
 ```
 
-## Registering Logic and Components at Runtime
+## Registering Custom Logic and Components (at Runtime)
 
 In addition to statically defining logic and components on import, you may also register them in your application
 lifecycle, this allows for greater flexibility but can cause race conditions and inconsistent functionality between
