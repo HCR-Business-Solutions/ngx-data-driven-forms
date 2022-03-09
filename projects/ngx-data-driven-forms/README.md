@@ -14,7 +14,7 @@ npm install @nys-hcr-its/ngx-data-driven-forms
 After installation in your app.module.ts import the DDForms Module
 
 ```ts
-import { DDFormsModule } from 'ngx-data-driven-forms'
+import { DDFormsModule } from '@nys-hcr-its/ngx-data-driven-forms'
 ```
 
 and add the module to your Apps imports using `forRoot()`.
@@ -37,14 +37,14 @@ export class AppModule { }
 
 Take notice of the empty object being passed to the `forRoot` function.
 
-### DDForms Configuration
+### DDForms Configuration 
 
 A configuration object can be defined with the `forRoot` function within the input, the possible Configurations are as
 defined.
 
 ```ts
 export interface ModuleConfig{
-  staticValues?: {
+  staticValues?: { // Allows developers to register custom logic and components on component import.
     components?: Map<string, Type<any>>;
     conditions?: Map<string, ConditionsFunction>;
     crossFieldValidators?: Map<string, NormalizedCrossFieldValidator>;
@@ -54,7 +54,7 @@ export interface ModuleConfig{
     validators?: Map<string, NormalizedValidator>;
   };
 
-  skipDefaults?: {
+  skipDefaults?: { // Allows developers to skip loading default logic and components.
     components?: boolean;
     conditions?: boolean;
     crossFieldValidators?: boolean;
@@ -63,17 +63,16 @@ export interface ModuleConfig{
     messageHandlers?: boolean;
     validators?: boolean;
   };
-  skipDefaultStyles?: boolean;
+  skipDefaultStyles?: boolean; // Allows developers to disable default styling provided by the libary (keeps all classes in place)
 }
 ```
 
-The static values allow developers to define custom logic, validators, components and more. Allowing for projects to
-adapt the library to its own needs while still using the JSON Configurations provided.
+### Registering Custom Logic and Components (On Import)
+As shown in the comments above, it is possible to register custom logic and components when importing the Module, this can be done in addition to registering at runtime which is explained in a later section.
 
-Skip defaults allows developers to remove the default logic, validators, components, ect. This is to allow developers to
-override base functionality.
+Each logic or component type is registered individually as a key value pair, where the key is the type of logic being registered and the value is a map of string logic pairs that will be available for use.
 
-While finally skip default styles will disable all default styling from the project.
+Each map expects a key value pair, please note that duplicate keys will overwrite the functionality with whichever functionality is defined latest.
 
 ## Writing the Form
 The power of this application comes from being able to write a simple JSON file and have a consistent and accessible form render from it. There are many properties needed to create a fully functional form, but we have done our best to simplify as much as possible.
@@ -211,7 +210,183 @@ export interface ICrossFieldValidation {
 
 ```
 
+#### Example Question
+This json object will define a Question that asks a for a First Name 
+```json
+{
+  "id": "firstName",
+  "type": "text",
+  "label": "First Name",
+  "ariaLabel": "First Name",
+  "hint": {
+    "text": "Your first(given) name."
+  },
+  "validation": {
+    "required": true,
+    "minLength": 3
+  }
+}
+```
 
+### Defining A Section
+A section is a group of similar questions, it requires a string `id`, an object `questions` which is a group of question objects, and a list of strings `questionOrder`.
+
+The section `id` should be unique to the page. The `questions` object is an object of key value pairs where the key is the question's and the value is a defined question.
+
+`questionOrder` is a list of question id strings which should point to your questions, this lets you define the order the questions will be shown in. Any question not in this list will not be displayed on the page.
+
+#### The ISection Interface
+```ts
+export interface ISection {
+
+  id: string; // An id, should be unique to the page this section is a part of.
+  title?: string; // A Title for the section, displays a title for Section splitting.
+  border?: boolean; // When true will apply the section-border css class to the section. 
+
+  narrative?: { // When present defines a narrative section.
+    text: string; // The content of the narrative.
+    style?: 'markdown' | 'plaintext'; // allows to switch between markdown and plaintext
+  };
+
+  questions: IQuestionGroup; // A group of key value pairs defining where the key is the questionId and the value is a question object.
+  questionOrder: string[]; // A list of questionIds that define the order that questions will be rendered in.
+
+  repeat?: { // Defines if a section should repeat (and in what style).
+    style: 'list' | 'table'; // Defines if the repeating section should be a list or table.
+    inputStyle?: string; // Defines how to add new items.
+    itemName?: string; // Defines an item name for list view
+    minEntries?: number; // min number of entries
+    maxEntries?: number; // max number of entries
+  };
+  shouldAsk?: IStatements; // Conditions for Showing/Hiding sections, when not present the question will allways be asked. (See later section) 
+  retainWhenNotAsked?: boolean; // Defines if the value the question asks should be retained when the question is not asked. By default any not asked question will be cleared when hidden.
+
+}
+```
+
+#### Example Section
+This example json will define a section that asks for basic information. ***(Please note that the question will not be defined in full)***
+```json
+{
+  "id": "basicInfo",
+  "title": "Basic Information",
+  "narrative": {
+    "title": "Please enter your current information, legal name is not required."
+  },
+  "questions": {
+    "firstName": {
+      "id": "firstName",
+      ... Question Properties
+    },
+    "middleName": {
+      "id": "middleName",
+      ... Question Properties
+    },
+    "lastName": {
+      "id": "lastName",
+      ... Question Properties
+    }
+  },
+  "questionOrder": ["firstName", "middleName", "lastName"]
+}
+```
+
+#### Example Repeating Section
+This example will define a section that collects items. ***(Please note that the questions will not be defined in full)***
+```json
+{
+  "id": "items",
+  "title": "Items Available",
+  "narrative": {
+    "text": "A list of items available."
+  },
+  "questions": {
+    "itemName": {
+      "id": "itemName",
+      ... Question Properties
+    },
+    "quantity": {
+      "id": "quantity",
+      ... Question Properties
+    }
+  },
+  "questionOrder": ["itemName", "quantity"],
+  "repeat": {
+    "style": "list",
+    "itemName": "Item"
+  }
+}
+```
+
+### Defining a Conditional "Should Ask" (Questions and Sections)
+Questions and Sections both accept a property `shouldAsk` which allows for a conditional Show/Hide functionality based off of defined statements. ***(Note: When a Question/Section is hidden in this manner it will not trigger validation.)***
+
+`shouldAsk` is defined by the  `Statements` object which is composed of individual `Statement` objects as well as some meta info.
+### Defining A Statement using The IStatement Interface
+A statement requires a `sibling` which points to the id of a sibling and a `expectedParentLevel` which tells the statement checker where to look for the sibling ***(Note: These values refer to different objects for Questions and Sections)***
+
+ `expectedParentLevel` Values:
+0. For Questions, Sibling is on Same Question (Not Possible). For Sections, Sibling is on Same Section.
+1. For Questions, Sibling is on Same Section. For Sections, Sibling is on Same Page.
+2. For Questions, Sibling is on Same Page. For Sections, Sibling is on Same Application.
+3. For Questions, Sibling is on Same Application. For Sections, this value is invalid.
+
+```ts
+export interface IStatement {
+
+  sibling: string; // The id of the sibling the conditions will be compared against.
+  expectedParentLevel: number; // The expected parent level of the sibling(see above)
+  conditions?: IConditions; // The default conditions that should be checked (see Default Conditions)
+  customConditions?: ICustomConditions; // An object of key value pairs that will tell the Statement checker to run a custom condition (See Logic and Component Registration)
+  check?: 'one' | 'all'; // Will tell the statement checker if the statement must meet one condition or all conditions, if not defined statement checker will only require one condition to pass.
+
+}
+```
+
+#### Default Conditions
+The default conditions are conditions that are defined by default by this library, the default conditions are very similar to the default validators.
+```ts
+export interface IConditions {
+hasValue?: boolean; // Checks is sibling has a value.
+valueMatches?: any; // Checks if the sibling has a value that matches a provided value.
+pattern?: string; // Checks if the sibling matches the provided pattewrn
+isLessThan?: number; // Checks if sibling has a value less than the provided value.
+isGreaterThan?: number; // Checks if the sibling has a value greater than the provided value.
+isEqualTo?: number; // Checks if the sibling has a value equal to the provided value.
+isLessOrEqual?: number; // Checks if the sibling has a value less than or equal to the provided value.
+isGreaterOrEqual?: number; // Checks if the sibling has a value that is greater than or equal to the provided value.
+isTruthy?: boolean; // Checks if the sibling has a value that evaultes to true.
+isFalsy?: boolean; // Checks if the sibling has a value that evaluates to fale.
+isDate?: boolean; // Checks is the sibling is a date.
+isDateBefore?: Date | string; // Checks if the sibling is a date before a given date (or the current date)
+isDateAfter?: Date | string; // Checks if the sibling is a date after a given date (or the current date)
+isDateOn?: Date | string; // Checks if the sibling is a date on a given date (or the current date)
+isDateOnOrBefore?: Date | string; // Checks if the sibling is a date on or before a given date (or the current date)
+isDateOnOrAfter?: Date | string; // Checks if the sibling is a date on or after a given datre (or the current date)
+isAgeGreaterThan?: number; // Checks if the sibling date results in an age(years) greater than a given age(years)
+isAgeLessThan?: number;// Checks if the sibling date results in an age(years) less than a given age(years)
+isAgeEqualTo?: number; // Checks if the sibling date results in an age(years) equal to a given age(years)
+isAgeGreaterOrEqual?: number; // Checks if the sibling date results in an age(years) greater than or equal to a given age(years)
+isAgeLessOrEqual?: number; // Checks if the sibling date results in an an age(years) less than or equal to a given age(years)
+}
+````
+
+#### Custom Conditions 
+Custom conditions are defined as a key value pair where the key is a string that will point to a registered condition (See Registering Custom Logic and Components), and the value is a value to compare against.
+
+### Packaging Statements for a `shouldAsk` using the IStatements Interface 
+The `shouldAsk` property on both Questions and Sections expects a `Statements` object which consists of a list of statements, as well as an optional flag for the checking requirements.
+
+The property ``statements`` accepts an array of the Statement Objects detailed above. This is required for a Statements Object
+
+The property `check` is optional and will accept the values 'one' or 'all'. When one is selected only one statement must pass for the section/question to be displayed, when the set to 'all' all statements must pass for the section/question to be displayed. When no option is provided the checking will use the same logic as when the property is set to 'one'.
+
+```ts
+export interface IStatements {
+  statements: IStatement[]; // list of statements (see above)
+  check?: 'one' | 'all'; // check property, when not set the statement processor will use 'one'.
+}
+```
 
 ## Registering Logic and Components at Runtime
 
@@ -226,7 +401,7 @@ e.g: application.component.ts)
 export class AppComponent implements OnInit {
 
   constructor(
-    private ddformsConf: DataDrivenFormsConfigService,
+    private ddformsConf: DataDrivenFormsConfigService, 
   ) {
   }
   
