@@ -2,11 +2,11 @@ export interface ICrossFieldValidation {
 
   requireIf?: boolean;
   requireIfMatch?: any;
-  isLessThan?: number;
-  isGreaterThan?: number;
-  isEqualTo?: number;
-  isLessOrEqual?: number;
-  isGreaterOrEqual?: number;
+  isLessThan?: boolean;
+  isGreaterThan?: boolean;
+  isEqualTo?: boolean;
+  isLessOrEqual?: boolean;
+  isGreaterOrEqual?: boolean;
   isDateBefore?: boolean;
   isDateAfter?: boolean;
   isDateOn?: boolean;
