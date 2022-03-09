@@ -103,7 +103,15 @@ application = {
 An Application is composed of 1-n Pages, A Page is composed of 1-n Sections, and a Section is composed of 1-n Questions.
 
 ### Defining A Question
-A question only requires two properties `id` and `type`. The `id` **must** be unique  within the section it is defined or collisions will occur. Questions also accept multiple other properties. In order to create an accessible field you must define either `label` or `ariaLabel` where the `label ` will be displayed and an `ariaLabel` will only be available to screen readers.
+A question config is used to define a question (or form input)
+
+A question requires the following:
+- `id` **must** be unique  within the section it is defined or collisions will occur.
+- `type` which defines which type of field to use for the question (must be a registered field component)
+
+For an accessible field the config requires one of the following: 
+- `label ` will be displayed as text and used as a 'for' attribute
+- `ariaLabel` will be used for screen readers
 
 #### The IQuestion Interface
 ```ts
@@ -229,11 +237,13 @@ This json object will define a Question that asks a for a First Name
 ```
 
 ### Defining A Section
-A section is a group of similar questions, it requires a string `id`, an object `questions` which is a group of question objects, and a list of strings `questionOrder`.
+A section is a group of questions, most commonly used to group similar questions.
 
-The section `id` should be unique to the page. The `questions` object is an object of key value pairs where the key is the question's and the value is a defined question.
+A section requires:
+ - an `id` (unique to the containing page)
+ - an object `questions` with key value pairs of your questions 
+ - a list of strings `questionOrder` which should all be question ids within the section (defines the render order of the questions)
 
-`questionOrder` is a list of question id strings which should point to your questions, this lets you define the order the questions will be shown in. Any question not in this list will not be displayed on the page.
 
 #### The ISection Interface
 ```ts
@@ -249,7 +259,7 @@ export interface ISection {
   };
 
   questions: IQuestionGroup; // A group of key value pairs defining where the key is the questionId and the value is a question object.
-  questionOrder: string[]; // A list of questionIds that define the order that questions will be rendered in.
+  questionOrder: string[]; // A list of questionIds that define the order that questions will be rendered in. Any key not included will not be rendered.
 
   repeat?: { // Defines if a section should repeat (and in what style).
     style: 'list' | 'table'; // Defines if the repeating section should be a list or table.
@@ -369,6 +379,44 @@ This example json will define a page. ***(Please note that the sections will not
   ]
 }
 ```
+
+### Defining an Application
+An application is the highest possible configuration level of this library, it is used in order to define a complete application with one or more page.
+
+An application requires the following:
+- an `id` (this should be unique to the consuming web application).
+- a `description` which should describe the application.
+- a `pages` array which is a lost of Page objects (see above)
+
+#### The IApplication Interface
+```ts
+export interface IApplication {
+  id: string; // An application id (should be unique to your consuming web application)
+  description: string; // A description for the application.
+  pages: IPage[]; // A list of pages (in order).
+}
+```
+
+#### Example application.
+An example application json object. ***(Please note the pages will not be defined in full)***
+
+````json
+{
+  "id": "applicationExample",
+  "description": "An example application.",
+  "pages": [
+    {
+      "id": "page0",
+      ... Page Properties
+    },
+    {
+      "id": "page1",
+      ... Page Properties
+    }
+  ]
+}
+````
+
 
 ### Defining a Conditional "Should Ask" (Questions, Sections and Pages)
 Questions and Sections both accept a property `shouldAsk` which allows for a conditional Show/Hide functionality based off of defined statements. ***(Note: When a Question/Section/Page is hidden in this manner it will not trigger validation.)***
