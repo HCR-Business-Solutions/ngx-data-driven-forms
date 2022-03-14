@@ -26,7 +26,7 @@ export class ApplicationExampleComponent implements OnInit {
               first: {
                 id: 'first',
                 type: 'text',
-                label: 'First Name',
+                label: '$!(abbr: FN, First Name)',
                 validation: {
                   required: true,
                 },
@@ -34,12 +34,12 @@ export class ApplicationExampleComponent implements OnInit {
               middle: {
                 id: 'middle',
                 type: 'text',
-                label: 'Middle Name'
+                label: '$!(b: Middle) Name'
               },
               last: {
                 id: 'last',
                 type: 'text',
-                label: 'Last Name'
+                label: '$!(b: $!(i: Last)) Name'
               },
             },
             questionOrder: [

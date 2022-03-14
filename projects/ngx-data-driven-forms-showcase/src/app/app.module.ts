@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,7 @@ import { ApplicationExampleComponent } from './pages/application-example/applica
     DDFormsModule.forRoot({
       // skipDefaultStyles: true
     }),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
