@@ -47,7 +47,7 @@ export class AdvancedTextComponent {
   };
 
   private readonly parse: (arg: string) => string = (arg: string) => {
-    if (arg.startsWith('$!') && arg.includes(':')) {
+    if (arg.match(this.escapePattern) && arg.includes(':')) {
       const temp = arg
         .slice(3, arg.length - 1)
         .split(':')
@@ -69,7 +69,6 @@ export class AdvancedTextComponent {
       result = this.tokenize(result)
         .map((token) => this.parse(token))
         .join('');
-      console.log();
     }
     return { input: arg, result };
   };
@@ -82,6 +81,9 @@ export class AdvancedTextComponent {
     if (!this.text) {
       return '';
     }
-    return this.run(this.text ?? '').result;
+
+    const processPack = this.run(this.text ?? '');
+
+    return processPack.result;
   }
 }
