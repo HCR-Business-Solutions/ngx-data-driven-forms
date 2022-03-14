@@ -1,60 +1,87 @@
-import {Component, Input, OnInit} from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ddforms-advanced-text',
-  templateUrl: './advanced-text.component.html'
+  templateUrl: './advanced-text.component.html',
 })
-export class AdvancedTextComponent implements OnInit {
-
+export class AdvancedTextComponent {
   @Input() text: string | null = null;
 
+  private readonly escapePattern = new RegExp(/(\$\!\([A-Za-z\: ,\/\<\>]*\))/g);
 
-  private readonly handledTags: { [key: string]: (args: string[]) => string } = {
-    'abbr': (args: string[]) => `<abbr title="${args[1] ?? ''}">${args[0] ?? ''}</abbr>`,
-    'b': (args: string[]) => `<b>${args.join('')}</b>`,
-    'i': (args: string[]) => `<i>${args.join('')}</i>`,
-    'a': (args: string[]) => `<a href="${args[1] ?? ''}" target=${args[2] ?? '_blank'}>${args[0]}</a>`,
-    'br': () => '<br />',
-    'small': (args: string[]) => `<small>${args.join('')}</small>`,
-    'strong': (args: string[]) => `<strong>${args.join('')}</strong>`,
-    'sup': (args: string[]) => `<sup>${args.join('')}</sup>`,
-    'sub': (args: string[]) => `<sub>${args.join('')}</sub>`,
+  private readonly handledTags: { [key: string]: (args: string[]) => string } =
+    {
+      abbr: (args: string[]) =>
+        `<abbr title="${args[1] ?? ''}">${args[0] ?? ''}</abbr>`,
+      b: (args: string[]) => `<b>${args.join(' ')}</b>`,
+      i: (args: string[]) => `<i>${args.join(' ')}</i>`,
+      a: (args: string[]) =>
+        `<a href="${args[1] ?? ''}" target=${args[2] ?? '_blank'}>${
+          args[0]
+        }</a>`,
+      br: () => '<br />',
+      small: (args: string[]) => `<small>${args.join(' ')}</small>`,
+      strong: (args: string[]) => `<strong>${args.join(' ')}</strong>`,
+      sup: (args: string[]) => `<sup>${args.join(' ')}</sup>`,
+      sub: (args: string[]) => `<sub>${args.join(' ')}</sub>`,
+    };
+
+  constructor() {}
+
+  private readonly tokenize: (arg: string) => string[] = (arg: string) => {
+    if (arg.match(this.escapePattern)) {
+      return arg.split(this.escapePattern);
+    }
+    return [arg];
   };
 
-  constructor() {
-  }
+  private readonly tagHandler: (tag: string, args: string[]) => string = (
+    tag: string,
+    args: string[]
+  ) => {
+    const tagFunction = this.handledTags[tag];
+    if (tagFunction !== undefined) {
+      return tagFunction(args);
+    }
+    return `${tag} ${args.join(' ')}`;
+  };
 
-  ngOnInit() {
-  }
+  private readonly parse: (arg: string) => string = (arg: string) => {
+    if (arg.startsWith('$!') && arg.includes(':')) {
+      const temp = arg
+        .slice(3, arg.length - 1)
+        .split(':')
+        .map((_) => _.trim());
+      const parsed: [string, string[]] = [
+        temp[0],
+        temp[1].split(',').map((_) => _.trim()),
+      ];
+      return this.tagHandler(parsed[0], parsed[1]);
+    }
+    return arg;
+  };
+
+  private readonly run: (arg: string) => { input: string; result: string } = (
+    arg: string
+  ) => {
+    let result = arg;
+    while (result.match(this.escapePattern)) {
+      result = this.tokenize(result)
+        .map((token) => this.parse(token))
+        .join('');
+      console.log();
+    }
+    return { input: arg, result };
+  };
 
   public shouldUseProcessor(): boolean {
-    return (this.text ?? '').includes('$!');
-  }
-
-  private processText(text: string): string {
-    if (!text.includes('$!')) return text.replace(new RegExp('<[^>]*>', 'g'), '');
-    ;
-    return text.split(/(?=\$\!)/g).map((token) => {
-      if (token.startsWith('$!(')) {
-        const comp = token.substring(3, (token.length - 1)).split(/\:(.+)/);
-        const tag = comp[0];
-        const args = comp[1].split(',').map(_ => _.trim());
-        if (this.handledTags[tag]) {
-          return this.handledTags[tag](args);
-        }
-        return token;
-
-      }
-      return token.replace(new RegExp('<[^>]*>', 'g'), '');
-    }).join('');
+    return (this.text ?? '').match(this.escapePattern) !== null;
   }
 
   public get processedText(): string {
     if (!this.text) {
       return '';
     }
-    return this.processText(this.text);
+    return this.run(this.text ?? '').result;
   }
-
 }
