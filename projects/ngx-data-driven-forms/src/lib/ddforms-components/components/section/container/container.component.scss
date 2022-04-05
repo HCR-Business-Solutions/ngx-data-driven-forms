@@ -52,6 +52,7 @@
           justify-content: flex-end;
           gap: 0.5rem;
 
+          
           .icon-button {
             font-size: 13px;
             color: rgba(108, 117, 125, 1);
@@ -64,9 +65,21 @@
             padding: 0.25rem;
             margin: 1.25rem 0 1.25rem 0;
             white-space: nowrap;
-          }
-          .add-icon{
-            float:right;
+            display: inline-flex;
+            flex-direction: row;
+            gap: .5rem;
+
+            .icon {
+              height: .85rem;
+              width: .85rem;
+              margin-left: .5rem;
+            }
+
+            .text {
+              margin-top:.125rem;
+              margin-right:.5rem;
+            }
+
           }
           .icon-button:hover {
             color: #fff;
