@@ -1,68 +1,116 @@
 <ng-container *ngIf="this.control && this.config && this.addControl">
   <ng-container *ngIf="this.shouldAsk">
-    <div class="overall-section-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
-      <div *ngIf="this.config?.title && !this.isReadonly" class="section-title-container">
+    <div
+      class="overall-section-container"
+      [ngClass]="{ 'ddforms-default': this.useDefaultStyles }"
+    >
+      <div
+        *ngIf="this.config?.title && !this.isReadonly"
+        class="section-title-container"
+      >
         <h3 class="section-title-text">
-          <ddforms-advanced-text [text]="this.config?.title ?? ''"></ddforms-advanced-text>
+          <ddforms-advanced-text
+            [text]="this.config?.title ?? ''"
+          ></ddforms-advanced-text>
         </h3>
       </div>
-      <div *ngIf="this.config?.narrative && !this.isReadonly" class="section-narrative-container">
+      <div
+        *ngIf="this.config?.narrative && !this.isReadonly"
+        class="section-narrative-container"
+      >
         <ng-container [ngSwitch]="this.config?.narrative?.style ?? 'plaintext'">
           <ng-container *ngSwitchCase="'markdown'">
             <markdown [data]="this.config?.narrative?.text ?? ''"></markdown>
           </ng-container>
           <ng-container *ngSwitchDefault>
             <div class="page-narrative-container">
-              <ddforms-advanced-text [text]="this.config?.narrative?.text ?? ''"></ddforms-advanced-text>
+              <ddforms-advanced-text
+                [text]="this.config?.narrative?.text ?? ''"
+              ></ddforms-advanced-text>
             </div>
           </ng-container>
         </ng-container>
       </div>
-      <ng-container *ngIf="!this.config?.repeat; then singleInstance; else repeatInstance"></ng-container>
+      <ng-container
+        *ngIf="!this.config?.repeat; then singleInstance; else repeatInstance"
+      ></ng-container>
     </div>
   </ng-container>
 </ng-container>
 
 <ng-template #singleInstance>
   <div class="section-single-container">
-    <ddforms-section-single [config]="this.config" [control]="this.control"
-                            [isReadonly]="this.isReadonly"></ddforms-section-single>
+    <ddforms-section-single
+      [config]="this.config"
+      [control]="this.control"
+      [isReadonly]="this.isReadonly"
+    ></ddforms-section-single>
   </div>
 </ng-template>
 <ng-template #repeatInstance>
   <div class="section-repeat-container">
     <ng-container [ngSwitch]="this.config?.repeat?.inputStyle ?? 'flat'">
-      <ng-container *ngSwitchDefault [ngTemplateOutlet]="flatInput"></ng-container>
+      <ng-container
+        *ngSwitchDefault
+        [ngTemplateOutlet]="flatInput"
+      ></ng-container>
     </ng-container>
-    <ng-container *ngIf="this.config?.repeat?.style==='list'; then listInstance; else tableInstance"></ng-container>
+    <ng-container
+      *ngIf="
+        this.config?.repeat?.style === 'list';
+        then listInstance;
+        else tableInstance
+      "
+    ></ng-container>
   </div>
 </ng-template>
 <ng-template #listInstance>
-  <ddforms-section-list [config]="this.config" [control]="this.control" style="width: 100%"
-                        (delete)="handleDelete($event)"
-                        (edit)="handleEdit($event.control, $event.index)"
+  <ddforms-section-list
+    [config]="this.config"
+    [control]="this.control"
+    style="width: 100%"
+    (delete)="handleDelete($event)"
+    (edit)="handleEdit($event.control, $event.index)"
   ></ddforms-section-list>
 </ng-template>
 <ng-template #tableInstance>
-  <ddforms-section-table [config]="this.config" [control]="this.control"></ddforms-section-table>
+  <ddforms-section-table
+    [config]="this.config"
+    [control]="this.control"
+  ></ddforms-section-table>
 </ng-template>
 
 <ng-template #flatInput>
   <div class="flat-input-container">
     <div class="flat-input-header-container">
-      <span class="flat-input-header">
-        Add the following to the list.
-      </span>
+      <span class="flat-input-header"> Add the following to the list. </span>
     </div>
     <div class="flat-input-form-container">
-      <ddforms-section-single [config]="this.config" [control]="this.addControl"></ddforms-section-single>
-    </div>
-    <div class="flat-input-actions-container">
-      <div class="clear-button-container">
-        <button class="btn btn-secondary clear-button" (click)="this.handleClear()">Clear</button>
-      </div>
-      <div class="add-button-container">
-        <button class="btn btn-primary add-button" (click)="this.handleAdd()">Add</button>
+      <ddforms-section-single
+        [config]="this.config"
+        [control]="this.addControl"
+      ></ddforms-section-single>
+      <div class="flat-input-actions-container">
+        <div class="clear-button-container">
+          <button
+            id="list-input-clear"
+            class="icon-button clear-icon"
+            (click)="this.handleClear()"
+          >
+            <icon-backspace-outline class="icon"></icon-backspace-outline>
+            <div class="text">Clear</div>
+          </button>
+        </div>
+        <div class="add-button-container">
+          <button
+            id="list-input-add"
+            class="add-icon-button add-icon"
+            (click)="this.handleAdd()"
+          >
+            <icon-plus-outline class="icon"></icon-plus-outline>
+            <div class="text">Add</div>
+          </button>
+        </div>
       </div>
     </div>
   </div>

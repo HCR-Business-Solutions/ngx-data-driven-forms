@@ -1,8 +1,11 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormGroup} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {Section} from '../../../../shared/form-config';
-import {DataDrivenFormsConfigService, DataDrivenFormsService,} from '../../../../ddforms/services';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Section } from '../../../../shared/form-config';
+import {
+  DataDrivenFormsConfigService,
+  DataDrivenFormsService,
+} from '../../../../ddforms/services';
 
 @Component({
   selector: 'ddforms-section-container',
@@ -25,8 +28,7 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
   constructor(
     private ddForms: DataDrivenFormsService,
     private ddFormsConf: DataDrivenFormsConfigService
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     if (this.config && this.control) {

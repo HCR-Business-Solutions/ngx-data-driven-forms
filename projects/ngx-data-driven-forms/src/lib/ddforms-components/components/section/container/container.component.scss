@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-top: 2rem;
 
   .section-repeat-container {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,35 +12,120 @@
     gap: 1.5rem;
 
     .flat-input-container {
-      padding: 2.5rem;
       width: 80%;
       min-width: 280px;
-      border: hsla(0, 0%, 75%, .5) dashed 1px;
+      border: hsla(0, 0%, 75%, 0.5) dashed 1px;
       display: flex;
       flex-direction: column;
-      gap: .825rem;
 
       .flat-input-header-container {
-        border-bottom: hsla(0, 0%, 75%, .5) solid 1px;
-
-        .flat-input-header {
-          font-size: 1.25rem;
-        }
-      }
-
-      .flat-input-actions-container {
+        border-bottom: hsla(0, 0%, 75%, 0.5) solid 1px;
+        padding: 0.5rem 0.825rem 0.5rem 0.825rem;
 
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-end;
-        gap: .5rem;
+        justify-content: space-between;
 
+        .flat-input-header {
+          display: flex;
+          font-size: 1.25rem;
+          justify-content: flex-start;
+        }
+
+        .flat-input-actions-container {
+          display: flex;
+          flex-direction: row;
+
+          justify-content: flex-end;
+          gap: 0.5rem;
+        }
       }
 
+      .flat-input-form-container {
+        padding: 2rem 2.5rem 0 2.5rem;
 
+        .flat-input-actions-container {
+          display: flex;
+          flex-direction: row;
+
+          justify-content: flex-end;
+          gap: 0.5rem;
+
+        
+          .icon-button {
+            font-size: 13px;
+            color: rgb(118, 118, 118);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(118, 118, 118, 1);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+            padding: 0.25rem;
+            margin: 1.25rem 0 1.25rem 0;
+            white-space: nowrap;
+            display: inline-flex;
+            flex-direction: row;
+            gap: .5rem;
+            
+
+            .icon {
+              height: 1rem;
+              width: 1rem;
+              margin-left: .5rem;
+            }
+
+            .text {
+              margin-top:.125rem;
+              margin-right:.6rem;
+            }
+
+          }
+          .icon-button:hover {
+            color: #fff;
+            background: rgb(118, 118, 118);
+            border: 2px solid rgb(118,118,118, 1);
+          }
+
+          .add-icon-button {
+            font-size: 13px;
+            color: rgba(13, 110, 253, 1);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(13, 110, 253, 1);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+            padding: 0.25rem;
+            margin: 1.25rem 0 1.25rem 0;
+            white-space: nowrap;
+            display: inline-flex;
+            flex-direction: row;
+            gap: .5rem;
+            
+
+            .icon {
+              height: 1rem;
+              width: 1rem;
+              margin-left: .5rem;
+            }
+
+            .text {
+              margin-top:.125rem;
+              margin-right:.6rem;
+            }
+
+          }
+          .add-icon-button:hover {
+            color: #fff;
+            background: rgba(13, 110, 253, 1);
+            border: 2px solid rgba(13, 110, 253, 1);
+          }
+
+                        
+        }
+      }
     }
-
   }
-
 }

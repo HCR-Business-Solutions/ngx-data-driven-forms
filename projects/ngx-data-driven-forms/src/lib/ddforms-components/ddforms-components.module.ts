@@ -11,6 +11,7 @@ import {
   SectionTableComponent,
 } from './components';
 import {SharedModule} from '../shared';
+import ICONS from '../icons';
 import {MarkdownModule} from 'ngx-markdown';
 
 const COMPONENTS = [
@@ -27,6 +28,7 @@ const COMPONENTS = [
 @NgModule({
   declarations: [
     ...COMPONENTS,
+    ...ICONS,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ const COMPONENTS = [
   ],
   exports: [
     ...COMPONENTS,
+    ...ICONS,
     MarkdownModule
   ]
 })

@@ -7,6 +7,7 @@ import { DDFormsModule } from '../../../ngx-data-driven-forms/src/lib/ddforms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApplicationExampleComponent } from './pages/application-example/application-example.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ApplicationExampleComponent } from './pages/application-example/applica
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     DDFormsModule.forRoot({
