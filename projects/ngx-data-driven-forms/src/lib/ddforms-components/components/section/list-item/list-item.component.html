@@ -7,16 +7,18 @@
     (click)="showHideDetails()"
     *ngIf="this.config?.repeat?.itemName"
   >
-  <div id="item-name-chevron">
-    <div
-      id="chevron-icon-down"
-      class="chevron-icon button"
-      [@rotatedState]="state"
-    >      <icon-chevron-down-outline> </icon-chevron-down-outline>
+    <div id="item-name-chevron">
+      <div
+        id="chevron-icon-down"
+        class="chevron-icon button"
+        [@rotatedState]="state"
+      >
+        <icon-chevron-down-outline> </icon-chevron-down-outline>
+      </div>
+      <span class="section-list-item-name"
+        >{{ this.config?.repeat?.itemName }} {{ (index ?? -1) + 1 }}</span
+      >
     </div>
-       <span class="section-list-item-name"
-      >{{ this.config?.repeat?.itemName }} {{ (index ?? -1) + 1 }}</span>
-</div>
 
     <div class="section-list-item-actions-container">
       <div class="delete-button-container">

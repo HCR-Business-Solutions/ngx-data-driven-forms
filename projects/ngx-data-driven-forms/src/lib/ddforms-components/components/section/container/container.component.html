@@ -91,18 +91,24 @@
         [control]="this.addControl"
       ></ddforms-section-single>
       <div class="flat-input-actions-container">
-        <div id="clear-icon-container" class="mr-6">
+        <div class="clear-button-container">
           <button
-            id="clear-icon"
-            class="icon-button"
+            id="list-input-clear"
+            class="icon-button clear-icon"
             (click)="this.handleClear()"
-          >Clear
+          >
+            <icon-backspace-outline class="icon"></icon-backspace-outline>
+            <div class="text">Clear</div>
           </button>
         </div>
-        <div class="mr-6 add-button-container">
-          <button id="list-input-add" class="icon-button add-icon" (click)="this.handleAdd()">
+        <div class="add-button-container">
+          <button
+            id="list-input-add"
+            class="add-icon-button add-icon"
+            (click)="this.handleAdd()"
+          >
             <icon-plus-outline class="icon"></icon-plus-outline>
-            <div class="text">Add</div> 
+            <div class="text">Add</div>
           </button>
         </div>
       </div>

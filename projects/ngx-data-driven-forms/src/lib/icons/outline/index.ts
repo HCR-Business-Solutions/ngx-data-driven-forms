@@ -1,4 +1,5 @@
 import { Type } from '@angular/core';
+import { BackspaceIconOutlineComponent } from './backspace-icon.component';
 import { CheckCircleIconOutlineComponent } from './check-circle-icon.component';
 import { ChevronDownIconOutlineComponent } from './chevron-down-icon.component';
 import { ChevronUpIconOutlineComponent } from './chevron-up-icon.component';
@@ -30,5 +31,6 @@ export const OUTLINE_ICONS: Type<any>[] = [
   PlusIconOutlineComponent,
   XIconOutlineComponent,
   ChevronDownIconOutlineComponent,
-  ChevronUpIconOutlineComponent
+  ChevronUpIconOutlineComponent,
+  BackspaceIconOutlineComponent
 ];

@@ -52,13 +52,13 @@
           justify-content: flex-end;
           gap: 0.5rem;
 
-          
+        
           .icon-button {
             font-size: 13px;
-            color: rgba(108, 117, 125, 1);
+            color: rgb(118, 118, 118);
             letter-spacing: 1px;
             line-height: 15px;
-            border: 2px solid rgba(108, 117, 125, 1);
+            border: 2px solid rgba(118, 118, 118, 1);
             border-radius: 40px;
             background: transparent;
             transition: all 0.3s ease 0s;
@@ -68,24 +68,62 @@
             display: inline-flex;
             flex-direction: row;
             gap: .5rem;
+            
 
             .icon {
-              height: .85rem;
-              width: .85rem;
+              height: 1rem;
+              width: 1rem;
               margin-left: .5rem;
             }
 
             .text {
               margin-top:.125rem;
-              margin-right:.5rem;
+              margin-right:.6rem;
             }
 
           }
           .icon-button:hover {
             color: #fff;
-            background: rgba(108, 117, 125, 1);
-            border: 2px solid rgba(108, 117, 125, 1);
+            background: rgb(118, 118, 118);
+            border: 2px solid rgb(118,118,118, 1);
           }
+
+          .add-icon-button {
+            font-size: 13px;
+            color: rgba(13, 110, 253, 1);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(13, 110, 253, 1);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+            padding: 0.25rem;
+            margin: 1.25rem 0 1.25rem 0;
+            white-space: nowrap;
+            display: inline-flex;
+            flex-direction: row;
+            gap: .5rem;
+            
+
+            .icon {
+              height: 1rem;
+              width: 1rem;
+              margin-left: .5rem;
+            }
+
+            .text {
+              margin-top:.125rem;
+              margin-right:.6rem;
+            }
+
+          }
+          .add-icon-button:hover {
+            color: #fff;
+            background: rgba(13, 110, 253, 1);
+            border: 2px solid rgba(13, 110, 253, 1);
+          }
+
+                        
         }
       }
     }
