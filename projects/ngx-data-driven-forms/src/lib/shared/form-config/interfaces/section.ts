@@ -21,6 +21,8 @@ export interface ISection {
     inputStyle?: string;    
     minEntries?: number;
     maxEntries?: number;
+    preserveList?: boolean;
+    useToggleView?: boolean;
   };
   shouldAsk?: IStatements;
   retainWhenNotAsked?: boolean;
