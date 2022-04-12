@@ -31,6 +31,13 @@
 </ng-template>
 <ng-template #repeatInstance>
   <div class="section-repeat-container">
+    <ng-container *ngIf="this.config?.repeat?.useToggleView">
+      <button class="view-toggle"
+        [ngClass]="{'toggle-input': this.containerToggleState === 'INPUT', 'toggle-data': this.containerToggleState === 'DATA'}"
+        title="Toggle View" (click)="this.toggleView()">
+        TOGGLE VIEW, CURRENTLY ON: {{this.containerToggleState}}
+      </button>
+    </ng-container>
     <ng-container *ngIf="!this.config?.repeat?.useToggleView || this.containerToggleState === 'INPUT'">
       <ng-container [ngSwitch]="this.config?.repeat?.inputStyle ?? 'flat'">
         <ng-container *ngSwitchDefault [ngTemplateOutlet]="flatInput"></ng-container>

@@ -166,6 +166,7 @@ export class ApplicationExampleComponent implements OnInit {
               minEntries: 1,
               itemName: 'Damaged Property Item',
               preserveList: true,
+              useToggleView: true,
             }
           }
         ],
