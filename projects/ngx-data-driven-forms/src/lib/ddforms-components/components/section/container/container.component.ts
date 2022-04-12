@@ -26,6 +26,8 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
   containerToggleState: 'INPUT' | 'DATA' = 'INPUT';
   editIndex: number | null = null;
 
+  addedSinceLastView: number = 0;
+
   public useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
@@ -57,6 +59,9 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
   }
 
   public handleClear() {
+    if (this.config?.repeat?.preserveList && this.editIndex !== null) {
+      this.editIndex = null;
+    }
     this.addControl?.reset();
   }
 
@@ -76,11 +81,13 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
         this.config
       );
       (this.control as FormArray).push(newControl);
+      this.addedSinceLastView = this.addedSinceLastView + 1;
     } else if (this.editIndex !== null) {
       (this.control as FormArray)
         .at(this.editIndex)
         ?.setValue(this.addControl.getRawValue());
       this.editIndex = null;
+      this.goToState('DATA');
     }
     this.addControl.reset();
   }
@@ -93,7 +100,7 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
     } else {
       this.editIndex = index;
     }
-    this.containerToggleState = 'INPUT';
+    this.goToState('INPUT');
   }
 
   handleDelete(index: number) {
@@ -109,7 +116,14 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
   }
 
   toggleView() {
-    this.containerToggleState = this.containerToggleState === 'INPUT' ? 'DATA' : 'INPUT';
+    this.goToState(this.containerToggleState === 'INPUT' ? 'DATA' : 'INPUT');
   }
 
+  goToState(targetState: 'INPUT' | 'DATA') {
+    if (this.containerToggleState === targetState) return;
+    this.containerToggleState = targetState;
+    if (targetState === 'DATA') {
+      this.addedSinceLastView = 0;
+    }
+  }
 }
