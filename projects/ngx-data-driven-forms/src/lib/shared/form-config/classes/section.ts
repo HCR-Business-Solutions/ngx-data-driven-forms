@@ -26,7 +26,9 @@ export class Section implements ISection {
     itemName: string;
     inputStyle?: string;
     minEntries?: number;
-    maxEntries?: number
+    maxEntries?: number;
+    preserveList?: boolean;
+    useToggleView?: boolean;
   };
   public shouldAsk?: Statements;
   public retainWhenNotAsked?: boolean;

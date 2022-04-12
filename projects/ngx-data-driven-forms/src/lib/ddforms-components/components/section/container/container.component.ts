@@ -23,6 +23,9 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
 
   addControl: FormGroup | null = null;
 
+  containerToggleState: 'INPUT' | 'DATA' = 'INPUT';
+  editIndex: number | null = null;
+
   public useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
@@ -64,21 +67,49 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const newControl = this.ddForms.generateSectionGroup(
-      this.addControl.getRawValue(),
-      this.config
-    );
-    (this.control as FormArray).push(newControl);
+    if (
+      !this.config?.repeat?.preserveList ||
+      (this.config.repeat.preserveList && this.editIndex === null)
+    ) {
+      const newControl = this.ddForms.generateSectionGroup(
+        this.addControl.getRawValue(),
+        this.config
+      );
+      (this.control as FormArray).push(newControl);
+    } else if (this.editIndex !== null) {
+      (this.control as FormArray)
+        .at(this.editIndex)
+        ?.setValue(this.addControl.getRawValue());
+      this.editIndex = null;
+    }
     this.addControl.reset();
   }
 
   handleEdit(control: AbstractControl, index: number) {
     if (!this.addControl || !this.config || !this.control) return;
     this.addControl.setValue((control as FormGroup).getRawValue());
-    (this.control as FormArray).removeAt(index);
+    if (!this.config.repeat?.preserveList) {
+      (this.control as FormArray).removeAt(index);
+    } else {
+      this.editIndex = index;
+    }
+    this.containerToggleState = 'INPUT';
   }
 
   handleDelete(index: number) {
     (this.control as FormArray).removeAt(index);
+    if (this.config?.repeat?.preserveList && this.editIndex !== null) {
+      if (this.editIndex === index) {
+        this.editIndex = null;
+        this.addControl?.reset();
+      } else if (this.editIndex > index) {
+        this.editIndex = this.editIndex - 1;
+      }
+    }
   }
+
+  toggleView() {
+    this.containerToggleState = this.containerToggleState === 'INPUT' ? 'DATA' : 'INPUT';
+  }
+
 }
