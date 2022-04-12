@@ -71,7 +71,7 @@
         <div class="clear-button-container">
           <button id="list-input-clear" class="icon-button clear-icon" (click)="this.handleClear()">
             <icon-backspace-outline class="icon"></icon-backspace-outline>
-            <div class="text">Clear</div>
+            <div class="text">{{(this.config?.repeat?.preserveList && this.editIndex !== null) ? 'Cancel' : 'Clear'}}</div>
           </button>
         </div>
         <div class="add-button-container">
