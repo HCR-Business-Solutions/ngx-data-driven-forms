@@ -115,11 +115,7 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleView() {
-    this.goToState(this.containerToggleState === 'INPUT' ? 'DATA' : 'INPUT');
-  }
-
-  goToState(targetState: 'INPUT' | 'DATA') {
+    goToState(targetState: 'INPUT' | 'DATA') {
     if (this.containerToggleState === targetState) return;
     this.containerToggleState = targetState;
     if (targetState === 'DATA') {
