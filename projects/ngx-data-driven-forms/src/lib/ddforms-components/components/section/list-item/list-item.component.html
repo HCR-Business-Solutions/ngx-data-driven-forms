@@ -21,11 +21,6 @@
     </div>
 
     <div class="section-list-item-actions-container">
-      <div class="delete-button-container">
-        <div id="delete-icon" class="delete-icon" (click)="this.handleDelete()">
-          <icon-trash-outline></icon-trash-outline>
-        </div>
-      </div>
       <div class="edit-button-container">
         <div
           id="pencil-alt-icon"
@@ -35,6 +30,12 @@
           <icon-pencil-alt-outline></icon-pencil-alt-outline>
         </div>
       </div>
+      <div class="delete-button-container">
+        <div id="delete-icon" class="delete-icon" (click)="this.handleDelete()">
+          <icon-trash-outline></icon-trash-outline>
+        </div>
+      </div>
+      
     </div>
   </div>
   <div *ngIf="!showDetails">

@@ -10,6 +10,7 @@ import { PaperClipIconOutlineComponent } from './paper-clip-icon.component';
 import { PencilAltIconOutlineComponent } from './pencil-alt-icon.component';
 import { PencilIconOutlineComponent } from './pencil-icon.component';
 import { PlusIconOutlineComponent } from './plus-icon.component';
+import { SaveIconOutlineComponent } from './save-icon.component';
 import { TrashIconOutlineComponent } from './trash-icon.component';
 import { UploadIconOutlineComponent } from './upload-icon.component';
 import { UserIconOutlineComponent } from './user-icon.component';
@@ -32,5 +33,6 @@ export const OUTLINE_ICONS: Type<any>[] = [
   XIconOutlineComponent,
   ChevronDownIconOutlineComponent,
   ChevronUpIconOutlineComponent,
-  BackspaceIconOutlineComponent
+  BackspaceIconOutlineComponent,
+  SaveIconOutlineComponent
 ];

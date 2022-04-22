@@ -28,6 +28,11 @@
       }
     }
   }
+  .form-control[readonly]{
+    border: 1px solid $color-border-disabled;
+    color: $color-font-disabled;
+
+  }
 
   .input-group {
     display: flex;
@@ -46,7 +51,7 @@
   .input-group-text {
     display: flex;
     align-items: center;
-    padding-right: 5px;
+    padding: 0.375rem 0.75rem;
     margin-bottom: 0;
     font-size: 1rem;
     font-weight: 400;

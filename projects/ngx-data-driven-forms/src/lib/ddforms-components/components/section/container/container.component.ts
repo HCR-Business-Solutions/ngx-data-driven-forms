@@ -81,7 +81,8 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
         this.config
       );
       (this.control as FormArray).push(newControl);
-      this.addedSinceLastView = this.addedSinceLastView + 1;
+      // this.addedSinceLastView = this.addedSinceLastView + 1;
+      this.goToState('DATA');
     } else if (this.editIndex !== null) {
       (this.control as FormArray)
         .at(this.editIndex)
@@ -103,6 +104,10 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
     this.goToState('INPUT');
   }
 
+  handleAddNew(control: AbstractControl, index: number) {
+    this.goToState('INPUT');
+  }
+
   handleDelete(index: number) {
     (this.control as FormArray).removeAt(index);
     if (this.config?.repeat?.preserveList && this.editIndex !== null) {
@@ -115,7 +120,39 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
     }
   }
 
+  handleCancel(){
+    if (this.config?.repeat?.preserveList && this.editIndex !== null) {
+      this.editIndex = null;
+    }
+    this.addControl?.reset();
+    this.goToState('DATA');
+  }
+ 
+  handleAddAnother(){
+    if (!this.addControl || !this.config || !this.control) return;
+    if (this.addControl.invalid) {
+      this.addControl.markAllAsTouched();
+      return;
+    }
+
+    if (
+      !this.config?.repeat?.preserveList ||
+      (this.config.repeat.preserveList && this.editIndex === null)
+    ) {
+      const newControl = this.ddForms.generateSectionGroup(
+        this.addControl.getRawValue(),
+        this.config
+      );
+      (this.control as FormArray).push(newControl);
+       this.addedSinceLastView = this.addedSinceLastView + 1;
+    } 
+    this.addControl.reset();
+
+  }
+ 
+
     goToState(targetState: 'INPUT' | 'DATA') {
+      console.log('here');
     if (this.containerToggleState === targetState) return;
     this.containerToggleState = targetState;
     if (targetState === 'DATA') {

@@ -4,6 +4,48 @@
   gap: 1.5rem;
   margin-top: 2rem;
 
+  .add-new-button-container{
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    width: 85%;
+    min-width: 280px;
+ 
+
+  .add-icon-button {
+    font-size: 1rem;
+    color: rgba(13, 110, 253, 1);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(13, 110, 253, 1);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+    padding: 0.55rem 1rem 0.55rem 1rem;
+    margin: 1.25rem 0 1.25rem 0;
+    white-space: nowrap;
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.5rem;
+
+    .icon {
+      height: 1rem;
+      width: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    .text {
+      //margin-top: 0.125rem;
+       margin-right: 0.6rem;
+    }
+  }
+
+  .add-icon-button:hover {
+    color: #fff;
+    background: rgba(13, 110, 253, 1);
+    border: 2px solid rgba(13, 110, 253, 1);
+  } }
+
   .section-repeat-container {
     display: flex;
     flex-direction: column;
@@ -90,12 +132,13 @@
     .flat-input-container {
       width: 100%;
       min-width: 280px;
-      border: hsla(0, 0%, 75%, 0.5) dashed 1px;
+      // border: hsla(0, 0%, 75%, 0.5) dashed 1px;
       display: flex;
       flex-direction: column;
+     
 
       .flat-input-header-container {
-        border-bottom: hsla(0, 0%, 75%, 0.5) solid 1px;
+        //border-bottom: hsla(0, 0%, 75%, 0.5) solid 1px;
         padding: 0.5rem 0.825rem 0.5rem 0.825rem;
 
         display: flex;
@@ -112,8 +155,8 @@
         .flat-input-actions-container {
           display: flex;
           flex-direction: row;
-
-          justify-content: flex-end;
+          margin: 1.5rem 0 0 0;
+          justify-content: space-between;
           gap: 0.5rem;
         }
       }
@@ -124,12 +167,12 @@
         .flat-input-actions-container {
           display: flex;
           flex-direction: row;
-
-          justify-content: flex-end;
+          margin: 1.5rem 0 0 0;
+          justify-content: space-between;
           gap: 0.5rem;
 
           .icon-button {
-            font-size: 13px;
+            font-size: 1rem;
             color: rgb(118, 118, 118);
             letter-spacing: 1px;
             line-height: 15px;
@@ -137,7 +180,7 @@
             border-radius: 40px;
             background: transparent;
             transition: all 0.3s ease 0s;
-            padding: 0.25rem;
+            padding: 0.55rem;
             margin: 1.25rem 0 1.25rem 0;
             white-space: nowrap;
             display: inline-flex;
@@ -161,8 +204,48 @@
             border: 2px solid rgb(118, 118, 118, 1);
           }
 
+
+          .add-button-container{
+            margin-left: 10px;
+            .add-icon-button {
+              font-size: 1rem;
+              font-weight: bold;             
+              letter-spacing: 1px;
+              line-height: 15px;    
+              border-radius: 40px;
+              background: transparent;
+              transition: all 0.3s ease 0s;
+              padding: 0.55rem 1rem 0.55rem 1rem;
+              margin: 1.25rem 0 1.25rem 0;
+              white-space: nowrap;
+              display: inline-flex;
+              flex-direction: row;
+              gap: 0.5rem;
+              color: #fff;
+              background: rgba(13, 110, 253, 1);
+              border: 2px solid rgba(13, 110, 253, 1);
+  
+              .icon {
+                height: 1rem;
+                width: 1rem;
+                margin-left: 0.5rem;
+              }
+  
+              .text {
+                //margin-top: 0.125rem;
+                // margin-right: 0.6rem;
+              }
+            }
+            .add-icon-button:hover {
+              background: #fff;
+              color: rgba(13, 110, 253, 1);
+              border: 2px solid rgba(13, 110, 253, 1);
+            }
+
+          }
+          .add-another-button-container{
           .add-icon-button {
-            font-size: 13px;
+            font-size: 1rem;
             color: rgba(13, 110, 253, 1);
             letter-spacing: 1px;
             line-height: 15px;
@@ -170,7 +253,7 @@
             border-radius: 40px;
             background: transparent;
             transition: all 0.3s ease 0s;
-            padding: 0.25rem;
+            padding: 0.55rem 1rem 0.55rem 1rem;
             margin: 1.25rem 0 1.25rem 0;
             white-space: nowrap;
             display: inline-flex;
@@ -184,8 +267,8 @@
             }
 
             .text {
-              margin-top: 0.125rem;
-              margin-right: 0.6rem;
+          //    margin-top: 0.125rem;
+              // margin-right: 0.6rem;
             }
           }
           .add-icon-button:hover {
@@ -193,7 +276,7 @@
             background: rgba(13, 110, 253, 1);
             border: 2px solid rgba(13, 110, 253, 1);
           }
-        }
+        }}
       }
     }
   }

@@ -4,6 +4,7 @@
       class="overall-section-container"
       [ngClass]="{ 'ddforms-default': this.useDefaultStyles }"
     >
+    
       <div
         *ngIf="this.config?.title && !this.isReadonly"
         class="section-title-container"
@@ -51,8 +52,8 @@
 <ng-template #repeatInstance>
   <div class="section-repeat-container">
     <div class="toggle-area">
-      <div class="toggle-buttons">
-        <ng-container *ngIf="this.config?.repeat?.useToggleView">
+      <!--<div class="toggle-buttons">
+         <ng-container *ngIf="this.config?.repeat?.useToggleView">
           <button
             class="view-toggle"
             [ngClass]="{
@@ -78,10 +79,10 @@
               ><div class="blob"></div>
               (+{{ this.addedSinceLastView }})</span
             >
-          </button>
+          </button> 
         </ng-container>
       </div>
-      <div class="toggle-data">
+      <div class="toggle-data">-->
         <ng-container
           *ngIf="
             !this.config?.repeat?.useToggleView ||
@@ -111,9 +112,21 @@
         </ng-container>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </ng-template>
 <ng-template #listInstance>
+  <div class="add-new-button-container">
+    <button
+      id="list-input-add-another"
+      class="add-icon-button add-icon" 
+      (click)="this.goToState('INPUT')">              
+         <icon-plus-outline class="icon"></icon-plus-outline> 
+     <div class="text">
+       Add
+      </div>
+    </button>
+  </div>
+
   <ddforms-section-list
     [config]="this.config"
     [control]="this.control"
@@ -130,7 +143,10 @@
 </ng-template>
 
 <ng-template #flatInput>
+
+
   <div class="flat-input-container">
+    
     <div class="flat-input-header-container">
       <span class="flat-input-header"> Add the following to the list. </span>
     </div>
@@ -140,7 +156,23 @@
         [control]="this.addControl"
       ></ddforms-section-single>
       <div class="flat-input-actions-container">
-        <div class="clear-button-container">
+        <div style="float: left; display:flex;">
+           <div class="cancel-button-container">
+          <button
+            id="list-input-clear"
+            class="icon-button clear-icon"
+            (click)="this.handleCancel()"
+          >
+            <icon-x-outline class="icon"></icon-x-outline>
+            <div class="text">
+             Cancel
+            </div>
+          </button>
+
+        </div>
+        </div>
+       <div style="float: right; display:flex;">
+        <!-- <div class="clear-button-container">
           <button
             id="list-input-clear"
             class="icon-button clear-icon"
@@ -154,6 +186,19 @@
                   : "Clear"
               }}
             </div>
+          </button>
+        </div> -->
+        <div class="add-another-button-container">
+          <button
+            id="list-input-add-another"
+            class="add-icon-button add-icon"
+            (click)="this.handleAddAnother()"
+          >
+                    
+              <!-- <icon-plus-outline class="icon"></icon-plus-outline> -->
+      
+           <div class="text">
+          Save & Add Another</div>
           </button>
         </div>
         <div class="add-button-container">
@@ -173,10 +218,10 @@
             >
             </ng-container>
             <ng-template #addIcon>
-              <icon-plus-outline class="icon"></icon-plus-outline>
+              <!-- <icon-save-outline class="icon"></icon-save-outline> -->
             </ng-template>
             <ng-template #editIcon>
-              <icon-pencil-alt-outline class="icon"></icon-pencil-alt-outline>
+              <!-- <icon-pencil-alt-outline class="icon"></icon-pencil-alt-outline> -->
             </ng-template>
             <div class="text">
               <ng-container
@@ -189,12 +234,13 @@
                 "
               >
               </ng-container>
-              <ng-template #addText>Add</ng-template>
-              <ng-template #editText>Edit</ng-template>
+              <ng-template #addText>Save</ng-template>
+              <ng-template #editText>Save</ng-template>
             </div>
           </button>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </ng-template>

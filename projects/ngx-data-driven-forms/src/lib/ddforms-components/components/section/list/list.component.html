@@ -10,7 +10,9 @@
 </ng-container>
 
 <ng-template #list>
+  
   <ng-container *ngFor="let formControl of this.formControls; index as i">
+
     <ddforms-section-list-item
       [config]="this.config"
       [control]="formControl"
