@@ -118,11 +118,11 @@
   <div class="add-new-button-container">
     <button
       id="list-input-add-another"
-      class="add-icon-button add-icon" 
+      class="add-icon-button add-icon btn-primary" 
       (click)="this.goToState('INPUT')">              
          <icon-plus-outline class="icon"></icon-plus-outline> 
      <div class="text">
-       Add
+       Insert
       </div>
     </button>
   </div>
@@ -191,20 +191,20 @@
         <div class="add-another-button-container">
           <button
             id="list-input-add-another"
-            class="add-icon-button add-icon"
+            class="add-icon-button add-icon btn-primary"
             (click)="this.handleAddAnother()"
           >
                     
               <!-- <icon-plus-outline class="icon"></icon-plus-outline> -->
       
            <div class="text">
-          Save & Add Another</div>
+          Insert</div>
           </button>
         </div>
         <div class="add-button-container">
           <button
             id="list-input-add"
-            class="add-icon-button add-icon"
+            class="add-icon-button add-icon btn-primary"
             (click)="this.handleAdd()"
           >
             <ng-container
@@ -234,8 +234,8 @@
                 "
               >
               </ng-container>
-              <ng-template #addText>Save</ng-template>
-              <ng-template #editText>Save</ng-template>
+              <ng-template #addText>Insert and View List</ng-template>
+              <ng-template #editText>Insert and View List</ng-template>
             </div>
           </button>
         </div>

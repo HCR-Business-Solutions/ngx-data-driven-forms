@@ -38,10 +38,10 @@
 
   .add-icon-button {
     font-size: 1rem;
-    color: rgba(13, 110, 253, 1);
+    color: rgba(0, 123, 255, 1);
     letter-spacing: 1px;
     line-height: 15px;
-    border: 2px solid rgba(13, 110, 253, 1);
+    border: 2px solid rgba(0, 123, 255, 1);
     border-radius: 40px;
     background: transparent;
     transition: all 0.3s ease 0s;
@@ -65,8 +65,8 @@
   }
   .add-icon-button:hover {
     color: #fff;
-    background: rgba(13, 110, 253, 1);
-    border: 2px solid rgba(13, 110, 253, 1);
+    background: rgba(0, 105, 217, 0.85);
+    border: 2px solid rgba(0, 105, 217, 0.85);
   }
 
 }
