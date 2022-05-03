@@ -27,7 +27,11 @@
     }
   }
 
+  .form-control[readonly]{
+    border: 1px solid $color-border-disabled;
+    color: $color-font-disabled;
 
+  }
   .form-hint {
     font-family: $font-hint;
     font-size: .75rem;

@@ -27,7 +27,7 @@ import {
   styleUrls: ['./list-item.component.scss'],
 })
 export class SectionListItemComponent implements OnInit {
-  showDetails: boolean = false;
+  showDetails: boolean = true;
   state: string = 'default';
 
   @Input() config: Section | null = null;

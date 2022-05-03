@@ -10,10 +10,11 @@
   .section-list-item-name-container {
     display: flex;
     justify-content: space-between;
-    color: #0c63e4;
-    background-color: #e7f1ff;
+    color: #455a64;
     align-items: center;
-    padding-left: 0.825rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  
 
     .section-list-item-name {
       font-size: 1.125rem;
@@ -30,7 +31,7 @@
   }
 
   .section-list-item-content-container {
-    padding: 0.825rem;
+    padding: 0 2rem 2rem 2rem;
     transform: scaleY(.925);
   }
 
@@ -54,6 +55,7 @@
       height: 1.4rem;
       width: 1.4rem;
       cursor: pointer;
+      color: red;
     }
     .pencil-alt-icon{
      
