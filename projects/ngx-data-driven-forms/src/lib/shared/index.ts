@@ -5,3 +5,4 @@ export * from './interfaces';
 export * from './types';
 export * from './utilities';
 export * from './shared.module';
+export * from './icons';

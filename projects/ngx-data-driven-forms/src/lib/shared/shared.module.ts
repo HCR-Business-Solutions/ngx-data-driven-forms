@@ -3,13 +3,15 @@ import {CommonModule} from '@angular/common';
 import {DynamicFieldDirective} from './directives';
 import {QuestionErrorsComponent} from './components/question-errors/question-errors.component';
 import {AdvancedTextComponent} from './components/advanced-text/advanced-text.component';
+import ICONS from './icons/list';
 
 
 @NgModule({
   declarations: [
     QuestionErrorsComponent,
     DynamicFieldDirective,
-    AdvancedTextComponent
+    AdvancedTextComponent,
+    ...ICONS
   ],
   imports: [
     CommonModule
@@ -17,8 +19,8 @@ import {AdvancedTextComponent} from './components/advanced-text/advanced-text.co
   exports: [
     QuestionErrorsComponent,
     DynamicFieldDirective,
-    AdvancedTextComponent
-
+    AdvancedTextComponent,
+    ...ICONS
   ]
 })
 export class SharedModule {
