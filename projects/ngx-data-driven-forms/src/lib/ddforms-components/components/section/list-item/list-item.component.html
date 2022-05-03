@@ -1,17 +1,51 @@
-<div class="section-list-item-container" [ngClass]="{'ddforms-default': this.useDefaultStyles}">
-  <div class="section-list-item-name-container" *ngIf="this.config?.repeat?.itemName">
-    <span class="section-list-item-name">{{this.config?.repeat?.itemName}} {{(index ?? -1) + 1}}</span>
-  </div>
-  <div class="section-list-item-content-container">
-    <ddforms-section-single [control]="this.control" [config]="this.config"
-                            [isReadonly]="true"></ddforms-section-single>
-  </div>
-  <div class="section-list-item-actions-container">
-    <div class="delete-button-container">
-      <button class="btn btn-secondary delete-button" (click)="this.handleDelete()">Delete</button>
+<div
+  class="section-list-item-container"
+  [ngClass]="{ 'ddforms-default': this.useDefaultStyles }"
+>
+  <div
+    class="section-list-item-name-container"
+    (click)="showHideDetails()"
+    *ngIf="this.config?.repeat?.itemName"
+  >
+    <div id="item-name-chevron">
+      <div
+        id="chevron-icon-down"
+        class="chevron-icon button"
+        [@rotatedState]="state"
+      >
+        <icon-chevron-down-outline> </icon-chevron-down-outline>
+      </div>
+      <span class="section-list-item-name"
+        >{{ this.config?.repeat?.itemName }} {{ (index ?? -1) + 1 }}</span
+      >
     </div>
-    <div class="edit-button-container">
-      <button class="btn btn-primary edit-button" (click)="this.handleEdit()">Edit</button>
+
+    <div class="section-list-item-actions-container">
+      <div class="edit-button-container">
+        <div
+          id="pencil-alt-icon"
+          class="pencil-alt-icon button"
+          (click)="this.handleEdit()"
+        >
+          <icon-pencil-alt-outline></icon-pencil-alt-outline>
+        </div>
+      </div>
+      <div class="delete-button-container">
+        <div id="delete-icon" class="delete-icon" (click)="this.handleDelete()">
+          <icon-trash-outline></icon-trash-outline>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div *ngIf="!showDetails">
+    <div class="section-list-item-content-container">
+      <ddforms-section-single
+        [control]="this.control"
+        [config]="this.config"
+        [showHideDetails]="!showDetails"
+        [isReadonly]="true"
+      ></ddforms-section-single>
     </div>
   </div>
 </div>

@@ -26,6 +26,11 @@
     }
 
   }
+  .form-control:disabled{
+    border: 1px solid $color-border-disabled;
+    color: $color-font-disabled;
+
+  }
 
   .form-hint {
     font-family: $font-hint;

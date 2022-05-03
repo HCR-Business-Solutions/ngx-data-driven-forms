@@ -23,10 +23,12 @@ export class Section implements ISection {
 
   public repeat?: {
     style: 'list' | 'table';
+    itemName: string;
     inputStyle?: string;
-    itemName?: string;
     minEntries?: number;
-    maxEntries?: number
+    maxEntries?: number;
+    preserveList?: boolean;
+    useToggleView?: boolean;
   };
   public shouldAsk?: Statements;
   public retainWhenNotAsked?: boolean;

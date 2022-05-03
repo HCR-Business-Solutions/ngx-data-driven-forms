@@ -1,8 +1,11 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormGroup} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {Section} from '../../../../shared/form-config';
-import {DataDrivenFormsConfigService, DataDrivenFormsService,} from '../../../../ddforms/services';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Section } from '../../../../shared/form-config';
+import {
+  DataDrivenFormsConfigService,
+  DataDrivenFormsService,
+} from '../../../../ddforms/services';
 
 @Component({
   selector: 'ddforms-section-container',
@@ -20,13 +23,17 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
 
   addControl: FormGroup | null = null;
 
+  containerToggleState: 'INPUT' | 'DATA' = 'INPUT';
+  editIndex: number | null = null;
+
+  addedSinceLastView: number = 0;
+
   public useDefaultStyles: boolean = !this.ddFormsConf.getShouldIgnoreStyles();
 
   constructor(
     private ddForms: DataDrivenFormsService,
     private ddFormsConf: DataDrivenFormsConfigService
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     if (this.config && this.control) {
@@ -52,6 +59,9 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
   }
 
   public handleClear() {
+    if (this.config?.repeat?.preserveList && this.editIndex !== null) {
+      this.editIndex = null;
+    }
     this.addControl?.reset();
   }
 
@@ -62,21 +72,91 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const newControl = this.ddForms.generateSectionGroup(
-      this.addControl.getRawValue(),
-      this.config
-    );
-    (this.control as FormArray).push(newControl);
+    if (
+      !this.config?.repeat?.preserveList ||
+      (this.config.repeat.preserveList && this.editIndex === null)
+    ) {
+      const newControl = this.ddForms.generateSectionGroup(
+        this.addControl.getRawValue(),
+        this.config
+      );
+      (this.control as FormArray).push(newControl);
+      // this.addedSinceLastView = this.addedSinceLastView + 1;
+      this.goToState('DATA');
+    } else if (this.editIndex !== null) {
+      (this.control as FormArray)
+        .at(this.editIndex)
+        ?.setValue(this.addControl.getRawValue());
+      this.editIndex = null;
+      this.goToState('DATA');
+    }
     this.addControl.reset();
   }
 
   handleEdit(control: AbstractControl, index: number) {
     if (!this.addControl || !this.config || !this.control) return;
     this.addControl.setValue((control as FormGroup).getRawValue());
-    (this.control as FormArray).removeAt(index);
+    if (!this.config.repeat?.preserveList) {
+      (this.control as FormArray).removeAt(index);
+    } else {
+      this.editIndex = index;
+    }
+    this.goToState('INPUT');
+  }
+
+  handleAddNew(control: AbstractControl, index: number) {
+    this.goToState('INPUT');
   }
 
   handleDelete(index: number) {
     (this.control as FormArray).removeAt(index);
+    if (this.config?.repeat?.preserveList && this.editIndex !== null) {
+      if (this.editIndex === index) {
+        this.editIndex = null;
+        this.addControl?.reset();
+      } else if (this.editIndex > index) {
+        this.editIndex = this.editIndex - 1;
+      }
+    }
+  }
+
+  handleCancel(){
+    if (this.config?.repeat?.preserveList && this.editIndex !== null) {
+      this.editIndex = null;
+    }
+    this.addControl?.reset();
+    this.goToState('DATA');
+  }
+ 
+  handleAddAnother(){
+    if (!this.addControl || !this.config || !this.control) return;
+    if (this.addControl.invalid) {
+      this.addControl.markAllAsTouched();
+      return;
+    }
+
+    if (
+      !this.config?.repeat?.preserveList ||
+      (this.config.repeat.preserveList && this.editIndex === null)
+    ) {
+      const newControl = this.ddForms.generateSectionGroup(
+        this.addControl.getRawValue(),
+        this.config
+      );
+      (this.control as FormArray).push(newControl);
+       this.addedSinceLastView = this.addedSinceLastView + 1;
+    } 
+    this.addControl.reset();
+
+  }
+ 
+
+    goToState(targetState: 'INPUT' | 'DATA') {
+      console.log('here');
+    if (this.containerToggleState === targetState) return;
+    this.containerToggleState = targetState;
+    if (targetState === 'DATA') {
+      this.addedSinceLastView = 0;
+    }
   }
 }

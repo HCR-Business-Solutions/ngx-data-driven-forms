@@ -17,10 +17,12 @@ export interface ISection {
 
   repeat?: {
     style: 'list' | 'table';
-    inputStyle?: string;
-    itemName?: string;
+    itemName: string;
+    inputStyle?: string;    
     minEntries?: number;
     maxEntries?: number;
+    preserveList?: boolean;
+    useToggleView?: boolean;
   };
   shouldAsk?: IStatements;
   retainWhenNotAsked?: boolean;

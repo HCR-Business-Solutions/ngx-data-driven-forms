@@ -164,7 +164,9 @@ export class ApplicationExampleComponent implements OnInit {
             repeat: {
               style: 'list',
               minEntries: 1,
-              itemName: 'Damaged Property Item'
+              itemName: 'Damaged Property Item',
+              preserveList: true,
+              useToggleView: true,
             }
           }
         ],
