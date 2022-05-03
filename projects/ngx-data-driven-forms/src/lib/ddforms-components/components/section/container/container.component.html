@@ -115,9 +115,9 @@
   <!-- </div> -->
 </ng-template>
 <ng-template #listInstance>
-  <div class="add-new-button-container">
+  <div class="add-new-button-container" *ngIf="this.config?.repeat?.useToggleView">
     <button
-      id="list-input-add-another"
+      id="list-toggle-add-item"
       class="add-icon-button add-icon btn-primary" 
       (click)="this.goToState('INPUT')">              
          <icon-plus-outline class="icon"></icon-plus-outline> 
