@@ -1,8 +1,0 @@
-<ng-container *ngIf="this.control && this.config">
-  <div class="form-errors" [ngClass]="{'ddforms-default': this.useDefaultStyles}"
-       *ngIf="(this.control.dirty || this.control.touched) && this.control.errors as errors">
-    <div class="form-error has-danger" *ngFor="let message of this.decodeErrorMessages(errors)">
-      {{message}}
-    </div>
-  </div>
-</ng-container>
