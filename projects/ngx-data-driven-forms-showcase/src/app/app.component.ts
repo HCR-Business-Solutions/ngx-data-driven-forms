@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {DataDrivenFormsConfigService, DataDrivenFormsService} from '../../../ngx-data-driven-forms/src/lib/ddforms';
+// import {DataDrivenFormsConfigService, DataDrivenFormsService} from '../../../ngx-data-driven-forms/src/lib/ddforms';
 import {AbstractControl, ValidatorFn} from '@angular/forms';
 import {ApplicationExampleComponent} from './pages/application-example/application-example.component';
 
@@ -12,10 +12,10 @@ export class AppComponent {
   title = 'ngx-data-driven-forms-showcase';
 
   constructor(
-    private ddforms: DataDrivenFormsService,
-    private ddformsConf: DataDrivenFormsConfigService,
+    // private ddforms: DataDrivenFormsService,
+    // private ddformsConf: DataDrivenFormsConfigService,
   ){
-    this.ddformsConf.registerValidator('asdf', () => (c: AbstractControl) => null);
+    // this.ddformsConf.registerValidator('asdf', () => (c: AbstractControl) => null);
   }
 
 }

@@ -10,7 +10,7 @@ const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 @Injectable({
   providedIn: CoreModule
 })
-export class FieldRegistryService {
+export class RendererRegistryService {
 
   private _registry: BehaviorSubject<REGISTRY> = new BehaviorSubject<REGISTRY>(DEFAULT_REGISTRY);
 
