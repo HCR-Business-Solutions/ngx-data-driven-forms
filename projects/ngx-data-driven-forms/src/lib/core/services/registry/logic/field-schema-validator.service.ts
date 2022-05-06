@@ -1,16 +1,17 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { CoreModule } from '../core.module';
+import { CoreModule } from '../../../core.module';
+import { FieldSchemaValidatorFn } from '../../../types/field-schema.function';
 
 type REGISTRY_KEY = string;
-type REGISTRY_VALUE = Type<any>;
+type REGISTRY_VALUE = FieldSchemaValidatorFn;
 type REGISTRY = Map<REGISTRY_KEY, REGISTRY_VALUE>
 const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 
 @Injectable({
   providedIn: CoreModule
 })
-export class RendererRegistryService {
+export class FieldSchemaValidatorRegistryService {
 
   private _registry: BehaviorSubject<REGISTRY> = new BehaviorSubject<REGISTRY>(DEFAULT_REGISTRY);
 

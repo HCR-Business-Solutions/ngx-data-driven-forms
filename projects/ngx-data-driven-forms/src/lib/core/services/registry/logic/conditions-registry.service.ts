@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { CoreModule } from '../core.module';
-import { ErrorMessageFn } from '../types/error-message.function';
+import { CoreModule } from '../../../core.module';
+import { ConditionFn } from '../../../types/condition.function';
 
 type REGISTRY_KEY = string;
-type REGISTRY_VALUE = ErrorMessageFn;
+type REGISTRY_VALUE = ConditionFn;
 type REGISTRY = Map<REGISTRY_KEY, REGISTRY_VALUE>
 const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 
 @Injectable({
   providedIn: CoreModule
 })
-export class ErrorMessageRegistryService {
+export class ConditionsRegistryService {
 
   private _registry: BehaviorSubject<REGISTRY> = new BehaviorSubject<REGISTRY>(DEFAULT_REGISTRY);
 

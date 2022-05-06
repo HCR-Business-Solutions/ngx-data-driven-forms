@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CoreModule } from '../core.module';
+import { CoreModule } from '../../core.module';
 import { SchemaValidatorService } from './schema-validator.service';
 
 @Injectable({

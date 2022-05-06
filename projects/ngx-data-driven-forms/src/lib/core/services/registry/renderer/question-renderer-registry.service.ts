@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { CoreModule } from '../core.module';
+import { CoreModule } from '../../../core.module';
 
 type REGISTRY_KEY = string;
 type REGISTRY_VALUE = Type<any>;
@@ -10,7 +10,7 @@ const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 @Injectable({
   providedIn: CoreModule
 })
-export class FieldRegistryService {
+export class QuestionRendererRegistryService {
 
   private _registry: BehaviorSubject<REGISTRY> = new BehaviorSubject<REGISTRY>(DEFAULT_REGISTRY);
 

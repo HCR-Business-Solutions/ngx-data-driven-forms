@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CoreModule } from '../core.module';
-import { ConditionsRegistryService } from './conditions-registry.service';
-import { CrossFieldValidatorRegistryService } from './cross-field-validator-registry.service';
-import { FieldRegistryService } from './field-registry.service';
-import { FieldSchemaValidatorRegistryService } from './field-schema-validator.service';
-import { FieldValidatorRegistryService } from './field-validator-registry.service';
+import { CoreModule } from '../../core.module';
+import { FieldSchemaValidatorRegistryService, FieldValidatorRegistryService, CrossFieldValidatorRegistryService, ConditionsRegistryService } from '../registry';
 
 @Injectable({
   providedIn: CoreModule 
@@ -12,7 +8,6 @@ import { FieldValidatorRegistryService } from './field-validator-registry.servic
 export class SchemaValidatorService {
 
   constructor(
-    private _fieldSvc: FieldRegistryService,
     private _fieldSchemaValidatorSvc: FieldSchemaValidatorRegistryService,
     private _fieldValidatorSvc: FieldValidatorRegistryService,
     private _crossFieldValidatorSvc: CrossFieldValidatorRegistryService,
