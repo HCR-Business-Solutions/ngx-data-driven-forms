@@ -1,9 +1,10 @@
 import { Injectable, Type } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { RenderQuestionBaseComponent } from '../../../components/render-question-base.component';
 import { CoreModule } from '../../../core.module';
 
 type REGISTRY_KEY = string;
-type REGISTRY_VALUE = Type<any>;
+type REGISTRY_VALUE = Type<RenderQuestionBaseComponent>;
 type REGISTRY = Map<REGISTRY_KEY, REGISTRY_VALUE>
 const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 
