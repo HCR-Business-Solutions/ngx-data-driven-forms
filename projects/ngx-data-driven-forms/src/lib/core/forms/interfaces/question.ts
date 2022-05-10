@@ -1,4 +1,3 @@
-import { RequireAtLeastOne } from '../../types';
 import { IRendererConfig } from './renderer-config';
 import { ICrossFieldValidationPack } from './cross-field-validation-pack';
 import { IShouldAsk } from './should-ask';
@@ -26,8 +25,3 @@ export interface IQuestion {
 
   customProps?: { [key: string]: any };
 }
-
-export type IQuestionAccessible = RequireAtLeastOne<
-  IQuestion,
-  'label' | 'ariaLabel'
->;
