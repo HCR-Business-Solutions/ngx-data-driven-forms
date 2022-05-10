@@ -41,6 +41,17 @@
             ]
           }
         }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        },
+        "@schematics/angular:service": {
+          "flat": false
+        }
       }
     },
     "storybook": {
@@ -65,6 +76,9 @@
         },
         "@schematics/angular:application": {
           "strict": true
+        },
+        "@schematics/angular:service": {
+          "flat": false
         }
       },
       "root": "projects/info-ngx-ddforms-web",
