@@ -6,7 +6,9 @@ describe('FieldSchemaValidatorRegistryService', () => {
   let service: FieldSchemaValidatorRegistryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [FieldSchemaValidatorRegistryService],
+    });
     service = TestBed.inject(FieldSchemaValidatorRegistryService);
   });
 

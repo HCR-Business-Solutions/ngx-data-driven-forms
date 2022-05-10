@@ -6,7 +6,9 @@ describe('CrossFieldValidatorRegistryService', () => {
   let service: CrossFieldValidatorRegistryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [CrossFieldValidatorRegistryService],
+    });
     service = TestBed.inject(CrossFieldValidatorRegistryService);
   });
 

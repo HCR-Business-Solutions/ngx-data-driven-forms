@@ -2,7 +2,7 @@ import { IRendererConfig } from './renderer-config';
 import { IQuestion } from './question';
 import { IShouldAsk } from './should-ask';
 
-export interface ISectionBase {
+export interface ISection {
   id: string;
 
   title?: string;

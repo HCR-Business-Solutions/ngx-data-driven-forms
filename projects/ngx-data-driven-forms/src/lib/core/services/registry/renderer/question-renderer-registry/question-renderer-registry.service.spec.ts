@@ -6,7 +6,9 @@ describe('QuestionRendererRegistryService', () => {
   let service: QuestionRendererRegistryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [QuestionRendererRegistryService],
+    });
     service = TestBed.inject(QuestionRendererRegistryService);
   });
 

@@ -6,7 +6,9 @@ describe('ConditionsRegistryService', () => {
   let service: ConditionsRegistryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [ConditionsRegistryService],
+    });
     service = TestBed.inject(ConditionsRegistryService);
   });
 

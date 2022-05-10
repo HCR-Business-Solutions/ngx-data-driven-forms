@@ -6,7 +6,9 @@ describe('ErrorMessageRegistryService', () => {
   let service: ErrorMessageRegistryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [ErrorMessageRegistryService],
+    });
     service = TestBed.inject(ErrorMessageRegistryService);
   });
 

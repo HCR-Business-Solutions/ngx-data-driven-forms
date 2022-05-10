@@ -6,7 +6,9 @@ describe('FieldRendererRegistryService', () => {
   let service: FieldRendererRegistryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [FieldRendererRegistryService],
+    });
     service = TestBed.inject(FieldRendererRegistryService);
   });
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CoreModule } from '../../../core.module';
-import { ErrorMessageFn } from '../../../types';
+import { CoreModule } from '../../../../core.module';
+import { ErrorMessageFn } from '../../../../types';
 
 type REGISTRY_KEY = string;
 type REGISTRY_VALUE = ErrorMessageFn;
