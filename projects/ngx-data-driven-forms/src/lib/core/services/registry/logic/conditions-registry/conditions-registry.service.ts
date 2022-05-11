@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CoreModule } from '../../../../core.module';
 import { ConditionFn } from '../../../../types';
 
 type REGISTRY_KEY = string;
@@ -8,9 +7,7 @@ type REGISTRY_VALUE = ConditionFn;
 type REGISTRY = Map<REGISTRY_KEY, REGISTRY_VALUE>;
 const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 
-@Injectable({
-  providedIn: CoreModule,
-})
+@Injectable()
 export class ConditionsRegistryService {
   private _registry: BehaviorSubject<REGISTRY> = new BehaviorSubject<REGISTRY>(
     DEFAULT_REGISTRY
