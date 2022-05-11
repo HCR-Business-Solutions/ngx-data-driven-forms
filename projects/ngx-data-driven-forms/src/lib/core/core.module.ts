@@ -1,24 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RenderFieldBaseComponent } from './components/render-field-base/render-field-base.component';
-import { RenderQuestionBaseComponent } from './components/render-question-base/render-question-base.component';
-import { RenderFieldDirective } from './directives/render-field/render-field.directive';
-import * as Services from './services';
+
+import { SERVICES_LIST } from './services';
+import { COMPONENTS_LIST } from './components';
+import { DIRECTIVE_LIST } from './directives';
 
 @NgModule({
-  declarations: [
-    RenderFieldBaseComponent,
-    RenderQuestionBaseComponent,
-    RenderFieldDirective,
-  ],
+  declarations: [...DIRECTIVE_LIST, ...COMPONENTS_LIST],
   imports: [CommonModule],
-  providers: [
-    Services.ConditionsRegistryService,
-    Services.CrossFieldValidatorRegistryService,
-    Services.ErrorMessageRegistryService,
-    Services.FieldRendererRegistryService,
-    Services.FieldSchemaValidatorRegistryService,
-    Services.FieldValidatorRegistryService,
-  ],
+  exports: [...COMPONENTS_LIST, ...COMPONENTS_LIST],
+  providers: [...SERVICES_LIST],
 })
-export class CoreModule {}
+export class DDFormsCoreModule {}

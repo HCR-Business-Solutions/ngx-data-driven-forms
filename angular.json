@@ -45,11 +45,13 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "prefix": "ddForms"
+          "prefix": "ddForms",
+          "skipImport": true
         },
         "@schematics/angular:directive": {
           "flat": false,
-          "prefix": "ddForms"
+          "prefix": "ddForms",
+          "skipImport": true
         },
         "@schematics/angular:application": {
           "strict": true
