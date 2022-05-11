@@ -44,7 +44,12 @@
       },
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "prefix": "ddForms"
+        },
+        "@schematics/angular:directive": {
+          "flat": false,
+          "prefix": "ddForms"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -98,9 +103,7 @@
               "projects/info-ngx-ddforms-web/src/favicon.ico",
               "projects/info-ngx-ddforms-web/src/assets"
             ],
-            "styles": [
-              "projects/info-ngx-ddforms-web/src/styles.scss"
-            ],
+            "styles": ["projects/info-ngx-ddforms-web/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -166,9 +169,7 @@
               "projects/info-ngx-ddforms-web/src/favicon.ico",
               "projects/info-ngx-ddforms-web/src/assets"
             ],
-            "styles": [
-              "projects/info-ngx-ddforms-web/src/styles.scss"
-            ],
+            "styles": ["projects/info-ngx-ddforms-web/src/styles.scss"],
             "scripts": []
           }
         },

@@ -1,27 +1,97 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+import { RenderFieldDirective } from '../../directives/render-field/render-field.directive';
+import { Question } from '../../forms/classes/question';
+import { FieldRendererRegistryService } from '../../services';
+import { RenderFieldBaseComponent } from '../render-field-base';
 
 @Component({
   template: '',
   styles: [],
 })
-export class RenderQuestionBaseComponent implements OnInit {
+export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
+  @Input() question!: Question;
+  @Input() control!: AbstractControl;
+  @Input() public isReadonly: boolean = false;
 
-  constructor() { }
+  private shouldAsk: boolean = true;
+
+  @ViewChild(RenderFieldDirective, { static: true })
+  private fieldHost!: RenderFieldDirective;
+
+  constructor(
+    private _fieldRegistry: FieldRendererRegistryService,
+    private _cdRef: ChangeDetectorRef
+  ) {}
 
   public ngOnInit(): void {
-    this.renderLabel();
+    this.renderElements();
+  }
+
+  public ngOnDestroy(): void {
+    this.clearElements();
+  }
+
+  private renderElements(): void {
+    if (
+      !this.question ||
+      !this.control ||
+      !this.shouldAsk ||
+      (this.question?.isFlag ?? false)
+    )
+      return;
+
+    this.clearElements();
+
+    if (this.question.label) {
+      this.renderLabel();
+    }
+
     this.renderField();
-    this.renderHint();
-    this.renderError();
+
+    if (this.question.hint) {
+      this.renderHint();
+    }
+
+    if (this.control.errors) {
+      this.renderError();
+    }
+  }
+
+  private clearElements(): void {
+    if (this.fieldHost && this.fieldHost.viewContainerRef) {
+      this.fieldHost.viewContainerRef.clear();
+    }
   }
 
   private renderLabel(): void {}
 
-  private renderField(): void {}
+  private renderField(): void {
+    if (!this.fieldHost) return;
+    const fieldViewContainerRef = this.fieldHost.viewContainerRef;
+    if (!fieldViewContainerRef) return;
+
+    const target = this._fieldRegistry
+      .getRegistry()
+      .get(this.question.id ?? '');
+    if (!target) return;
+
+    const componentRef =
+      fieldViewContainerRef.createComponent<RenderFieldBaseComponent>(target);
+    componentRef.instance.question = this.question;
+    componentRef.instance.control = this.control;
+    componentRef.instance.isReadonly = this.isReadonly;
+    this._cdRef.detectChanges();
+  }
 
   private renderHint(): void {}
 
   private renderError(): void {}
-
 }
-
