@@ -2462,7 +2462,7 @@
                 "name": "DEFAULT_REGISTRY",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "REGISTRY",
@@ -2472,7 +2472,7 @@
                 "name": "DEFAULT_REGISTRY",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "REGISTRY",
@@ -2609,6 +2609,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Question",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/ddforms/question/question.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "template.bind({})"
+            },
+            {
                 "name": "Secondary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2627,6 +2637,16 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/ddforms/question/question.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<RenderQuestionBaseComponent>",
+                "defaultValue": "(\r\n  args: RenderQuestionBaseComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -2721,7 +2741,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "Map<REGISTRY_KEY | REGISTRY_VALUE>",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2732,7 +2752,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "Map<REGISTRY_KEY | REGISTRY_VALUE>",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2798,7 +2818,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "string",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2809,7 +2829,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "string",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2869,17 +2889,6 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 149
-            },
-            {
-                "name": "REGISTRY_VALUE",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "ConditionFn",
-                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 177
             },
             {
                 "name": "REGISTRY_VALUE",
@@ -2887,6 +2896,17 @@
                 "subtype": "typealias",
                 "rawtype": "CrossFieldValidatorFn",
                 "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 177
+            },
+            {
+                "name": "REGISTRY_VALUE",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "ConditionFn",
+                "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2950,24 +2970,24 @@
         ],
         "enumerations": [],
         "groupedVariables": {
-            "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts": [
-                {
-                    "name": "DEFAULT_REGISTRY",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "REGISTRY",
-                    "defaultValue": "new Map<REGISTRY_KEY, REGISTRY_VALUE>()"
-                }
-            ],
             "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts": [
                 {
                     "name": "DEFAULT_REGISTRY",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "REGISTRY",
+                    "defaultValue": "new Map<REGISTRY_KEY, REGISTRY_VALUE>()"
+                }
+            ],
+            "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts": [
+                {
+                    "name": "DEFAULT_REGISTRY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "REGISTRY",
@@ -3173,6 +3193,28 @@
                     "type": "Story<Page>",
                     "defaultValue": "(args: Page) => ({\r\n  props: args,\r\n})"
                 }
+            ],
+            "stories/ddforms/question/question.stories.ts": [
+                {
+                    "name": "Question",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/ddforms/question/question.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "template.bind({})"
+                },
+                {
+                    "name": "template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/ddforms/question/question.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<RenderQuestionBaseComponent>",
+                    "defaultValue": "(\r\n  args: RenderQuestionBaseComponent\r\n) => ({\r\n  props: args,\r\n})"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -3243,41 +3285,6 @@
                     "kind": 178
                 }
             ],
-            "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts": [
-                {
-                    "name": "REGISTRY",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "Map<REGISTRY_KEY | REGISTRY_VALUE>",
-                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 177
-                },
-                {
-                    "name": "REGISTRY_KEY",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "string",
-                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 149
-                },
-                {
-                    "name": "REGISTRY_VALUE",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "ConditionFn",
-                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 177
-                }
-            ],
             "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts": [
                 {
                     "name": "REGISTRY",
@@ -3307,6 +3314,41 @@
                     "subtype": "typealias",
                     "rawtype": "CrossFieldValidatorFn",
                     "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/cross-field-validator-registry/cross-field-validator-registry.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 177
+                }
+            ],
+            "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts": [
+                {
+                    "name": "REGISTRY",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "Map<REGISTRY_KEY | REGISTRY_VALUE>",
+                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 177
+                },
+                {
+                    "name": "REGISTRY_KEY",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "string",
+                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 149
+                },
+                {
+                    "name": "REGISTRY_VALUE",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "ConditionFn",
+                    "file": "projects/ngx-data-driven-forms/src/lib/core/services/registry/logic/conditions-registry/conditions-registry.service.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3905,6 +3947,26 @@
                 "coveragePercent": 83,
                 "coverageCount": "5/6",
                 "status": "very-good"
+            },
+            {
+                "filePath": "stories/ddforms/question/question.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Question",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/ddforms/question/question.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
             },
             {
                 "filePath": "stories/header.component.ts",

@@ -1,5 +1,8 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  "paths": {
+    "@nys-hcr-its/ngx-data-driven-forms/*": ["projects/"]
+  },
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -24,10 +27,7 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ]
+    "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
