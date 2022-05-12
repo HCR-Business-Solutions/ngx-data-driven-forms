@@ -11,6 +11,7 @@ import { RenderFieldDirective } from '../../directives/render-field/render-field
 import { Question } from '../../forms/classes/question';
 import { FieldRendererRegistryService } from '../../services';
 import { RenderFieldBaseComponent } from '../render-field-base';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   template: '',
@@ -22,6 +23,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
   @Input() public isReadonly: boolean = false;
 
   private shouldAsk: boolean = true;
+  private idModifier: string = btoa(uuid());
 
   @ViewChild(RenderFieldDirective, { static: true })
   private fieldHost!: RenderFieldDirective;
@@ -85,6 +87,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     const componentRef =
       fieldViewContainerRef.createComponent<RenderFieldBaseComponent>(target);
+    componentRef.instance.fieldId = `${this.question.id}-${this.idModifier}`;
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
     componentRef.instance.isReadonly = this.isReadonly;
