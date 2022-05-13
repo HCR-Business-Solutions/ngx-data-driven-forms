@@ -4,6 +4,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  Type,
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
@@ -80,9 +81,8 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     const fieldViewContainerRef = this.fieldHost.viewContainerRef;
     if (!fieldViewContainerRef) return;
 
-    const target = this._fieldRegistry
-      .getRegistry()
-      .get(this.question.id ?? '');
+    const target: Type<RenderFieldBaseComponent> | undefined =
+      this._fieldRegistry.getRegistry().get(this.question.id ?? '');
     if (!target) return;
 
     const componentRef =

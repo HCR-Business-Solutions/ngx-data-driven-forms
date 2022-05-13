@@ -1,8 +1,9 @@
 import { Injectable, Type } from '@angular/core';
+import { RenderFieldBaseComponent } from 'dist/ngx-data-driven-forms/public-api';
 import { BehaviorSubject } from 'rxjs';
 
 type REGISTRY_KEY = string;
-type REGISTRY_VALUE = Type<any>;
+type REGISTRY_VALUE = Type<RenderFieldBaseComponent>;
 type REGISTRY = Map<REGISTRY_KEY, REGISTRY_VALUE>;
 const DEFAULT_REGISTRY: REGISTRY = new Map<REGISTRY_KEY, REGISTRY_VALUE>();
 
