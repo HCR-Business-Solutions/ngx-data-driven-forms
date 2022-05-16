@@ -7,6 +7,7 @@ import { Question } from '../../forms';
   styles: [],
 })
 export class RenderLabelBaseComponent {
+  @Input() public fieldId!: string;
   @Input() question!: Question;
   @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];
