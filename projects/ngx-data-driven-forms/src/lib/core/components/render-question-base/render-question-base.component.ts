@@ -26,7 +26,7 @@ import {
 import { RenderLabelBaseComponent } from '../render-label-base';
 
 @Component({
-  template: '',
+  template: ``,
   styles: [],
 })
 export class RenderQuestionBaseComponent implements OnInit, OnDestroy {

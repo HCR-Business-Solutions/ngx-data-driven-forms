@@ -11,7 +11,7 @@ import { RenderPageDirective } from '../../directives';
 import { RenderPageBaseComponent } from '../render-page-base';
 
 @Component({
-  template: '',
+  template: ``,
   styles: [],
 })
 export class RenderApplicationBaseComponent implements OnInit, OnDestroy {

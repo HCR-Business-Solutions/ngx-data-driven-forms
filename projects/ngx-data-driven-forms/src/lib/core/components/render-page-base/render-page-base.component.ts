@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  template: ` <p>render-page-base works!</p> `,
+  template: ``,
   styles: [],
 })
 export class RenderPageBaseComponent implements OnInit {

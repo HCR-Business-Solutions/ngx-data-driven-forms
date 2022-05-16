@@ -3,7 +3,7 @@ import { AbstractControl } from '@angular/forms';
 import { Section } from '../../forms';
 
 @Component({
-  template: '',
+  template: ``,
   styles: [],
 })
 export class RenderSectionRepeatBaseComponent {
