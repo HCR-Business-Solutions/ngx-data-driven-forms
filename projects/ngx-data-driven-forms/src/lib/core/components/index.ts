@@ -5,6 +5,8 @@ export * from './render-hint-base';
 export * from './render-label-base';
 export * from './render-page-base';
 export * from './render-question-base';
+export * from './render-repeat-data-base';
+export * from './render-repeat-input-base';
 export * from './render-section-base';
 export * from './render-section-repeat-base';
 

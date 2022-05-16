@@ -7,7 +7,10 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { RenderPageDirective } from '../../directives';
+import { Application } from '../../forms';
+import { PageRendererRegistryService } from '../../services';
 import { RenderPageBaseComponent } from '../render-page-base';
 
 @Component({
@@ -15,13 +18,28 @@ import { RenderPageBaseComponent } from '../render-page-base';
   styles: [],
 })
 export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
-  @Input() currentPageIndex!: number;
+  @Input() application!: Application;
+  @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];
+
+  private _currentPageIndex: number = 0;
+
+  @Input() set currentPageIndex(value: number) {
+    this._currentPageIndex = value;
+    this.renderElements();
+  }
+
+  get currentPageIndex(): number {
+    return this._currentPageIndex;
+  }
 
   @ViewChild(RenderPageDirective, { static: true })
   private pageHost!: RenderPageDirective;
 
-  constructor(private _cdRef: ChangeDetectorRef) {}
+  constructor(
+    private _pageRegistry: PageRendererRegistryService,
+    private _cdRef: ChangeDetectorRef
+  ) {}
 
   public ngOnInit(): void {
     this.renderElements();
@@ -32,6 +50,8 @@ export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
   }
 
   private renderElements(): void {
+    this.clearElements();
+
     this.renderPage();
   }
 
@@ -46,12 +66,26 @@ export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
     const pageViewContainerRef = this.pageHost.viewContainerRef;
     if (!pageViewContainerRef) return;
 
-    const target: Type<RenderPageBaseComponent> | undefined = undefined;
+    const page = this.application.pages[this.currentPageIndex];
+    if (!page) return;
+
+    const pageControl = this.control.get(page.id);
+    if (!pageControl) return;
+
+    const rendererOptions = page.rendererConfig?.renderers['page'] ?? undefined;
+
+    const target: Type<RenderPageBaseComponent> | undefined = this._pageRegistry
+      .getRegistry()
+      .get(rendererOptions?.target ?? 'default');
 
     if (!target) return;
 
     const componentRef =
       pageViewContainerRef.createComponent<RenderPageBaseComponent>(target);
+
+    componentRef.instance.page = page;
+    componentRef.instance.control = pageControl;
+    componentRef.instance.rendererArgs = rendererOptions?.args;
 
     this._cdRef.detectChanges();
   }

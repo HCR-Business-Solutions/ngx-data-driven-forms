@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Section } from '../../forms';
 
@@ -6,10 +6,28 @@ import { Section } from '../../forms';
   template: ``,
   styles: [],
 })
-export class RenderSectionRepeatBaseComponent {
+export abstract class RenderSectionRepeatBaseComponent
+  implements OnInit, OnDestroy
+{
   @Input() section!: Section;
   @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];
 
+  inputForm?: AbstractControl;
+
   constructor() {}
+
+  ngOnInit(): void {
+    this.renderElements();
+  }
+
+  ngOnDestroy(): void {
+    this.clearElements();
+  }
+
+  private renderElements() {
+    this.clearElements();
+  }
+
+  private clearElements() {}
 }
