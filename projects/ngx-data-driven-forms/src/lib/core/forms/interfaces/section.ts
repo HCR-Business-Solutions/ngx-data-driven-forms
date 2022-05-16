@@ -10,7 +10,7 @@ export interface ISection {
   narrative?: string;
 
   questions: { [key: string]: IQuestion };
-  layout: (string | string[])[];
+  layout: string[];
 
   repeat?: {
     handler: string;

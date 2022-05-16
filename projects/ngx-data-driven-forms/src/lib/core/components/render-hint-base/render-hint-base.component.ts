@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+import { Question } from '../../forms';
 
 @Component({
-  template: ` <p>render-hint-base works!</p> `,
+  template: ``,
   styles: [],
 })
-export class RenderHintBaseComponent implements OnInit {
-  constructor() {}
+export class RenderHintBaseComponent {
+  @Input() question!: Question;
+  @Input() control!: AbstractControl;
+  @Input() rendererArgs?: any[];
 
-  ngOnInit(): void {}
+  constructor() {}
 }

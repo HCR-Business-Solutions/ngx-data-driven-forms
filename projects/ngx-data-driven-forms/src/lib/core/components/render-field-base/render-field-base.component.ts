@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { Question } from '../../forms/classes/question';
+import { Question } from '../../forms';
 
 @Component({
-  template: ` <p>render-field-base works!</p> `,
+  template: ``,
   styles: [],
 })
 export class RenderFieldBaseComponent {
@@ -11,6 +11,7 @@ export class RenderFieldBaseComponent {
   @Input() public question!: Question;
   @Input() public control!: AbstractControl;
   @Input() public isReadonly: boolean = false;
+  @Input() rendererArgs?: any[];
 
   constructor() {}
 }

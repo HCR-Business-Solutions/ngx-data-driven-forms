@@ -6,5 +6,6 @@ export * from './render-label-base';
 export * from './render-page-base';
 export * from './render-question-base';
 export * from './render-section-base';
+export * from './render-section-repeat-base';
 
 export * from './list';

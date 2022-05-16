@@ -3,10 +3,10 @@ import { AbstractControl } from '@angular/forms';
 import { Section } from '../../forms';
 
 @Component({
-  template: ` <p>render-section-base works!</p> `,
+  template: '',
   styles: [],
 })
-export class RenderSectionBaseComponent {
+export class RenderSectionRepeatBaseComponent {
   @Input() section!: Section;
   @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];

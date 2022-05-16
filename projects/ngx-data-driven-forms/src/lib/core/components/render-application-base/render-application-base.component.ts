@@ -16,6 +16,7 @@ import { RenderPageBaseComponent } from '../render-page-base';
 })
 export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
   @Input() currentPageIndex!: number;
+  @Input() rendererArgs?: any[];
 
   @ViewChild(RenderPageDirective, { static: true })
   private pageHost!: RenderPageDirective;

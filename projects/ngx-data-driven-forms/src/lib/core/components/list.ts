@@ -6,6 +6,7 @@ import { RenderLabelBaseComponent } from './render-label-base';
 import { RenderPageBaseComponent } from './render-page-base';
 import { RenderQuestionBaseComponent } from './render-question-base';
 import { RenderSectionBaseComponent } from './render-section-base';
+import { RenderSectionRepeatBaseComponent } from './render-section-repeat-base';
 
 export const COMPONENTS_LIST = [
   RenderApplicationBaseComponent,
@@ -16,4 +17,5 @@ export const COMPONENTS_LIST = [
   RenderPageBaseComponent,
   RenderQuestionBaseComponent,
   RenderSectionBaseComponent,
+  RenderSectionRepeatBaseComponent,
 ];

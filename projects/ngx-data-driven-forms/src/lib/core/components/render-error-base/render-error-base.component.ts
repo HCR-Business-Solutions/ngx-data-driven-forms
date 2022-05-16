@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+import { Question } from '../../forms';
 
 @Component({
-  template: ` <p>render-error-base works!</p> `,
+  template: ``,
   styles: [],
 })
-export class RenderErrorBaseComponent implements OnInit {
-  constructor() {}
+export class RenderErrorBaseComponent {
+  @Input() question!: Question;
+  @Input() control!: AbstractControl;
+  @Input() rendererArgs?: any[];
 
-  ngOnInit(): void {}
+  constructor() {}
 }
