@@ -45,7 +45,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "prefix": "ddForms",
+          "prefix": "ddforms",
           "skipImport": true
         },
         "@schematics/angular:directive": {

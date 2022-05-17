@@ -1,13 +1,9 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": [
           "projects/ngx-data-driven-forms/tsconfig.lib.json",
@@ -28,16 +24,14 @@
           "error",
           {
             "type": "element",
-            "prefix": "ddForms",
+            "prefix": "ddforms",
             "style": "kebab-case"
           }
         ]
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]
