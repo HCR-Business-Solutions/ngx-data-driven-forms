@@ -17,7 +17,7 @@ import { ApplicationRendererRegistryService } from '../../../services';
   styles: [],
 })
 export class ApplicationContainerComponent implements OnInit, OnDestroy {
-  @Input() form!: AbstractControl;
+  @Input() control!: AbstractControl;
   @Input() application!: Application;
 
   private _currentPageIndex: number = 0;
@@ -66,7 +66,7 @@ export class ApplicationContainerComponent implements OnInit, OnDestroy {
     const applicationView = this.applicationHost.viewContainerRef;
     if (!applicationView) return;
     if (!this.application) return;
-    if (!this.form) return;
+    if (!this.control) return;
     if (this.currentPageIndex === null || this.currentPageIndex === undefined)
       return;
 
@@ -79,7 +79,7 @@ export class ApplicationContainerComponent implements OnInit, OnDestroy {
 
     const componentRef = applicationView.createComponent(target);
     componentRef.instance.application = this.application;
-    componentRef.instance.control = this.form;
+    componentRef.instance.control = this.control;
     componentRef.instance.currentPageIndex = this.currentPageIndex;
     componentRef.instance.rendererArgs = rendererConfig?.args;
   }
