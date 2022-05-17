@@ -12,8 +12,8 @@ import {
   RenderNarrativeDirective,
   RenderRepeatDataDirective,
   RenderRepeatInputDirective,
-} from '../../directives';
-import { Section } from '../../forms';
+} from '../../../directives';
+import { Section } from '../../../forms';
 import {
   CrossFieldValidatorRegistryService,
   FieldValidatorRegistryService,
@@ -21,7 +21,7 @@ import {
   NarrativeRendererRegistryService,
   RepeatDataRendererRegistryService,
   RepeatInputRendererRegistryService,
-} from '../../services';
+} from '../../../services';
 import { RenderHeadingBaseComponent } from '../render-heading-base';
 import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderRepeatDataBaseComponent } from '../render-repeat-data-base';
@@ -31,9 +31,7 @@ import { RenderRepeatInputBaseComponent } from '../render-repeat-input-base';
   template: ``,
   styles: [],
 })
-export abstract class RenderSectionRepeatBaseComponent
-  implements OnInit, OnDestroy
-{
+export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
   @Input() section!: Section;
   @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];

@@ -8,9 +8,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { RenderPageDirective } from '../../directives';
-import { Application } from '../../forms';
-import { PageRendererRegistryService } from '../../services';
+import { RenderPageDirective } from '../../../directives';
+import { Application } from '../../../forms';
+import { PageRendererRegistryService } from '../../../services';
 import { RenderPageBaseComponent } from '../render-page-base';
 
 @Component({

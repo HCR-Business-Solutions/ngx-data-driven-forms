@@ -8,21 +8,21 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { RenderFieldDirective } from '../../directives/render-field/render-field.directive';
-import { Question } from '../../forms';
+import { RenderFieldDirective } from '../../../directives/render-field/render-field.directive';
+import { Question } from '../../../forms';
 import {
   ErrorRendererRegistryService,
   FieldRendererRegistryService,
   HintRendererRegistryService,
   LabelRendererRegistryService,
-} from '../../services';
+} from '../../../services';
 import { RenderFieldBaseComponent } from '../render-field-base';
 import { v4 as uuid } from 'uuid';
 import {
   RenderErrorDirective,
   RenderHintDirective,
   RenderLabelDirective,
-} from '../../directives';
+} from '../../../directives';
 import { RenderLabelBaseComponent } from '../render-label-base';
 import { RenderHintBaseComponent } from '../render-hint-base';
 import { RenderErrorBaseComponent } from '../render-error-base';

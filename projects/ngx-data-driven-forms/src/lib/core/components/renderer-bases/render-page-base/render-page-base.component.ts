@@ -11,14 +11,14 @@ import {
   RenderHeadingDirective,
   RenderNarrativeDirective,
   RenderSectionDirective,
-} from '../../directives';
-import { Page } from '../../forms/classes/page';
+} from '../../../directives';
+import { Page } from '../../../forms/classes/page';
 import {
   HeadingRendererRegistryService,
   NarrativeRendererRegistryService,
   SectionRendererRegistryService,
   SectionRepeatRendererRegistryService,
-} from '../../services';
+} from '../../../services';
 import { RenderHeadingBaseComponent } from '../render-heading-base';
 import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderSectionBaseComponent } from '../render-section-base';

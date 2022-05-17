@@ -6,9 +6,9 @@ import { COMPONENTS_LIST } from './components';
 import { DIRECTIVE_LIST } from './directives';
 
 @NgModule({
-  declarations: [...DIRECTIVE_LIST, ...COMPONENTS_LIST],
+  declarations: [...COMPONENTS_LIST, ...DIRECTIVE_LIST],
   imports: [CommonModule],
-  exports: [...COMPONENTS_LIST, ...COMPONENTS_LIST],
+  exports: [...COMPONENTS_LIST, ...DIRECTIVE_LIST],
   providers: [...SERVICES_LIST],
 })
 export class DDFormsCoreModule {}

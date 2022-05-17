@@ -1,6 +1,5 @@
 import { FormArray, FormGroup, ValidatorFn } from '@angular/forms';
-import { CrossFieldValidatorFn } from 'dist/ngx-data-driven-forms/public-api';
-import { FieldValidatorFn } from '../../types';
+import { CrossFieldValidatorFn, FieldValidatorFn } from '../../types';
 import {
   IQuestion,
   IRendererConfig,

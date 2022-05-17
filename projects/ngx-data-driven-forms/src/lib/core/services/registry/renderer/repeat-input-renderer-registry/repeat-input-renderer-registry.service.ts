@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { RenderRepeatInputBaseComponent } from '../../../../components';
+import { RenderRepeatInputBaseComponent } from '../../../../components/renderer-bases';
 
 type REGISTRY_KEY = string;
 type REGISTRY_VALUE = Type<RenderRepeatInputBaseComponent>;

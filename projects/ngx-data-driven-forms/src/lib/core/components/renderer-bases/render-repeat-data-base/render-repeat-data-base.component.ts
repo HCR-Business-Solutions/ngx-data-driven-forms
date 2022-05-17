@@ -1,15 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { Question } from '../../forms';
+import { Section } from '../../../forms';
 
 @Component({
   template: ``,
   styles: [],
 })
-export class RenderErrorBaseComponent {
-  @Input() public fieldId!: string;
-  @Input() question!: Question;
-  @Input() control!: AbstractControl;
+export class RenderRepeatDataBaseComponent {
+  @Input() section!: Section;
+  @Input() data!: AbstractControl;
   @Input() rendererArgs?: any[];
 
   constructor() {}

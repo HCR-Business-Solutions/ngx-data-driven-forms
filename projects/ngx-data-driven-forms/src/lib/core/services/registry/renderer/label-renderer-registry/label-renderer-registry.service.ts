@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { RenderLabelBaseComponent } from '../../../../components';
+import { RenderLabelBaseComponent } from '../../../../components/renderer-bases';
 
 type REGISTRY_KEY = string;
 type REGISTRY_VALUE = Type<RenderLabelBaseComponent>;

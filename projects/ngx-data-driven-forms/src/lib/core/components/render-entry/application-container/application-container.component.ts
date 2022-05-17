@@ -7,9 +7,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { RenderApplicationDirective } from '../../directives';
-import { Application } from '../../forms';
-import { ApplicationRendererRegistryService } from '../../services';
+import { RenderApplicationDirective } from '../../../directives';
+import { Application } from '../../../forms';
+import { ApplicationRendererRegistryService } from '../../../services';
 
 @Component({
   selector: 'ddforms-application-container',

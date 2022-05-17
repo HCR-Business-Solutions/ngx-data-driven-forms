@@ -11,13 +11,13 @@ import {
   RenderHeadingDirective,
   RenderNarrativeDirective,
   RenderQuestionDirective,
-} from '../../directives';
-import { Section } from '../../forms';
+} from '../../../directives';
+import { Section } from '../../../forms';
 import {
   HeadingRendererRegistryService,
   NarrativeRendererRegistryService,
   QuestionRendererRegistryService,
-} from '../../services';
+} from '../../../services';
 import { RenderHeadingBaseComponent } from '../render-heading-base';
 import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderQuestionBaseComponent } from '../render-question-base';
