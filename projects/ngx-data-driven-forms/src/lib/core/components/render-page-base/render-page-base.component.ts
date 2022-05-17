@@ -7,12 +7,20 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { RenderSectionDirective } from '../../directives';
+import {
+  RenderHeadingDirective,
+  RenderNarrativeDirective,
+  RenderSectionDirective,
+} from '../../directives';
 import { Page } from '../../forms/classes/page';
 import {
+  HeadingRendererRegistryService,
+  NarrativeRendererRegistryService,
   SectionRendererRegistryService,
   SectionRepeatRendererRegistryService,
 } from '../../services';
+import { RenderHeadingBaseComponent } from '../render-heading-base';
+import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderSectionBaseComponent } from '../render-section-base';
 import { RenderSectionRepeatBaseComponent } from '../render-section-repeat-base';
 
@@ -25,12 +33,20 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
   @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];
 
+  @ViewChild(RenderHeadingDirective, { static: true })
+  private headingHost!: RenderHeadingDirective;
+
+  @ViewChild(RenderNarrativeDirective, { static: true })
+  private narrativeHost!: RenderNarrativeDirective;
+
   @ViewChild(RenderSectionDirective, { static: true })
   private sectionHost!: RenderSectionDirective;
 
   constructor(
     private _sectionRegistry: SectionRendererRegistryService,
     private _repeatRegistry: SectionRepeatRendererRegistryService,
+    private _headingRegistry: HeadingRendererRegistryService,
+    private _narrativeRegistry: NarrativeRendererRegistryService,
     private _cdr: ChangeDetectorRef
   ) {}
 
@@ -45,13 +61,61 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
   private renderElements(): void {
     this.clearElements();
 
+    this.renderHeading();
+    this.renderNarrative();
     this.renderSections();
+
+    this._cdr.detectChanges();
   }
 
   private clearElements(): void {
+    if (this.headingHost && this.headingHost.viewContainerRef) {
+      this.headingHost.viewContainerRef.clear();
+    }
+
+    if (this.narrativeHost && this.narrativeHost.viewContainerRef) {
+      this.narrativeHost.viewContainerRef.clear();
+    }
+
     if (this.sectionHost && this.sectionHost.viewContainerRef) {
       this.sectionHost.viewContainerRef.clear();
     }
+  }
+
+  private renderHeading(): void {
+    if (!this.headingHost) return;
+    const headingView = this.headingHost.viewContainerRef;
+    if (!headingView) return;
+    if (!this.page.title) return;
+
+    const rendererConfig = this.page.rendererConfig?.renderers['heading'];
+
+    const target = this._headingRegistry
+      .getRegistry()
+      .get(rendererConfig?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      headingView.createComponent<RenderHeadingBaseComponent>(target);
+    componentRef.instance.content = this.page.title;
+    componentRef.instance.rendererArgs = rendererConfig?.args ?? ['type=page'];
+  }
+
+  private renderNarrative(): void {
+    if (!this.narrativeHost) return;
+    const narrativeView = this.narrativeHost.viewContainerRef;
+    if (!narrativeView) return;
+    if (!this.page.narrative) return;
+
+    const rendererConfig = this.page.rendererConfig?.renderers['narrative'];
+
+    const target = this._narrativeRegistry
+      .getRegistry()
+      .get(rendererConfig?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      narrativeView.createComponent<RenderNarrativeBaseComponent>(target);
+    componentRef.instance.content = this.page.narrative;
+    componentRef.instance.rendererArgs = rendererConfig?.args ?? ['type=page'];
   }
 
   private renderSections(): void {
@@ -90,6 +154,5 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
         componentRef.instance.rendererArgs = rendererConfig?.args;
       }
     });
-    this._cdr.detectChanges();
   }
 }

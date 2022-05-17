@@ -24,6 +24,8 @@ import {
   RenderLabelDirective,
 } from '../../directives';
 import { RenderLabelBaseComponent } from '../render-label-base';
+import { RenderHintBaseComponent } from '../render-hint-base';
+import { RenderErrorBaseComponent } from '../render-error-base';
 
 @Component({
   template: ``,
@@ -90,6 +92,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     if (this.control.errors) {
       this.renderError();
     }
+    this._cdRef.detectChanges();
   }
 
   private clearElements(): void {
@@ -152,11 +155,48 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     componentRef.instance.control = this.control;
     componentRef.instance.isReadonly = this.isReadonly;
     componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
-
-    this._cdRef.detectChanges();
   }
 
-  private renderHint(): void {}
+  private renderHint(): void {
+    if (!this.hintHost) return;
+    const hintView = this.hintHost.viewContainerRef;
+    if (!hintView) return;
 
-  private renderError(): void {}
+    if (!this.question.hint) return;
+
+    const rendererOptions =
+      this.question?.rendererConfig?.renderers['hint'] ?? undefined;
+
+    const target: Type<RenderHintBaseComponent> | undefined = this._hintRegistry
+      .getRegistry()
+      .get(rendererOptions?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      hintView.createComponent<RenderHintBaseComponent>(target);
+
+    componentRef.instance.question = this.question;
+    componentRef.instance.control = this.control;
+    componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
+  }
+
+  private renderError(): void {
+    if (!this.errorHost) return;
+    const errorView = this.errorHost.viewContainerRef;
+    if (!errorView) return;
+
+    const rendererOptions =
+      this.question?.rendererConfig?.renderers['error'] ?? undefined;
+
+    const target: Type<RenderErrorBaseComponent> | undefined =
+      this._hintRegistry
+        .getRegistry()
+        .get(rendererOptions?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      errorView.createComponent<RenderErrorBaseComponent>(target);
+
+    componentRef.instance.question = this.question;
+    componentRef.instance.control = this.control;
+    componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
+  }
 }

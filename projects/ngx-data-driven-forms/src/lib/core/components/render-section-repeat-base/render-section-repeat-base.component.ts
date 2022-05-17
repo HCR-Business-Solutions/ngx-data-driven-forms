@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import {
+  RenderHeadingDirective,
+  RenderNarrativeDirective,
   RenderRepeatDataDirective,
   RenderRepeatInputDirective,
 } from '../../directives';
@@ -15,9 +17,13 @@ import { Section } from '../../forms';
 import {
   CrossFieldValidatorRegistryService,
   FieldValidatorRegistryService,
+  HeadingRendererRegistryService,
+  NarrativeRendererRegistryService,
   RepeatDataRendererRegistryService,
   RepeatInputRendererRegistryService,
 } from '../../services';
+import { RenderHeadingBaseComponent } from '../render-heading-base';
+import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderRepeatDataBaseComponent } from '../render-repeat-data-base';
 import { RenderRepeatInputBaseComponent } from '../render-repeat-input-base';
 
@@ -32,6 +38,12 @@ export abstract class RenderSectionRepeatBaseComponent
   @Input() control!: AbstractControl;
   @Input() rendererArgs?: any[];
 
+  @ViewChild(RenderHeadingDirective, { static: true })
+  private headingHost!: RenderHeadingDirective;
+
+  @ViewChild(RenderNarrativeDirective, { static: true })
+  private narrativeHost!: RenderNarrativeDirective;
+
   @ViewChild(RenderRepeatInputDirective, { static: true })
   private inputHost!: RenderRepeatInputDirective;
 
@@ -45,6 +57,8 @@ export abstract class RenderSectionRepeatBaseComponent
     private _repeatInputRegistry: RepeatInputRendererRegistryService,
     private _fieldValidators: FieldValidatorRegistryService,
     private _crossFieldValidators: CrossFieldValidatorRegistryService,
+    private _headingRegistry: HeadingRendererRegistryService,
+    private _narrativeRegistry: NarrativeRendererRegistryService,
     private _cdr: ChangeDetectorRef
   ) {}
 
@@ -59,8 +73,11 @@ export abstract class RenderSectionRepeatBaseComponent
   private renderElements(): void {
     this.clearElements();
 
+    this.renderHeading();
+    this.renderNarrative();
     this.renderRepeatData();
     this.renderRepeatInput();
+    this._cdr.detectChanges();
   }
 
   private clearElements(): void {
@@ -71,6 +88,46 @@ export abstract class RenderSectionRepeatBaseComponent
     if (this.dataHost && this.dataHost.viewContainerRef) {
       this.dataHost.viewContainerRef.clear();
     }
+  }
+
+  private renderHeading(): void {
+    if (!this.headingHost) return;
+    const headingView = this.headingHost.viewContainerRef;
+    if (!headingView) return;
+    if (!this.section.title) return;
+
+    const rendererConfig = this.section.rendererConfig?.renderers['heading'];
+
+    const target = this._headingRegistry
+      .getRegistry()
+      .get(rendererConfig?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      headingView.createComponent<RenderHeadingBaseComponent>(target);
+    componentRef.instance.content = this.section.title;
+    componentRef.instance.rendererArgs = rendererConfig?.args ?? [
+      'type=sectionRepeat',
+    ];
+  }
+
+  private renderNarrative(): void {
+    if (!this.narrativeHost) return;
+    const narrativeView = this.narrativeHost.viewContainerRef;
+    if (!narrativeView) return;
+    if (!this.section.narrative) return;
+
+    const rendererConfig = this.section.rendererConfig?.renderers['narrative'];
+
+    const target = this._narrativeRegistry
+      .getRegistry()
+      .get(rendererConfig?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      narrativeView.createComponent<RenderNarrativeBaseComponent>(target);
+    componentRef.instance.content = this.section.narrative;
+    componentRef.instance.rendererArgs = rendererConfig?.args ?? [
+      'type=sectionRepeat',
+    ];
   }
 
   private renderRepeatInput(): void {
@@ -98,8 +155,7 @@ export abstract class RenderSectionRepeatBaseComponent
       inputView.createComponent<RenderRepeatInputBaseComponent>(target);
     componentRef.instance.inputForm = this.inputForm;
     componentRef.instance.section = this.section;
-
-    this._cdr.detectChanges();
+    componentRef.instance.rendererArgs = rendererConfig?.args;
   }
 
   private renderRepeatData(): void {
@@ -120,7 +176,6 @@ export abstract class RenderSectionRepeatBaseComponent
 
     componentRef.instance.data = this.control;
     componentRef.instance.section = this.section;
-
-    this._cdr.detectChanges();
+    componentRef.instance.rendererArgs = rendererConfig?.args;
   }
 }

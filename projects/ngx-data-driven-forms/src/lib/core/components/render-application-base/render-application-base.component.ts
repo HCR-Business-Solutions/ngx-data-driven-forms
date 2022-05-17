@@ -53,6 +53,7 @@ export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
     this.clearElements();
 
     this.renderPage();
+    this._cdRef.detectChanges();
   }
 
   private clearElements(): void {
@@ -86,7 +87,5 @@ export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
     componentRef.instance.page = page;
     componentRef.instance.control = pageControl;
     componentRef.instance.rendererArgs = rendererOptions?.args;
-
-    this._cdRef.detectChanges();
   }
 }
