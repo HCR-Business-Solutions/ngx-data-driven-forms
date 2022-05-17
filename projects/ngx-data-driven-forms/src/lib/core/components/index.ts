@@ -1,3 +1,4 @@
+export * from './application-container';
 export * from './render-application-base';
 export * from './render-error-base';
 export * from './render-field-base';

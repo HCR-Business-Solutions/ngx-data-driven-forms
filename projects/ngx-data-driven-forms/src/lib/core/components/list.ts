@@ -1,3 +1,4 @@
+import { ApplicationContainerComponent } from './application-container';
 import { RenderApplicationBaseComponent } from './render-application-base';
 import { RenderErrorBaseComponent } from './render-error-base';
 import { RenderFieldBaseComponent } from './render-field-base';
@@ -13,6 +14,7 @@ import { RenderSectionBaseComponent } from './render-section-base';
 import { RenderSectionRepeatBaseComponent } from './render-section-repeat-base';
 
 export const COMPONENTS_LIST = [
+  ApplicationContainerComponent,
   RenderApplicationBaseComponent,
   RenderErrorBaseComponent,
   RenderFieldBaseComponent,
