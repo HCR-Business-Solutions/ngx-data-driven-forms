@@ -1,4 +1,5 @@
 export interface ICrossFieldValidationPack {
-  siblingPath: string;
+  sibling: string;
+  expectedParentLevel: number;
   validation: { [key: string]: any };
 }

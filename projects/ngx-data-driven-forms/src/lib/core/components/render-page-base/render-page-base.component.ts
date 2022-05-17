@@ -13,6 +13,8 @@ import {
   SectionRendererRegistryService,
   SectionRepeatRendererRegistryService,
 } from '../../services';
+import { RenderSectionBaseComponent } from '../render-section-base';
+import { RenderSectionRepeatBaseComponent } from '../render-section-repeat-base';
 
 @Component({
   template: ``,
@@ -66,22 +68,28 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
       const control = this.control.get(section.id);
       if (!control) return;
 
-      const target = !section.repeat
-        ? this._sectionRegistry
-            .getRegistry()
-            .get(rendererConfig?.target ?? 'default')
-        : this._repeatRegistry
-            .getRegistry()
-            .get(rendererConfig?.target ?? 'default');
-      if (!target) return;
-
-      const componentRef = sectionView.createComponent(target);
-
-      componentRef.instance.control = control;
-      componentRef.instance.section = section;
-      componentRef.instance.rendererArgs = rendererConfig?.args;
+      if (section.repeat) {
+        const target = this._repeatRegistry
+          .getRegistry()
+          .get(rendererConfig?.target ?? 'default');
+        if (!target) return;
+        const componentRef =
+          sectionView.createComponent<RenderSectionRepeatBaseComponent>(target);
+        componentRef.instance.control = control;
+        componentRef.instance.section = section;
+        componentRef.instance.rendererArgs = rendererConfig?.args;
+      } else {
+        const target = this._sectionRegistry
+          .getRegistry()
+          .get(rendererConfig?.target ?? 'default');
+        if (!target) return;
+        const componentRef =
+          sectionView.createComponent<RenderSectionBaseComponent>(target);
+        componentRef.instance.control = control;
+        componentRef.instance.section = section;
+        componentRef.instance.rendererArgs = rendererConfig?.args;
+      }
     });
-
     this._cdr.detectChanges();
   }
 }

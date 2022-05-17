@@ -1,5 +1,6 @@
 export interface IConditionPack {
-  siblingPath: string;
+  sibling: string;
+  expectedParentLevel: number;
   conditions: { [key: string]: any };
   checkAll?: boolean;
 }
