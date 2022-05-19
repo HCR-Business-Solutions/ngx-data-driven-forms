@@ -1,1 +1,7 @@
-export * from './public-api';
+export * from './components';
+export * from './directives';
+export * from './forms';
+export * from './services';
+export * from './types';
+
+export * from './core.module';
