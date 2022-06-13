@@ -1,5 +1,6 @@
 import { FormArray, FormGroup, ValidatorFn } from '@angular/forms';
 import { CrossFieldValidatorFn, FieldValidatorFn } from '../../types';
+import { resovleCrossFieldValidators } from '../../utils';
 import {
   IQuestion,
   IRendererConfig,
@@ -59,7 +60,11 @@ export class Section implements ISection {
       return arr;
     }
 
-    return this.asForm(initialValue, fieldValidators, crossFieldValidators);
+    return this.asFormGroup(
+      initialValue,
+      fieldValidators,
+      crossFieldValidators
+    );
   }
 
   public asFormGroup(
@@ -87,37 +92,10 @@ export class Section implements ISection {
   public getCrossFieldValidators(
     crossFieldValidators: Map<string, CrossFieldValidatorFn>
   ): ValidatorFn[] {
-    const resutlValidators: ValidatorFn[] = [];
-
-    const relaventValidators = Object.values(this.questions)
-      .filter(
-        (_) => _.crossFieldValidation && _.crossFieldValidation.length > 0
-      )
-      .filter(
-        (_) =>
-          _.crossFieldValidation?.filter(
-            (pack) => pack.expectedParentLevel === 1
-          ).length ?? 0 > 0
-      )
-      .map((_) => ({
-        id: _.id,
-        validators: _.crossFieldValidation?.filter(
-          (pack) => pack.expectedParentLevel === 1
-        ),
-      }));
-
-    relaventValidators.forEach(({ id, validators }) => {
-      if (!validators || validators.length <= 0) return;
-      validators.forEach((validatorPack) => {
-        Object.entries(validatorPack.validation).forEach(([key, arg]) => {
-          const func = crossFieldValidators.get(key);
-          if (!func) return;
-          const funcEval = func(id, validatorPack.sibling, arg);
-          if (funcEval) resutlValidators.push(funcEval);
-        });
-      });
-    });
-
-    return resutlValidators;
+    return resovleCrossFieldValidators(
+      crossFieldValidators,
+      Object.values(this.questions),
+      1
+    );
   }
 }

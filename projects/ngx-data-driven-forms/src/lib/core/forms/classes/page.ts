@@ -1,4 +1,13 @@
-import { IPage, IRendererConfig, IShouldAsk } from '../interfaces';
+import { FormGroup, ValidatorFn } from '@angular/forms';
+import { FieldValidatorFn, CrossFieldValidatorFn } from '../../types';
+import { resovleCrossFieldValidators } from '../../utils';
+import {
+  ICrossFieldValidationPack,
+  IPage,
+  IRendererConfig,
+  IShouldAsk,
+} from '../interfaces';
+import { Question } from './question';
 import { Section } from './section';
 
 export class Page implements IPage {
@@ -18,5 +27,44 @@ export class Page implements IPage {
     this.shouldAsk = page.shouldAsk;
     this.rendererConfig = page.rendererConfig;
     this.customProps = page.customProps;
+  }
+
+  public asForm(
+    initialValue: any,
+    fieldValidators: Map<string, FieldValidatorFn>,
+    crossFieldValidators: Map<string, CrossFieldValidatorFn>
+  ): FormGroup {
+    const controls = this.sections.reduce(
+      (prev, section) => ({
+        ...prev,
+        [`${section.id}`]: section.asForm(
+          initialValue ? initialValue[section.id] ?? null : null,
+          fieldValidators,
+          crossFieldValidators
+        ),
+      }),
+      {}
+    );
+
+    return new FormGroup(
+      controls,
+      this.getCrossFieldValidators(crossFieldValidators)
+    );
+  }
+
+  public getCrossFieldValidators(
+    crossFieldValidators: Map<string, CrossFieldValidatorFn>
+  ): ValidatorFn[] {
+    return resovleCrossFieldValidators(
+      crossFieldValidators,
+      this.sections.reduce(
+        (prev: Question[], curr: Section) => [
+          ...prev,
+          ...Object.values(curr.questions),
+        ],
+        []
+      ),
+      2
+    );
   }
 }

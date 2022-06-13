@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  MasterReigistryService,
+  RenderErrorBaseComponent,
+} from 'ngx-data-driven-forms/src/public-api';
 
 @Component({
   selector: 'ddforms-error-default',
-  template: `
-    <p>
-      error-default works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<div class="errors-container">
+    <p>Default Errors Renderer</p>
+  </div>`,
+  styles: [],
 })
-export class ErrorDefaultComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class ErrorDefaultComponent extends RenderErrorBaseComponent {
+  constructor(
+    protected masterRegistry: MasterReigistryService,
+    protected cdr: ChangeDetectorRef
+  ) {
+    super();
   }
-
 }

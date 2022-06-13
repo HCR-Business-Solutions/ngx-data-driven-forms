@@ -11,6 +11,7 @@ import { DEFAULT_COMPONTENTS } from './components/list';
 })
 export class DDFormsDefaultRenderersModule {
   constructor(private _masterRegistry: MasterReigistryService) {
+    // #region View Organization Renderers
     this._masterRegistry._applicationRendererRegistry.register(
       'default',
       DefaultComponents.ApplicationDefaultComponent
@@ -31,5 +32,21 @@ export class DDFormsDefaultRenderersModule {
       'default',
       DefaultComponents.QuestionDefaultComponent
     );
+    // #endregion View Organization Renderers
+
+    // #region Question Compisition Renderers
+    this._masterRegistry._labelRendererRegistry.register(
+      'default',
+      DefaultComponents.LabelDefaultComponent
+    );
+    this._masterRegistry._hintRendererRegistry.register(
+      'default',
+      DefaultComponents.HintDefaultComponent
+    );
+    this._masterRegistry._errorRendererRegistry.register(
+      'default',
+      DefaultComponents.ErrorDefaultComponent
+    );
+    //#endregion Question Compisition Renderers
   }
 }

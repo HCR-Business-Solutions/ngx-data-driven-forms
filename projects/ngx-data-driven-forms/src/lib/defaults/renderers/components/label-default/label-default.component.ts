@@ -1,20 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RenderLabelBaseComponent } from 'ngx-data-driven-forms/src/public-api';
 
 @Component({
   selector: 'ddforms-label-default',
-  template: `
-    <p>
-      label-default works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<div class="label-container">
+    <p>Default Label Renderer</p>
+  </div>`,
+
+  styles: [],
 })
-export class LabelDefaultComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class LabelDefaultComponent extends RenderLabelBaseComponent {
+  constructor() {
+    super();
   }
-
 }

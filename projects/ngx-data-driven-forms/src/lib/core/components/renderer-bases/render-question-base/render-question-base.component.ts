@@ -188,7 +188,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
       this.question?.rendererConfig?.renderers['error'] ?? undefined;
 
     const target: Type<RenderErrorBaseComponent> | undefined =
-      this._hintRegistry
+      this._errorRegistry
         .getRegistry()
         .get(rendererOptions?.target ?? 'default');
     if (!target) return;

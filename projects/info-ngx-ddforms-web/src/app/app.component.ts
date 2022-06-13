@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { Application } from 'ngx-data-driven-forms/src/public-api';
+import {
+  Application,
+  FormGenerationService,
+} from 'ngx-data-driven-forms/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,8 @@ export class AppComponent {
               testQuestion1: {
                 id: 'testQuestion1',
                 type: 'text',
+                label: 'Test Question 1',
+                hint: 'test question',
               },
             },
             layout: ['testQuestion1'],
@@ -31,6 +35,8 @@ export class AppComponent {
               testQuestion2: {
                 id: 'testQuestion2',
                 type: 'text',
+                label: 'Test Question 2',
+                hint: 'test question',
               },
             },
             layout: ['testQuestion2'],
@@ -43,16 +49,12 @@ export class AppComponent {
     ],
   });
 
-  testControl = this.fb.group({
-    test1: this.fb.group({
-      testSection1: this.fb.group({
-        testQuestion1: this.fb.control(null),
-      }),
-      testSection2: this.fb.array([]),
-    }),
-  });
+  testControl = this.formGenerator.buildApplicationControl(
+    null,
+    this.testApplication
+  );
 
   title = 'info-ngx-ddforms-web';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private formGenerator: FormGenerationService) {}
 }
