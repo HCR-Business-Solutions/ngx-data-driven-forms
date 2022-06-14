@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { RenderNarrativeBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-narrative-default',
-  template: `
-    <p>
-      narrative-default works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<div class="narrative-container">
+    <p>Default Narrative Renderer</p>
+  </div>`,
+  styles: [],
 })
-export class NarrativeDefaultComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class NarrativeDefaultComponent extends RenderNarrativeBaseComponent {
+  constructor() {
+    super();
   }
-
 }

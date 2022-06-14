@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
   MasterReigistryService,
   RenderSectionRepeatBaseComponent,
-} from 'ngx-data-driven-forms/src/public-api';
+} from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-section-repeat-default',

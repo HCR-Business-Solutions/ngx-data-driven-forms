@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { RenderRepeatDataBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-repeat-data-default',
-  template: `
-    <p>
-      repeat-data-default works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<div class="repeat-data-container">
+    <p>Default Repeat Data Renderer</p>
+  </div>`,
+  styles: [],
 })
-export class RepeatDataDefaultComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class RepeatDataDefaultComponent extends RenderRepeatDataBaseComponent {
+  constructor() {
+    super();
   }
-
 }

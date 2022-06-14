@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RenderLabelBaseComponent } from 'ngx-data-driven-forms/src/public-api';
+import { RenderLabelBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-label-default',

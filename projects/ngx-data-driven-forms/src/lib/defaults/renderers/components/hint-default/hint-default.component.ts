@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RenderHintBaseComponent } from 'ngx-data-driven-forms/src/public-api';
+import { RenderHintBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-hint-default',

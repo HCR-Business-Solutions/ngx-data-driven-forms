@@ -34,6 +34,17 @@ export class DDFormsDefaultRenderersModule {
     );
     // #endregion View Organization Renderers
 
+    // #region Text Renderers
+    this._masterRegistry._headingRendererRegistry.register(
+      'default',
+      DefaultComponents.HeadingDefaultComponent
+    );
+    this._masterRegistry._narrativeRendererRegistry.register(
+      'default',
+      DefaultComponents.NarrativeDefaultComponent
+    );
+    // #endregion Text Renderers
+
     // #region Question Compisition Renderers
     this._masterRegistry._labelRendererRegistry.register(
       'default',
@@ -48,5 +59,16 @@ export class DDFormsDefaultRenderersModule {
       DefaultComponents.ErrorDefaultComponent
     );
     //#endregion Question Compisition Renderers
+
+    // #region Section Repeat Renderers
+    this._masterRegistry._repeatDataRendererRegistry.register(
+      'default',
+      DefaultComponents.RepeatDataDefaultComponent
+    );
+    this._masterRegistry._repeatInputRendererRegistry.register(
+      'default',
+      DefaultComponents.RepeatInputDefaultComponent
+    );
+    // #endregion Section Repeat Renderers
   }
 }

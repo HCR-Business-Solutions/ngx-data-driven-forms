@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import {
   MasterReigistryService,
   RenderErrorBaseComponent,
-} from 'ngx-data-driven-forms/src/public-api';
+} from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-error-default',

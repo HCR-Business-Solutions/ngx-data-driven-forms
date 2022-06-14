@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { RenderHeadingBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-heading-default',
-  template: `
-    <p>
-      heading-default works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: `<div class="heading-container">
+    <p>Default Heading Renderer</p>
+  </div>`,
+  styles: [],
 })
-export class HeadingDefaultComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class HeadingDefaultComponent extends RenderHeadingBaseComponent {
+  constructor() {
+    super();
   }
-
 }

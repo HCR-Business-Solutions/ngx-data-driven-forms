@@ -16,9 +16,13 @@ export class AppComponent {
     pages: [
       {
         id: 'test1',
+        title: 'Test Page Title',
+        narrative: 'Test Page Narrative',
         sections: [
           {
             id: 'testSection1',
+            title: 'Test Section Title',
+            narrative: 'Test Section Narrative',
             questions: {
               testQuestion1: {
                 id: 'testQuestion1',
@@ -31,6 +35,8 @@ export class AppComponent {
           },
           {
             id: 'testSection2',
+            title: 'Test Repeat Section Title',
+            narrative: 'Test Repeat Section Narrative',
             questions: {
               testQuestion2: {
                 id: 'testQuestion2',
