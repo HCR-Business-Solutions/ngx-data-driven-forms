@@ -1,24 +1,79 @@
-# NgxDataDrivenForms
+# ngx-data-driven-forms
+A framework for quickly generating web forms from just a simple JSON object.
+<br>
+<br>
+<br>
+## Installation
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
+Installation is simple and can be done through Node Package Manager. The library is divided into two major sectors:
 
-## Code scaffolding
+- Core Module (DDFormsCoreModule)
+- Defaults Module (DDFormsDefaultsModule) *[has further subdivisions]*
 
-Run `ng generate component component-name --project ngx-data-driven-forms` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-data-driven-forms`.
-> Note: Don't forget to add `--project ngx-data-driven-forms` or else it will be added to the default project in your `angular.json` file. 
+To install just run 
+`npm install @nys-hcr-its/ngx-data-driven-forms ngx-markdown --save`.
 
-## Build
+This will install the library and its only non-angular dependency (ngx-markdown, *used for some text rendering in the Defaults Module*).
 
-Run `ng build ngx-data-driven-forms` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Publishing
+## Basic Setup
+The basic framework of this library is provided entirely by the Core Module. This provides the structure and render functions for the library.
 
-After building your library with `ng build ngx-data-driven-forms`, go to the dist folder `cd dist/ngx-data-driven-forms` and run `npm publish`.
+All you have to do is import the Core Module in your Base App Module.
 
-## Running unit tests
+**Note: Only importing the Core Module will require you to define default renderers.**
 
-Run `ng test ngx-data-driven-forms` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Further help
+```
+@NgModule({
+  declarations: [
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    DDFormsCoreModule,
+  ],
+  providers: [],
+  bootstrap: []
+})
+export class AppModule { }
+```
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Including Defaults
+In order to get stuff to appear on the page, renderers need to be registered with the libray.
+
+The libary provides an opt-in Module that automatically registers some basic functionality and views.
+In order to use this library, you will also have import `ngx-markdown` which is used for text rendering.
+
+Again just import these two modules into your Base App Module.
+
+**Note: It is important that the Defaults Module is only imported once, importing more than once can lead to unintended behavior.**
+
+
+```
+@NgModule({
+  declarations: [
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    DDFormsCoreModule,
+    DDFormsDefaultsModule,
+    MarkdownModule.forRoot(),
+  ],
+  providers: [],
+  bootstrap: []
+})
+export class AppModule { }
+```
+
+This will cause all default renderers to be registered with the library, and allow text to be rendered.
+
+However, in order to fully take advantage of `ngx-markdown` you will also have to add 
+`node_modules/marked/marked.min.js` to your app scripts in the angular.json file.
+
+Further plugins, functionality and configuration can be added by following the info at https://www.npmjs.com/package/ngx-markdown#installation
+
+---
