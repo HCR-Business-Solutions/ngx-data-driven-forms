@@ -68,6 +68,5 @@ export class QuestionContainerComponent implements OnInit, OnDestroy {
     componentRef.instance.control = this.control;
     componentRef.instance.isReadonly = this.readonly;
     componentRef.instance.question = this.question;
-    componentRef.instance.rendererArgs = rendererConfig?.args;
   }
 }

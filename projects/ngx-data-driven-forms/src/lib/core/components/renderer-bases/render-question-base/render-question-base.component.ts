@@ -35,7 +35,6 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
   @Input() question!: Question;
   @Input() control!: AbstractControl;
   @Input() public isReadonly: boolean = false;
-  @Input() rendererArgs?: any[];
 
   private shouldAsk: boolean = true;
   private idModifier: string = btoa(uuid());
@@ -133,7 +132,6 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
-    componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
   }
 
   private renderField(): void {
@@ -154,7 +152,6 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
     componentRef.instance.isReadonly = this.isReadonly;
-    componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
   }
 
   private renderHint(): void {
@@ -176,7 +173,6 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
-    componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
   }
 
   private renderError(): void {
@@ -197,6 +193,5 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
-    componentRef.instance.rendererArgs = rendererOptions?.args ?? undefined;
   }
 }

@@ -74,6 +74,5 @@ export class PageContainerComponent implements OnInit, OnDestroy {
 
     componentRef.instance.page = this.page;
     componentRef.instance.control = this.control;
-    componentRef.instance.rendererArgs = rendererOptions?.args;
   }
 }

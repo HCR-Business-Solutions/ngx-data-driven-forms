@@ -34,7 +34,6 @@ import { RenderRepeatInputBaseComponent } from '../render-repeat-input-base';
 export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
   @Input() section!: Section;
   @Input() control!: AbstractControl;
-  @Input() rendererArgs?: any[];
 
   @ViewChild(RenderHeadingDirective, { static: true })
   private headingHost!: RenderHeadingDirective;
@@ -102,10 +101,8 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
     const componentRef =
       headingView.createComponent<RenderHeadingBaseComponent>(target);
-    componentRef.instance.content = this.section.title;
-    componentRef.instance.rendererArgs = rendererConfig?.args ?? [
-      'type=sectionRepeat',
-    ];
+    componentRef.instance.config = this.section;
+    componentRef.instance.control = this.control;
   }
 
   private renderNarrative(): void {
@@ -122,10 +119,8 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
     const componentRef =
       narrativeView.createComponent<RenderNarrativeBaseComponent>(target);
-    componentRef.instance.content = this.section.narrative;
-    componentRef.instance.rendererArgs = rendererConfig?.args ?? [
-      'type=sectionRepeat',
-    ];
+    componentRef.instance.config = this.section;
+    componentRef.instance.control = this.control;
   }
 
   private renderRepeatInput(): void {
@@ -153,7 +148,6 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
       inputView.createComponent<RenderRepeatInputBaseComponent>(target);
     componentRef.instance.inputForm = this.inputForm;
     componentRef.instance.section = this.section;
-    componentRef.instance.rendererArgs = rendererConfig?.args;
   }
 
   private renderRepeatData(): void {
@@ -174,6 +168,5 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
 
     componentRef.instance.data = this.control;
     componentRef.instance.section = this.section;
-    componentRef.instance.rendererArgs = rendererConfig?.args;
   }
 }

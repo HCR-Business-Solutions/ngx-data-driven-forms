@@ -81,6 +81,5 @@ export class ApplicationContainerComponent implements OnInit, OnDestroy {
     componentRef.instance.application = this.application;
     componentRef.instance.control = this.control;
     componentRef.instance.currentPageIndex = this.currentPageIndex;
-    componentRef.instance.rendererArgs = rendererConfig?.args;
   }
 }

@@ -11,7 +11,6 @@ export class RenderFieldBaseComponent {
   @Input() public question!: Question;
   @Input() public control!: AbstractControl;
   @Input() public isReadonly: boolean = false;
-  @Input() rendererArgs?: any[];
 
   constructor() {}
 }

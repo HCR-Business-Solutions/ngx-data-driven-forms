@@ -29,7 +29,6 @@ import { RenderQuestionBaseComponent } from '../render-question-base';
 export class RenderSectionBaseComponent implements OnInit, OnDestroy {
   @Input() section!: Section;
   @Input() control!: AbstractControl;
-  @Input() rendererArgs?: any[];
 
   @ViewChild(RenderHeadingDirective, { static: true })
   private headingHost!: RenderHeadingDirective;
@@ -93,10 +92,8 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
     const componentRef =
       headingView.createComponent<RenderHeadingBaseComponent>(target);
-    componentRef.instance.content = this.section.title;
-    componentRef.instance.rendererArgs = rendererConfig?.args ?? [
-      'type=section',
-    ];
+    componentRef.instance.config = this.section;
+    componentRef.instance.control = this.control;
   }
 
   private renderNarrative(): void {
@@ -113,10 +110,8 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
     const componentRef =
       narrativeView.createComponent<RenderNarrativeBaseComponent>(target);
-    componentRef.instance.content = this.section.narrative;
-    componentRef.instance.rendererArgs = rendererConfig?.args ?? [
-      'type=section',
-    ];
+    componentRef.instance.config = this.section;
+    componentRef.instance.control = this.control;
   }
 
   private renderQuestions(): void {
@@ -149,7 +144,6 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
       componentRef.instance.control = control;
       componentRef.instance.isReadonly = false;
       componentRef.instance.question = question;
-      componentRef.instance.rendererArgs = rendererConfig?.args;
     });
   }
 }

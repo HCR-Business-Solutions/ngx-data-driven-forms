@@ -31,7 +31,6 @@ import { RenderSectionRepeatBaseComponent } from '../render-section-repeat-base'
 export class RenderPageBaseComponent implements OnInit, OnDestroy {
   @Input() page!: Page;
   @Input() control!: AbstractControl;
-  @Input() rendererArgs?: any[];
 
   @ViewChild(RenderHeadingDirective, { static: true })
   private headingHost!: RenderHeadingDirective;
@@ -96,8 +95,8 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
     const componentRef =
       headingView.createComponent<RenderHeadingBaseComponent>(target);
-    componentRef.instance.content = this.page.title;
-    componentRef.instance.rendererArgs = rendererConfig?.args ?? ['type=page'];
+    componentRef.instance.config = this.page;
+    componentRef.instance.control = this.control;
   }
 
   private renderNarrative(): void {
@@ -114,8 +113,8 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
     const componentRef =
       narrativeView.createComponent<RenderNarrativeBaseComponent>(target);
-    componentRef.instance.content = this.page.narrative;
-    componentRef.instance.rendererArgs = rendererConfig?.args ?? ['type=page'];
+    componentRef.instance.config = this.page;
+    componentRef.instance.control = this.control;
   }
 
   private renderSections(): void {
@@ -141,7 +140,6 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
           sectionView.createComponent<RenderSectionRepeatBaseComponent>(target);
         componentRef.instance.control = control;
         componentRef.instance.section = section;
-        componentRef.instance.rendererArgs = rendererConfig?.args;
       } else {
         const target = this._sectionRegistry
           .getRegistry()
@@ -151,7 +149,6 @@ export class RenderPageBaseComponent implements OnInit, OnDestroy {
           sectionView.createComponent<RenderSectionBaseComponent>(target);
         componentRef.instance.control = control;
         componentRef.instance.section = section;
-        componentRef.instance.rendererArgs = rendererConfig?.args;
       }
     });
   }

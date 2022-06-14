@@ -20,7 +20,6 @@ import { RenderPageBaseComponent } from '../render-page-base';
 export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
   @Input() application!: Application;
   @Input() control!: AbstractControl;
-  @Input() rendererArgs?: any[];
 
   private _currentPageIndex: number = 0;
 
@@ -86,6 +85,5 @@ export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
 
     componentRef.instance.page = page;
     componentRef.instance.control = pageControl;
-    componentRef.instance.rendererArgs = rendererOptions?.args;
   }
 }

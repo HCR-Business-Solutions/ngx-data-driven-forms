@@ -9,5 +9,4 @@ import { Section } from '../../../forms';
 export class RenderRepeatInputBaseComponent {
   @Input() section!: Section;
   @Input() inputForm!: AbstractControl;
-  @Input() rendererArgs?: any[];
 }

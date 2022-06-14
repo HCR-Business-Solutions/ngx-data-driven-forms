@@ -76,7 +76,6 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
         sectionView.createComponent<RenderSectionRepeatBaseComponent>(target);
       componentRef.instance.control = this.control;
       componentRef.instance.section = this.section;
-      componentRef.instance.rendererArgs = rendererConfig?.args;
     } else {
       const target = this._sectionRegistry
         .getRegistry()
@@ -86,7 +85,6 @@ export class SectionContainerComponent implements OnInit, OnDestroy {
         sectionView.createComponent<RenderSectionBaseComponent>(target);
       componentRef.instance.control = this.control;
       componentRef.instance.section = this.section;
-      componentRef.instance.rendererArgs = rendererConfig?.args;
     }
   }
 }

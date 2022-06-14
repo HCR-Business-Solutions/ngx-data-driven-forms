@@ -10,7 +10,6 @@ export class RenderErrorBaseComponent {
   @Input() public fieldId!: string;
   @Input() question!: Question;
   @Input() control!: AbstractControl;
-  @Input() rendererArgs?: any[];
 
   constructor() {}
 }
