@@ -37,7 +37,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
   @Input() public isReadonly: boolean = false;
 
   private shouldAsk: boolean = true;
-  private idModifier: string = btoa(uuid());
+  private internalId: string = btoa(uuid());
 
   @ViewChild(RenderLabelDirective, { static: true })
   private labelHost!: RenderLabelDirective;
@@ -130,6 +130,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     const componentRef =
       labelView.createComponent<RenderLabelBaseComponent>(target);
 
+    componentRef.instance.fieldId = `${this.question.id}-${this.internalId}`;
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
   }
@@ -148,7 +149,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     const componentRef =
       fieldView.createComponent<RenderFieldBaseComponent>(target);
-    componentRef.instance.fieldId = `${this.question.id}-${this.idModifier}`;
+    componentRef.instance.fieldId = `${this.question.id}-${this.internalId}`;
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
     componentRef.instance.isReadonly = this.isReadonly;
@@ -171,6 +172,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     const componentRef =
       hintView.createComponent<RenderHintBaseComponent>(target);
 
+    componentRef.instance.fieldId = `${this.question.id}-${this.internalId}`;
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
   }
@@ -191,6 +193,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     const componentRef =
       errorView.createComponent<RenderErrorBaseComponent>(target);
 
+    componentRef.instance.fieldId = `${this.question.id}-${this.internalId}`;
     componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
   }

@@ -7,7 +7,6 @@ import {
 @Component({
   selector: 'ddforms-page-default',
   template: `<div class="page-container">
-    <p>Default Page Renderer</p>
     <ng-container ddFormsRenderHeading></ng-container>
     <ng-container ddFormsRenderNarrative></ng-container>
     <ng-container ddFormsRenderSection></ng-container>

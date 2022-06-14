@@ -6,8 +6,9 @@ import {
 
 @Component({
   selector: 'ddforms-question-default',
-  template: `<div class="question-container">
-    <p>Default Question Renderer</p>
+  template: `<div
+    class="question-container form-field field-{{ this.question.type }}"
+  >
     <ng-container ddFormsRenderLabel></ng-container>
     <ng-container ddFormsRenderField></ng-container>
     <ng-container ddFormsRenderHint></ng-container>

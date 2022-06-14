@@ -108,7 +108,7 @@
               "projects/info-ngx-ddforms-web/src/assets"
             ],
             "styles": ["projects/info-ngx-ddforms-web/src/styles.scss"],
-            "scripts": []
+            "scripts": ["node_modules/marked/marked.min.js"]
           },
           "configurations": {
             "production": {

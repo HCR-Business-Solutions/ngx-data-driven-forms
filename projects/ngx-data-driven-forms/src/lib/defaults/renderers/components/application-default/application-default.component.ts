@@ -7,7 +7,6 @@ import {
 @Component({
   selector: 'ddforms-application-default',
   template: `<div class="app-container">
-    <p>Default Application Renderer</p>
     <ng-container ddFormsRenderPage></ng-container>
   </div>`,
   styles: [],

@@ -3,8 +3,8 @@ import { RenderHintBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
 
 @Component({
   selector: 'ddforms-hint-default',
-  template: `<div class="hint-container">
-    <p>Default Hint Renderer</p>
+  template: `<div class="hint-container" *ngIf="this.question.hint">
+    <markdown [data]="this.question.hint"></markdown>
   </div>`,
   styles: [],
 })

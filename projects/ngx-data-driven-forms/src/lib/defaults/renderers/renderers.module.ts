@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { DDFormsCoreModule, MasterReigistryService } from '../../core';
 import * as DefaultComponents from './components';
 import { DEFAULT_COMPONTENTS } from './components/list';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [...DEFAULT_COMPONTENTS],
-  imports: [CommonModule, DDFormsCoreModule],
+  imports: [CommonModule, DDFormsCoreModule, MarkdownModule.forChild()],
   exports: [...DEFAULT_COMPONTENTS],
 })
 export class DDFormsDefaultRenderersModule {

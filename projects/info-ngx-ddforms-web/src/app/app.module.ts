@@ -5,6 +5,7 @@ import {
   DDFormsCoreModule,
   DDFormsDefaultsModule,
 } from 'ngx-data-driven-forms/src/public-api';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { AppComponent } from './app.component';
     DDFormsCoreModule,
     DDFormsDefaultsModule,
     ReactiveFormsModule,
+    MarkdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

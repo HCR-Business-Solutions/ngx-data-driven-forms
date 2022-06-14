@@ -7,7 +7,6 @@ import {
 @Component({
   selector: 'ddforms-section-repeat-default',
   template: `<div class="section-repeat-container">
-    <p>Default Section Repeat Renderer</p>
     <ng-container ddFormsRenderHeading></ng-container>
     <ng-container ddFormsRenderNarrative></ng-container>
     <ng-container ddFormsRenderRepeatInput></ng-container>

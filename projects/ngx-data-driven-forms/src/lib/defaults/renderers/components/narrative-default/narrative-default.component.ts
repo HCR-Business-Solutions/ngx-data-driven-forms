@@ -3,8 +3,8 @@ import { RenderNarrativeBaseComponent } from 'ngx-data-driven-forms/src/lib/core
 
 @Component({
   selector: 'ddforms-narrative-default',
-  template: `<div class="narrative-container">
-    <p>Default Narrative Renderer</p>
+  template: `<div class="narrative-container" *ngIf="this.config.narrative">
+    <markdown [data]="this.config.narrative"></markdown>
   </div>`,
   styles: [],
 })

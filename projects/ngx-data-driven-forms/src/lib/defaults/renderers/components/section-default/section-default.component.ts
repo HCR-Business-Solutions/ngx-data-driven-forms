@@ -7,7 +7,6 @@ import {
 @Component({
   selector: 'ddforms-section-default',
   template: `<div class="section-container">
-    <p>Default Section Renderer</p>
     <ng-container ddFormsRenderHeading></ng-container>
     <ng-container ddFormsRenderNarrative></ng-container>
     <ng-container ddFormsRenderQuestion></ng-container>
