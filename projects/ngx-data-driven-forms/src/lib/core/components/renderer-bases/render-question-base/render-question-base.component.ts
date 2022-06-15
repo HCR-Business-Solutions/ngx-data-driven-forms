@@ -141,7 +141,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     if (!fieldView) return;
 
     const target: Type<RenderFieldBaseComponent> | undefined =
-      this._fieldRegistry.getRegistry().get(this.question.id);
+      this._fieldRegistry.getRegistry().get(this.question.type);
     if (!target) return;
 
     const rendererOptions =

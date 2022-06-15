@@ -107,7 +107,10 @@
               "projects/info-ngx-ddforms-web/src/favicon.ico",
               "projects/info-ngx-ddforms-web/src/assets"
             ],
-            "styles": ["projects/info-ngx-ddforms-web/src/styles.scss"],
+            "styles": [
+              "projects/info-ngx-ddforms-web/src/styles.scss",
+              "projects/ngx-data-driven-forms/src/lib/defaults/styles/default-styles.scss"
+            ],
             "scripts": ["node_modules/marked/marked.min.js"]
           },
           "configurations": {

@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { Application } from '../../../forms';
 import { MasterReigistryService } from '../../registry';
 
 @Injectable()
 export class FormGenerationService {
   constructor(private masterRegistry: MasterReigistryService) {}
+
+  public validateApplicationConfig(
+    application: unknown
+  ): null | { [key: string]: any } {
+    return null;
+  }
 
   public buildApplicationControl(
     initialValue: any,
