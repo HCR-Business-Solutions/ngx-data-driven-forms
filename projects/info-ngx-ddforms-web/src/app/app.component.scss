@@ -1,0 +1,10 @@
+main {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+
+  .application {
+    padding: 0.75rem 0;
+    width: 80%;
+  }
+}

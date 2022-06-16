@@ -24,7 +24,7 @@ export class AppComponent {
                 id: 'testTextQuestion',
                 type: 'text',
                 label: 'Test Text Question',
-                hint: '> Test hint for text input with **bold** and *italics* and a [link](http://google.com).',
+                hint: 'Test hint for text input with **bold** and *italics* and a [link](#).',
               },
               testDateQuestion: {
                 id: 'testDateQuestion',
@@ -80,6 +80,39 @@ export class AppComponent {
                 label: 'Test Password Question',
                 hint: 'test question',
               },
+              testTextareaQuestion: {
+                id: 'testTextareaQuestion',
+                type: 'textarea',
+                label: 'Test Textarea Question',
+                hint: 'test question',
+              },
+              testSelectQuestion: {
+                id: 'testSelectQuestion',
+                type: 'select',
+                label: 'Test Select Question',
+                hint: 'test question',
+                placeholder: 'Select an option...',
+                customProps: {
+                  options: [
+                    { display: 'Test Option 0', value: 0 },
+                    { display: 'Test Option 1', value: 1 },
+                    { display: 'Test Option 2', value: 2 },
+                  ],
+                },
+              },
+              testSelectMultipleQuestion: {
+                id: 'testSelectMultipleQuestion',
+                type: 'select-multiple',
+                label: 'Test Select Multiple Question',
+                hint: 'test question',
+                customProps: {
+                  options: [
+                    { display: 'Test Option 0', value: 0 },
+                    { display: 'Test Option 1', value: 1 },
+                    { display: 'Test Option 2', value: 2 },
+                  ],
+                },
+              },
             },
             layout: [
               'testTextQuestion',
@@ -92,6 +125,9 @@ export class AppComponent {
               'testUrlQuestion',
               'testNumberQuestion',
               'testPasswordQuestion',
+              'testTextareaQuestion',
+              'testSelectQuestion',
+              'testSelectMultipleQuestion',
             ],
           },
           {

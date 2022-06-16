@@ -8,7 +8,7 @@ import {
   FieldValidatorRegistryService,
 } from '../../core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GenericTextBasedFieldComponent } from './components';
+import * as FieldComponents from './components';
 
 @NgModule({
   declarations: [...DEFAULT_FIELDS],
@@ -32,10 +32,21 @@ export class DDFormsDefaultFieldsModule {
       'number',
       'password',
     ];
-    console.log('registering fields');
     genericInputTypes.forEach((inputType) => {
-      this._fieldRegistry.register(inputType, GenericTextBasedFieldComponent);
+      this._fieldRegistry.register(
+        inputType,
+        FieldComponents.GenericTextBasedFieldComponent
+      );
     });
-    console.log(this._fieldRegistry.getRegistry());
+
+    this._fieldRegistry.register(
+      'textarea',
+      FieldComponents.TextareaFieldComponent
+    );
+
+    this._fieldRegistry.register(
+      'select',
+      FieldComponents.SelectFieldComponent
+    );
   }
 }
