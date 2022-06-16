@@ -10,6 +10,7 @@ import {
 export class Question implements IQuestion {
   id: string;
   type: string;
+  inputMode?: string | undefined;
   label?: string | undefined;
   ariaLabel?: string | undefined;
   placeholder?: string | undefined;
@@ -25,6 +26,7 @@ export class Question implements IQuestion {
   constructor(question: IQuestion) {
     this.id = question.id;
     this.type = question.type;
+    this.inputMode = question.inputMode;
     this.label = question.label;
     this.ariaLabel = question.ariaLabel;
     this.placeholder = question.placeholder;

@@ -3,8 +3,11 @@ import { FormControl } from '@angular/forms';
 import { RenderFieldBaseComponent } from '../../../../core';
 
 @Component({
-  selector: 'ddforms-generic-text-based-field',
-  template: `<div class="input-container" *ngIf="this.control && this.question">
+  selector: 'ddforms-mask-field',
+  template: `<div
+    class="mask-input-container"
+    *ngIf="this.control && this.question"
+  >
     <input
       [type]="this.question.type"
       [ngClass]="this.ngClassValidation"
@@ -21,7 +24,7 @@ import { RenderFieldBaseComponent } from '../../../../core';
   </div>`,
   styles: [],
 })
-export class GenericTextBasedFieldComponent extends RenderFieldBaseComponent {
+export class MaskFieldComponent extends RenderFieldBaseComponent {
   public readonly ngClassValidation = {
     'is-invalid':
       !this.getProp('disableInvalidClass') &&

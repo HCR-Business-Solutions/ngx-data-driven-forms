@@ -5,6 +5,7 @@ import { IShouldAsk } from './should-ask';
 export interface IQuestion {
   id: string;
   type: string;
+  inputMode?: string;
 
   label?: string;
   ariaLabel?: string;
