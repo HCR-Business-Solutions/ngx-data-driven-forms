@@ -100,19 +100,6 @@ export class AppComponent {
                   ],
                 },
               },
-              testSelectMultipleQuestion: {
-                id: 'testSelectMultipleQuestion',
-                type: 'select-multiple',
-                label: 'Test Select Multiple Question',
-                hint: 'test question',
-                customProps: {
-                  options: [
-                    { display: 'Test Option 0', value: 0 },
-                    { display: 'Test Option 1', value: 1 },
-                    { display: 'Test Option 2', value: 2 },
-                  ],
-                },
-              },
             },
             layout: [
               'testTextQuestion',
@@ -127,7 +114,6 @@ export class AppComponent {
               'testPasswordQuestion',
               'testTextareaQuestion',
               'testSelectQuestion',
-              'testSelectMultipleQuestion',
             ],
           },
           {
