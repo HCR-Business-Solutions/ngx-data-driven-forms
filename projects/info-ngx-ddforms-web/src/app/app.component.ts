@@ -100,6 +100,17 @@ export class AppComponent {
                   ],
                 },
               },
+              testMaskQuestion: {
+                id: 'testMaskQuestion',
+                type: 'mask',
+                label: 'Test Mask Question',
+                hint: 'test mask',
+                customProps: {
+                  mask: 'XXX-XX-0000',
+                  showMaskTyped: true,
+                  hiddenInput: true,
+                },
+              },
             },
             layout: [
               'testTextQuestion',
@@ -114,6 +125,7 @@ export class AppComponent {
               'testPasswordQuestion',
               'testTextareaQuestion',
               'testSelectQuestion',
+              'testMaskQuestion',
             ],
           },
           {

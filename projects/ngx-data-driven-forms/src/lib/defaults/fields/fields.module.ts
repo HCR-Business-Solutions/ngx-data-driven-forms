@@ -9,10 +9,16 @@ import {
 } from '../../core';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as FieldComponents from './components';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [...DEFAULT_FIELDS],
-  imports: [CommonModule, DDFormsCoreModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    DDFormsCoreModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forChild(),
+  ],
   exports: [...DEFAULT_FIELDS],
 })
 export class DDFormsDefaultFieldsModule {
@@ -48,5 +54,7 @@ export class DDFormsDefaultFieldsModule {
       'select',
       FieldComponents.SelectFieldComponent
     );
+
+    this._fieldRegistry.register('mask', FieldComponents.MaskFieldComponent);
   }
 }

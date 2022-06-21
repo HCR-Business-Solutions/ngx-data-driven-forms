@@ -7,6 +7,7 @@ import {
   DDFormsDefaultsModule,
 } from 'ngx-data-driven-forms/src/public-api';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

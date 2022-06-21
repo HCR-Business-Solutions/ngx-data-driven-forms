@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { RenderFieldBaseComponent } from '../../../../core';
+import { MaskProps } from '../../interfaces';
 
 @Component({
   selector: 'ddforms-mask-field',
@@ -20,6 +21,18 @@ import { RenderFieldBaseComponent } from '../../../../core';
       [id]="this.fieldId"
       [readonly]="this.isReadonly || this.question.readonly"
       [attr.inputmode]="this.question.inputMode ?? 'text'"
+      [mask]="this.maskConfig.mask"
+      [prefix]="this.maskConfig.prefix"
+      [suffix]="this.maskConfig.suffix"
+      [dropSpecialCharacters]="this.maskConfig.dropSpecialCharacters"
+      [showMaskTyped]="this.maskConfig.showMaskTyped"
+      [placeHolderCharacter]="this.maskConfig.placeHolderCharacter"
+      [clearIfNotMatch]="this.maskConfig.clearIfNotMatch"
+      [allowNegativeNumbers]="this.maskConfig.allowNegativeNumbers"
+      [thousandSeparator]="this.maskConfig.thousandSeparator"
+      [leadZeroDateTime]="this.maskConfig.leadZeroDateTime"
+      [validation]="this.maskConfig.validation"
+      [hiddenInput]="this.maskConfig.hiddenInput"
     />
   </div>`,
   styles: [],
@@ -47,5 +60,22 @@ export class MaskFieldComponent extends RenderFieldBaseComponent {
 
   get formControl(): FormControl {
     return this.control as FormControl;
+  }
+
+  get maskConfig(): MaskProps {
+    return {
+      mask: this.getProp('mask') ?? '',
+      prefix: this.getProp('prefix') ?? '',
+      suffix: this.getProp('suffix') ?? '',
+      dropSpecialCharacters: this.getProp('dropSpecialCharacers') ?? true,
+      showMaskTyped: this.getProp('showMaskTyped') ?? false,
+      placeHolderCharacter: this.getProp('placeHolderCharacter') ?? '_',
+      clearIfNotMatch: this.getProp('clearIfNotMatch') ?? false,
+      allowNegativeNumbers: this.getProp('allowNegativeNumbers') ?? false,
+      thousandSeparator: this.getProp('thousandSeparator') ?? ' ',
+      leadZeroDateTime: this.getProp('leadZeroDateTime') ?? false,
+      validation: this.getProp('validation') ?? true,
+      hiddenInput: this.getProp('hiddenInput') ?? false,
+    };
   }
 }
