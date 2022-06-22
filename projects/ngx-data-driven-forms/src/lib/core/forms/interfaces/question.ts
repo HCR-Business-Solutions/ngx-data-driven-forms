@@ -5,7 +5,15 @@ import { IShouldAsk } from './should-ask';
 export interface IQuestion {
   id: string;
   type: string;
-  inputMode?: string;
+  inputMode?:
+    | 'none'
+    | 'text'
+    | 'decimal'
+    | 'numeric'
+    | 'tel'
+    | 'search'
+    | 'email'
+    | 'url';
 
   label?: string;
   ariaLabel?: string;

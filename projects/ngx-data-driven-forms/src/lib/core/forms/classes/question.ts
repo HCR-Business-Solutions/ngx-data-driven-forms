@@ -10,7 +10,16 @@ import {
 export class Question implements IQuestion {
   id: string;
   type: string;
-  inputMode?: string | undefined;
+  inputMode?:
+    | 'none'
+    | 'text'
+    | 'decimal'
+    | 'numeric'
+    | 'tel'
+    | 'search'
+    | 'email'
+    | 'url'
+    | undefined;
   label?: string | undefined;
   ariaLabel?: string | undefined;
   placeholder?: string | undefined;
