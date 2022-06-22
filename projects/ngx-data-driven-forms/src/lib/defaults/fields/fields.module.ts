@@ -10,6 +10,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import * as FieldComponents from './components';
 import { NgxMaskModule } from 'ngx-mask';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [...DEFAULT_FIELDS],
@@ -18,6 +19,7 @@ import { NgxMaskModule } from 'ngx-mask';
     DDFormsCoreModule,
     ReactiveFormsModule,
     NgxMaskModule.forChild(),
+    MarkdownModule.forChild(),
   ],
   exports: [...DEFAULT_FIELDS],
 })
@@ -56,5 +58,12 @@ export class DDFormsDefaultFieldsModule {
     );
 
     this._fieldRegistry.register('mask', FieldComponents.MaskFieldComponent);
+
+    this._fieldRegistry.register('radio', FieldComponents.RadioFieldComponent);
+
+    this._fieldRegistry.register(
+      'checkbox',
+      FieldComponents.CheckboxFieldComponent
+    );
   }
 }

@@ -111,6 +111,34 @@ export class AppComponent {
                   hiddenInput: true,
                 },
               },
+              testRadioQuestion: {
+                id: 'testRadioQuestion',
+                type: 'radio',
+                label: 'Test Radio Question',
+                hint: 'test question',
+                placeholder: 'Select an option...',
+                customProps: {
+                  options: [
+                    { display: 'Test Option 0', value: 0 },
+                    { display: 'Test Option 1', value: 1 },
+                    { display: 'Test Option 2', value: 2 },
+                  ],
+                },
+              },
+              testCheckboxQuestion: {
+                id: 'testCheckboxQuestion',
+                type: 'checkbox',
+                label: 'Test Checkbox Question',
+                hint: 'test question',
+                placeholder: 'Select an option...',
+                customProps: {
+                  options: [
+                    { display: 'Test Option 0', value: 0 },
+                    { display: 'Test Option 1', value: 1 },
+                    { display: 'Test Option 2', value: 2 },
+                  ],
+                },
+              },
             },
             layout: [
               'testTextQuestion',
@@ -126,6 +154,8 @@ export class AppComponent {
               'testTextareaQuestion',
               'testSelectQuestion',
               'testMaskQuestion',
+              'testRadioQuestion',
+              'testCheckboxQuestion',
             ],
           },
           {
