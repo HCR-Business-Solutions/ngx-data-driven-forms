@@ -11,6 +11,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     MarkdownModule.forRoot(),
     NgxMaskModule.forRoot(),
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

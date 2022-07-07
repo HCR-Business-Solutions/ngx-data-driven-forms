@@ -81,13 +81,18 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "skipTests": true,
+          "inlineStyle": true
         },
         "@schematics/angular:application": {
           "strict": true
         },
         "@schematics/angular:service": {
           "flat": false
+        },
+        "@schematics/angular:module": {
+          "routing": true
         }
       },
       "root": "projects/info-ngx-ddforms-web",

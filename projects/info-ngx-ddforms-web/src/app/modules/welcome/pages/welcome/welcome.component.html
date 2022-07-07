@@ -1,0 +1,26 @@
+<article class="grid place-items-center h-screen w-screen">
+  <div class="flex flex-col items-center justify-center gap-3 p-4">
+    <app-logo [short]="false" class="text-xl"></app-logo>
+    <div>
+      <h1 class="text-2xl inline-flex flex-col md:flex-row">
+        <div><span class="text-bold text-amber-600">Welcome</span> to&nbsp;</div>
+        <a href="https://www.npmjs.com/package/@nys-hcr-its/ngx-data-driven-forms" target="_blank" rel="noopener"
+          class="transition-all hover:no-underline cursor-pointer border-b-2 text-inherit border-amber-600 hover:border-amber-800 hover:border-b-4 hover:text-amber-600">Data
+          Driven
+          Forms</a>
+      </h1>
+      <p class="mt-2 font-thin italic">Quickly generate Web Forms with JSON objects!</p>
+    </div>
+    <div class="mt-4">
+      <a routerLink="/library">
+        <button
+          class="bg-amber-600 hover:bg-amber-800 transition-colors p-3 text-white border-2 font-bold border-amber-900 border-opacity-40 rounded-2xl">
+          Explore the Library
+          &rarr;</button>
+      </a>
+    </div>
+  </div>
+  <div class="text-xs text-center">Developed by <a>Rei Armenia</a><br> with <span>New York State ITS, HCR Business
+      Solutions</span>
+  </div>
+</article>
