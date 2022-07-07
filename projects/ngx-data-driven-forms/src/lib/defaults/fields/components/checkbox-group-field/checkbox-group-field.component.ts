@@ -5,36 +5,36 @@ import { RenderFieldBaseComponent } from '../../../../core';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'ddforms-checkbox-field',
+  selector: 'ddforms-checkbox-group-field',
   template: ` <ng-container *ngIf="this.control && this.question">
     <div
       class="checkbox-container checkbox-field form-check"
       *ngFor="let option of this.options"
     >
+      <input
+        type="checkbox"
+        [ngClass]="this.ngClassValidation"
+        class="form-control control-{{ this.question.type }} form-check-input"
+        [attr.aria-describedby]="
+          this.question.hint ? this.fieldId + '-hint' : undefined
+        "
+        [formControl]="this.formControl"
+        [id]="this.getOptionId(option)"
+        [readonly]="this.isReadonly || this.question.readonly"
+        [attr.inputmode]="this.question.inputMode ?? 'text'"
+        [value]="option.value"
+      />
       <label [for]="this.getOptionId(option)" class="form-check-label">
-        <input
-          type="checkbox"
-          [ngClass]="this.ngClassValidation"
-          class="form-control control-{{ this.question.type }} form-check-input"
-          [attr.aria-describedby]="
-            this.question.hint ? this.fieldId + '-hint' : undefined
-          "
-          [formControl]="this.formControl"
-          [id]="this.getOptionId(option)"
-          [readonly]="this.isReadonly || this.question.readonly"
-          [attr.inputmode]="this.question.inputMode ?? 'text'"
-          [value]="option.value"
-        />
         <markdown
           [data]="this.option.display"
-          class="check-input-text"
+          class="check-input-text markdown"
         ></markdown>
       </label>
     </div>
   </ng-container>`,
   styles: [],
 })
-export class CheckboxFieldComponent
+export class CheckboxGroupFieldComponent
   extends RenderFieldBaseComponent
   implements OnInit, OnDestroy
 {

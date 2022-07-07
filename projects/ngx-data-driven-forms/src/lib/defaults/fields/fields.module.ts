@@ -62,8 +62,8 @@ export class DDFormsDefaultFieldsModule {
     this._fieldRegistry.register('radio', FieldComponents.RadioFieldComponent);
 
     this._fieldRegistry.register(
-      'checkbox',
-      FieldComponents.CheckboxFieldComponent
+      'checkbox-group',
+      FieldComponents.CheckboxGroupFieldComponent
     );
   }
 }

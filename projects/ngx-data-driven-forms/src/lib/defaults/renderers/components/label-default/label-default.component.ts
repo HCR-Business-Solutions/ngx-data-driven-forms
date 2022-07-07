@@ -5,7 +5,7 @@ import { RenderLabelBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
   selector: 'ddforms-label-default',
   template: `<div class="label-container" *ngIf="this.question.label">
     <label [id]="this.fieldId + '-label'" [for]="this.fieldId">
-      <markdown [data]="this.question.label"></markdown>
+      <markdown class="markdown" [data]="this.question.label"></markdown>
     </label>
   </div>`,
 

@@ -125,10 +125,10 @@ export class AppComponent {
                   ],
                 },
               },
-              testCheckboxQuestion: {
-                id: 'testCheckboxQuestion',
-                type: 'checkbox',
-                label: 'Test Checkbox Question',
+              testCheckboxGroupQuestion: {
+                id: 'testCheckboxGroupQuestion',
+                type: 'checkbox-group',
+                label: 'Test Checkbox Group Question',
                 hint: 'test question',
                 placeholder: 'Select an option...',
                 customProps: {
@@ -155,7 +155,7 @@ export class AppComponent {
               'testSelectQuestion',
               'testMaskQuestion',
               'testRadioQuestion',
-              'testCheckboxQuestion',
+              'testCheckboxGroupQuestion',
             ],
           },
           {

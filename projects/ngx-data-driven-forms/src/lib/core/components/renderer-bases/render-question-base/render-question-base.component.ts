@@ -122,6 +122,10 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     const rendererOptions =
       this.question?.rendererConfig?.renderers['label'] ?? undefined;
 
+    if (rendererOptions?.target === 'none') {
+      return;
+    }
+
     const target: Type<RenderLabelBaseComponent> | undefined =
       this._labelRegistry
         .getRegistry()
@@ -145,7 +149,11 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     if (!target) return;
 
     const rendererOptions =
-      this.question?.rendererConfig?.renderers['question'] ?? undefined;
+      this.question?.rendererConfig?.renderers['field'] ?? undefined;
+
+    if (rendererOptions?.target === 'none') {
+      return;
+    }
 
     const componentRef =
       fieldView.createComponent<RenderFieldBaseComponent>(target);
@@ -164,6 +172,10 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     const rendererOptions =
       this.question?.rendererConfig?.renderers['hint'] ?? undefined;
+
+    if (rendererOptions?.target === 'none') {
+      return;
+    }
 
     const target: Type<RenderHintBaseComponent> | undefined = this._hintRegistry
       .getRegistry()
@@ -184,6 +196,10 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
 
     const rendererOptions =
       this.question?.rendererConfig?.renderers['error'] ?? undefined;
+
+    if (rendererOptions?.target === 'none') {
+      return;
+    }
 
     const target: Type<RenderErrorBaseComponent> | undefined =
       this._errorRegistry

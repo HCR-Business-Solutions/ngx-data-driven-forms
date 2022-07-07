@@ -74,6 +74,10 @@ export class RenderApplicationBaseComponent implements OnInit, OnDestroy {
 
     const rendererOptions = page.rendererConfig?.renderers['page'] ?? undefined;
 
+    if (rendererOptions?.target === 'none') {
+      return;
+    }
+
     const target: Type<RenderPageBaseComponent> | undefined = this._pageRegistry
       .getRegistry()
       .get(rendererOptions?.target ?? 'default');

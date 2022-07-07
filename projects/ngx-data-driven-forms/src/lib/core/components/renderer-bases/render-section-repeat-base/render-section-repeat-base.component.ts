@@ -95,9 +95,14 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
 
     const rendererConfig = this.section.rendererConfig?.renderers['heading'];
 
+    if (rendererConfig?.target === 'none') {
+      return;
+    }
+
     const target = this._headingRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
+
     if (!target) return;
     const componentRef =
       headingView.createComponent<RenderHeadingBaseComponent>(target);
@@ -112,6 +117,10 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
     if (!this.section.narrative) return;
 
     const rendererConfig = this.section.rendererConfig?.renderers['narrative'];
+
+    if (rendererConfig?.target === 'none') {
+      return;
+    }
 
     const target = this._narrativeRegistry
       .getRegistry()
@@ -139,6 +148,10 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
     const rendererConfig =
       this.section.rendererConfig?.renderers['repeatInput'] ?? undefined;
 
+    if (rendererConfig?.target === 'none') {
+      return;
+    }
+
     const target = this._repeatInputRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
@@ -157,6 +170,10 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
 
     const rendererConfig =
       this.section.rendererConfig?.renderers['repeatData'] ?? undefined;
+
+    if (rendererConfig?.target === 'none') {
+      return;
+    }
 
     const target = this._repeatDataRegistry
       .getRegistry()

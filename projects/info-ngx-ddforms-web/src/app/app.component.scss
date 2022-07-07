@@ -1,10 +1,25 @@
 main {
-  display: grid;
-  place-items: center;
   width: 100vw;
+  height: 100vh;
+}
 
-  .application {
-    padding: 0.75rem 0;
-    width: 80%;
-  }
+.side-by-side {
+  width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding-left: 0.5rem;
+}
+
+.app-side {
+  overflow: auto;
+  width: 70%;
+  padding: 0.5rem;
+}
+
+.data-side {
+  overflow: auto;
+  padding: 1rem;
+  flex-shrink: 1;
 }

@@ -7,9 +7,11 @@ import {
 @Component({
   selector: 'ddforms-page-default',
   template: `<div class="page-container">
-    <ng-container ddFormsRenderHeading></ng-container>
-    <ng-container ddFormsRenderNarrative></ng-container>
-    <ng-container ddFormsRenderSection></ng-container>
+    <form>
+      <ng-container ddFormsRenderHeading></ng-container>
+      <ng-container ddFormsRenderNarrative></ng-container>
+      <ng-container ddFormsRenderSection></ng-container>
+    </form>
   </div>`,
   styles: [],
 })

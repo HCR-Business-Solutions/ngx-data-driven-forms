@@ -11,23 +11,23 @@ import { RenderFieldBaseComponent } from '../../../../core';
       class="radio-container radio-field form-check"
       *ngFor="let option of this.options"
     >
+      <input
+        type="radio"
+        [ngClass]="this.ngClassValidation"
+        class="form-control control-{{ this.question.type }} form-check-input"
+        [attr.aria-describedby]="
+          this.question.hint ? this.fieldId + '-hint' : undefined
+        "
+        [formControl]="this.formControl"
+        [id]="this.getOptionId(option)"
+        [readonly]="this.isReadonly || this.question.readonly"
+        [attr.inputmode]="this.question.inputMode ?? 'text'"
+        [value]="option.value"
+      />
       <label [for]="this.getOptionId(option)" class="form-check-label">
-        <input
-          type="radio"
-          [ngClass]="this.ngClassValidation"
-          class="form-control control-{{ this.question.type }} form-check-input"
-          [attr.aria-describedby]="
-            this.question.hint ? this.fieldId + '-hint' : undefined
-          "
-          [formControl]="this.formControl"
-          [id]="this.getOptionId(option)"
-          [readonly]="this.isReadonly || this.question.readonly"
-          [attr.inputmode]="this.question.inputMode ?? 'text'"
-          [value]="option.value"
-        />
         <markdown
           [data]="this.option.display"
-          class="check-input-text"
+          class="check-input-text markdown"
         ></markdown>
       </label>
     </div>

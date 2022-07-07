@@ -1,4 +1,15 @@
 <main>
-  <ddforms-application-container [control]="this.testControl" [application]="this.testApplication" class="application">
-  </ddforms-application-container>
+  <div class="side-by-side">
+    <div class="app-side">
+      <ddforms-application-container [control]="this.testControl" [application]="this.testApplication"
+        class="application">
+      </ddforms-application-container>
+    </div>
+    <div class="data-side">
+      <code>
+        <pre>{{this.testControl.getRawValue() | json}}</pre>
+      </code>
+    </div>
+  </div>
+
 </main>

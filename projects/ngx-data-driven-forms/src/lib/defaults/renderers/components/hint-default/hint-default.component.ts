@@ -8,7 +8,7 @@ import { RenderHintBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
     class="hint-container"
     *ngIf="this.question.hint"
   >
-    <markdown [data]="this.question.hint"></markdown>
+    <markdown class="markdown" [data]="this.question.hint"></markdown>
   </div>`,
   styles: [],
 })

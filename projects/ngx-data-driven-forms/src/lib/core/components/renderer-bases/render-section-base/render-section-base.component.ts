@@ -86,6 +86,10 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
 
     const rendererConfig = this.section.rendererConfig?.renderers['heading'];
 
+    if (rendererConfig?.target === 'none') {
+      return;
+    }
+
     const target = this._headingRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
@@ -103,6 +107,10 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
     if (!this.section.narrative) return;
 
     const rendererConfig = this.section.rendererConfig?.renderers['narrative'];
+
+    if (rendererConfig?.target === 'none') {
+      return;
+    }
 
     const target = this._narrativeRegistry
       .getRegistry()
@@ -135,6 +143,11 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
 
       const rendererConfig =
         question.rendererConfig?.renderers['question'] ?? undefined;
+
+      if (rendererConfig?.target === 'none') {
+        return;
+      }
+
       const target = this._questionRegistry
         .getRegistry()
         .get(rendererConfig?.target ?? 'default');
