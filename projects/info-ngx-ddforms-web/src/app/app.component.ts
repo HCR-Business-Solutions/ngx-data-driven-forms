@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  Application,
-  FormGenerationService,
-} from 'ngx-data-driven-forms/src/public-api';
 
 @Component({
   selector: 'app-root',

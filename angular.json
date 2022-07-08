@@ -83,7 +83,9 @@
         "@schematics/angular:component": {
           "style": "scss",
           "skipTests": true,
-          "inlineStyle": true
+          "inlineStyle": true,
+          "inlineTemplate": true,
+          "flat": true
         },
         "@schematics/angular:application": {
           "strict": true
@@ -114,9 +116,17 @@
             ],
             "styles": [
               "projects/info-ngx-ddforms-web/src/styles.scss",
-              "projects/ngx-data-driven-forms/src/lib/defaults/styles/default-styles.scss"
+              "projects/ngx-data-driven-forms/src/lib/defaults/styles/default-styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
-            "scripts": ["node_modules/marked/marked.min.js"]
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-json.min.js"
+            ]
           },
           "configurations": {
             "production": {

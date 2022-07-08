@@ -127,3 +127,25 @@ a {
   }
 }
 // #endregion Input Styles
+
+// #region Markdown Restyle
+
+.page-container {
+  .heading-container {
+    markdown h1 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+.section-container {
+  .heading-container {
+    markdown h1 {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// #endregion Markdown Restyle
