@@ -1,5 +1,5 @@
-import { FormControl, ValidatorFn } from '@angular/forms';
-import { FieldValidatorFn } from '../../types';
+import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { ConditionFn, FieldValidatorFn } from '../../types';
 import {
   ICrossFieldValidationPack,
   IQuestion,
