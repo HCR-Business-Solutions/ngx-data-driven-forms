@@ -1,5 +1,10 @@
-import { FormGroup, ValidatorFn } from '@angular/forms';
-import { FieldValidatorFn, CrossFieldValidatorFn } from '../../types';
+import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {
+  FieldValidatorFn,
+  CrossFieldValidatorFn,
+  ConditionFn,
+} from '../../types';
 import { resovleCrossFieldValidators } from '../../utils';
 import {
   ICrossFieldValidationPack,
@@ -9,13 +14,14 @@ import {
 } from '../interfaces';
 import { Question } from './question';
 import { Section } from './section';
+import { ShouldAsk } from './should-ask';
 
 export class Page implements IPage {
   id: string;
   title?: string | undefined;
   narrative?: string | undefined;
   sections: Section[];
-  shouldAsk?: IShouldAsk | undefined;
+  shouldAsk?: ShouldAsk | undefined;
   rendererConfig?: IRendererConfig | undefined;
   customProps?: { [key: string]: any } | undefined;
 
@@ -24,7 +30,7 @@ export class Page implements IPage {
     this.title = page.title;
     this.narrative = page.narrative;
     this.sections = page.sections.map((_) => new Section(_));
-    this.shouldAsk = page.shouldAsk;
+    this.shouldAsk = page.shouldAsk ? new ShouldAsk(page.shouldAsk) : undefined;
     this.rendererConfig = page.rendererConfig;
     this.customProps = page.customProps;
   }
@@ -66,5 +72,21 @@ export class Page implements IPage {
       ),
       2
     );
+  }
+
+  public getShouldAskWithSideEffects(
+    control: AbstractControl,
+    knownConditions: Map<string, ConditionFn>
+  ): boolean {
+    if (!this.shouldAsk) return true;
+    return this.shouldAsk.shouldAskWithSideEffect(control, knownConditions);
+  }
+
+  public getChangeEvents(
+    control: AbstractControl,
+    knownConditions: Map<string, ConditionFn>
+  ): Observable<boolean> | undefined {
+    if (!this.shouldAsk) return undefined;
+    return this.shouldAsk.gatherChangeEvents(control, knownConditions);
   }
 }

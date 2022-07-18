@@ -1,4 +1,5 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { ConditionFn, FieldValidatorFn } from '../../types';
 import {
   ICrossFieldValidationPack,
@@ -6,6 +7,7 @@ import {
   IRendererConfig,
   IShouldAsk,
 } from '../interfaces';
+import { ShouldAsk } from './should-ask';
 
 export class Question implements IQuestion {
   id: string;
@@ -28,7 +30,7 @@ export class Question implements IQuestion {
   isFlag?: boolean | undefined;
   fieldValidation?: { [key: string]: any } | undefined;
   crossFieldValidation?: ICrossFieldValidationPack[] | undefined;
-  shouldAsk?: IShouldAsk | undefined;
+  shouldAsk?: ShouldAsk | undefined;
   rendererConfig?: IRendererConfig | undefined;
   customProps?: { [key: string]: any } | undefined;
 
@@ -44,7 +46,9 @@ export class Question implements IQuestion {
     this.isFlag = question.isFlag;
     this.fieldValidation = question.fieldValidation;
     this.crossFieldValidation = question.crossFieldValidation;
-    this.shouldAsk = question.shouldAsk ? question.shouldAsk : undefined;
+    this.shouldAsk = question.shouldAsk
+      ? new ShouldAsk(question.shouldAsk)
+      : undefined;
     this.rendererConfig = question.rendererConfig;
     this.customProps = question.customProps;
   }
@@ -74,5 +78,21 @@ export class Question implements IQuestion {
           fieldValidator ? fieldValidator(val) : undefined //try to run the function, go to undefined if not exist
       )
       .filter((validator): validator is ValidatorFn => !!validator); // remove all undefined and fix type.
+  }
+
+  public getShouldAskWithSideEffects(
+    control: AbstractControl,
+    knownConditions: Map<string, ConditionFn>
+  ): boolean {
+    if (!this.shouldAsk) return true;
+    return this.shouldAsk.shouldAskWithSideEffect(control, knownConditions);
+  }
+
+  public getChangeEvents(
+    control: AbstractControl,
+    knownConditions: Map<string, ConditionFn>
+  ): Observable<boolean> | undefined {
+    if (!this.shouldAsk) return undefined;
+    return this.shouldAsk.gatherChangeEvents(control, knownConditions);
   }
 }
