@@ -25,6 +25,7 @@ export class SectionDefaultComponent
       masterRegistry._questionRendererRegistry,
       masterRegistry._headingRendererRegistry,
       masterRegistry._narrativeRendererRegistry,
+      masterRegistry._conditionsRegistry,
       cdRef
     );
   }
