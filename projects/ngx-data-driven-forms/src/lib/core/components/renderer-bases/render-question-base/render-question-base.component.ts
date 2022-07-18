@@ -11,6 +11,7 @@ import { AbstractControl } from '@angular/forms';
 import { RenderFieldDirective } from '../../../directives/render-field/render-field.directive';
 import { Question } from '../../../forms';
 import {
+  ConditionsRegistryService,
   ErrorRendererRegistryService,
   FieldRendererRegistryService,
   HintRendererRegistryService,
@@ -26,6 +27,7 @@ import {
 import { RenderLabelBaseComponent } from '../render-label-base';
 import { RenderHintBaseComponent } from '../render-hint-base';
 import { RenderErrorBaseComponent } from '../render-error-base';
+import { Subscription } from 'rxjs';
 
 @Component({
   template: ``,
@@ -37,6 +39,7 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
   @Input() public isReadonly: boolean = false;
 
   private shouldAsk: boolean = true;
+  private shouldAskSub: Subscription | undefined = undefined;
   private internalId: string = btoa(uuid());
 
   @ViewChild(RenderLabelDirective, { static: true })
@@ -56,27 +59,44 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
     private _fieldRegistry: FieldRendererRegistryService,
     private _hintRegistry: HintRendererRegistryService,
     private _errorRegistry: ErrorRendererRegistryService,
+    private _conditionsRegistry: ConditionsRegistryService,
     private _cdRef: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
+    this.shouldAsk = this.question.getShouldAskWithSideEffects(
+      this.control,
+      this._conditionsRegistry.getRegistry()
+    );
     this.renderElements();
+    if (this.question.shouldAsk) {
+      this.shouldAskSub = this.question
+        .getChangeEvents(this.control, this._conditionsRegistry.getRegistry())
+        ?.subscribe((result) => {
+          this.shouldAsk = result;
+          this.renderElements();
+        });
+    }
   }
 
   public ngOnDestroy(): void {
     this.clearElements();
+    if (this.shouldAskSub && !this.shouldAskSub.closed) {
+      this.shouldAskSub.unsubscribe();
+    }
   }
 
   private renderElements(): void {
+    this.clearElements();
+
     if (
       !this.question ||
       !this.control ||
       !this.shouldAsk ||
       (this.question?.isFlag ?? false)
-    )
+    ) {
       return;
-
-    this.clearElements();
+    }
 
     if (this.question.label) {
       this.renderLabel();

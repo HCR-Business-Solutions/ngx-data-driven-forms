@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import {
   RenderHeadingDirective,
   RenderNarrativeDirective,
@@ -14,6 +15,7 @@ import {
 } from '../../../directives';
 import { Section } from '../../../forms';
 import {
+  ConditionsRegistryService,
   HeadingRendererRegistryService,
   NarrativeRendererRegistryService,
   QuestionRendererRegistryService,
@@ -30,6 +32,9 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
   @Input() section!: Section;
   @Input() control!: AbstractControl;
 
+  private shouldAsk: boolean = true;
+  private shouldAskSub: Subscription | undefined = undefined;
+
   @ViewChild(RenderHeadingDirective, { static: true })
   private headingHost!: RenderHeadingDirective;
 
@@ -43,19 +48,40 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
     private _questionRegistry: QuestionRendererRegistryService,
     private _headingRegistry: HeadingRendererRegistryService,
     private _narrativeRegistry: NarrativeRendererRegistryService,
+    private _conditionsRegistry: ConditionsRegistryService,
     private _cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+    this.shouldAsk = this.section.getShouldAskWithSideEffects(
+      this.control,
+      this._conditionsRegistry.getRegistry()
+    );
     this.renderElements();
+    if (this.section.shouldAsk) {
+      this.shouldAskSub = this.section
+        .getChangeEvents(this.control, this._conditionsRegistry.getRegistry())
+        ?.subscribe((result) => {
+          this.shouldAsk = result;
+          this.renderElements();
+        });
+    }
   }
 
   ngOnDestroy(): void {
     this.clearElements();
+
+    if (this.shouldAskSub && !this.shouldAskSub.closed) {
+      this.shouldAskSub.unsubscribe();
+    }
   }
 
   private renderElements(): void {
     this.clearElements();
+
+    if (!this.section || !this.control || !this.shouldAsk) {
+      return;
+    }
 
     this.renderHeading();
     this.renderNarrative();

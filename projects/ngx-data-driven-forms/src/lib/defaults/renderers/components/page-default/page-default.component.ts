@@ -28,6 +28,7 @@ export class PageDefaultComponent
       masterRegistry._sectionRepeatRendererRegistry,
       masterRegistry._headingRendererRegistry,
       masterRegistry._narrativeRendererRegistry,
+      masterRegistry._conditionsRegistry,
       cdRef
     );
   }

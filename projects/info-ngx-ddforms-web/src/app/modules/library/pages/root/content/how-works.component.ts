@@ -30,11 +30,10 @@ import {
           >
             <div [ngSwitch]="this.displaySection">
               <ng-container *ngSwitchCase="'form'">
-                <ddforms-application-container
-                  [application]="this.contactForm"
-                  [control]="this.contactControl"
-                  class="w-full py-4"
-                ></ddforms-application-container>
+                <app-safe-form-wrapper
+                  [form]="this.contactForm"
+                  (formValue)="this.formValue = $event"
+                ></app-safe-form-wrapper>
               </ng-container>
               <ng-container *ngSwitchCase="'config'">
                 <code>
@@ -43,7 +42,7 @@ import {
               </ng-container>
               <ng-container *ngSwitchDefault>
                 <code>
-                  <pre>{{ this.contactControl.getRawValue() | json }}</pre>
+                  <pre>{{ this.formValue | json }}</pre>
                 </code>
               </ng-container>
             </div>
@@ -70,6 +69,8 @@ import {
 })
 export class HowWorksComponent {
   displaySection: 'form' | 'config' | 'data' = 'form';
+
+  formValue: any | null = null;
 
   contactForm: Application = new Application({
     id: 'contact',
@@ -110,20 +111,78 @@ export class HowWorksComponent {
                 type: 'number',
                 label: 'Age',
               },
+              phoneType: {
+                id: 'phoneType',
+                type: 'select',
+                label: 'Phone Type',
+                customProps: {
+                  options: [
+                    { display: 'None', value: 'None' },
+                    { display: 'Mobile', value: 'Mobile' },
+                    { display: 'Landline', value: 'Landline' },
+                  ],
+                },
+              },
+              phoneNumber: {
+                id: 'phoneNumber',
+                type: 'mask',
+                label: 'Phone Number',
+                inputMode: 'tel',
+                customProps: {
+                  mask: '(000)000-0000',
+                  prefix: '+1 ',
+                  showTemplate: true,
+                  showMaskTyped: true,
+                },
+                shouldAsk: {
+                  conditions: [
+                    {
+                      sibling: 'phoneType',
+                      expectedParentLevel: 1,
+                      conditions: {
+                        valueNotMatch: 'None',
+                      },
+                    },
+                  ],
+                },
+              },
+              acceptTexts: {
+                id: 'acceptTexts',
+                type: 'select',
+                label: 'Do you consent to receiving Text Messages?',
+                customProps: {
+                  options: [
+                    { display: 'Yes', value: 'Y' },
+                    { display: 'No', value: 'N' },
+                  ],
+                },
+                shouldAsk: {
+                  conditions: [
+                    {
+                      sibling: 'phoneType',
+                      expectedParentLevel: 1,
+                      conditions: { valueMatch: 'Mobile' },
+                    },
+                  ],
+                },
+              },
             },
-            layout: ['firstName', 'lastName', 'gender', 'age'],
+            layout: [
+              'firstName',
+              'lastName',
+              'gender',
+              'age',
+              'phoneType',
+              'phoneNumber',
+              'acceptTexts',
+            ],
           },
         ],
       },
     ],
   });
 
-  contactControl = this.ddFormsGenerator.buildApplicationControl(
-    null,
-    this.contactForm
-  );
-
-  constructor(private ddFormsGenerator: FormGenerationService) {}
+  constructor() {}
 
   public setDisplaySection(target: 'form' | 'config' | 'data') {
     if (target === this.displaySection) return;

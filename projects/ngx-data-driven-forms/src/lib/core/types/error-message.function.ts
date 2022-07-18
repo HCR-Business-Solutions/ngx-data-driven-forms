@@ -1,1 +1,1 @@
-export type ErrorMessageFn = (error: {[key: string]: any}) => string;
+export type ErrorMessageFn = (error: any) => string;

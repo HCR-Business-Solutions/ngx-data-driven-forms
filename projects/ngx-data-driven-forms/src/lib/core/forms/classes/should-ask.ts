@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { combineLatest, map, Observable, shareReplay } from 'rxjs';
+import { combineLatest, map, tap, Observable, shareReplay } from 'rxjs';
 import { ConditionFn } from '../../types';
 import { IConditionPack, IShouldAsk } from '../interfaces';
 import { ConditionPack } from './condition-pack';
@@ -58,6 +58,18 @@ export class ShouldAsk implements IShouldAsk {
       map((pack) =>
         this.checkAll ? pack.every((val) => !!val) : pack.includes(true)
       ),
+      tap((result) => {
+        if (!result) {
+          if (!this.retain) {
+            control.reset();
+            control.markAsPristine();
+            control.markAsUntouched();
+          }
+          control.disable();
+        } else {
+          control.enable();
+        }
+      }),
       shareReplay(1)
     );
   }

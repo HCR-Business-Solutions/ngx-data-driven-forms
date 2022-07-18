@@ -29,6 +29,7 @@ export class QuestionDefaultComponent
       masterRegistry._fieldRendererRegistry,
       masterRegistry._hintRendererRegistry,
       masterRegistry._errorRendererRegistry,
+      masterRegistry._conditionsRegistry,
       cdr
     );
   }
