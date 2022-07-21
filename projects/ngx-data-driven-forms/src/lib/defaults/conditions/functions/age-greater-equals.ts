@@ -1,6 +1,6 @@
 import { ConditionFn } from 'ngx-data-driven-forms/src/lib/core/types';
-import calcAge from '../helpers/calc-age';
-import normalizeDate from '../helpers/normalize-date';
+import calcAge from '../../utils/calc-age';
+import normalizeDate from '../../utils/normalize-date';
 
 export const ageGreaterEquals: ConditionFn = (
   left: unknown,

@@ -1,5 +1,5 @@
 import { ConditionFn } from 'ngx-data-driven-forms/src/lib/core/types';
-import normalizeDate from '../helpers/normalize-date';
+import normalizeDate from '../../utils/normalize-date';
 
 export const dateBeforeOn: ConditionFn = (left: unknown, right: unknown) => {
   const l = left as any;
