@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms';
-import { FieldValidatorFn } from 'ngx-data-driven-forms/src/lib/core';
+import { FieldValidatorFn } from '../../../core/types';
 
-export const numberLessEqual: FieldValidatorFn = (arg: unknown) =>
+export const numberLess: FieldValidatorFn = (arg: unknown) =>
   (arg as number) === null || (arg as number) === undefined
     ? undefined
     : (c: AbstractControl) => {
@@ -9,7 +9,5 @@ export const numberLessEqual: FieldValidatorFn = (arg: unknown) =>
         if (expected === null) return null;
         const actual = c.value ?? null;
         if (actual === null) return null;
-        return actual <= expected
-          ? null
-          : { numberLessEqual: { actual, expected } };
+        return actual < expected ? null : { numberLess: { actual, expected } };
       };
