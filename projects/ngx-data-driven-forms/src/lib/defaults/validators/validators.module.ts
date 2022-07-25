@@ -6,6 +6,7 @@ import {
   FieldValidatorRegistryService,
 } from '../../core';
 import * as FieldValidators from './field-validators';
+import * as CrossFieldValidators from './cross-field-validators';
 
 @NgModule({
   declarations: [],
@@ -76,6 +77,14 @@ export class DDFormsDefaultValidatorsModule {
     // #endregion field validators
 
     // #region crossfield validators
+    this.crossFieldValidator.register(
+      'requireIf',
+      CrossFieldValidators.requireIf
+    );
+    this.crossFieldValidator.register(
+      'requireIfMatch',
+      CrossFieldValidators.requireIfMatch
+    );
     // #endregion crossfield validators
   }
 }
