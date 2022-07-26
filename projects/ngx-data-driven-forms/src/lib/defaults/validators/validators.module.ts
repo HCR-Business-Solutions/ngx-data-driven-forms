@@ -77,6 +77,8 @@ export class DDFormsDefaultValidatorsModule {
     // #endregion field validators
 
     // #region crossfield validators
+    this.crossFieldValidator.register('order', CrossFieldValidators.order);
+
     this.crossFieldValidator.register(
       'requireIf',
       CrossFieldValidators.requireIf
