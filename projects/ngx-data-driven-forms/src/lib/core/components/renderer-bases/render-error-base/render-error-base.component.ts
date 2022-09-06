@@ -8,7 +8,6 @@ import { Question } from '../../../forms';
 })
 export class RenderErrorBaseComponent {
   @Input() public fieldId!: string;
-  @Input() question!: Question;
   @Input() control!: AbstractControl;
 
   constructor() {}

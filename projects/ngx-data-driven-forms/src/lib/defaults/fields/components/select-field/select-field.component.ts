@@ -6,31 +6,35 @@ import { RenderFieldBaseComponent } from '../../../../core';
 
 @Component({
   selector: 'ddforms-select-field',
-  template: `<!--The select tag does not have a read only property so the disabled property was used-->
-    <select
-      [attr.disabled]="
-        this.isReadonly || this.question.readonly ? true : undefined
-      "
-      class="select-field form-select form-control"
-      [formControl]="this.formControl"
-      [id]="this.fieldId"
-      [attr.aria-label]="this.question.ariaLabel"
-      [attr.aria-describedby]="
-        this.question.hint ? this.fieldId + '-hint' : undefined
-      "
-      [ngClass]="this.ngClassValidation"
-    >
-      <option [value]="null" *ngIf="this.question.placeholder">
-        {{ this.question.placeholder }}
-      </option>
-      <option
-        class="form-option"
-        *ngFor="let option of this.options"
-        [value]="option.value"
+  template: `
+    <div class="select-container" *ngIf="this.control && this.question">
+      <!--The select tag does not have a read only property so the disabled property was used-->
+      <select
+        [attr.disabled]="
+          this.isReadonly || this.question.readonly ? true : undefined
+        "
+        class="select-field form-select form-control"
+        [formControl]="this.formControl"
+        [id]="this.fieldId"
+        [attr.aria-label]="this.question.ariaLabel"
+        [attr.aria-describedby]="
+          this.question.hint ? this.fieldId + '-hint' : undefined
+        "
+        [ngClass]="this.ngClassValidation"
       >
-        {{ option?.display }}
-      </option>
-    </select>`,
+        <option [value]="null" *ngIf="this.question.placeholder">
+          {{ this.question.placeholder }}
+        </option>
+        <option
+          class="form-option"
+          *ngFor="let option of this.options"
+          [value]="option.value"
+        >
+          {{ option?.display }}
+        </option>
+      </select>
+    </div>
+  `,
   styles: [],
 })
 export class SelectFieldComponent

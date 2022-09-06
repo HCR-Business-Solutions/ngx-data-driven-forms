@@ -34,6 +34,129 @@ a {
   gap: 1rem;
 }
 
+.section-repeat-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+
+  .repeat-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+    border: 1px dashed hsla(0, 0%, 0%, 0.5);
+    background: hsla(0, 0%, 0%, 0.0125);
+
+    .repeat-input-form-container {
+      padding-inline: 2rem;
+    }
+
+    .repeat-input-text-container {
+      font-size: 1.25rem;
+    }
+
+    .repeat-input-actions-container {
+      margin-inline: 2rem;
+      display: flex;
+      flex-direction: row;
+      gap: 0.75rem;
+      justify-content: flex-end;
+
+      button {
+        padding-block: 0.5rem;
+        padding-inline: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid hsla(0, 0%, 0%, 0.5);
+        &.add-button,
+        &.edit-button {
+          background-color: #4ca8f3;
+          color: white;
+          &:hover {
+            background-color: #398acc;
+          }
+        }
+
+        &.clear-button,
+        &.cancel-button {
+          background-color: #fefefe;
+          color: black;
+          &:hover {
+            background-color: #e2e2e2;
+          }
+        }
+      }
+    }
+  }
+
+  .repeat-data-container {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+
+    .repeat-data-item {
+      width: 75%;
+      background: white;
+      border: 1px solid black;
+      padding-block: 0.5rem;
+      padding-inline: 1.5rem;
+      border-radius: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      .repeat-data-item-text {
+        font-size: 1.125rem;
+        font-weight: 500;
+        border-bottom: 1px solid hsla(0, 0%, 20%, 0.8);
+      }
+      .repeat-data-section {
+        .section-container {
+          // create a grid with 2 columns that are 1fr each
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.25rem;
+          font-size: 14px;
+          .label-container {
+            font-size: 1em;
+          }
+        }
+      }
+      .repeat-data-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem;
+        justify-content: flex-end;
+
+        button {
+          padding-block: 0.5rem;
+          padding-inline: 1rem;
+          border-radius: 0.25rem;
+          border: 1px solid hsla(0, 0%, 0%, 0.5);
+          &.edit-button {
+            background-color: #4ca8f3;
+            color: white;
+            &:hover {
+              background-color: #398acc;
+            }
+          }
+
+          &.delete-button {
+            background-color: #fefefe;
+            color: black;
+            &:hover {
+              background-color: #e2e2e2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .question-container {
   width: 100%;
   display: flex;
@@ -126,6 +249,30 @@ a {
     padding-left: 1.25rem;
   }
 }
+
+.form-field.question-container {
+  .input-container,
+  .select-container,
+  .mask-input-container {
+    width: 100%;
+    height: 2.5em;
+    border: 1px solid hsl(0, 0%, 46%);
+    border-radius: 0.125rem;
+
+    input,
+    select {
+      width: 100%;
+      height: 100%;
+      border: none;
+      margin: 0;
+      padding: 0 0.5rem;
+      background: transparent;
+      &:focus {
+        outline: 1px solid hsl(0, 0%, 20%);
+      }
+    }
+  }
+}
 // #endregion Input Styles
 
 // #region Markdown Restyle
@@ -149,3 +296,5 @@ a {
 }
 
 // #endregion Markdown Restyle
+
+// #region

@@ -31,6 +31,7 @@ import { RenderQuestionBaseComponent } from '../render-question-base';
 export class RenderSectionBaseComponent implements OnInit, OnDestroy {
   @Input() section!: Section;
   @Input() control!: AbstractControl;
+  @Input() surpressText: boolean = false;
 
   private shouldAsk: boolean = true;
   private shouldAskSub: Subscription | undefined = undefined;
@@ -105,7 +106,7 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
   }
 
   private renderHeading(): void {
-    if (!this.headingHost) return;
+    if (!this.headingHost || this.surpressText) return;
     const headingView = this.headingHost.viewContainerRef;
     if (!headingView) return;
     if (!this.section.title) return;
@@ -127,7 +128,7 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
   }
 
   private renderNarrative(): void {
-    if (!this.narrativeHost) return;
+    if (!this.narrativeHost || this.surpressText) return;
     const narrativeView = this.narrativeHost.viewContainerRef;
     if (!narrativeView) return;
     if (!this.section.narrative) return;

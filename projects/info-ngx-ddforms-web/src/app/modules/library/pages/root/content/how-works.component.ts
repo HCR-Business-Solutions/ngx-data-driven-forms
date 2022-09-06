@@ -25,35 +25,9 @@ import {
               with DDForms.
             </p>
           </div>
-          <div
-            class="border-2 border-gray-400 border-opacity-60 rounded-md px-8 py-2"
-          >
-            <div [ngSwitch]="this.displaySection">
-              <ng-container *ngSwitchCase="'form'">
-                <app-safe-form-wrapper
-                  [form]="this.contactForm"
-                  (formValue)="this.formValue = $event"
-                ></app-safe-form-wrapper>
-              </ng-container>
-              <ng-container *ngSwitchCase="'config'">
-                <code>
-                  <pre>{{ this.contactForm | json }}</pre>
-                </code>
-              </ng-container>
-              <ng-container *ngSwitchDefault>
-                <code>
-                  <pre>{{ this.formValue | json }}</pre>
-                </code>
-              </ng-container>
-            </div>
-          </div>
-          <div
-            class="self-center flex flex-row items-center justify-center gap-4"
-          >
-            <button (click)="this.setDisplaySection('form')">Form</button>
-            <button (click)="this.setDisplaySection('config')">Config</button>
-            <button (click)="this.setDisplaySection('data')">Data</button>
-          </div>
+          <app-form-data-config-example
+            [appConfig]="this.contactForm"
+          ></app-form-data-config-example>
         </div>
       </div>
     </app-outline-section>
@@ -183,9 +157,4 @@ export class HowWorksComponent {
   });
 
   constructor() {}
-
-  public setDisplaySection(target: 'form' | 'config' | 'data') {
-    if (target === this.displaySection) return;
-    this.displaySection = target;
-  }
 }

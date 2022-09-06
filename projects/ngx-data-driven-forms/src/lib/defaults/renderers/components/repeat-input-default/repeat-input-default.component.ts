@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { RenderRepeatInputBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
+import { FormGroup } from '@angular/forms';
+import {
+  FormGenerationService,
+  RenderRepeatInputBaseComponent,
+} from '../../../../core';
 
 @Component({
   selector: 'ddforms-repeat-input-default',
-  template: `<div class="repeat-input-container">
-    <p>Default Repeat Input Renderer</p>
-  </div>`,
+  template: `
+    <div class="repeat-input-form-container">
+      <ddforms-section-default
+        [section]="this.section"
+        [control]="this.inputForm"
+        [surpressText]="true"
+      ></ddforms-section-default>
+    </div>
+  `,
   styles: [],
 })
 export class RepeatInputDefaultComponent extends RenderRepeatInputBaseComponent {
-  constructor() {
+  constructor(public fg: FormGenerationService) {
     super();
   }
 }

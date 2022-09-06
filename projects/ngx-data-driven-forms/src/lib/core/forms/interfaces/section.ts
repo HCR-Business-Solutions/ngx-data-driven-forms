@@ -14,10 +14,10 @@ export interface ISection {
 
   repeat?: {
     handler: string;
-    listRequirements?: {
-      minEntries?: number;
-      maxEntries?: number;
-    };
+    min?: number;
+    max?: number;
+    addText?: string;
+    itemHeader?: string;
     listArgs?: any[];
   };
 

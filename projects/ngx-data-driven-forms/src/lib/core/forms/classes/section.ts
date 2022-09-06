@@ -29,9 +29,10 @@ export class Section implements ISection {
   repeat?:
     | {
         handler: string;
-        listRequirements?:
-          | { minEntries?: number | undefined; maxEntries?: number | undefined }
-          | undefined;
+        min?: number;
+        max?: number;
+        addText?: string;
+        itemHeader?: string;
         listArgs?: any[] | undefined;
       }
     | undefined;
@@ -56,13 +57,42 @@ export class Section implements ISection {
     this.customProps = section.customProps;
   }
 
+  private getArrayValidators() {
+    if (!this.repeat) return [];
+    const validators: ValidatorFn[] = [];
+
+    const min = this.repeat.min ?? undefined;
+    const max = this.repeat.max ?? undefined;
+
+    if (min !== undefined) {
+      validators.push((control: AbstractControl) => {
+        const length = (control as FormArray).length;
+        if (length >= min) return null;
+        return { arrayMin: { min, actual: length } };
+      });
+    }
+
+    if (max !== undefined) {
+      validators.push((control: AbstractControl) => {
+        const length = (control as FormArray).length;
+        if (length <= max) return null;
+        return { arrayMax: { max, actual: length } };
+      });
+    }
+
+    return validators;
+  }
+
   public asForm(
     initialValue: any,
     fieldValidators: Map<string, FieldValidatorFn>,
-    crossFieldValidators: Map<string, CrossFieldValidatorFn>
+    crossFieldValidators: Map<string, CrossFieldValidatorFn>,
+    ignoreRepeat: boolean = false
   ): FormGroup | FormArray {
-    if (this.repeat) {
-      const arr = new FormArray([]);
+    if (!ignoreRepeat && this.repeat) {
+      const arr = new FormArray([], {
+        validators: this.getArrayValidators(),
+      });
       if (initialValue && Array.isArray(initialValue)) {
         initialValue.forEach((value) =>
           arr.push(

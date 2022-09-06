@@ -230,7 +230,6 @@ export class RenderQuestionBaseComponent implements OnInit, OnDestroy {
       errorView.createComponent<RenderErrorBaseComponent>(target);
 
     componentRef.instance.fieldId = `${this.question.id}-${this.internalId}`;
-    componentRef.instance.question = this.question;
     componentRef.instance.control = this.control;
   }
 }

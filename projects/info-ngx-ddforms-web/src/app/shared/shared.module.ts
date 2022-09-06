@@ -9,12 +9,14 @@ import {
 import { MarkdownModule } from 'ngx-markdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SafeFormWrapperComponent } from './components/safe-form-wrapper.component';
+import { FormDataConfigExampleComponent } from './components/form-data-config-example.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     OutlineSectionComponent,
     SafeFormWrapperComponent,
+    FormDataConfigExampleComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { SafeFormWrapperComponent } from './components/safe-form-wrapper.compone
     MarkdownModule,
     ReactiveFormsModule,
     SafeFormWrapperComponent,
+    FormDataConfigExampleComponent,
   ],
 })
 export class SharedModule {}

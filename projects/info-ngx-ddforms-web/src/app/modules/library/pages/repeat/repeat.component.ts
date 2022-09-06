@@ -4,14 +4,16 @@ import { LayoutStateService } from 'projects/info-ngx-ddforms-web/src/app/core/s
 @Component({
   template: `
     <article class="flex flex-col p-4 mt-8 gap-20 items-center w-full">
-      <app-what-is class="w-full md:w-3/4"></app-what-is>
-      <app-how-works class="w-full md:w-3/4"></app-how-works>
+      <app-repeat-example class="w-full md:w-3/4"></app-repeat-example>
     </article>
   `,
   styles: [],
 })
-export class RootComponent {
+export class RepeatComponent {
   constructor(private layoutSvc: LayoutStateService) {
     this.layoutSvc.showToolbar();
   }
+
+  // ngOnInit(): void {
+  // }
 }

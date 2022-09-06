@@ -4,10 +4,12 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  Type,
   ViewChild,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import {
+  RenderErrorDirective,
   RenderHeadingDirective,
   RenderNarrativeDirective,
   RenderRepeatDataDirective,
@@ -16,12 +18,15 @@ import {
 import { Section } from '../../../forms';
 import {
   CrossFieldValidatorRegistryService,
+  ErrorRendererRegistryService,
   FieldValidatorRegistryService,
   HeadingRendererRegistryService,
+  MasterReigistryService,
   NarrativeRendererRegistryService,
   RepeatDataRendererRegistryService,
   RepeatInputRendererRegistryService,
 } from '../../../services';
+import { RenderErrorBaseComponent } from '../render-error-base';
 import { RenderHeadingBaseComponent } from '../render-heading-base';
 import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderRepeatDataBaseComponent } from '../render-repeat-data-base';
@@ -47,15 +52,13 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
   @ViewChild(RenderRepeatDataDirective, { static: true })
   private dataHost!: RenderRepeatDataDirective;
 
+  @ViewChild(RenderErrorDirective, { static: true })
+  private errorHost!: RenderErrorDirective;
+
   inputForm?: AbstractControl;
 
   constructor(
-    private _repeatDataRegistry: RepeatDataRendererRegistryService,
-    private _repeatInputRegistry: RepeatInputRendererRegistryService,
-    private _fieldValidators: FieldValidatorRegistryService,
-    private _crossFieldValidators: CrossFieldValidatorRegistryService,
-    private _headingRegistry: HeadingRendererRegistryService,
-    private _narrativeRegistry: NarrativeRendererRegistryService,
+    private _master: MasterReigistryService,
     private _cdr: ChangeDetectorRef
   ) {}
 
@@ -74,6 +77,7 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
     this.renderNarrative();
     this.renderRepeatData();
     this.renderRepeatInput();
+    this.renderError();
     this._cdr.detectChanges();
   }
 
@@ -84,6 +88,18 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
 
     if (this.dataHost && this.dataHost.viewContainerRef) {
       this.dataHost.viewContainerRef.clear();
+    }
+
+    if (this.headingHost && this.headingHost.viewContainerRef) {
+      this.headingHost.viewContainerRef.clear();
+    }
+
+    if (this.narrativeHost && this.narrativeHost.viewContainerRef) {
+      this.narrativeHost.viewContainerRef.clear();
+    }
+
+    if (this.errorHost && this.errorHost.viewContainerRef) {
+      this.errorHost.viewContainerRef.clear();
     }
   }
 
@@ -99,7 +115,7 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const target = this._headingRegistry
+    const target = this._master._headingRendererRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
 
@@ -122,7 +138,7 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const target = this._narrativeRegistry
+    const target = this._master._narrativeRendererRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
     if (!target) return;
@@ -140,8 +156,8 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
     if (!this.inputForm) {
       this.inputForm = this.section.asFormGroup(
         null,
-        this._fieldValidators.getRegistry(),
-        this._crossFieldValidators.getRegistry()
+        this._master._fieldValidatorRegistry.getRegistry(),
+        this._master._crossFieldValidatorRegistry.getRegistry()
       );
     }
 
@@ -152,7 +168,7 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const target = this._repeatInputRegistry
+    const target = this._master._repeatInputRendererRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
     if (!target) return;
@@ -161,11 +177,12 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
       inputView.createComponent<RenderRepeatInputBaseComponent>(target);
     componentRef.instance.inputForm = this.inputForm;
     componentRef.instance.section = this.section;
+    componentRef.instance.data = this.control;
   }
 
   private renderRepeatData(): void {
     if (!this.dataHost) return;
-    const dataView = this.inputHost.viewContainerRef;
+    const dataView = this.dataHost.viewContainerRef;
     if (!dataView) return;
 
     const rendererConfig =
@@ -175,7 +192,7 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const target = this._repeatDataRegistry
+    const target = this._master._repeatDataRendererRegistry
       .getRegistry()
       .get(rendererConfig?.target ?? 'default');
     if (!target) return;
@@ -185,5 +202,29 @@ export class RenderSectionRepeatBaseComponent implements OnInit, OnDestroy {
 
     componentRef.instance.data = this.control;
     componentRef.instance.section = this.section;
+  }
+
+  private renderError(): void {
+    if (!this.errorHost) return;
+    const errorView = this.errorHost.viewContainerRef;
+    if (!errorView) return;
+
+    const rendererOptions =
+      this.section?.rendererConfig?.renderers['error'] ?? undefined;
+
+    if (rendererOptions?.target === 'none') {
+      return;
+    }
+
+    const target: Type<RenderErrorBaseComponent> | undefined =
+      this._master._errorRendererRegistry
+        .getRegistry()
+        .get(rendererOptions?.target ?? 'default');
+    if (!target) return;
+    const componentRef =
+      errorView.createComponent<RenderErrorBaseComponent>(target);
+
+    componentRef.instance.fieldId = `${this.section.id}`;
+    componentRef.instance.control = this.control;
   }
 }
