@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import {
   MasterReigistryService,
   RenderPageBaseComponent,
-} from 'ngx-data-driven-forms/src/lib/core';
+} from '../../../../core';
 
 @Component({
   selector: 'ddforms-page-default',
@@ -15,10 +15,7 @@ import {
   </div>`,
   styles: [],
 })
-export class PageDefaultComponent
-  extends RenderPageBaseComponent
-  implements OnInit
-{
+export class PageDefaultComponent extends RenderPageBaseComponent {
   constructor(
     protected masterRegistry: MasterReigistryService,
     protected cdRef: ChangeDetectorRef

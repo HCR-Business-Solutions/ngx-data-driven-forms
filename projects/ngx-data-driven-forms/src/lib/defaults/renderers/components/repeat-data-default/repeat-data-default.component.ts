@@ -1,9 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl } from '@angular/forms';
-import {
-  RenderRepeatDataBaseComponent,
-  Section,
-} from 'ngx-data-driven-forms/src/lib/core';
+import { RenderRepeatDataBaseComponent, Section } from '../../../../core';
 
 @Component({
   selector: 'ddforms-repeat-data-default',

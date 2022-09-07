@@ -16,16 +16,7 @@ import {
   RenderRepeatInputDirective,
 } from '../../../directives';
 import { Section } from '../../../forms';
-import {
-  CrossFieldValidatorRegistryService,
-  ErrorRendererRegistryService,
-  FieldValidatorRegistryService,
-  HeadingRendererRegistryService,
-  MasterReigistryService,
-  NarrativeRendererRegistryService,
-  RepeatDataRendererRegistryService,
-  RepeatInputRendererRegistryService,
-} from '../../../services';
+import { MasterReigistryService } from '../../../services';
 import { RenderErrorBaseComponent } from '../render-error-base';
 import { RenderHeadingBaseComponent } from '../render-heading-base';
 import { RenderNarrativeBaseComponent } from '../render-narrative-base';

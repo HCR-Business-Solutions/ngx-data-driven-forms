@@ -1,5 +1,5 @@
 import { AbstractControl, Validators } from '@angular/forms';
-import { FieldValidatorFn } from 'ngx-data-driven-forms/src/public-api';
+import { FieldValidatorFn } from '../../../core';
 
 export const min: FieldValidatorFn = (arg: unknown) =>
   (arg as number) === null || (arg as number) === undefined

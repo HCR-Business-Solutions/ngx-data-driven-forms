@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RenderNarrativeBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
+import { Component } from '@angular/core';
+import { RenderNarrativeBaseComponent } from '../../../../core';
 
 @Component({
   selector: 'ddforms-narrative-default',

@@ -1,4 +1,4 @@
-import { ConditionFn } from 'ngx-data-driven-forms/src/lib/core/types';
+import { ConditionFn } from '../../../core';
 
 export const patternMatch: ConditionFn = (left: unknown, right: unknown) => {
   const l = left as any;

@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import {
   MasterReigistryService,
   RenderSectionRepeatBaseComponent,
-} from 'ngx-data-driven-forms/src/lib/core';
+} from '../../../../core';
 
 @Component({
   selector: 'ddforms-section-repeat-default',
@@ -55,10 +55,7 @@ import {
   </div>`,
   styles: [],
 })
-export class SectionRepeatDefaultComponent
-  extends RenderSectionRepeatBaseComponent
-  implements OnInit
-{
+export class SectionRepeatDefaultComponent extends RenderSectionRepeatBaseComponent {
   editId: number | null = null;
 
   constructor(

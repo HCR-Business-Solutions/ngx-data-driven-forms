@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RenderHeadingBaseComponent } from 'ngx-data-driven-forms/src/lib/core';
+import { Component } from '@angular/core';
+import { RenderHeadingBaseComponent } from '../../../../core';
 
 @Component({
   selector: 'ddforms-heading-default',

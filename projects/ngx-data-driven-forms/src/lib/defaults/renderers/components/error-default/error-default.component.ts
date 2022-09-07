@@ -3,7 +3,7 @@ import { FormArray } from '@angular/forms';
 import {
   MasterReigistryService,
   RenderErrorBaseComponent,
-} from 'ngx-data-driven-forms/src/lib/core';
+} from '../../../../core';
 
 @Component({
   selector: 'ddforms-error-default',

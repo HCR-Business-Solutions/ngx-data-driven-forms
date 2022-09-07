@@ -1,4 +1,4 @@
-import { ConditionFn } from 'ngx-data-driven-forms/src/lib/core/types';
+import { ConditionFn } from '../../../core';
 import calcAge from '../../utils/calc-age';
 import normalizeDate from '../../utils/normalize-date';
 

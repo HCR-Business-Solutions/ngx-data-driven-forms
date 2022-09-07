@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import {
   MasterReigistryService,
   RenderApplicationBaseComponent,
-} from 'ngx-data-driven-forms/src/lib/core';
+} from '../../../../core';
 
 @Component({
   selector: 'ddforms-application-default',
@@ -11,10 +11,7 @@ import {
   </div>`,
   styles: [],
 })
-export class ApplicationDefaultComponent
-  extends RenderApplicationBaseComponent
-  implements OnInit
-{
+export class ApplicationDefaultComponent extends RenderApplicationBaseComponent {
   constructor(
     protected masterRegistry: MasterReigistryService,
     protected cdRef: ChangeDetectorRef
