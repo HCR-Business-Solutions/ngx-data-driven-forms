@@ -1,7 +1,6 @@
-// import * from '../../validators/field-validators';
 /**
  * field-messages.ts
- * has error messages for all validators in 'ngx-dat-driven-forms\src\lib\defauls\validators\field-validators'
+ * has error messages for all validators in 'ngx-data-driven-forms\src\lib\defauls\validators\field-validators'
  * each message is an ErrorMessageFn which takes an error object and returns a string
  */
 import { ErrorMessageFn } from '../../../core';
