@@ -46,7 +46,7 @@ export class ErrorDefaultComponent extends RenderErrorBaseComponent {
     return this.errors.map(({ error, value }) => {
       const registryResponse = errorMessageRegistry.get(error);
       if (!registryResponse) return error;
-      return registryResponse({ [`${error}`]: value }) ?? error;
+      return registryResponse(this.control.errors) ?? error;
     });
   }
 

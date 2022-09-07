@@ -68,7 +68,7 @@ export class Section implements ISection {
       validators.push((control: AbstractControl) => {
         const length = (control as FormArray).length;
         if (length >= min) return null;
-        return { arrayMin: { min, actual: length } };
+        return { arrayMin: { expected: min, actual: length } };
       });
     }
 
@@ -76,7 +76,7 @@ export class Section implements ISection {
       validators.push((control: AbstractControl) => {
         const length = (control as FormArray).length;
         if (length <= max) return null;
-        return { arrayMax: { max, actual: length } };
+        return { arrayMax: { expected: max, actual: length } };
       });
     }
 

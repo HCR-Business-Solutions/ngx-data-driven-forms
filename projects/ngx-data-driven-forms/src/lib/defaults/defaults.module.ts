@@ -4,12 +4,14 @@ import { DDFormsDefaultConditionsModule } from './conditions/conditions.module';
 import { DDFormsDefaultFieldsModule } from './fields/fields.module';
 import { DDFormsDefaultRenderersModule } from './renderers/renderers.module';
 import { DDFormsDefaultValidatorsModule } from './validators/validators.module';
+import { DDFormsDefaultLanguageModule } from './language/language.module';
 
 const SUB_MODULES = [
   DDFormsDefaultRenderersModule,
   DDFormsDefaultFieldsModule,
   DDFormsDefaultValidatorsModule,
   DDFormsDefaultConditionsModule,
+  DDFormsDefaultLanguageModule,
 ];
 
 @NgModule({
