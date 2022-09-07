@@ -49,7 +49,6 @@ In order to use this library, you will also have import `ngx-markdown` which is 
 
 Again just import these two modules into your Base App Module.
 
-**Note: It is important that the Defaults Module is only imported once, importing more than once can lead to unintended behavior.**
 
 
 ```
@@ -75,5 +74,7 @@ However, in order to fully take advantage of `ngx-markdown` you will also have t
 `node_modules/marked/marked.min.js` to your app scripts in the angular.json file.
 
 Further plugins, functionality and configuration can be added by following the info at https://www.npmjs.com/package/ngx-markdown#installation
+
+**It is recommended that you import these modules in either the module that is using the ddforms library or in a shared library. Importing and using it in a different location can cause race conditions.**
 
 ---
