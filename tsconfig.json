@@ -1,5 +1,9 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  "paths": {
+    "@nys-hcr-its/ngx-data-driven-forms/*": [
+      "projects/"
+    ]
+  },
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -15,6 +19,10 @@
       "ngx-data-driven-forms": [
         "dist/ngx-data-driven-forms/ngx-data-driven-forms",
         "dist/ngx-data-driven-forms"
+      ],
+      "ngx-data-driven-forms/*": [
+        "projects/ngx-data-driven-forms/*",
+        "projects/ngx-data-driven-forms"
       ]
     },
     "declaration": false,

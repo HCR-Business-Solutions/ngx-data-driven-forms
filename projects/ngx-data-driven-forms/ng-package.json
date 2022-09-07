@@ -3,5 +3,9 @@
   "dest": "../../dist/ngx-data-driven-forms",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "ngx-markdown",
+    "ngx-mask"
+  ]
 }

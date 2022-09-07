@@ -1,0 +1,311 @@
+$color-label: rbg(0, 0, 0);
+$color-link: hsl(215, 100%, 50%);
+$color-hint: hsl(0, 0%, 46%);
+$color-error: rgb(224, 0, 0);
+$color-radioBg: rgb(239, 239, 239);
+$color-border: rgb(148, 148, 148);
+$color-border-disabled: rgb(206, 212, 218);
+$color-font-disabled: rgb(103, 117, 124);
+
+@import url("./_mdreset.scss");
+
+a {
+  color: $color-link;
+}
+
+// #region Container Styles
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.section-repeat-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+
+  .repeat-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+    border: 1px dashed hsla(0, 0%, 0%, 0.5);
+    background: hsla(0, 0%, 0%, 0.0125);
+
+    .repeat-input-form-container {
+      padding-inline: 2rem;
+    }
+
+    .repeat-input-text-container {
+      font-size: 1.25rem;
+    }
+
+    .repeat-input-actions-container {
+      margin-inline: 2rem;
+      display: flex;
+      flex-direction: row;
+      gap: 0.75rem;
+      justify-content: flex-end;
+
+      button {
+        padding-block: 0.5rem;
+        padding-inline: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid hsla(0, 0%, 0%, 0.5);
+        &.add-button,
+        &.edit-button {
+          background-color: #4ca8f3;
+          color: white;
+          &:hover {
+            background-color: #398acc;
+          }
+        }
+
+        &.clear-button,
+        &.cancel-button {
+          background-color: #fefefe;
+          color: black;
+          &:hover {
+            background-color: #e2e2e2;
+          }
+        }
+      }
+    }
+  }
+
+  .repeat-data-container {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+
+    .repeat-data-item {
+      width: 75%;
+      background: white;
+      border: 1px solid black;
+      padding-block: 0.5rem;
+      padding-inline: 1.5rem;
+      border-radius: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      .repeat-data-item-text {
+        font-size: 1.125rem;
+        font-weight: 500;
+        border-bottom: 1px solid hsla(0, 0%, 20%, 0.8);
+      }
+      .repeat-data-section {
+        .section-container {
+          // create a grid with 2 columns that are 1fr each
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.25rem;
+          font-size: 14px;
+          .label-container {
+            font-size: 1em;
+          }
+        }
+      }
+      .repeat-data-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem;
+        justify-content: flex-end;
+
+        button {
+          padding-block: 0.5rem;
+          padding-inline: 1rem;
+          border-radius: 0.25rem;
+          border: 1px solid hsla(0, 0%, 0%, 0.5);
+          &.edit-button {
+            background-color: #4ca8f3;
+            color: white;
+            &:hover {
+              background-color: #398acc;
+            }
+          }
+
+          &.delete-button {
+            background-color: #fefefe;
+            color: black;
+            &:hover {
+              background-color: #e2e2e2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.question-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .label-container {
+    order: 0;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    label {
+      padding: 0;
+      margin: 0;
+    }
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .input-container,
+  .mask-input-container,
+  .select-container {
+    .form-control {
+      padding: 0.375rem 0.75rem;
+      border: 1px solid $color-border;
+      border-radius: 0.25rem;
+
+      &.ng-invalid {
+        &.ng-touched,
+        &.ng-dirty {
+          color: $color-error;
+          border: 2px solid $color-error;
+        }
+      }
+    }
+
+    .form-control[readonly] {
+      border: 1px solid $color-border-disabled;
+      color: $color-font-disabled;
+    }
+  }
+
+  .hint-container {
+    font-size: 0.75rem;
+    color: $color-hint;
+    margin: 0rem;
+    padding: 0.25rem;
+  }
+}
+
+.errors-container {
+  color: $color-error;
+}
+
+// #endregion Container Styles
+
+// #region Input Styles
+.radio-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5rem 0;
+
+  .form-check-input,
+  input[type="radio"] {
+    position: relative;
+    margin: 0;
+    height: 1.325rem;
+    width: 1.325rem;
+    flex-shrink: 1;
+  }
+
+  label {
+    flex-grow: 1;
+    padding-left: 1.25rem;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5rem 0;
+
+  .form-check-input,
+  input[type="checkbox"] {
+    position: relative;
+    margin: 0;
+    height: 1.325rem;
+    width: 1.325rem;
+    flex-shrink: 1;
+  }
+
+  label {
+    flex-grow: 1;
+    padding-left: 1.25rem;
+  }
+}
+
+.form-field.question-container {
+  .input-container,
+  .select-container,
+  .mask-input-container {
+    width: 100%;
+    height: 2.5em;
+    border-radius: 0.125rem;
+
+    input,
+    select {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0 0.5rem;
+      background: transparent;
+      &:focus {
+        outline: 1px solid hsla(0, 0%, 20%, 0.5);
+        &.ng-invalid {
+          &.ng-touched,
+          &.ng-dirty {
+            outline: 2px solid $color-error;
+          }
+        }
+      }
+    }
+  }
+}
+// #endregion Input Styles
+
+// #region Markdown Restyle
+
+.page-container {
+  .heading-container {
+    markdown h1 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+.section-container {
+  .heading-container {
+    markdown h1 {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// #endregion Markdown Restyle
+
+// #region

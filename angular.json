@@ -5,37 +5,9 @@
   "projects": {
     "ngx-data-driven-forms": {
       "projectType": "library",
-      "schematics": {
-        "@schematics/angular:component": {
-          "inlineStyle": true,
-          "style": "scss",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
       "root": "projects/ngx-data-driven-forms",
       "sourceRoot": "projects/ngx-data-driven-forms/src",
-      "prefix": "ddforms",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -57,65 +29,104 @@
           "options": {
             "main": "projects/ngx-data-driven-forms/src/test.ts",
             "tsConfig": "projects/ngx-data-driven-forms/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-data-driven-forms/karma.conf.js",
-            "scripts": [
-              "node_modules/marked/marked.min.js"
+            "karmaConfig": "projects/ngx-data-driven-forms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-data-driven-forms/**/*.ts",
+              "projects/ngx-data-driven-forms/**/*.html"
             ]
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "prefix": "ddforms",
+          "skipImport": true,
+          "inlineTemplate": true,
+          "inlineStyle": true
+        },
+        "@schematics/angular:directive": {
+          "flat": false,
+          "prefix": "ddForms",
+          "skipImport": true
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        },
+        "@schematics/angular:service": {
+          "flat": false
+        }
+      }
+    },
+    "storybook": {
+      "projectType": "application",
+      "root": "stories",
+      "sourceRoot": "stories",
+      "architect": {
+        "build": {
+          "options": {
+            "tsConfig": "tsconfig.json",
+            "styles": [],
+            "scripts": []
           }
         }
       }
     },
-    "ngx-data-driven-forms-showcase": {
+    "info-ngx-ddforms-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineStyle": true,
           "style": "scss",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
+          "skipTests": true,
+          "inlineStyle": true,
+          "inlineTemplate": true,
+          "flat": true
         },
         "@schematics/angular:application": {
           "strict": true
+        },
+        "@schematics/angular:service": {
+          "flat": false
+        },
+        "@schematics/angular:module": {
+          "routing": true
         }
       },
-      "root": "projects/ngx-data-driven-forms-showcase",
-      "sourceRoot": "projects/ngx-data-driven-forms-showcase/src",
+      "root": "projects/info-ngx-ddforms-web",
+      "sourceRoot": "projects/info-ngx-ddforms-web/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-data-driven-forms-showcase",
-            "index": "projects/ngx-data-driven-forms-showcase/src/index.html",
-            "main": "projects/ngx-data-driven-forms-showcase/src/main.ts",
-            "polyfills": "projects/ngx-data-driven-forms-showcase/src/polyfills.ts",
-            "tsConfig": "projects/ngx-data-driven-forms-showcase/tsconfig.app.json",
+            "outputPath": "dist/info-ngx-ddforms-web",
+            "index": "projects/info-ngx-ddforms-web/src/index.html",
+            "main": "projects/info-ngx-ddforms-web/src/main.ts",
+            "polyfills": "projects/info-ngx-ddforms-web/src/polyfills.ts",
+            "tsConfig": "projects/info-ngx-ddforms-web/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ngx-data-driven-forms-showcase/src/favicon.ico",
-              "projects/ngx-data-driven-forms-showcase/src/assets"
+              "projects/info-ngx-ddforms-web/src/favicon.ico",
+              "projects/info-ngx-ddforms-web/src/assets"
             ],
             "styles": [
-              "projects/ngx-data-driven-forms-showcase/src/styles.scss"
+              "projects/info-ngx-ddforms-web/src/styles.scss",
+              "projects/ngx-data-driven-forms/src/lib/defaults/styles/default-styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-json.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -133,8 +144,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "projects/ngx-data-driven-forms-showcase/src/environments/environment.ts",
-                  "with": "projects/ngx-data-driven-forms-showcase/src/environments/environment.prod.ts"
+                  "replace": "projects/info-ngx-ddforms-web/src/environments/environment.ts",
+                  "with": "projects/info-ngx-ddforms-web/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -154,10 +165,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngx-data-driven-forms-showcase:build:production"
+              "browserTarget": "info-ngx-ddforms-web:build:production"
             },
             "development": {
-              "browserTarget": "ngx-data-driven-forms-showcase:build:development"
+              "browserTarget": "info-ngx-ddforms-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -165,29 +176,39 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-data-driven-forms-showcase:build"
+            "browserTarget": "info-ngx-ddforms-web:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-data-driven-forms-showcase/src/test.ts",
-            "polyfills": "projects/ngx-data-driven-forms-showcase/src/polyfills.ts",
-            "tsConfig": "projects/ngx-data-driven-forms-showcase/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-data-driven-forms-showcase/karma.conf.js",
+            "main": "projects/info-ngx-ddforms-web/src/test.ts",
+            "polyfills": "projects/info-ngx-ddforms-web/src/polyfills.ts",
+            "tsConfig": "projects/info-ngx-ddforms-web/tsconfig.spec.json",
+            "karmaConfig": "projects/info-ngx-ddforms-web/karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ngx-data-driven-forms-showcase/src/favicon.ico",
-              "projects/ngx-data-driven-forms-showcase/src/assets"
+              "projects/info-ngx-ddforms-web/src/favicon.ico",
+              "projects/info-ngx-ddforms-web/src/assets"
             ],
-            "styles": [
-              "projects/ngx-data-driven-forms-showcase/src/styles.scss"
-            ],
+            "styles": ["projects/info-ngx-ddforms-web/src/styles.scss"],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/info-ngx-ddforms-web/**/*.ts",
+              "projects/info-ngx-ddforms-web/**/*.html"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
   },
   "defaultProject": "ngx-data-driven-forms"
 }
