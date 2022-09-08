@@ -1,27 +1,20 @@
-# NgxDataDrivenForms
+# Data Driven Forms by New York State ITS for HCR - Business Solitions
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+An open source angular library for creating dynamic forms, with a focus on accessibility and ease of use. These forms are built using a JSON schema, and can be used to create forms for any purpose. The library is designed to be incredibly flexible and unopinionated, allowing for the creation of any type of form.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Library Readme
 
-## Code scaffolding
+Click [here](https://github.com/HCR-Business-Solutions/ngx-data-driven-forms/blob/prod/projects/ngx-data-driven-forms/README.md) to view the library readme.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The readme for this library is located in the projects/ngx-data-driven-forms folder. It is also available on the [npm page](https://www.npmjs.com/package/@nys-hcr-its/ngx-data-driven-forms).
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Credits
 
-## Running unit tests
+Primary Author & Project Owner: [Rei Armenia](https://github.com/rarmenia) -
+Contact: [Email](mailto:anthony.armenia@its.ny.gov)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Styling and Accessibility: [Jennifer Drebitko](https://github.com/JDrebitko)
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -115,7 +115,6 @@ a {
       }
       .repeat-data-section {
         .section-container {
-          // create a grid with 2 columns that are 1fr each
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 0.25rem;

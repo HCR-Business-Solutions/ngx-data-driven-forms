@@ -8,11 +8,11 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true,
-    "**/dist": true,
+    "**/dist": false,
     "**/.storybook": true,
     "**/.angular": true,
     "**/.idea": true,
     "**/.vscode": true
   },
-  "explorerExclude.backup": null
+  "explorerExclude.backup": {}
 }

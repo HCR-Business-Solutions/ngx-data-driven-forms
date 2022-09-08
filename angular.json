@@ -116,7 +116,7 @@
             ],
             "styles": [
               "projects/info-ngx-ddforms-web/src/styles.scss",
-              "projects/ngx-data-driven-forms/src/lib/defaults/styles/default-styles.scss",
+              "projects/ngx-data-driven-forms/styles/default-styles.scss",
               "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
