@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
-import { Application, Section } from '../../../forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+} from '@angular/forms';
+import { Application, Page, Question, Section } from '../../../forms';
 import { MasterReigistryService } from '../../registry';
 
 @Injectable()
 export class FormGenerationService {
   constructor(private masterRegistry: MasterReigistryService) {}
 
-  public validateApplicationConfig(
-    application: unknown
-  ): null | { [key: string]: any } {
-    return null;
-  }
+  // public validateApplicationConfig(
+  //   application: unknown
+  // ): null | { [key: string]: any } {
+  //   return null;
+  // }
 
   public buildApplicationControl(
     initialValue: any,
     application: Application
   ): FormGroup {
     return application.asForm(
+      initialValue,
+      this.masterRegistry._fieldValidatorRegistry.getRegistry(),
+      this.masterRegistry._crossFieldValidatorRegistry.getRegistry()
+    );
+  }
+
+  public buildPageControl(initialValue: any, page: Page): FormGroup {
+    return page.asForm(
       initialValue,
       this.masterRegistry._fieldValidatorRegistry.getRegistry(),
       this.masterRegistry._crossFieldValidatorRegistry.getRegistry()
@@ -34,6 +47,16 @@ export class FormGenerationService {
       this.masterRegistry._fieldValidatorRegistry.getRegistry(),
       this.masterRegistry._crossFieldValidatorRegistry.getRegistry(),
       ignoreRepeat
+    );
+  }
+
+  public buildQuestionControl(
+    initialValue: any,
+    question: Question
+  ): FormControl {
+    return question.control(
+      initialValue,
+      this.masterRegistry._fieldValidatorRegistry.getRegistry()
     );
   }
 }
