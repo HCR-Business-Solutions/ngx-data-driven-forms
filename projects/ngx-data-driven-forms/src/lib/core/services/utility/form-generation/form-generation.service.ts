@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
 } from '@angular/forms';
 import { Application, Page, Question, Section } from '../../../forms';
 import { MasterReigistryService } from '../../registry';
@@ -21,7 +21,7 @@ export class FormGenerationService {
   public buildApplicationControl(
     initialValue: any,
     application: Application
-  ): FormGroup {
+  ): UntypedFormGroup {
     return application.asForm(
       initialValue,
       this.masterRegistry._fieldValidatorRegistry.getRegistry(),
@@ -29,7 +29,7 @@ export class FormGenerationService {
     );
   }
 
-  public buildPageControl(initialValue: any, page: Page): FormGroup {
+  public buildPageControl(initialValue: any, page: Page): UntypedFormGroup {
     return page.asForm(
       initialValue,
       this.masterRegistry._fieldValidatorRegistry.getRegistry(),
@@ -41,7 +41,7 @@ export class FormGenerationService {
     initialValue: any,
     section: Section,
     ignoreRepeat: boolean = false
-  ): FormGroup | FormArray {
+  ): UntypedFormGroup | UntypedFormArray {
     return section.asForm(
       initialValue,
       this.masterRegistry._fieldValidatorRegistry.getRegistry(),
@@ -53,7 +53,7 @@ export class FormGenerationService {
   public buildQuestionControl(
     initialValue: any,
     question: Question
-  ): FormControl {
+  ): UntypedFormControl {
     return question.control(
       initialValue,
       this.masterRegistry._fieldValidatorRegistry.getRegistry()

@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {
   FieldValidatorFn,
@@ -39,7 +39,7 @@ export class Page implements IPage {
     initialValue: any,
     fieldValidators: Map<string, FieldValidatorFn>,
     crossFieldValidators: Map<string, CrossFieldValidatorFn>
-  ): FormGroup {
+  ): UntypedFormGroup {
     const controls = this.sections.reduce(
       (prev, section) => ({
         ...prev,
@@ -52,7 +52,7 @@ export class Page implements IPage {
       {}
     );
 
-    return new FormGroup(
+    return new UntypedFormGroup(
       controls,
       this.getCrossFieldValidators(crossFieldValidators)
     );

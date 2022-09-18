@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { RenderFieldBaseComponent } from '../../../../core';
 
@@ -101,7 +101,7 @@ export class SelectFieldComponent
     return this.question?.customProps[key] ?? null;
   }
 
-  get formControl(): FormControl {
-    return this.control as FormControl;
+  get formControl(): UntypedFormControl {
+    return this.control as UntypedFormControl;
   }
 }

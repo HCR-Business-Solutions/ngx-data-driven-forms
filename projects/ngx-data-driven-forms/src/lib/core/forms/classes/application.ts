@@ -1,4 +1,4 @@
-import { FormGroup, ValidatorFn } from '@angular/forms';
+import { UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { FieldValidatorFn, CrossFieldValidatorFn } from '../../types';
 import { resovleCrossFieldValidators } from '../../utils';
 import { IApplication, IRendererConfig } from '../interfaces';
@@ -25,7 +25,7 @@ export class Application implements IApplication {
     initialValue: any,
     fieldValidators: Map<string, FieldValidatorFn>,
     crossFieldValidators: Map<string, CrossFieldValidatorFn>
-  ): FormGroup {
+  ): UntypedFormGroup {
     const controls = this.pages.reduce(
       (prev, page) => ({
         ...prev,
@@ -38,7 +38,7 @@ export class Application implements IApplication {
       {}
     );
 
-    return new FormGroup(
+    return new UntypedFormGroup(
       controls,
       this.getCrossFieldValidators(crossFieldValidators)
     );
