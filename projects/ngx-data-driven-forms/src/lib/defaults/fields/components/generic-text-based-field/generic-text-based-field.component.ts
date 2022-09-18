@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { RenderFieldBaseComponent } from '../../../../core';
 
 @Component({
@@ -42,7 +42,7 @@ export class GenericTextBasedFieldComponent extends RenderFieldBaseComponent {
     return this.question?.customProps[key] ?? null;
   }
 
-  get formControl(): FormControl {
-    return this.control as FormControl;
+  get formControl(): UntypedFormControl {
+    return this.control as UntypedFormControl;
   }
 }

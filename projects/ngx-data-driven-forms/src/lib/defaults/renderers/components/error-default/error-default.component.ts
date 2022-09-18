@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 import {
   MasterReigistryService,
   RenderErrorBaseComponent,
@@ -31,7 +31,7 @@ export class ErrorDefaultComponent extends RenderErrorBaseComponent {
 
   public shouldShowError(): boolean {
     //if control is form array check if it has errors
-    if (this.control instanceof FormArray) {
+    if (this.control instanceof UntypedFormArray) {
       return this.control.errors ? true : false;
     }
 

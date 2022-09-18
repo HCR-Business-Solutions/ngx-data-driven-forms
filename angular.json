@@ -194,7 +194,9 @@
     }
   },
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
-  },
-  "defaultProject": "ngx-data-driven-forms"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
+    "analytics": "0d7b3344-cf37-4f62-aa5b-3027070bc65b"
+  }
 }

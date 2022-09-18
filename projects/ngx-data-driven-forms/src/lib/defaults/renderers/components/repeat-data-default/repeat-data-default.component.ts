@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, FormControl } from '@angular/forms';
 import { RenderRepeatDataBaseComponent, Section } from '../../../../core';
 
 @Component({
@@ -61,7 +61,7 @@ export class RepeatDataDefaultComponent
 
   get controls(): AbstractControl[] {
     if (!this.data) return [];
-    return (this.data as FormArray).controls;
+    return (this.data as UntypedFormArray).controls;
   }
 
   editItem(index: number): void {
@@ -70,7 +70,7 @@ export class RepeatDataDefaultComponent
 
   deleteItem(index: number): void {
     //if data defined and data is a form array then remove the control at the index
-    if (this.data && this.data instanceof FormArray) {
+    if (this.data && this.data instanceof UntypedFormArray) {
       this.data.removeAt(index);
     }
   }
