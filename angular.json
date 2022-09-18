@@ -63,20 +63,6 @@
         }
       }
     },
-    "storybook": {
-      "projectType": "application",
-      "root": "stories",
-      "sourceRoot": "stories",
-      "architect": {
-        "build": {
-          "options": {
-            "tsConfig": "tsconfig.json",
-            "styles": [],
-            "scripts": []
-          }
-        }
-      }
-    },
     "info-ngx-ddforms-web": {
       "projectType": "application",
       "schematics": {
