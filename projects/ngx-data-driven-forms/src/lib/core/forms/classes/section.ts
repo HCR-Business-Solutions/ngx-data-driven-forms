@@ -1,7 +1,7 @@
 import {
   AbstractControl,
-  FormArray,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormGroup,
   ValidatorFn,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -66,7 +66,7 @@ export class Section implements ISection {
 
     if (min !== undefined) {
       validators.push((control: AbstractControl) => {
-        const length = (control as FormArray).length;
+        const length = (control as UntypedFormArray).length;
         if (length >= min) return null;
         return { arrayMin: { expected: min, actual: length } };
       });
@@ -74,7 +74,7 @@ export class Section implements ISection {
 
     if (max !== undefined) {
       validators.push((control: AbstractControl) => {
-        const length = (control as FormArray).length;
+        const length = (control as UntypedFormArray).length;
         if (length <= max) return null;
         return { arrayMax: { expected: max, actual: length } };
       });
@@ -88,9 +88,9 @@ export class Section implements ISection {
     fieldValidators: Map<string, FieldValidatorFn>,
     crossFieldValidators: Map<string, CrossFieldValidatorFn>,
     ignoreRepeat: boolean = false
-  ): FormGroup | FormArray {
+  ): UntypedFormGroup | UntypedFormArray {
     if (!ignoreRepeat && this.repeat) {
-      const arr = new FormArray([], {
+      const arr = new UntypedFormArray([], {
         validators: this.getArrayValidators(),
       });
       if (initialValue && Array.isArray(initialValue)) {
@@ -114,7 +114,7 @@ export class Section implements ISection {
     initialValue: any,
     fieldValidators: Map<string, FieldValidatorFn>,
     crossFieldValidators: Map<string, CrossFieldValidatorFn>
-  ): FormGroup {
+  ): UntypedFormGroup {
     const controls = Object.entries(this.questions).reduce(
       (prev, [key, question]) => ({
         ...prev,
@@ -126,7 +126,7 @@ export class Section implements ISection {
       {}
     );
 
-    return new FormGroup(
+    return new UntypedFormGroup(
       controls,
       this.getCrossFieldValidators(crossFieldValidators)
     );

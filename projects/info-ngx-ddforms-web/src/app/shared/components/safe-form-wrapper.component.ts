@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import {
   Application,
   FormGenerationService,
@@ -43,9 +43,9 @@ export class SafeFormWrapperComponent implements OnInit, OnDestroy {
       null,
       this.form
     );
-    this.formValue.emit((this.formControl as FormGroup).getRawValue());
+    this.formValue.emit((this.formControl as UntypedFormGroup).getRawValue());
     this.formSubscriber = this.formControl.valueChanges.subscribe(() =>
-      this.formValue.emit((this.formControl as FormGroup).getRawValue())
+      this.formValue.emit((this.formControl as UntypedFormGroup).getRawValue())
     );
   }
 

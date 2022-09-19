@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ConditionFn, FieldValidatorFn } from '../../types';
 import {
@@ -56,8 +56,8 @@ export class Question implements IQuestion {
   public control(
     initialValue: any,
     knownFieldValidators: Map<string, FieldValidatorFn>
-  ): FormControl {
-    return new FormControl(
+  ): UntypedFormControl {
+    return new UntypedFormControl(
       initialValue ?? null,
       this.getValidators(knownFieldValidators),
       null

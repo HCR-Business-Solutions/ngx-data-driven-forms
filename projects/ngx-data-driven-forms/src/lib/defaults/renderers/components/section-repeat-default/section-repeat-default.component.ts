@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 import {
   MasterReigistryService,
   RenderSectionRepeatBaseComponent,
@@ -75,7 +75,7 @@ export class SectionRepeatDefaultComponent extends RenderSectionRepeatBaseCompon
         this.masterRegistry._crossFieldValidatorRegistry.getRegistry(),
         true
       );
-      (this.control as FormArray).push(temp);
+      (this.control as UntypedFormArray).push(temp);
       this.inputForm.reset();
     } else {
       this.inputForm.markAsDirty({ onlySelf: false });
@@ -86,7 +86,7 @@ export class SectionRepeatDefaultComponent extends RenderSectionRepeatBaseCompon
   editEntry() {
     if (!this.inputForm || this.editId === null) return;
     if (this.inputForm.value && this.inputForm.valid) {
-      (this.control as FormArray)
+      (this.control as UntypedFormArray)
         .at(this.editId)
         .patchValue(this.inputForm.value);
       this.inputForm.reset();
