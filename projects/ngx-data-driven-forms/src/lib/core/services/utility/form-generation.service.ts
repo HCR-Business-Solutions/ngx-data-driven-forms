@@ -5,18 +5,12 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import { Application, Page, Question, Section } from '../../../forms';
-import { MasterReigistryService } from '../../registry';
+import { Application, Page, Question, Section } from '../../forms';
+import { MasterReigistryService } from '../registry';
 
 @Injectable()
 export class FormGenerationService {
   constructor(private masterRegistry: MasterReigistryService) {}
-
-  // public validateApplicationConfig(
-  //   application: unknown
-  // ): null | { [key: string]: any } {
-  //   return null;
-  // }
 
   public buildApplicationControl(
     initialValue: any,
