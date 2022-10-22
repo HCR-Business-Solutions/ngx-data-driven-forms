@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IQuestion } from 'ngx-data-driven-forms';
+import { IQuestion } from '../../forms';
 import { MasterReigistryService } from '../registry';
 
 type KeyValue = { [key: string]: any };
@@ -85,131 +85,104 @@ export class SchemaValidatorService {
     const errors: KeyValue = {};
     const warnings: KeyValue = {};
 
-    // check if question exists and is an object
-    if (!question || typeof question !== 'object') {
-      errors['question'] = 'Question is not an object';
+    // #region Type Errors
+    if (!question) {
+      errors['no-question'] = 'Question does not exist.';
+      return { errors };
     }
 
-    // take question as an IQuestion
+    if (typeof question !== 'object') {
+      errors['question-not-object'] = 'Question is not an object.';
+      return { errors };
+    }
+    //#endregion Type Errors
+
     const q = question as IQuestion;
 
-    // ensure that question has an id
+    // #region Schema Errors
     if (!q.id) {
-      errors['id'] = 'Question id is missing';
+      errors['no-id'] = 'Question does not have an id property.';
     }
 
-    // ensure that question has a type
     if (!q.type) {
-      errors['type'] = 'Question type is missing';
+      errors['no-type'] = 'Question does not have a type property.';
+    }
+    // #endregion Schema Errors
+
+    // #region Warnings
+
+    if (!q.label && !q.ariaLabel) {
+      warnings['no-label'] =
+        'Question does not have a label or ariaLabel. This question will not meet accessibility standards.';
     }
 
-    // if keyId and q.id are not equal, throw an error
-    if (keyId && q.id && keyId !== q.id) {
-      errors['id-missmatch'] = 'Question id does not match key';
-    }
-
-    // check if type is in questionRendererRegistry.getRegistry()
     if (
       q.type &&
-      !this._master._questionRendererRegistry.getRegistry().has(q.type)
+      !this._master._fieldRendererRegistry.getRegistry().has(q.type)
     ) {
-      warnings[
-        'unknown-type'
-      ] = `Question type ${q.type} is not registered, renderer will attempt to use default.`;
+      warnings['unknown-quetion'] = `${q.type} is not a known question type.`;
     }
 
-    // check inputMode if it exists is a valid inputMode
-    if (
-      q.inputMode &&
-      ![
-        'none',
-        'text',
-        'decimal',
-        'numeric',
-        'tel',
-        'search',
-        'email',
-        'url',
-      ].includes(q.inputMode)
-    ) {
-      warnings['input-mode'] = `Question inputMode ${q.inputMode} is not valid`;
+    if (q.fieldValidation) {
+      const presentValidators = Object.keys(q.fieldValidation);
+      const unknownValidators = presentValidators.filter(
+        (validator) =>
+          !this._master._fieldValidatorRegistry.getRegistry().has(validator)
+      );
+      if (unknownValidators.length > 0) {
+        warnings['unknown-field-validators'] = {
+          msg: 'Unknown field validators.',
+          validators: unknownValidators,
+        };
+      }
     }
 
-    // check if label or ariaLabel exists
-    if (!q.label && !q.ariaLabel) {
-      warnings['label'] =
-        'Question label or ariaLabel is missing, this question will not meet accessibility standards';
+    if (q.crossFieldValidation) {
+      const presentValidators = q.crossFieldValidation
+        .map((_) => _.validation)
+        .reduce((prev: string[], curr) => [...prev, ...Object.keys(curr)], []);
+      const unknownValidators = presentValidators.filter(
+        (validator) =>
+          !this._master._crossFieldValidatorRegistry
+            .getRegistry()
+            .has(validator)
+      );
+      if (unknownValidators.length > 0) {
+        warnings['unknown-cross-field-validators'] = {
+          msg: 'Unknown cross field validators.',
+          validators: unknownValidators,
+        };
+      }
     }
 
-    // gather all fieldValidation keys
-    const fieldValidationKeys = q.fieldValidation
-      ? Object.keys(q.fieldValidation)
-      : [];
-
-    // check if fieldValidation keys are in fieldValidationRegistry.getRegistry() return a warning of all those that are not
-    const unknownFieldValidationKeys = fieldValidationKeys.filter(
-      (key) => !this._master._fieldValidatorRegistry.getRegistry().has(key)
-    );
-
-    if (unknownFieldValidationKeys.length > 0) {
-      warnings['unknown-field-validation'] = {
-        msg: 'Question fieldValidation contains unknown validators',
-        keys: unknownFieldValidationKeys,
-      };
+    if (q.shouldAsk) {
+      const presentConditions = q.shouldAsk.conditions
+        .map((_) => _.conditions)
+        .reduce((prev: string[], curr) => [...prev, ...Object.keys(curr)], []);
+      const unknownConditions = presentConditions.filter(
+        (condition) =>
+          !this._master._conditionsRegistry.getRegistry().has(condition)
+      );
+      if (unknownConditions.length > 0) {
+        warnings['unknown-conditions'] = {
+          msg: 'Unknown conditions',
+          conditions: unknownConditions,
+        };
+      }
     }
 
-    // gather all crossFieldValidation packs and gather all validation keys
-    const crossFieldValidationPacks = q.crossFieldValidation
-      ? q.crossFieldValidation
-      : [];
-    const crossFieldValidationKeys = crossFieldValidationPacks
-      .map((pack) => Object.keys(pack.validation))
-      .reduce((acc, val) => acc.concat(val), []);
+    // #endregion Warnings
 
-    // check if crossFieldValidation keys are in crossFieldValidationRegistry.getRegistry() return a warning of all those that are not
-    const unknownCrossFieldValidationKeys = crossFieldValidationKeys.filter(
-      (key) => !this._master._crossFieldValidatorRegistry.getRegistry().has(key)
-    );
+    const result: SchemaValidationResult = {};
 
-    if (unknownCrossFieldValidationKeys.length > 0) {
-      warnings['unknown-cross-field-validation'] = {
-        msg: 'Question crossFieldValidation contains unknown validators',
-        keys: unknownCrossFieldValidationKeys,
-      };
-
-    // gather all conditions from shouldAsk
-    const conditionPacks = q.shouldAsk ? q.shouldAsk.conditions : [];
-
-    // gather all condition keys
-    const conditionKeys = conditionPacks
-      .map((pack) => Object.keys(pack))
-      .reduce((acc, val) => acc.concat(val), []);
-
-    // check if condition keys are in conditionRegistry.getRegistry() return a warning of all those that are not
-    const unknownConditionKeys = conditionKeys.filter(
-      (key) => !this._master._conditionsRegistry.getRegistry().has(key)
-    );
-
-    if (unknownConditionKeys.length > 0) {
-      warnings['unknown-condition'] = {
-        msg: 'Question shouldAsk contains unknown conditions',
-        keys: unknownConditionKeys,
-      };
+    if (Object.keys(errors).length > 0) {
+      result.errors = errors;
     }
 
-
-    // if errors and warnings are empty, return undefined
-    if (
-      Object.keys(errors).length === 0 &&
-      Object.keys(warnings).length === 0
-    ) {
-      return undefined;
+    if (Object.keys(warnings).length > 0) {
+      result.warnings = warnings;
     }
 
-    // return errors and warnings if they are not empty
-    return {
-      errors: Object.keys(errors).length === 0 ? undefined : errors,
-      warnings: Object.keys(warnings).length === 0 ? undefined : warnings,
-    };
+    return result.warnings || result.errors ? result : undefined;
   }
 }
