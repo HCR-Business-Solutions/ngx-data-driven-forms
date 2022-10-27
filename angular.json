@@ -59,7 +59,8 @@
           "strict": true
         },
         "@schematics/angular:service": {
-          "flat": false
+          "flat": true,
+          "skipTests": true
         }
       }
     },
@@ -194,9 +195,7 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ],
+    "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": "0d7b3344-cf37-4f62-aa5b-3027070bc65b"
   }
 }

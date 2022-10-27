@@ -1,6 +1,6 @@
 {
   "name": "@nys-hcr-its/ngx-data-driven-forms",
-  "version": "14.0.1-beta",
+  "version": "14.1.0-beta",
   "peerDependencies": {
     "@angular/common": "^14.2.2",
     "@angular/core": "^14.2.2",
