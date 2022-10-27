@@ -84,7 +84,7 @@ export class SelectFieldComponent
       return;
     }
 
-    const httpStr = this.getProp('options');
+    const httpStr = this.getProp('src');
     if (httpStr) {
       this.clearOptionsSub();
       this.optionsSub = this.httpClient
