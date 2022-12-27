@@ -9,7 +9,7 @@ import {
 } from '../../core';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as FieldComponents from './components';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
@@ -18,7 +18,8 @@ import { MarkdownModule } from 'ngx-markdown';
     CommonModule,
     DDFormsCoreModule,
     ReactiveFormsModule,
-    NgxMaskModule.forChild(),
+    NgxMaskDirective,
+    NgxMaskPipe,
     MarkdownModule.forChild(),
   ],
   exports: [...DEFAULT_FIELDS],
