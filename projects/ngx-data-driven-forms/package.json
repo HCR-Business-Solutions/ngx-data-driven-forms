@@ -1,16 +1,16 @@
 {
   "name": "@nys-hcr-its/ngx-data-driven-forms",
-  "version": "14.1.0-beta",
+  "version": "15.0.0-beta",
   "peerDependencies": {
-    "@angular/common": "^14.2.2",
-    "@angular/core": "^14.2.2",
-    "@types/uuid": "^8.3.4"
+    "@angular/common": "^15.0.4",
+    "@angular/core": "^15.0.4",
+    "@types/uuid": "^9.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0",
-    "ngx-markdown": "^14.0.1",
-    "ngx-mask": "^14.2.3",
-    "uuid": "^8.3.2"
+    "ngx-markdown": "^15.0.0",
+    "ngx-mask": "^15.0.2",
+    "uuid": "^9.0.0"
   },
   "license": "GPL-3.0",
   "author": {
