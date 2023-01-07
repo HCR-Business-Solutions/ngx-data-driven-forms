@@ -5,7 +5,7 @@ import { RenderHintBaseComponent } from '../../../../core';
   selector: 'ddforms-hint-default',
   template: `<div
     [id]="this.fieldId + '-hint'"
-    class="hint-container"
+    class="hint-container {{ this.question.id }}-hint"
     *ngIf="this.question.hint"
   >
     <markdown class="markdown" [data]="this.question.hint"></markdown>
