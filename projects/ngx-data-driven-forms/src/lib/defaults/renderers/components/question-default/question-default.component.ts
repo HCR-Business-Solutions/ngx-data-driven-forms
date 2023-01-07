@@ -7,7 +7,9 @@ import {
 @Component({
   selector: 'ddforms-question-default',
   template: `<div
-    class="question-container form-field field-{{ this.question.type }}"
+    class="question-container form-field field-{{ this.question.type }} {{
+      this.classes
+    }} {{ this.question.id }}-question"
   >
     <ng-container ddFormsRenderLabel></ng-container>
     <ng-container ddFormsRenderField></ng-container>
@@ -29,5 +31,11 @@ export class QuestionDefaultComponent extends RenderQuestionBaseComponent {
       masterRegistry._conditionsRegistry,
       cdr
     );
+  }
+
+  get classes(): string {
+    if (!this.question.customProps) return '';
+    if (!this.question.customProps['classes']) return '';
+    return this.question.customProps['classes'];
   }
 }

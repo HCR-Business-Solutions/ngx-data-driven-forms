@@ -7,13 +7,17 @@ import {
 
 @Component({
   selector: 'ddforms-section-repeat-default',
-  template: `<div class="section-repeat-container">
+  template: `<div
+    class="section-repeat-container {{ this.section.id }}-section {{
+      this.classes
+    }}"
+  >
     <ng-container ddFormsRenderHeading></ng-container>
     <ng-container ddFormsRenderNarrative></ng-container>
     <ng-container ddFormsRenderError></ng-container>
     <div class="repeat-input-container">
       <div class="repeat-input-text-container">
-        {{this.section.repeat?.addText ?? 'Add an entry'}}
+        {{ this.section.repeat?.addText ?? 'Add an entry' }}
       </div>
       <ng-container ddFormsRenderRepeatInput></ng-container>
       <div class="repeat-input-actions-container">
@@ -105,5 +109,11 @@ export class SectionRepeatDefaultComponent extends RenderSectionRepeatBaseCompon
   clearInput() {
     if (!this.inputForm) return;
     this.inputForm.reset();
+  }
+
+  get classes(): string {
+    if (!this.section.customProps) return '';
+    if (!this.section.customProps['classes']) return '';
+    return this.section.customProps['classes'];
   }
 }

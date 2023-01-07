@@ -6,7 +6,9 @@ import {
 
 @Component({
   selector: 'ddforms-section-default',
-  template: `<div class="section-container">
+  template: `<div
+    class="section-container {{ this.classes }} {{ this.section.id }}-section"
+  >
     <ng-container ddFormsRenderHeading></ng-container>
     <ng-container ddFormsRenderNarrative></ng-container>
     <ng-container ddFormsRenderQuestion></ng-container>
@@ -25,5 +27,11 @@ export class SectionDefaultComponent extends RenderSectionBaseComponent {
       masterRegistry._conditionsRegistry,
       cdRef
     );
+  }
+
+  get classes(): string {
+    if (!this.section.customProps) return '';
+    if (!this.section.customProps['classes']) return '';
+    return this.section.customProps['classes'];
   }
 }

@@ -5,7 +5,7 @@ import { RenderRepeatDataBaseComponent, Section } from '../../../../core';
 @Component({
   selector: 'ddforms-repeat-data-default',
   template: `<div
-    class="repeat-data-container"
+    class="repeat-data-container {{ this.section.id }}-data {{ this.classes }}"
     *ngIf="this.section && this.itemSection"
   >
     <div
@@ -90,5 +90,11 @@ export class RepeatDataDefaultComponent
     }
 
     return resultText;
+  }
+
+  get classes(): string {
+    if (!this.section.customProps) return '';
+    if (!this.section.customProps['repeatDataClasses']) return '';
+    return this.section.customProps['repeatDataClasses'];
   }
 }

@@ -6,7 +6,10 @@ import {
 
 @Component({
   selector: 'ddforms-page-default',
-  template: `<div class="page-container">
+  template: `<div
+    class="page-container"
+    [ngClass]="this.page.id + '-page ' + this.classes"
+  >
     <form>
       <ng-container ddFormsRenderHeading></ng-container>
       <ng-container ddFormsRenderNarrative></ng-container>
@@ -28,5 +31,11 @@ export class PageDefaultComponent extends RenderPageBaseComponent {
       masterRegistry._conditionsRegistry,
       cdRef
     );
+  }
+
+  get classes(): string {
+    if (!this.page.customProps) return '';
+    if (!this.page.customProps['classes']) return '';
+    return this.page.customProps['classes'];
   }
 }

@@ -8,7 +8,11 @@ import {
 @Component({
   selector: 'ddforms-repeat-input-default',
   template: `
-    <div class="repeat-input-form-container">
+    <div
+      class="repeat-input-form-container {{ this.section.id }}-input {{
+        this.classes
+      }}"
+    >
       <ddforms-section-default
         [section]="this.section"
         [control]="this.inputForm"
@@ -21,5 +25,11 @@ import {
 export class RepeatInputDefaultComponent extends RenderRepeatInputBaseComponent {
   constructor(public fg: FormGenerationService) {
     super();
+  }
+
+  get classes(): string {
+    if (!this.section.customProps) return '';
+    if (!this.section.customProps['repeatInputClasses']) return '';
+    return this.section.customProps['repeatInputClasses'];
   }
 }
