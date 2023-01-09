@@ -7,7 +7,7 @@ import {
   DDFormsDefaultsModule,
 } from 'ngx-data-driven-forms/src/public-api';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,7 @@ import { CoreModule } from './core/core.module';
     NgxMaskDirective,
     NgxMaskPipe,
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

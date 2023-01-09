@@ -9,6 +9,7 @@ import {
   ConditionFn,
   CrossFieldValidatorFn,
   FieldValidatorFn,
+  ValueOrArray,
 } from '../../types';
 import { resovleCrossFieldValidators } from '../../utils';
 import {
@@ -25,7 +26,7 @@ export class Section implements ISection {
   title?: string | undefined;
   narrative?: string | undefined;
   questions: { [key: string]: Question };
-  layout: string[];
+  layout: ValueOrArray<string>[];
   repeat?:
     | {
         handler: string;
