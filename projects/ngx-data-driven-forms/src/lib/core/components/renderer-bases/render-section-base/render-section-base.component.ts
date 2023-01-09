@@ -13,13 +13,15 @@ import {
   RenderNarrativeDirective,
   RenderQuestionDirective,
 } from '../../../directives';
-import { Section } from '../../../forms';
+import { Question, Section } from '../../../forms';
 import {
   ConditionsRegistryService,
   HeadingRendererRegistryService,
   NarrativeRendererRegistryService,
   QuestionRendererRegistryService,
 } from '../../../services';
+import { ValueOrArray } from '../../../types';
+import { QuestionGroupComponent } from '../../render-helpers/question-group/question-group.component';
 import { RenderHeadingBaseComponent } from '../render-heading-base';
 import { RenderNarrativeBaseComponent } from '../render-narrative-base';
 import { RenderQuestionBaseComponent } from '../render-question-base';
@@ -161,8 +163,7 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.section.layout.forEach((key) => {
-      const question = this.section.questions[key];
+    const renderQuestion = (question?: Question): void => {
       if (!question) return;
 
       const control = this.control.get(question.id);
@@ -184,6 +185,22 @@ export class RenderSectionBaseComponent implements OnInit, OnDestroy {
       componentRef.instance.control = control;
       componentRef.instance.isReadonly = false;
       componentRef.instance.question = question;
+    };
+
+    const renderGroup = (subLayout: ValueOrArray<string>[]) => {
+      const componentRef = questionView.createComponent(QuestionGroupComponent);
+      componentRef.instance.layout = subLayout;
+      componentRef.instance.control = this.control;
+      componentRef.instance.section = this.section;
+      componentRef.instance.subLevel = 0;
+    };
+
+    this.section.layout.forEach((item: ValueOrArray<string>) => {
+      if (Array.isArray(item)) {
+        renderGroup(item);
+      } else {
+        renderQuestion(this.section.questions[item]);
+      }
     });
   }
 }

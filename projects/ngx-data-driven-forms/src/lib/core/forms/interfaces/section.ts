@@ -1,6 +1,7 @@
 import { IRendererConfig } from './renderer-config';
 import { IQuestion } from './question';
 import { IShouldAsk } from './should-ask';
+import { ValueOrArray } from '../../types';
 
 export interface ISection {
   id: string;
@@ -10,7 +11,7 @@ export interface ISection {
   narrative?: string;
 
   questions: { [key: string]: IQuestion };
-  layout: string[];
+  layout: ValueOrArray<string>[];
 
   repeat?: {
     handler: string;
