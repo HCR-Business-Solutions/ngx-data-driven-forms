@@ -4,6 +4,10 @@ import { UntypedFormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { RenderFieldBaseComponent } from '../../../../core';
 
+interface Option {
+  display: string;
+  value: any;
+}
 @Component({
   selector: 'ddforms-multi-select-field',
   template: ` <p>multi-select-field works!</p> `,
@@ -24,10 +28,9 @@ export class MultiSelectFieldComponent
       (this.control?.touched || this.control?.dirty),
   };
 
-  public options: {
-    display: string;
-    value: any;
-  }[] = [];
+  public options: Option[] = [];
+
+  public selectedOptions: any[] = [];
 
   public optionsSub?: Subscription;
 
@@ -37,6 +40,7 @@ export class MultiSelectFieldComponent
 
   public ngOnInit(): void {
     this.getOptions();
+    this.decodeSelected();
   }
 
   public ngOnDestroy(): void {
@@ -60,11 +64,8 @@ export class MultiSelectFieldComponent
     if (httpStr) {
       this.clearOptionsSub();
       this.optionsSub = this.httpClient
-        .get<{ display: string; value: any }[]>(httpStr)
-        .subscribe(
-          (response: { display: string; value: any }[]) =>
-            (this.options = response)
-        );
+        .get<Option[]>(httpStr)
+        .subscribe((response: Option[]) => (this.options = response));
       return;
     }
 
@@ -78,5 +79,39 @@ export class MultiSelectFieldComponent
 
   get formControl(): UntypedFormControl {
     return this.control as UntypedFormControl;
+  }
+
+  public onOptionInteract(interact: Option): void {
+    this.updateSelected(interact);
+    this.encodeSelected();
+  }
+
+  public updateSelected(nextValue: any): void {
+    const OPTION_INDEX = this.selectedOptions.findIndex(
+      (option) => option === nextValue
+    );
+    const OPTION_CURRENTLY_SELECTED = OPTION_INDEX >= 0;
+
+    if (OPTION_CURRENTLY_SELECTED) {
+      this.selectedOptions = [
+        ...this.selectedOptions.slice(0, OPTION_INDEX),
+        ...this.selectedOptions.slice(OPTION_INDEX + 1),
+      ];
+    } else {
+      this.selectedOptions = [...this.selectedOptions, nextValue];
+    }
+  }
+
+  public encodeSelected(): void {
+    this.control.setValue(JSON.stringify(this.selectedOptions));
+  }
+
+  public decodeSelected(): void {
+    this.selectedOptions = JSON.parse(this.control.getRawValue() ?? []);
+  }
+
+  public getDisplayValue(optionValue: any): string {
+    const option = this.options.find((option) => option.value === optionValue);
+    return option?.display ?? optionValue;
   }
 }
