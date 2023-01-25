@@ -27,7 +27,8 @@ a {
   width: 100%;
 }
 
-.section-container, .question-group {
+.section-container,
+.question-group {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -283,6 +284,23 @@ a {
     }
   }
 }
+
+.multiselect-container {
+  width: 100%;
+  height: 40px;
+
+  .multiselect-field {
+    border: 0.666667px solid rgb(148, 148, 148);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0rem 0.5rem;
+  }
+
+  .multiselect-options {
+  }
+}
+
 // #endregion Input Styles
 
 // #region Markdown Restyle
