@@ -5,8 +5,8 @@ export const jsonRequired: FieldValidatorFn = (arg: unknown) =>
   !(arg as boolean)
     ? undefined
     : (c: AbstractControl) => {
-        if (!c.value) return { required: true };
+        if (!c.value) return { jsonRequired: true };
         const json = JSON.parse(c.value ?? '[]');
-        if (!json) return { required: true };
+        if (!json) return { jsonRequired: true };
         return null;
       };

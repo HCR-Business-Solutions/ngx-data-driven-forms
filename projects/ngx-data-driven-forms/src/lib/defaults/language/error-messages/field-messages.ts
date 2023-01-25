@@ -129,3 +129,7 @@ export const required: ErrorMessageFn = (error) => {
 export const requiredTrue: ErrorMessageFn = (error) => {
   return `Value must be true.`;
 };
+
+export const jsonRequired: ErrorMessageFn = (error) => {
+  return 'You must select at least one option.';
+};
