@@ -5,6 +5,5 @@ export const containsValue: ConditionFn = (left: unknown, right: unknown) => {
   const lArr = Array.isArray(l) ? l : JSON.parse(l ?? '[]');
 
   const r = right as any;
-
   return lArr.includes(r);
 };
