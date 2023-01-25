@@ -4,6 +4,9 @@ export * from './age-greater';
 export * from './age-less-equals';
 export * from './age-less';
 
+export * from './contains-value';
+export * from './excludes-value';
+
 export * from './date-after-on';
 export * from './date-after';
 export * from './date-before-on';
