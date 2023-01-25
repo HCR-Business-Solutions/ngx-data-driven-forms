@@ -74,6 +74,8 @@ export class DDFormsDefaultValidatorsModule {
     this.fieldValidator.register('required', FieldValidators.required);
     this.fieldValidator.register('requiredTrue', FieldValidators.requiredTrue);
 
+    this.fieldValidator.register('jsonRequired', FieldValidators.jsonRequired);
+
     // #endregion field validators
 
     // #region crossfield validators

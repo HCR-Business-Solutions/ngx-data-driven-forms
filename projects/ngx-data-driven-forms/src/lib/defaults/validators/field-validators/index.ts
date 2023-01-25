@@ -31,3 +31,5 @@ export * from './pattern';
 
 export * from './required';
 export * from './required-true';
+
+export * from './json-required';

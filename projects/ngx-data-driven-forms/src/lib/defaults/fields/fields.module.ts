@@ -60,6 +60,11 @@ export class DDFormsDefaultFieldsModule {
 
     this._fieldRegistry.register('mask', FieldComponents.MaskFieldComponent);
 
+    this._fieldRegistry.register(
+      'multiselect',
+      FieldComponents.MultiSelectFieldComponent
+    );
+
     this._fieldRegistry.register('radio', FieldComponents.RadioFieldComponent);
 
     this._fieldRegistry.register(
