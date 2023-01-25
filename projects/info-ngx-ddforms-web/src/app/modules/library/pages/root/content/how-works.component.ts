@@ -120,14 +120,20 @@ export class HowWorksComponent {
                   ],
                 },
               },
-              acceptTexts: {
-                id: 'acceptTexts',
-                type: 'select',
-                label: 'Do you consent to receiving Text Messages?',
+              contactPreference: {
+                id: 'contactPreference',
+                type: 'multiselect',
+                label: 'How would you like to be contacted.',
                 customProps: {
                   options: [
-                    { display: 'Yes', value: 'Y' },
-                    { display: 'No', value: 'N' },
+                    {
+                      display: 'Call',
+                      value: 'C',
+                    },
+                    {
+                      display: 'Text',
+                      value: 'T',
+                    },
                   ],
                 },
                 shouldAsk: {
@@ -139,13 +145,30 @@ export class HowWorksComponent {
                     },
                   ],
                 },
+                fieldValidation: {
+                  jsonRequired: true,
+                },
+              },
+              callTime: {
+                id: 'callTime',
+                type: 'text',
+                label: 'What time would you like to be called?',
+                shouldAsk: {
+                  conditions: [
+                    {
+                      sibling: 'contactPreference',
+                      expectedParentLevel: 1,
+                      conditions: { containsValue: 'C' },
+                    },
+                  ],
+                },
               },
             },
             layout: [
               ['firstName', 'lastName'],
               'gender',
               'age',
-              [['phoneType', 'phoneNumber'], 'acceptTexts'],
+              [['phoneType', 'phoneNumber'], 'contactPreference', 'callTime'],
             ],
           },
         ],

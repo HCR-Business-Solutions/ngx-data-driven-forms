@@ -23,6 +23,12 @@ import { Subscription } from 'rxjs';
         [currentPageIndex]="this.pageIndex"
         class="w-full py-4"
       ></ddforms-application-container>
+      <button
+        class="w-full border border-orange-800 bg-orange-50 text-xl font-semibold py-4 my-2 rounded-sm"
+        (click)="onFakeSubmit()"
+      >
+        "Submit"
+      </button>
     </ng-container>
   `,
   styles: [],
@@ -53,5 +59,12 @@ export class SafeFormWrapperComponent implements OnInit, OnDestroy {
     if (this.formSubscriber && !this.formSubscriber.closed) {
       this.formSubscriber.unsubscribe();
     }
+  }
+
+  onFakeSubmit(): void {
+    if (this.formControl.invalid) {
+      this.formControl.markAllAsTouched();
+    }
+    console.log({ control: this.formControl });
   }
 }
