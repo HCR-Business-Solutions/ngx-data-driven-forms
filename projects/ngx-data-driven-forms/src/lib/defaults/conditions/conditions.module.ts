@@ -21,6 +21,12 @@ export class DDFormsDefaultConditionsModule {
     );
     this._conditionsRegistry.register('ageLess', Conditions.ageLess);
 
+    this._conditionsRegistry.register('containsVaue', Conditions.containsValue);
+    this._conditionsRegistry.register(
+      'excludesValue',
+      Conditions.excludesValue
+    );
+
     this._conditionsRegistry.register('dateAfterOn', Conditions.dateAfterOn);
     this._conditionsRegistry.register('dateAfter', Conditions.dateAfter);
     this._conditionsRegistry.register('dateBeforeOn', Conditions.dateBeforeOn);
