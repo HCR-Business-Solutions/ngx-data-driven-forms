@@ -39,6 +39,9 @@ export class DDFormsDefaultConditionsModule {
     this._conditionsRegistry.register('hasValue', Conditions.hasValue);
     this._conditionsRegistry.register('noValue', Conditions.noValue);
 
+    this._conditionsRegistry.register('isTruthy', Conditions.isTruthy);
+    this._conditionsRegistry.register('isFalsy', Conditions.isFalsy);
+
     this._conditionsRegistry.register('numberEquals', Conditions.numberEquals);
     this._conditionsRegistry.register(
       'numberGreaterEquals',
@@ -59,6 +62,8 @@ export class DDFormsDefaultConditionsModule {
       'patternNotMatch',
       Conditions.patternNotMatch
     );
+
+    this._conditionsRegistry.register('isEmail', Conditions.isEmail);
 
     this._conditionsRegistry.register('valueMatch', Conditions.valueMatch);
     this._conditionsRegistry.register(
