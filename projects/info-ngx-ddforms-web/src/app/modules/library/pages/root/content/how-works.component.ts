@@ -163,12 +163,34 @@ export class HowWorksComponent {
                   ],
                 },
               },
+              email: {
+                id: 'email',
+                type: 'text',
+                label: 'What is your email?',
+              },
+              emailConfirm: {
+                id: 'emailConfirm',
+                type: 'text',
+                label: 'Please confirm your email',
+                shouldAsk: {
+                  conditions: [
+                    {
+                      sibling: 'email',
+                      expectedParentLevel: 1,
+                      conditions: {
+                        isEmail: true,
+                      },
+                    },
+                  ],
+                },
+              },
             },
             layout: [
               ['firstName', 'lastName'],
               'gender',
               'age',
               [['phoneType', 'phoneNumber'], 'contactPreference', 'callTime'],
+              ['email', 'emailConfirm'],
             ],
           },
         ],
