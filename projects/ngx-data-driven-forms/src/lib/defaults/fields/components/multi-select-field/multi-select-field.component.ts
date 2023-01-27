@@ -55,14 +55,13 @@ interface Option {
     `
       .multiselect-container {
         position: relative;
-        isolation: isolate;
       }
     `,
     `
       .multiselect-field {
         height: 100%;
         cursor: pointer;
-        z-index: 10;
+        z-index: 1;
       }
     `,
     `
@@ -70,7 +69,7 @@ interface Option {
         position: absolute;
         right: 4px;
         top: 15%;
-        z-index: 20;
+        z-index: 2;
         user-select: none;
       }
     `,
@@ -86,6 +85,8 @@ interface Option {
         background: #fefefe;
         border: 0.666667px solid rgb(148, 148, 148);
         border-radius: 4px;
+        position: relative;
+        z-index: 5;
       }
     `,
     `
